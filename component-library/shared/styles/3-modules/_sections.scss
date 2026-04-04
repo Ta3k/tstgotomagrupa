@@ -34,6 +34,18 @@
   justify-content: center;
   border-top: none !important;
   border-left: none !important;
+
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media only screen and (max-width: $tablet) {
+    grid-column: span 2;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    grid-column: span 2;
+  }
 }
 .header-card h2 {
   font-size: 32px;
@@ -55,6 +67,14 @@
   border: 1px solid rgba(255,255,255,0.16);
   padding: 14px 0px 28px 28px;
   text-align: left;
+
+  @media only screen and (max-width: $tablet) {
+    grid-column: span 2;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    grid-column: span 2;
+  }
 }
 .stat-value {
   display: block;
@@ -79,6 +99,14 @@
   align-items: center;
   justify-content: center;
   min-height: 150px;
+
+  @media only screen and (max-width: $tablet) {
+    grid-column: span 2;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    grid-column: span 2;
+  }
 }
 .logo-item img {
   max-height: 40px;
@@ -105,6 +133,14 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
+  // @media only screen and (max-width: $desktop) {
+  //   padding: 80px 0;
+  // }
+
+  @media only screen and (max-width: $mobile) {
+    flex-wrap: wrap;
+  }
 }
 .banner-left img {
   height: 61px;
@@ -115,9 +151,16 @@
   line-height: 28px;
   margin-left: 50px;
   font-weight: 600;
+
+  @media only screen and (max-width: $mobile) {
+    margin-left: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 .banner-left span strong{
   color: #F39412;
+  width: 100%;
 }
 
 .banner-btn {
