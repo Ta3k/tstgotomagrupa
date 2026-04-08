@@ -25,5 +25,61 @@
 
     <script src="/js/scripts.js"></script>
     <script src="/js/common.js"></script>
+    
+    <script>
+    // Initialize CookieDialog
+    const dialog = CookieDialog.init({
+    //   enableLocation: false,
+      privacyUrl: '/privacy',
+      categories: [
+        {
+          id: 'necessary',
+          name: 'Funkcjonalne',
+          description: '',
+          required: true
+        },
+        {
+          id: 'analytics',
+          name: 'Statystyka',
+          description: '',
+          required: false
+        },
+        {
+          id: 'marketing',
+          name: 'Marketing',
+          description: '',
+          required: false
+        }
+      ],
+        theme: 'dark',
+      translations: {
+        title: "Zarządzaj zgodą",
+        description: 'Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.',
+        acceptButton: "Akceptuję",
+        rejectButton: 'Odmów',
+        settingsButton: 'Zarządzaj zgodą',
+        saveButton: 'Zapisz preferencje',
+        closeButton: 'Zamknij',
+        necessary: 'Wymagane',
+        analytics: 'Analityka',
+        marketing: 'Marketing',
+        privacyLink: 'Polityka prywatności'
+        },
+        // translations: {
+        //   title: 'Preferencias de Cookies',
+        //   description: 'Utilizamos cookies para mejorar su experiencia.',
+        //   acceptAll: 'Aceptar Todas',
+        //   rejectAll: 'Rechazar Todas'
+        // },
+      
+      onAccept: (consent) => {
+        // Check which categories were accepted
+        if (consent.categories.analytics) {
+          // Initialize Google Analytics
+          console.log('Analytics enabled');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

@@ -40,11 +40,11 @@
   }
 
   @media only screen and (max-width: $tablet) {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   @media only screen and (max-width: $mobile) {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 .header-card h2 {
@@ -101,7 +101,7 @@
   min-height: 150px;
 
   @media only screen and (max-width: $tablet) {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   @media only screen and (max-width: $mobile) {
@@ -122,12 +122,22 @@
 .partner-banner {
   border: 1px solid rgba(255,255,255,0.15);
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
   margin-top: 2rem;
+
+  @media only screen and (max-width: $tablet) {
+    // grid-column: span 1;
+    flex-wrap: wrap;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    // grid-column: span 1;
+    flex-wrap: wrap;
+  }
 }
 .banner-left {
   display: flex;
@@ -140,11 +150,19 @@
 
   @media only screen and (max-width: $mobile) {
     flex-wrap: wrap;
+    order: 1;
+    width: 50%;
   }
 }
 .banner-left img {
-  height: 61px;
-  width: auto;
+  height: auto;
+  width: 118px;
+
+  @media only screen and (max-width: $mobile) {
+    
+    order: 1;
+    width: 80%;
+  }
 }
 .banner-left span {
   font-size: 20px;
@@ -162,7 +180,50 @@
   color: #F39412;
   width: 100%;
 }
+.banner-content{
+  flex: 1;
 
+  // p {
+  //   margin-top: 10px;
+  //   font-size: 14px;
+  // }
+
+  
+  @media only screen and (max-width: $tablet) {
+    //  padding: 0px 0 0 0;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    
+    order: 3;
+    width: 100%;
+
+    p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+.banner-right{
+  @media only screen and (max-width: $tablet) {
+    //  padding: 0px 0 0 0;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    
+    order: 2;
+    width: 12%;
+
+    img {
+      width: 24px;
+    }
+  }
+}
+
+.banner-title{
+  margin-bottom: 10px;
+}
 .banner-btn {
   border: 1px solid #fff;
   color: #fff;
@@ -177,14 +238,14 @@
 }
 
 .section {
-  padding: 96px 0;
+  padding: 0px 0 0 0;
 
   @media only screen and (max-width: $desktop) {
-    padding: 80px 0;
+    padding: 0px 0 0 0;
   }
 
   @media only screen and (max-width: $mobile) {
-     padding: 60px 0;
+     padding: 0px 0 0 0;
   }
 }
 
