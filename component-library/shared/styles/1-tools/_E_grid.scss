@@ -32,7 +32,7 @@ $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
   }
 
   @media only screen and (max-width: $mobile) {
-    max-width: 480px;
+    max-width: 450px;
     padding-left: ($container-offset * 2);
     padding-right: ($container-offset * 2);
   }
