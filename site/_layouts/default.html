@@ -20,7 +20,7 @@
     {% bookshop_include page content_blocks=page.content_blocks page_theme=page.page_theme %}
 
     <div class="top" title="Top"><ion-icon name="arrow-up" style="color: black;"></ion-icon></div>
-
+    <div class="top" title="Top"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill-rule="evenodd"><circle cx="12" cy="12" r="12"></circle><path d="M15.094 13.978c-1.146 0-1.946-.813-1.946-1.978s.8-1.978 1.946-1.978c1.145 0 1.945.813 1.945 1.978s-.8 1.978-1.945 1.978M9.07 10.022h3.883l-.094.09c-.537.515-.844 1.203-.844 1.888 0 1.738 1.294 3 3.079 3 1.786 0 3.082-1.262 3.082-3s-1.296-3-3.082-3H9.079C7.295 9 6 10.262 6 12s1.295 3 3.079 3h2.144v-1.022H9.07c-1.136 0-1.932-.813-1.937-1.978 0-1.146.815-1.978 1.937-1.978" fill="#000"></path></g></svg></div>
     {% include footer.html %}
 
     <script src="/js/scripts.js"></script>
@@ -28,58 +28,173 @@
     
     <script>
     // Initialize CookieDialog
-    const dialog = CookieDialog.init({
-    //   enableLocation: false,
-      privacyUrl: '/privacy',
-      categories: [
-        {
-          id: 'necessary',
-          name: 'Funkcjonalne',
-          description: '',
-          required: true
-        },
-        {
-          id: 'analytics',
-          name: 'Statystyka',
-          description: '',
-          required: false
-        },
-        {
-          id: 'marketing',
-          name: 'Marketing',
-          description: '',
-          required: false
-        }
-      ],
-        theme: 'dark',
-      translations: {
-        title: "Zarządzaj zgodą",
-        description: 'Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.',
-        acceptButton: "Akceptuję",
-        rejectButton: 'Odmów',
-        settingsButton: 'Zarządzaj zgodą',
-        saveButton: 'Zapisz preferencje',
-        closeButton: 'Zamknij',
-        necessary: 'Wymagane',
-        analytics: 'Analityka',
-        marketing: 'Marketing',
-        privacyLink: 'Polityka prywatności'
-        },
-        // translations: {
-        //   title: 'Preferencias de Cookies',
-        //   description: 'Utilizamos cookies para mejorar su experiencia.',
-        //   acceptAll: 'Aceptar Todas',
-        //   rejectAll: 'Rechazar Todas'
-        // },
-      
-      onAccept: (consent) => {
-        // Check which categories were accepted
-        if (consent.categories.analytics) {
-          // Initialize Google Analytics
-          console.log('Analytics enabled');
-        }
+    const CONFIG = {
+      googleAnalyticsId: 'GTM-58PWTTGN', // Replace with your GA4 Measurement ID
+    };
+
+    // Initialize Google Analytics with denied consent by default
+    function initializeGoogleAnalytics() {
+      if (window.gtag) {
+        console.log('Google Analytics already loaded');
+        return;
       }
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${CONFIG.googleAnalyticsId}`;
+      document.head.appendChild(script);
+
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('js', new Date());
+
+        // Set default consent state - everything denied for GDPR compliance
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500 // Wait 500ms for consent update
+        });
+
+        // Initialize GA4 with privacy-friendly settings
+        gtag('config', CONFIG.googleAnalyticsId, {
+          'anonymize_ip': true,
+          'cookie_flags': 'SameSite=Strict;Secure'
+        });
+
+        console.log('Google Analytics loaded with default denied consent');
+      };
+    }
+
+    // Update Google Analytics consent based on user choices
+    function updateGoogleConsent(consent) {
+      if (window.gtag && consent && consent.categories) {
+        window.gtag('consent', 'update', {
+          'analytics_storage': consent.categories.analytics ? 'granted' : 'denied',
+          'ad_storage': consent.categories.marketing ? 'granted' : 'denied',
+          'ad_user_data': consent.categories.marketing ? 'granted' : 'denied',
+          'ad_personalization': consent.categories.marketing ? 'granted' : 'denied'
+        });
+
+        console.log('GA4 consent updated:', {
+          analytics: consent.categories.analytics ? 'granted' : 'denied',
+          advertising: consent.categories.marketing ? 'granted' : 'denied'
+        });
+      }
+    }
+
+    // Initialize everything on page load
+    window.addEventListener('load', function() {
+      // Initialize CookieDialog first
+      const dialog = CookieDialog.init({
+        privacyUrl: '/privacy',
+        categories: [
+          {
+            id: 'necessary',
+            name: 'Funkcjonalne',
+            description: '',
+            required: true
+          },
+          {
+            id: 'analytics',
+            name: 'Statystyka',
+            description: '',
+            required: false
+          },
+          {
+            id: 'marketing',
+            name: 'Marketing',
+            description: '',
+            required: false
+          }
+        ],
+        theme: 'dark',
+        translations: {
+          title: "Zarządzaj zgodą",
+          description: 'Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.',
+          acceptButton: "Akceptuję",
+          rejectButton: 'Odmów',
+          settingsButton: 'Zarządzaj zgodą',
+          saveButton: 'Zapisz preferencje',
+          closeButton: 'Zamknij',
+          necessary: 'Wymagane',
+          analytics: 'Analityka',
+          marketing: 'Marketing',
+          privacyLink: 'Polityka prywatności'
+        },
+        onAccept: function(consent) {
+          updateGoogleConsent(consent);
+          console.log('Analytics enabled');
+        },
+        onReject: function(consent) {
+          updateGoogleConsent(consent);
+        },
+        onChange: function(consent) {
+          updateGoogleConsent(consent);
+        }
+      });
+
+      // Load Google Analytics after CookieDialog initialization
+      const hasExistingConsent = dialog.hasConsent();
+      const existingConsent = hasExistingConsent ? dialog.getConsent() : null;
+
+      // Initialize Google Analytics with current consent state
+      initializeGoogleAnalytics(existingConsent);
     });
+
+
+
+    // const dialog = CookieDialog.init({
+    // //   enableLocation: false,
+    //   privacyUrl: '/privacy',
+    //   categories: [
+    //     {
+    //       id: 'necessary',
+    //       name: 'Funkcjonalne',
+    //       description: '',
+    //       required: true
+    //     },
+    //     {
+    //       id: 'analytics',
+    //       name: 'Statystyka',
+    //       description: '',
+    //       required: false
+    //     },
+    //     {
+    //       id: 'marketing',
+    //       name: 'Marketing',
+    //       description: '',
+    //       required: false
+    //     }
+    //   ],
+    //   theme: 'dark',
+    //   translations: {
+    //     title: "Zarządzaj zgodą",
+    //     description: 'Aby zapewnić jak najlepsze wrażenia, korzystamy z technologii, takich jak pliki cookie, do przechowywania i/lub uzyskiwania dostępu do informacji o urządzeniu. Zgoda na te technologie pozwoli nam przetwarzać dane, takie jak zachowanie podczas przeglądania lub unikalne identyfikatory na tej stronie. Brak wyrażenia zgody lub wycofanie zgody może niekorzystnie wpłynąć na niektóre cechy i funkcje.',
+    //     acceptButton: "Akceptuję",
+    //     rejectButton: 'Odmów',
+    //     settingsButton: 'Zarządzaj zgodą',
+    //     saveButton: 'Zapisz preferencje',
+    //     closeButton: 'Zamknij',
+    //     necessary: 'Wymagane',
+    //     analytics: 'Analityka',
+    //     marketing: 'Marketing',
+    //     privacyLink: 'Polityka prywatności'
+    //     },
+      
+    //   onAccept: (consent) => {
+    //     // Check which categories were accepted
+    //     if (consent.categories.analytics) {
+    //       // Initialize Google Analytics
+    //       console.log('Analytics enabled');
+    //     }
+    //   }
+    // });
   </script>
 </body>
 </html>
