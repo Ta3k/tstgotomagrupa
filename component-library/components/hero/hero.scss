@@ -86,6 +86,7 @@
 			#{$c}__image {
 				height: 280px;
 				margin-bottom: 32px;
+				overflow: hidden;
 
 				&::before {
 					border-radius: 16px;
