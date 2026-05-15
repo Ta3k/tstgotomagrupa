@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://grupagotoma.pl/sitemap.xml
+Sitemap: https://www.grupagotoma.pl/sitemap.xml
 
 Disallow:
 
