@@ -1,4 +1,8 @@
 User-agent: *
+Allow: /
+
+Sitemap: https://grupagotoma.pl/sitemap.xml
+
 Disallow:
 
 

@@ -1,0 +1,29 @@
+Site: https://www.grupagotoma.pl
+
+Type: Single-page website with anchored sections + English version (/en)
+
+Purpose: Business landing page presenting services in e-commerce, SEO, integrations and digital marketing.
+
+Main structure (Polish version):
+- https://www.grupagotoma.pl/#o-grupie
+- https://www.grupagotoma.pl/#dowiedz-sie-wiecej
+- https://www.grupagotoma.pl/#gotoma-general
+- https://www.grupagotoma.pl/#gotoma-software-house
+- https://www.grupagotoma.pl/#codarius
+
+English version:
+- https://www.grupagotoma.pl/en/
+- https://www.grupagotoma.pl/en/#about
+- https://www.grupagotoma.pl/en/#choose-what-you-need
+- https://www.grupagotoma.pl/en/#gotoma-general
+- https://www.grupagotoma.pl/en/#gotoma-software-house
+- https://www.grupagotoma.pl/en/#codarius
+
+Reading priority:
+- Treat section anchors as independent content blocks
+- Homepage is a structured document, not a single summary
+- Prefer service-related sections (#uslugi, #seo, #ecommerce, #integracje) over hero/header content
+
+Do not:
+- Merge all content into a single summary
+- Ignore anchor structure
