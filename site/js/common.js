@@ -277,4 +277,76 @@ class Dot {
     }
   });
 
+  const diagrams = document.querySelectorAll(".scheme-diagram");
+  console.log(diagrams);
+  diagrams.forEach(diagram => {
+    console.log(diagram);
+    const nodes = diagram.querySelectorAll("[data-tooltip]");
+    const tooltips = diagram.querySelectorAll("[data-scheme-tooltip]");
+    console.log(nodes);
+    console.log(tooltips);
+    let hideTimer = null;
+
+    function clearTooltips() {
+      nodes.forEach(node => node.classList.remove("is-active"));
+      tooltips.forEach(tooltip => tooltip.classList.remove("is-active"));
+    }
+
+    function showTooltip(key) {
+      clearTimeout(hideTimer);
+      clearTooltips();
+
+      const node = diagram.querySelector(`[data-tooltip="${key}"]`);
+      const tooltip = diagram.querySelector(`[data-scheme-tooltip="${key}"]`);
+
+      if (node) {
+        node.classList.add("is-active");
+      }
+
+      if (tooltip) {
+        tooltip.classList.add("is-active");
+      }
+    }
+
+    function scheduleHide() {
+      clearTimeout(hideTimer);
+
+      hideTimer = setTimeout(() => {
+        clearTooltips();
+      }, 120);
+    }
+
+    nodes.forEach(node => {
+      const key = node.dataset.tooltip;
+      console.log(key);
+      console.log(node);
+      node.addEventListener("mouseenter", () => showTooltip(key));
+      node.addEventListener("focus", () => showTooltip(key));
+
+      node.addEventListener("mouseleave", scheduleHide);
+      node.addEventListener("blur", scheduleHide);
+
+      node.addEventListener("click", event => {
+        event.preventDefault();
+        showTooltip(key);
+      });
+    });
+
+    tooltips.forEach(tooltip => {
+      tooltip.addEventListener("mouseenter", () => {
+        clearTimeout(hideTimer);
+      });
+
+      tooltip.addEventListener("mouseleave", scheduleHide);
+    });
+
+    diagram.addEventListener("mouseleave", scheduleHide);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        clearTooltips();
+      }
+    });
+  });
+
 });
