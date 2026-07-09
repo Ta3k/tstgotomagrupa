@@ -1,5 +1,125 @@
+let APP;
+
 document.addEventListener("DOMContentLoaded", function () {
   'use strict';
+
+function init () {
+   APP = new App();
+   events();
+   loop();
+}
+
+function loop () {
+   APP.render();
+   requestAnimationFrame(loop);
+}
+
+function events () {
+   document.addEventListener('mousemove', APP.mousemoveHandler, false);
+   document.addEventListener('mouseleave', APP.mouseleaveHandler, false);
+   window.addEventListener('resize', APP.resize, false);
+}
+
+class App {
+   constructor () {
+      this.canvas = document.querySelector('canvas');
+      this.context = this.canvas.getContext('2d');
+      this.canvas.width = this.width = window.innerWidth;
+      this.canvas.height = this.height = window.innerHeight;
+      
+      this.setupDots();
+      
+      this.resize = this.resize.bind(this);
+      this.mousemoveHandler = this.mousemoveHandler.bind(this);
+      this.mouseleaveHandler = this.mouseleaveHandler.bind(this);
+   }
+   
+   setupDots () {
+      this.dots = [];
+      this.scl = 38;
+      this.cols = this.width / this.scl;
+      this.rows = this.height / this.scl;
+      
+      let id = 0;
+      for (let x = 0; x < this.cols; x += 1) {
+         for (let y = 0; y < this.rows; y += 1) {
+            this.dots.push(new Dot(id, x * this.scl, y * this.scl, this.context, this.scl));
+            id += 1;
+         }
+      }
+   }
+   
+   resize () {
+      this.canvas.width = this.width = window.innerWidth;
+      this.canvas.height = this.height = window.innerHeight;
+      this.setupDots();
+   }
+   
+   mousemoveHandler (event) {
+      this.dots.forEach(d => {
+         d.mousemove(event);
+      })
+   }
+   
+   mouseleaveHandler () {
+      this.dots.forEach(d => {
+         d.isHover = false;
+      })
+   }
+   
+   render () {
+      this.context.clearRect(0, 0, this.width, this.height);
+      
+      this.dots.forEach(d => {
+         d.render();
+      })
+   }
+}
+
+class Dot {
+   constructor (id, x, y, context, scl) {
+      this.id = id;
+      this.x = x;
+      this.y = y;
+      this.new = { x: x, y: y, radius: 3, color: 'rgba(239, 239, 240, 1)' };
+      this.radius = 3;
+      
+      this.context = context;
+      this.scl = scl;
+      this.isHover = false;
+      this.isANimated = false;
+   }
+   
+   mousemove (event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      
+      this.isHover = ((Math.abs(this.x - x) < (this.scl / 4 * 9)) && (Math.abs(this.y - y) < (this.scl / 4 * 9))) ? true : false;
+      this.isCenter = ((Math.abs(this.x - x) < (this.scl / 4 * 5)) && (Math.abs(this.y - y) < (this.scl / 4 * 5))) ? true : false;
+      this.isClosest = ((Math.abs(this.x - x) < (this.scl / 4 * 2)) && (Math.abs(this.y - y) < (this.scl / 4 * 2))) ? true : false;
+      
+      if (this.isHover && !this.isCenter && !this.isClosest) {
+         TweenMax.to(this.new, 0.4, {
+            radius: 5
+         });
+      } else if (this.isHover && this.isCenter) {
+         TweenMax.to(this.new, 0.4, {
+            radius: this.isClosest ? 14 : 9
+         });
+      } else {
+         TweenMax.to(this.new, 0.4, {
+            radius: 3
+         });
+      }
+   }
+   
+   render () {
+      this.context.beginPath();
+      this.context.arc(this.new.x, this.new.y, this.new.radius, 0, 2 * Math.PI, false);
+      this.context.fillStyle = this.new.color;
+      this.context.fill();
+   }
+}
 
   /* =======================
   // Menu
