@@ -3,123 +3,149 @@ let APP;
 document.addEventListener("DOMContentLoaded", function () {
   'use strict';
 
-function init () {
-   APP = new App();
-   events();
-   loop();
-}
-
-function loop () {
-   APP.render();
-   requestAnimationFrame(loop);
-}
-
-function events () {
-   document.addEventListener('mousemove', APP.mousemoveHandler, false);
-   document.addEventListener('mouseleave', APP.mouseleaveHandler, false);
-   window.addEventListener('resize', APP.resize, false);
-}
-
-class App {
-   constructor () {
+  class App {
+    constructor () {
       this.canvas = document.querySelector('canvas');
+
+      if (!this.canvas) {
+        console.warn('Brak elementu canvas');
+        return;
+      }
+
       this.context = this.canvas.getContext('2d');
       this.canvas.width = this.width = window.innerWidth;
       this.canvas.height = this.height = window.innerHeight;
-      
+
       this.setupDots();
-      
+
       this.resize = this.resize.bind(this);
       this.mousemoveHandler = this.mousemoveHandler.bind(this);
       this.mouseleaveHandler = this.mouseleaveHandler.bind(this);
-   }
-   
-   setupDots () {
+    }
+
+    setupDots () {
       this.dots = [];
-      this.scl = 38;
-      this.cols = this.width / this.scl;
-      this.rows = this.height / this.scl;
-      
+      this.scl = 24;
+      this.cols = Math.ceil(this.width / this.scl);
+      this.rows = Math.ceil(this.height / this.scl);
+
       let id = 0;
+
       for (let x = 0; x < this.cols; x += 1) {
-         for (let y = 0; y < this.rows; y += 1) {
-            this.dots.push(new Dot(id, x * this.scl, y * this.scl, this.context, this.scl));
-            id += 1;
-         }
+        for (let y = 0; y < this.rows; y += 1) {
+          this.dots.push(
+            new Dot(id, x * this.scl, y * this.scl, this.context, this.scl)
+          );
+          id += 1;
+        }
       }
-   }
-   
-   resize () {
+    }
+
+    resize () {
       this.canvas.width = this.width = window.innerWidth;
       this.canvas.height = this.height = window.innerHeight;
       this.setupDots();
-   }
-   
-   mousemoveHandler (event) {
-      this.dots.forEach(d => {
-         d.mousemove(event);
-      })
-   }
-   
-   mouseleaveHandler () {
-      this.dots.forEach(d => {
-         d.isHover = false;
-      })
-   }
-   
-   render () {
-      this.context.clearRect(0, 0, this.width, this.height);
-      
-      this.dots.forEach(d => {
-         d.render();
-      })
-   }
-}
+    }
 
-class Dot {
-   constructor (id, x, y, context, scl) {
+    mousemoveHandler (event) {
+      this.dots.forEach(d => d.mousemove(event));
+    }
+
+    mouseleaveHandler () {
+      this.dots.forEach(d => {
+        d.isHover = false;
+      });
+    }
+
+    render () {
+      this.context.clearRect(0, 0, this.width, this.height);
+
+      this.dots.forEach(d => {
+        d.render();
+      });
+    }
+  }
+
+  class Dot {
+    constructor (id, x, y, context, scl) {
       this.id = id;
       this.x = x;
       this.y = y;
-      this.new = { x: x, y: y, radius: 3, color: 'rgba(239, 239, 240, 1)' };
-      this.radius = 3;
-      
+      this.new = {
+        x: x,
+        y: y,
+        radius: 2,
+        color: 'rgba(162, 162, 167, 0.81)'
+      };
+
       this.context = context;
       this.scl = scl;
       this.isHover = false;
-      this.isANimated = false;
-   }
-   
-   mousemove (event) {
+      this.isAnimated = false;
+    }
+
+    mousemove (event) {
       const x = event.clientX;
       const y = event.clientY;
-      
-      this.isHover = ((Math.abs(this.x - x) < (this.scl / 4 * 9)) && (Math.abs(this.y - y) < (this.scl / 4 * 9))) ? true : false;
-      this.isCenter = ((Math.abs(this.x - x) < (this.scl / 4 * 5)) && (Math.abs(this.y - y) < (this.scl / 4 * 5))) ? true : false;
-      this.isClosest = ((Math.abs(this.x - x) < (this.scl / 4 * 2)) && (Math.abs(this.y - y) < (this.scl / 4 * 2))) ? true : false;
-      
+
+      this.isHover =
+        Math.abs(this.x - x) < this.scl / 4 * 9 &&
+        Math.abs(this.y - y) < this.scl / 4 * 9;
+
+      this.isCenter =
+        Math.abs(this.x - x) < this.scl / 4 * 5 &&
+        Math.abs(this.y - y) < this.scl / 4 * 5;
+
+      this.isClosest =
+        Math.abs(this.x - x) < this.scl / 4 * 2 &&
+        Math.abs(this.y - y) < this.scl / 4 * 2;
+
       if (this.isHover && !this.isCenter && !this.isClosest) {
-         TweenMax.to(this.new, 0.4, {
-            radius: 5
-         });
+        gsap.to(this.new, 0.4, {
+          radius: 5
+        });
       } else if (this.isHover && this.isCenter) {
-         TweenMax.to(this.new, 0.4, {
-            radius: this.isClosest ? 14 : 9
-         });
+        gsap.to(this.new, 0.4, {
+          radius: this.isClosest ? 9 : 6
+        });
       } else {
-         TweenMax.to(this.new, 0.4, {
-            radius: 3
-         });
+        gsap.to(this.new, 0.4, {
+          radius: 3
+        });
       }
-   }
-   
-   render () {
+    }
+
+    render () {
       this.context.beginPath();
       this.context.arc(this.new.x, this.new.y, this.new.radius, 0, 2 * Math.PI, false);
       this.context.fillStyle = this.new.color;
       this.context.fill();
-   }
-}
+    }
+  }
+
+  function init () {
+    APP = new App();
+
+    if (!APP.canvas) {
+      return;
+    }
+
+    events();
+    loop();
+  }
+
+  function loop () {
+    APP.render();
+    requestAnimationFrame(loop);
+  }
+
+  function events () {
+    document.addEventListener('mousemove', APP.mousemoveHandler, false);
+    document.addEventListener('mouseleave', APP.mouseleaveHandler, false);
+    window.addEventListener('resize', APP.resize, false);
+  }
+
+  init();
 
   /* =======================
   // Menu
@@ -349,4 +375,66 @@ class Dot {
     });
   });
 
+
+  const mobileScheme = document.querySelector(".scheme-mobile");
+
+  if (!mobileScheme) {
+    return;
+  }
+
+  const triggers = mobileScheme.querySelectorAll("[data-mobile-tooltip-trigger]");
+  const sheets = document.querySelectorAll("[data-mobile-tooltip]");
+  const backdrop = document.querySelector("[data-mobile-tooltip-backdrop]");
+  const closeButtons = document.querySelectorAll("[data-mobile-tooltip-close]");
+
+  function closeMobileTooltip() {
+    sheets.forEach(sheet => {
+      sheet.classList.remove("is-active");
+      sheet.setAttribute("aria-hidden", "true");
+    });
+
+    backdrop?.classList.remove("is-active");
+    document.body.classList.remove("scheme-mobile-tooltip-open");
+  }
+
+  function openMobileTooltip(key) {
+    const sheet = document.querySelector(`[data-mobile-tooltip="${key}"]`);
+
+    if (!sheet) {
+      return;
+    }
+
+    closeMobileTooltip();
+
+    sheet.classList.add("is-active");
+    sheet.setAttribute("aria-hidden", "false");
+
+    backdrop?.classList.add("is-active");
+    document.body.classList.add("scheme-mobile-tooltip-open");
+  }
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener("click", event => {
+      if (!window.matchMedia("(max-width: 1023px)").matches) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const key = trigger.dataset.mobileTooltipTrigger;
+      openMobileTooltip(key);
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener("click", closeMobileTooltip);
+  });
+
+  backdrop?.addEventListener("click", closeMobileTooltip);
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeMobileTooltip();
+    }
+  });
 });
