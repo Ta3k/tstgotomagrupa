@@ -18,7 +18,137 @@ item10:  'Członkostwo w klastrze przemysłowym'
 item11:  'Aktywnie uczestniczymy w rozwoju innowacji przemysłowych, współpracując z firmami i instytucjami w obszarze cyfryzacji, automatyzacji i nowoczesnych technologii.'
 item12:  'ERP Factory, rozwijamy własne produkty'
 item13:  'Projektujemy i rozwijamy własny system ERP dla produkcji i biznesu, który odpowiada na realne potrzeby operacyjne - od planowania po kontrolę procesów.'
-      
+
+item14: 'Jak to działa?'
+item15: 'Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami twoorzonymi na miarę.'
+item16: 'GOTOMA GENERAL - KOORDYNACJA CYFRYZACJI,'
+item17: 'IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT'
+item18: 'Finansowanie'
+item19: 'Sprawdź możliwości >'
+item20: 'WMS / AMS'
+item21: 'Magazyn i zarządzanie'
+item22: 'TMS'
+item23: 'Transport i logistyka'
+item24: 'Zarządzanie procesami'
+item25: 'finansowymi, handlowymi'
+item26: 'i operacyjnymi'
+item27: 'APLIKACJE CUSTOM'
+item28: 'Aplikacje web, mobile, raporty,'
+item29: 'dashboardy i automatyzacje'
+item30: 'Leady'
+item31: 'Pozyskiwanie klientów'
+item32: 'CRM'
+item33: 'Obsługa sprzedaży'
+item34: 'SPRZĘT'
+item35: 'Hardware'
+item36: 'MES'
+item37: 'Zarządzanie produkcją'
+item38: 'PIM'
+item39: 'Informacje o produkcie'
+item40: 'INTEGRACJE'
+item41: 'GOTOMA'
+item42: 'API'
+item43: 'Synchronizacja'
+item44: 'danych'
+item45: 'Automatyzacja'
+item46: 'procesów'
+item47: 'Wymiana'
+item48: 'informacji'
+item49: 'Jak to działa?'
+item50: 'Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami tworzonymi na miarę.'
+item51: 'GOTOMA GENERAL - KOORDYNACJA CYFRYZACJI,'
+item52: 'IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT'
+item53: 'Finansowanie'
+item54: 'Sprawdź możliwości ›'
+item55: 'Cyberbezpieczeństwo'
+item56: 'NIS2, DORA, RODO, AI ACT, Audyty i procedury.'
+item57: 'PIM'
+item58: 'Informacje o produkcie'
+item59: 'SPRZĘT'
+item60: 'Hardware'
+item61: 'Sklepy internetowe'
+item62: 'Platformy sprzedażowe'
+item63: 'TMS'
+item64: 'Transport i logistyka'
+item65: 'Leady'
+item66: 'Pozyskiwanie klientów'
+item67: 'MES'
+item68: 'Zarządzanie produkcją'
+item69: 'CRM'
+item70: 'Obsługa sprzedaży'
+item71: 'WMS / AMS'
+item72: 'Magazyn i zarządzanie'
+item73: 'ERP'
+item74: 'Zarządzanie procesami finansowymi, handlowymi i operacyjnymi'
+item75: 'APLIKACJE CUSTOM'
+item76: 'Aplikacje web, mobile, raporty, dashboardy i automatyzacje'
+item77: 'INTEGRACJE GOTOMA'
+item78: 'API'
+item79: 'Synchronizacja danych'
+item80: 'Automatyzacja procesów'
+item81: 'Wymiana informacji'
+item82: 'Jak to działa?'
+item83: 'Jak to działa?'
+item84: 'Jak to działa?'
+item85: 'Jak to działa?'
+
+
+solutions:
+  - image: "/images/solutions/finansowanie.png"
+    alt: "Finansowanie inwestycji"
+    title: "Finansowanie inwestycji"
+    description: "Finansowanie wdrożeń i zakupów technologii."
+
+  - image: "/images/solutions/crm.png"
+    alt: "CRM"
+    title: "CRM"
+    description: "Obsługa i zarządzanie procesem sprzedaży."
+
+  - image: "/images/solutions/erp.png"
+    alt: "ERP"
+    title: "ERP"
+    description: "Zarządzanie zasobami przedsiębiorstwa."
+
+  - image: "/images/solutions/mes.png"
+    alt: "MES i produkcja"
+    title: "MES i produkcja"
+    description: "Rozwiązania dopasowane do procesów biznesowych i produkcyjnych."
+
+  - image: "/images/solutions/pim.png"
+    alt: "PIM"
+    title: "PIM"
+    description: "Centralizacja danych produktowych dla sprzedaży i dystrybucji."
+
+  - image: "/images/solutions/wms.png"
+    alt: "WMS, AMS, TMS"
+    title: "WMS, AMS, TMS"
+    description: "Logistyka, optymalne zarządzanie magazynem, transportem i środkami trwałymi."
+
+  - image: "/images/solutions/serwery.png"
+    alt: "Sprzęt i serwery"
+    title: "Sprzęt i serwery"
+    description: "Infrastruktura, hosting, serwery, środowisko pracy i licencje."
+
+  - image: "/images/solutions/vector.png"
+    alt: "Sklepy internetowe B2B / B2C"
+    title: "Sklepy internetowe B2B / B2C"
+    description: "Platformy sprzedażowe i usługi cyfrowe."
+
+  - image: "/images/solutions/marketing.png"
+    alt: "Sprzedaż i marketing internetowy"
+    title: "Sprzedaż i marketing internetowy"
+    description: "Marketing internetowy, kampanie i działania sprzedażowe budujące stały napływ leadów."
+
+  - image: "/images/solutions/strony.png"
+    alt: "Strony internetowe i content marketing"
+    title: "Strony internetowe, content marketing"
+    description: "Wizerunek w sieci, profile w social mediach, tworzenie treści na zamówienie."
+
+  - image: "/images/solutions/integracje.png"
+    alt: "Integracje i aplikacje na zamówienie"
+    title: "Integracje i aplikacje na zamówienie"
+    description: "Warstwa integracji spinających całość oraz aplikacje internetowe i mobilne na zamówienie."
+
 tooltips:
     - key: finance
       color: magenta

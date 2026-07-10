@@ -84,9 +84,9 @@
   <div class="scheme-section__inner container">
     <div class="scheme-desktop">
     <div class="header-card-partners">
-      <h2 class="stat-value-partners-header">Jak to działa?</h2>
+      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item14}}</h2>
       <p class="stat-label-partners-header">
-        Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami twoorzonymi na miarę.
+        {{site.data[page.lang].projects.item15}}
       </p>
     </div>
     <div class="scheme-diagram" style="--canvas-w: 1024; --canvas-h: 768;">
@@ -130,7 +130,7 @@
       </div>
     {% endif %}
 
-    {% if tooltip.cta %}
+    {% if tooltip.cta && false %}
       <a class="scheme-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
         {{ tooltip.cta.text }}
       </a>
@@ -141,15 +141,15 @@
       <div class="dotsTest"><canvas></canvas></div>
       <div class="scheme-header-box">
         <div class="scheme-header-box__title">
-          GOTOMA GENERAL – KOORDYNACJA CYFRYZACJI,<br>
-          IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT
+          {{site.data[page.lang].projects.item16}}<br>
+          {{site.data[page.lang].projects.item17}}
         </div>
 
         <button class="scheme-finance" type="button" data-tooltip="finance">
           <span class="scheme-finance__icon"><img src="/images/icons/hand-coins.png" alt="Finansowanie"></span>
           <span>
-            <strong>Finansowanie</strong>
-            <small>Sprawdź możliwości ›</small>
+            <strong>{{site.data[page.lang].projects.item18}}</strong>
+            <small>{{site.data[page.lang].projects.item19}}</small>
           </span>
         </button>
       </div>
@@ -232,9 +232,9 @@
               style="--x: 300; --y: 170; --w: 185; --h: 82;" data-tooltip="wms">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/warehouse.png" alt="WMS / AMS"></span>
-          WMS / AMS
+          {{site.data[page.lang].projects.item20}}
         </span>
-        <span class="scheme-node__text">Magazyn i zarządzanie</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item21}}</span>
       </button>
 
       <button class="scheme-node scheme-node--tms scheme-node--blue"
@@ -242,9 +242,9 @@
               style="--x: 525; --y: 170; --w: 185; --h: 82;" data-tooltip="tms">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/van.png" alt="TMS"></span>
-          TMS
+          {{site.data[page.lang].projects.item22}}
         </span>
-        <span class="scheme-node__text">Transport i logistyka</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item23}}</span>
       </button>
 
       <button class="scheme-node scheme-node--erp scheme-node--neutral"
@@ -255,9 +255,9 @@
           ERP
         </span>
         <span class="scheme-node__text">
-          Zarządzanie procesami<br>
-          finansowymi, handlowymi<br>
-          i operacyjnymi
+          {{site.data[page.lang].projects.item24}}<br>
+          {{site.data[page.lang].projects.item25}}<br>
+          {{site.data[page.lang].projects.item26}}
         </span>
       </button>
 
@@ -266,11 +266,11 @@
               style="--x: 405; --y: 535; --w: 235; --h: 95;" data-tooltip="custom">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/folder-code.png" alt="APLIKACJE CUSTOM"></span>
-          APLIKACJE CUSTOM
+          {{site.data[page.lang].projects.item27}}
         </span>
         <span class="scheme-node__text">
-          Aplikacje web, mobile, raporty,<br>
-          dashboardy i automatyzacje
+          {{site.data[page.lang].projects.item28}}<br>
+          {{site.data[page.lang].projects.item29}}
         </span>
       </button>
 
@@ -279,9 +279,9 @@
               style="--x: 78; --y: 320; --w: 190; --h: 82;" data-tooltip="leads">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/users-round.png" alt="Leady"></span>
-          Leady
+          {{site.data[page.lang].projects.item30}}
         </span>
-        <span class="scheme-node__text">Pozyskiwanie klientów</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item31}}</span>
       </button>
 
       <button class="scheme-node scheme-node--crm scheme-node--magenta"
@@ -290,9 +290,9 @@
               data-tooltip="crm">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/headset.png" alt="CRM"></span>
-          CRM
+          {{site.data[page.lang].projects.item32}}
         </span>
-        <span class="scheme-node__text">Obsługa sprzedaży</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item33}}</span>
       </button>
 
       <button class="scheme-node scheme-node--hardware scheme-node--orange"
@@ -300,9 +300,9 @@
               style="--x: 745; --y: 225; --w: 195; --h: 82;" data-tooltip="hardware">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/hard-drive.png" alt="SPRZĘT"></span>
-          SPRZĘT
+          {{site.data[page.lang].projects.item34}}
         </span>
-        <span class="scheme-node__text">Hardware</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item35}}</span>
       </button>
 
       <button class="scheme-node scheme-node--mes scheme-node--green"
@@ -310,9 +310,9 @@
               style="--x: 745; --y: 320; --w: 195; --h: 82;" data-tooltip="mes">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/factory.png" alt="MES"></span>
-          MES
+          {{site.data[page.lang].projects.item36}}
         </span>
-        <span class="scheme-node__text">Zarządzanie produkcją</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item37}}</span>
       </button>
 
       <button class="scheme-node scheme-node--pim scheme-node--green"
@@ -320,44 +320,49 @@
               style="--x: 745; --y: 440; --w: 195; --h: 82;" data-tooltip="pim">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/package-search.png" alt="PIM"></span>
-          PIM
+          {{site.data[page.lang].projects.item38}}
         </span>
-        <span class="scheme-node__text">Informacje o produkcie</span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item39}}</span>
       </button>
 
       <div class="scheme-integrations">
         <div class="scheme-integrations__brand">
           <span class="scheme-integrations__brand-icon"><img src="/images/icons/infinity.png" alt="INTEGRACJE"></span>
-          <strong>INTEGRACJE<br>GOTOMA</strong>
+          <strong>{{site.data[page.lang].projects.item40}}<br>
+            {{site.data[page.lang].projects.item41}}</strong>
         </div>
 
         <div class="scheme-integrations__item">
           <span><img src="/images/icons/unplug.png" alt="API"></span>
-          API
+          {{site.data[page.lang].projects.item42}}
         </div>
 
         <div class="scheme-integrations__item">
           <span><img style="max-width: none;" src="/images/icons/refresh-ccw.png" alt="Synchronizacja"></span>
-          Synchronizacja<br>danych
+          {{site.data[page.lang].projects.item43}}<br>
+          {{site.data[page.lang].projects.item44}}
         </div>
 
         <div class="scheme-integrations__item">
           <span><img style="max-width: none;" src="/images/icons/settings.png" alt="Automatyzacja"></span>
-          Automatyzacja<br>procesów
+          {{site.data[page.lang].projects.item45}}<br>
+          {{site.data[page.lang].projects.item46}}
         </div>
 
         <div class="scheme-integrations__item">
           <span><img src="/images/icons/arrow-left-right.png" alt="Wymiana informacji"></span>
-          Wymiana<br>informacji
+          {{site.data[page.lang].projects.item47}}<br>
+          {{site.data[page.lang].projects.item48}}
         </div>
       </div>
     </div>
     </div>
     <div class="scheme-mobile">
   <div class="header-card-partners">
-    <h2 class="stat-value-partners-header">Jak to działa?</h2>
+    <h2 class="stat-value-partners-header">
+      {{site.data[page.lang].projects.item49}}</h2>
     <p class="stat-label-partners-header">
-      Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami tworzonymi na miarę.
+      {{site.data[page.lang].projects.item50}}
     </p>
   </div>
 
@@ -397,8 +402,8 @@
     <div class="scheme-mobile-bar scheme-mobile-bar--header"
          style="--mx: 28; --my: 27; --mw: 325; --mh: 140;">
       <p class="scheme-mobile-bar__title">
-        GOTOMA GENERAL - KOORDYNACJA CYFRYZACJI,<br>
-        IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT
+        {{site.data[page.lang].projects.item51}}<br>
+        {{site.data[page.lang].projects.item52}}
       </p>
 
       <button class="scheme-mobile-finance" type="button" data-mobile-tooltip-trigger="finance">
@@ -406,10 +411,10 @@
           <span class="scheme-mobile-finance__icon">
             <img src="{{ '/images/icons/hand-coins.png' | relative_url }}" alt="" aria-hidden="true">
           </span>
-          <strong>Finansowanie</strong>
+          <strong>{{site.data[page.lang].projects.item53}}</strong>
         </span>
 
-        <span class="scheme-mobile-finance__right">Sprawdź możliwości ›</span>
+        <span class="scheme-mobile-finance__right">{{site.data[page.lang].projects.item54}}</span>
       </button>
     </div>
 
@@ -421,9 +426,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/shield-check.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>Cyberbezpieczeństwo</strong>
+        <strong>{{site.data[page.lang].projects.item55}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">NIS2, DORA, RODO, AI ACT, Audyty i procedury.</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item56}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--green"
@@ -434,9 +439,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/package-search.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>PIM</strong>
+        <strong>{{site.data[page.lang].projects.item57}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Informacje o produkcie</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item58}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--orange"
@@ -447,9 +452,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/hard-drive.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>SPRZĘT</strong>
+        <strong>{{site.data[page.lang].projects.item59}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Hardware</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item60}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--magenta"
@@ -460,9 +465,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/shopping-bag.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>Sklepy internetowe</strong>
+        <strong>{{site.data[page.lang].projects.item61}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Platformy sprzedażowe</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item62}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--blue"
@@ -473,9 +478,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/van.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>TMS</strong>
+        <strong>{{site.data[page.lang].projects.item63}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Transport i logistyka</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item64}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--magenta"
@@ -486,9 +491,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/users-round.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>Leady</strong>
+        <strong>{{site.data[page.lang].projects.item65}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Pozyskiwanie klientów</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item66}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--green"
@@ -499,9 +504,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/factory.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>MES</strong>
+        <strong>{{site.data[page.lang].projects.item67}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Zarządzanie produkcją</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item68}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--magenta"
@@ -512,9 +517,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/headset.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>CRM</strong>
+        <strong>{{site.data[page.lang].projects.item69}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Obsługa sprzedaży</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item70}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--blue"
@@ -525,9 +530,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/warehouse.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>WMS / AMS</strong>
+        <strong>{{site.data[page.lang].projects.item71}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Magazyn i zarządzanie</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item72}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--neutral"
@@ -538,9 +543,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/server.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>ERP</strong>
+        <strong>{{site.data[page.lang].projects.item73}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Zarządzanie procesami finansowymi, handlowymi i operacyjnymi</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item74}}</span>
     </button>
 
     <button class="scheme-mobile-node scheme-mobile-node--indigo"
@@ -551,9 +556,9 @@
         <span class="scheme-mobile-node__icon">
           <img src="{{ '/images/icons/folder-code.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>APLIKACJE CUSTOM</strong>
+        <strong>{{site.data[page.lang].projects.item75}}</strong>
       </span>
-      <span class="scheme-mobile-node__text">Aplikacje web, mobile, raporty, dashboardy i automatyzacje</span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item76}}</span>
     </button>
 
     <div class="scheme-mobile-bar scheme-mobile-bar--footer"
@@ -562,35 +567,35 @@
         <span class="scheme-mobile-integrations__icon">
           <img src="{{ '/images/icons/infinity.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <strong>INTEGRACJE GOTOMA</strong>
+        <strong>{{site.data[page.lang].projects.item77}}</strong>
       </div>
 
       <div class="scheme-mobile-integrations__item">
         <span class="scheme-mobile-integrations__item-icon">
           <img src="{{ '/images/icons/unplug.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <span>API</span>
+        <span>{{site.data[page.lang].projects.item78}}</span>
       </div>
 
       <div class="scheme-mobile-integrations__item">
         <span class="scheme-mobile-integrations__item-icon">
           <img src="{{ '/images/icons/refresh-ccw.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <span>Synchronizacja danych</span>
+        <span>{{site.data[page.lang].projects.item79}}</span>
       </div>
 
       <div class="scheme-mobile-integrations__item">
         <span class="scheme-mobile-integrations__item-icon">
           <img src="{{ '/images/icons/settings.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <span>Automatyzacja procesów</span>
+        <span>{{site.data[page.lang].projects.item80}}</span>
       </div>
 
       <div class="scheme-mobile-integrations__item">
         <span class="scheme-mobile-integrations__item-icon">
           <img src="{{ '/images/icons/arrow-left-right.png' | relative_url }}" alt="" aria-hidden="true">
         </span>
-        <span>Wymiana informacji</span>
+        <span>{{site.data[page.lang].projects.item81}}</span>
       </div>
     </div>
   </div>
@@ -646,7 +651,7 @@
       </div>
     {% endif %}
 
-    {% if tooltip.cta %}
+    {% if tooltip.cta && false %}
       <a class="scheme-mobile-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
         {{ tooltip.cta.text }}
       </a>
@@ -654,6 +659,30 @@
   </div>
 {% endfor %}
 </div>
+  </div>
+</section>
+
+<section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-results">
+  <div class="container">
+    <div class="grid-container-solutions">
+      <div class="header-card-solutions">
+        <h2 class="stat-value-solutions-header">Gotowe rozwiązania, które dopasujemy do Twojego biznesu</h2>
+        <p class="stat-label-solutions-header">
+          Pełne wsparcie IT360 dla twojej firmy. Dobieramy gotowe, sprawdzone rozwiązania naszych partnerów i uzupełniamy je o integracje oraz aplikacje szyte na miarę pod zapotrzebowanie klienta.
+        </p>
+      </div>
+      
+      {% assign solutions = site.data[page.lang].projects.solutions %}
+
+      {% for solution in solutions %}
+        <div class="stat-card-solutions">
+          <img src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}">
+          <span class="stat-value-solutions">{{ solution.title }}</span>
+          <span class="stat-label-solutions">{{ solution.description }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
   </div>
 </section>
 
