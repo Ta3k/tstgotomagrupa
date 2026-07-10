@@ -87,10 +87,10 @@ item78: 'API'
 item79: 'Data synchronization'
 item80: 'Process automation'
 item81: 'Information exchange'
-item82: 'How does it work?'
-item83: 'How does it work?'
-item84: 'How does it work?'
-item85: 'How does it work?'
+item82: 'Ready-made solutions that we tailor to your business'
+item83: 'Full IT360 support for your company. We select ready-made, proven solutions from our partners and complement them with integrations and custom-built applications tailored to the client’s needs.'
+item84: 'Trusted partners'
+item85: 'Together with our partners, we cover the IT areas that support your company.'
 
 
 solutions:
@@ -129,7 +129,7 @@ solutions:
     title: "Hardware and servers"
     description: "Infrastructure, hosting, servers, work environment and licenses."
 
-  - image: "/images/solutions/vector.png"
+  - image: "/images/solutions/sklepy.png"
     alt: "B2B / B2C e-commerce stores"
     title: "B2B / B2C e-commerce stores"
     description: "Sales platforms and digital services."
@@ -255,6 +255,9 @@ tooltips:
         - name: "Enova365"
           logo: "/images/partners/enova365.svg"
           alt: "Enova365"
+        - name: "ERP Factory"
+          logo: "/images/partners/erp-factory.svg"
+          alt: "ERP Factory"
       cta:
         text: "Check"
         href: "/kontakt/"

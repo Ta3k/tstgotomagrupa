@@ -87,10 +87,10 @@ item78: 'API'
 item79: 'Synchronizacja danych'
 item80: 'Automatyzacja procesów'
 item81: 'Wymiana informacji'
-item82: 'Jak to działa?'
-item83: 'Jak to działa?'
-item84: 'Jak to działa?'
-item85: 'Jak to działa?'
+item82: 'Gotowe rozwiązania, które dopasujemy do Twojego biznesu'
+item83: 'Pełne wsparcie IT360 dla twojej firmy. Dobieramy gotowe, sprawdzone rozwiązania naszych partnerów i uzupełniamy je o integracje oraz aplikacje szyte na miarę pod zapotrzebowanie klienta.'
+item84: 'Sprawdzeni partnerzy'
+item85: 'Wraz z partnerami zaopatrujemy obszary IT wspomagające twoją firmę.'
 
 
 solutions:
@@ -129,7 +129,7 @@ solutions:
     title: "Sprzęt i serwery"
     description: "Infrastruktura, hosting, serwery, środowisko pracy i licencje."
 
-  - image: "/images/solutions/vector.png"
+  - image: "/images/solutions/sklepy.png"
     alt: "Sklepy internetowe B2B / B2C"
     title: "Sklepy internetowe B2B / B2C"
     description: "Platformy sprzedażowe i usługi cyfrowe."
@@ -150,6 +150,39 @@ solutions:
     description: "Warstwa integracji spinających całość oraz aplikacje internetowe i mobilne na zamówienie."
 
 tooltips:
+    - key: shops
+      color: magenta
+      x: 260
+      y: 150
+      icon: "/images/icons/store.png"
+      title: "Sklepy internetowe"
+      description: "Platformy sprzedażowe."
+      partners_label: "Partnerzy obszaru:"
+      partners:
+        - name: "Codarius"
+          logo: "/images/partners/codarius.svg"
+          alt: "Codarius"
+        - name: "GOTOMA S.H."
+          logo: "/images/partners/gotoma.png"
+          alt: "GOTOMA S.H."
+      cta:
+        text: "Check"
+        href: "/kontakt/"
+    - key: security
+      color: red
+      x: 360
+      y: 500
+      icon: "/images/icons/shield-check.png"
+      title: "Cyberbezpieczeństwo"
+      description: "NIS2, DORA, RODO, AI ACT, Audyty i procedury."
+      partners_label: "Partnerzy obszaru:"
+      partners:
+        # - name: "Partner"
+        #   logo: "/images/partners/partner.svg"
+        #   alt: "Partner"
+      cta:
+        text: "Check"
+        href: "/kontakt/"
     - key: finance
       color: magenta
       x: 280
@@ -255,6 +288,9 @@ tooltips:
         - name: "Enova365"
           logo: "/images/partners/enova365.svg"
           alt: "Enova365"
+        - name: "ERP Factory"
+          logo: "/images/partners/erp-factory.png"
+          alt: "ERP Factory"
       cta:
         text: "Sprawdź"
         href: "/kontakt/"
@@ -290,9 +326,9 @@ tooltips:
       description: "Rozwiązania dopasowane do procesów biznesowych i produkcyjnych."
       partners_label: "Partnerzy obszaru:"
       partners:
-        # - name: "Partner MES"
-        #   logo: "/images/partners/partner-mes.svg"
-        #   alt: "Partner MES"
+        - name: "GOTOMA S.H."
+          logo: "/images/partners/gotoma.png"
+          alt: "GOTOMA S.H."
       cta:
         text: "Sprawdź"
         href: "/kontakt/"
@@ -325,9 +361,9 @@ tooltips:
       description: "Aplikacje web, mobile, raporty, dashboardy i automatyzacje."
       partners_label: "Partnerzy obszaru:"
       partners:
-        # - name: "Gotoma"
-        #   logo: "/images/partners/gotoma.svg"
-        #   alt: "Gotoma"
+        - name: "GOTOMA S.H."
+          logo: "/images/partners/gotoma.png"
+          alt: "GOTOMA S.H."
       cta:
         text: "Sprawdź"
         href: "/kontakt/"

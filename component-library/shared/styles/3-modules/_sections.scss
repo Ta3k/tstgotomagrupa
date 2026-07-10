@@ -935,7 +935,7 @@
 .scheme-integrations {
   position: absolute;
   left: calc(80 / 1024 * 100%);
-  bottom: calc(24 / 768 * 100%);
+  bottom: 0;
   width: calc(864 / 1024 * 100%);
   height: calc(72 / 768 * 100%);
   z-index: 3;
@@ -957,7 +957,7 @@
   min-width: 0;
 
   height: 100%;
-  padding: 0 24px;
+  padding: 0 16px;
 
   color: #fff;
   font-size: 13px;
@@ -1998,4 +1998,31 @@ odkomentuj poniższy filtr:
 
 body.scheme-mobile-tooltip-open {
   overflow: hidden;
+}
+
+.scheme-area-frame {
+  position: absolute;
+  left: 22px;
+  top: 150px;
+  width: 980px;
+  height: 500px;
+  border: 1px solid rgba(255, 138, 138, 0.45);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scheme-node--shops {
+  z-index: 3;
+}
+
+.scheme-node--security {
+  z-index: 3;
+}
+
+.scheme-node--security-accent {
+  border-color: rgba(255, 160, 160, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(255, 160, 160, 0.15) inset,
+    0 0 18px rgba(255, 160, 160, 0.12);
 }

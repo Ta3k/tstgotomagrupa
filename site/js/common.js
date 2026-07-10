@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       this.context = this.canvas.getContext('2d');
-      this.canvas.width = this.width = window.innerWidth;
-      this.canvas.height = this.height = window.innerHeight;
+      this.canvas.width = this.width = 1024;// window.innerWidth;
+      this.canvas.height = this.height = 768;// window.innerHeight;
 
       this.setupDots();
 
@@ -42,13 +42,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     resize () {
-      this.canvas.width = this.width = window.innerWidth;
-      this.canvas.height = this.height = window.innerHeight;
+      this.canvas.width = this.width = 1024;//window.innerWidth;
+      this.canvas.height = this.height = 768;// window.innerHeight;
       this.setupDots();
     }
 
     mousemoveHandler (event) {
-      this.dots.forEach(d => d.mousemove(event));
+      const rect = this.canvas.getBoundingClientRect();
+
+      const scaleX = this.canvas.width / rect.width;
+      const scaleY = this.canvas.height / rect.height;
+
+      const mouse = {
+        x: (event.clientX - rect.left) * scaleX,
+        y: (event.clientY - rect.top) * scaleY
+      };
+
+      this.dots.forEach(d => d.mousemove(mouse));
     }
 
     mouseleaveHandler () {
@@ -84,9 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
       this.isAnimated = false;
     }
 
-    mousemove (event) {
-      const x = event.clientX;
-      const y = event.clientY;
+    mousemove (mouse) {
+      const x = mouse.x;
+      const y = mouse.y;
 
       this.isHover =
         Math.abs(this.x - x) < this.scl / 4 * 9 &&

@@ -130,11 +130,11 @@
       </div>
     {% endif %}
 
-    {% if tooltip.cta && false %}
+    <!-- {% if tooltip.cta and 2>1 %}
       <a class="scheme-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
         {{ tooltip.cta.text }}
       </a>
-    {% endif %}
+    {% endif %} -->
   </div>
 {% endfor %}
 
@@ -153,9 +153,28 @@
           </span>
         </button>
       </div>
-
+      
       <svg class="scheme-lines" viewBox="0 0 1024 768" aria-hidden="true" focusable="false">
         <!-- mała linia pomiędzy WMS / AMS i TMS -->
+        
+        <!-- Cyberbezpieczeństwo / obszar całego diagramu -->
+        <path class="scheme-frame scheme-frame--security"
+              fill="none"
+              stroke="rgba(255, 130, 130, 0.55)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M28 145
+                H956
+                C968 145 976 153 976 165
+                V670
+                C976 682 968 690 956 690
+                H28
+                C16 690 8 682 8 670
+                V165
+                C8 153 16 145 28 145
+                Z" />
+        
         <path class="scheme-line scheme-line--blue"
               d="M485 211 H525" />
 
@@ -225,7 +244,43 @@
 
         <path class="scheme-line scheme-line--green"
               d="M870 402 V440" />
+
+        <!-- Sklepy internetowe -> Leady -->
+        <path class="scheme-line scheme-line--magenta"
+              d="M173 282 V320" />
+
+        
       </svg>
+
+      <button class="scheme-node scheme-node--shops scheme-node--magenta"
+              type="button"
+              style="--x: 78; --y: 200; --w: 210; --h: 82;"
+              data-tooltip="shops">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon">
+            <img src="/images/icons/store.png" alt="Sklepy internetowe">
+          </span>
+          {{site.data[page.lang].projects.item61}}
+        </span>
+        <span class="scheme-node__text">
+          {{site.data[page.lang].projects.item62}}
+        </span>
+      </button>
+      
+      <button class="scheme-node scheme-node--security scheme-node--security-accent"
+            type="button"
+            style="--x: 750; --y: 564; --w: 246; --h: 92;"
+            data-tooltip="security">
+      <span class="scheme-node__title">
+        <span class="scheme-node__icon">
+          <img src="/images/icons/shield-check.png" alt="Cyberbezpieczeństwo">
+        </span>
+        {{site.data[page.lang].projects.item55}}
+      </span>
+      <span class="scheme-node__text">
+        {{site.data[page.lang].projects.item56}}
+      </span>
+    </button>
 
       <button class="scheme-node scheme-node--wms scheme-node--blue"
               type="button"
@@ -263,7 +318,7 @@
 
       <button class="scheme-node scheme-node--custom scheme-node--violet"
               type="button"
-              style="--x: 405; --y: 535; --w: 235; --h: 95;" data-tooltip="custom">
+              style="--x: 402; --y: 535; --w: 240; --h: 95;" data-tooltip="custom">
         <span class="scheme-node__title">
           <span class="scheme-node__icon"><img src="/images/icons/folder-code.png" alt="APLIKACJE CUSTOM"></span>
           {{site.data[page.lang].projects.item27}}
@@ -651,11 +706,11 @@
       </div>
     {% endif %}
 
-    {% if tooltip.cta && false %}
+    <!-- {% if tooltip.cta && false %}
       <a class="scheme-mobile-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
         {{ tooltip.cta.text }}
       </a>
-    {% endif %}
+    {% endif %} -->
   </div>
 {% endfor %}
 </div>
@@ -666,9 +721,9 @@
   <div class="container">
     <div class="grid-container-solutions">
       <div class="header-card-solutions">
-        <h2 class="stat-value-solutions-header">Gotowe rozwiązania, które dopasujemy do Twojego biznesu</h2>
+        <h2 class="stat-value-solutions-header">{{site.data[page.lang].projects.item82}}</h2>
         <p class="stat-label-solutions-header">
-          Pełne wsparcie IT360 dla twojej firmy. Dobieramy gotowe, sprawdzone rozwiązania naszych partnerów i uzupełniamy je o integracje oraz aplikacje szyte na miarę pod zapotrzebowanie klienta.
+          {{site.data[page.lang].projects.item83}}
         </p>
       </div>
       
@@ -689,39 +744,48 @@
 <section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-partners">
   <div class="container">    
     <div class="header-card-partners">
-      <h2 class="stat-value-partners-header">Sprawdzeni partnerzy</h2>
+      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item84}}</h2>
       <p class="stat-label-partners-header">
-        Wraz z partnerami zaopatrujemy obszary IT wspomagające twoję firmę.
+        {{site.data[page.lang].projects.item85}}
       </p>
     </div>
     <div class="slider-container">
       <div class="slider-track">
-        <div class="partner-item"><img src="/images/partners/adastra.svg" alt="Abakon BD"></div>
-        <div class="partner-item"><img src="/images/partners/codarius.svg" alt="Bracia Ktrans"></div>
-        <div class="partner-item"><img src="/images/partners/enova365.svg" alt="Farmona"></div>
-        <div class="partner-item"><img src="/images/partners/ergonode.svg" alt="Forum Ekonomiczne"></div>
         <div class="partner-item"><img src="/images/partners/karpatia.svg" alt="Globkurier"></div>
-        <div class="partner-item"><img src="/images/partners/netige.svg" alt="ManpowerGroup"></div>
-        <div class="partner-item"><img src="/images/partners/optidata.svg" alt="Model"></div>
+        <div class="partner-item"><img src="/images/partners/pragmago.webp" alt="Abakon BD"></div>
+        <div class="partner-item"><img src="/images/partners/evoluma.webp" alt="Abakon BD"></div>
         <div class="partner-item"><img src="/images/partners/raynet.svg" alt="Moraj"></div>
+        <div class="partner-item"><img src="/images/partners/enova365.svg" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/erp-factory.png" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/gotoma.png" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/pimcore.webp" alt="TDC Polska"></div>
+        <div class="partner-item"><img src="/images/partners/ergonode.svg" alt="Forum Ekonomiczne"></div>
+        <div class="partner-item"><img src="/images/partners/optidata.svg" alt="Model"></div>
+        <div class="partner-item"><img src="/images/partners/codarius.svg" alt="Bracia Ktrans"></div>
+        <div class="partner-item"><img src="/images/partners/netige.svg" alt="ManpowerGroup"></div>
         <div class="partner-item"><img src="/images/partners/atman.webp" alt="Print Display"></div>
         <div class="partner-item"><img src="/images/partners/main.webp" alt="Sollers"></div>
         <div class="partner-item"><img src="/images/partners/moonwise.webp" alt="Tatra Style"></div>
-        <div class="partner-item"><img src="/images/partners/pimcore.webp" alt="TDC Polska"></div>
-        <div class="partner-item"><img src="/images/partners/pragmago.webp" alt="Abakon BD"></div>
         <div class="partner-item"><img src="/images/partners/adastra.svg" alt="Abakon BD"></div>
-        <div class="partner-item"><img src="/images/partners/codarius.svg" alt="Bracia Ktrans"></div>
-        <div class="partner-item"><img src="/images/partners/enova365.svg" alt="Farmona"></div>
-        <div class="partner-item"><img src="/images/partners/ergonode.svg" alt="Forum Ekonomiczne"></div>
+        <div class="partner-item"><img src="/images/partners/gotoma-general.png" alt="Abakon BD"></div>
+        
         <div class="partner-item"><img src="/images/partners/karpatia.svg" alt="Globkurier"></div>
-        <div class="partner-item"><img src="/images/partners/netige.svg" alt="ManpowerGroup"></div>
-        <div class="partner-item"><img src="/images/partners/optidata.svg" alt="Model"></div>
+        <div class="partner-item"><img src="/images/partners/pragmago.webp" alt="Abakon BD"></div>
+        <div class="partner-item"><img src="/images/partners/evoluma.webp" alt="Abakon BD"></div>
         <div class="partner-item"><img src="/images/partners/raynet.svg" alt="Moraj"></div>
+        <div class="partner-item"><img src="/images/partners/enova365.svg" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/erp-factory.png" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/gotoma.png" alt="Farmona"></div>
+        <div class="partner-item"><img src="/images/partners/pimcore.webp" alt="TDC Polska"></div>
+        <div class="partner-item"><img src="/images/partners/ergonode.svg" alt="Forum Ekonomiczne"></div>
+        <div class="partner-item"><img src="/images/partners/optidata.svg" alt="Model"></div>
+        <div class="partner-item"><img src="/images/partners/codarius.svg" alt="Bracia Ktrans"></div>
+        <div class="partner-item"><img src="/images/partners/netige.svg" alt="ManpowerGroup"></div>
         <div class="partner-item"><img src="/images/partners/atman.webp" alt="Print Display"></div>
         <div class="partner-item"><img src="/images/partners/main.webp" alt="Sollers"></div>
         <div class="partner-item"><img src="/images/partners/moonwise.webp" alt="Tatra Style"></div>
-        <div class="partner-item"><img src="/images/partners/pimcore.webp" alt="TDC Polska"></div>
-        <div class="partner-item"><img src="/images/partners/pragmago.webp" alt="Abakon BD"></div>
+        <div class="partner-item"><img src="/images/partners/adastra.svg" alt="Abakon BD"></div>
+        <div class="partner-item"><img src="/images/partners/gotoma-general.png" alt="Abakon BD"></div>                                            
       </div>
     </div>
   </div>
