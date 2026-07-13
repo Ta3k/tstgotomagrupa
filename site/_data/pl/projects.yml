@@ -5,6 +5,10 @@ logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images
 header_href: 'o-grupie'
 header:  'Liczby, klienci i rezultaty'
 
+enovaHref: 'https://enova.pl/'
+evolumaHref: 'https://evoluma.pl/'
+erpFactoryHref: 'https://erpfactory.tech/'
+
 item1:  'Długofalowa współpraca, jasna komunikacja i odpowiedzialność za projekt to elementy, które klienci najczęściej wskazują w swoich opiniach.'
 item2:  '13+'
 item3:  'lat sukcesów na rynku'
@@ -149,6 +153,74 @@ solutions:
     title: "Integracje i aplikacje na zamówienie"
     description: "Warstwa integracji spinających całość oraz aplikacje internetowe i mobilne na zamówienie."
 
+slider_partners:
+  - href: "https://karpatiabs.pl/"
+    logo: "/images/partners/karpatia.svg"
+    alt: "Karpatia"
+  - href: "https://pragmago.pl/"
+    logo: "/images/partners/pragmago.webp"
+    alt: "Pragmago"
+  - href: "https://evoluma.pl/"
+    logo: "/images/partners/evoluma.webp"
+    alt: "Evoluma"
+  - href: "https://elpartners.pl/"
+    logo: "/images/partners/elpartners.webp"
+    alt: "Elpartners"
+  - href: "https://raynetcrm.pl/"
+    logo: "/images/partners/raynet.svg"
+    alt: "RaynetCRM"
+  - href: "https://enova.pl/"
+    logo: "/images/partners/enova365.svg"
+    alt: "Enova365"
+  - href: "https://erpfactory.tech/"
+    logo: "/images/partners/erp-factory.png"
+    alt: "ERP Factory"
+  - href: "https://www.gotoma.pl/"
+    logo: "/images/partners/gotoma_black.svg"
+    alt: "GOTOMA"
+  - href: "https://pimcore.com/"
+    logo: "/images/partners/pimcore.webp"
+    alt: "Pimcore"
+  - href: "https://ergonode.com/"
+    logo: "/images/partners/ergonode.svg"
+    alt: "Ergonode"
+  - href: "https://www.spiree.io/"
+    logo: "/images/partners/spiree.png"
+    alt: "Spiree"
+  - href: "https://softlike.com/"
+    logo: "/images/partners/softlike.png"
+    alt: "softlike"
+  - href: "https://optidata.pl/"
+    logo: "/images/partners/optidata.svg"
+    alt: "Optidata"
+  - href: "https://echallenge.pl/"
+    logo: "/images/partners/sosimplefuture.png"
+    alt: "SoSimpleFuture"
+  - href: "https://www.codarius.com/"
+    logo: "/images/partners/codarius.svg"
+    alt: "Codarius"
+  - href: "https://netige.pl/"
+    logo: "/images/partners/netige.svg"
+    alt: "Netige"
+  - href: "https://atman.pl/"
+    logo: "/images/partners/atman.webp"
+    alt: "Atman"
+  - href: "https://main.pl/"
+    logo: "/images/partners/main.webp"
+    alt: "Main"
+  - href: "https://moonwise.pl/"
+    logo: "/images/partners/moonwise.webp"
+    alt: "Moonwise"
+  - href: "https://astradigital.pl/"
+    logo: "/images/partners/adastra.svg"
+    alt: "Ad Astra"
+  - href: "https://smarthubgroup.eu/"
+    logo: "/images/partners/smarthub_logo_black.svg"
+    alt: "Smarthub"
+  - href: "https://www.gotomageneral.com/"
+    logo: "/images/partners/gotoma-general.png"
+    alt: "GOTOMA General"
+
 tooltips:
     - key: shops
       color: magenta
@@ -239,7 +311,7 @@ tooltips:
         - name: "Ad Astra"
           logo: "/images/partners/adastra.svg"
           alt: "Ad Astra"
-          href: "https://ad-astra.pl/"
+          href: "https://astradigital.pl/"
         - name: "smart hub"
           logo: "/images/partners/smarthub_logo_black.svg"
           alt: "SmartHub"

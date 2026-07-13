@@ -8,6 +8,6 @@ description: >-
 image: /images/gotoma_general_obrazek.webp
 imageTitle: /images/gotoma_general_logo.png
 callToAction: I look for IT partner
-callToActionUrl: https://www.gotomageneral.com
+callToActionUrl: https://www.gotomageneral.com/en/
 callToActionImage: /images/gotomaGeneralAction.png
 ---

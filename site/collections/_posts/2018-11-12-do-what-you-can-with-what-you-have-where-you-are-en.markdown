@@ -8,7 +8,7 @@ description: >-
 image: /images/gotoma_obrazek.webp
 imageTitle: /images/gotoma_logo.png
 callToAction: I need a system
-callToActionUrl: https://www.gotoma.pl
+callToActionUrl: https://www.gotoma.pl/en/
 callToActionImage: /images/gotomaAction.png
 ---
 
