@@ -5,7 +5,7 @@
       <div class="c-header__inner">
 
         <div class="logo">
-          <a class="logo__link" href="https://www.gotomageneral.com/">
+          <a class="logo__link" href="{{ site.data[page.lang].navigation.gotomaGeneralHref }}">
           {%if site.data[page.lang].navigation.logo_image2 %}
             <img class="logo__image" src="{{ site.baseurl }}{{ site.data[page.lang].navigation.logo_image2 }}" alt="{{ site.data[page.lang].settings.title }}">
           {% else %}
@@ -13,7 +13,7 @@
           {% endif %}
           </a>
           <span class="divider"></span>
-          <a class="logo__link" href="https://www.gotoma.pl/">
+          <a class="logo__link" href="{{ site.data[page.lang].navigation.gotomaHref }}">
           {%if site.data[page.lang].navigation.logo_image %}
             <img class="logo__image" src="{{ site.baseurl }}{{ site.data[page.lang].navigation.logo_image }}" alt="{{ site.data[page.lang].settings.title }}">
           {% else %}
@@ -21,7 +21,7 @@
           {% endif %}
           </a>
           <span class="divider"></span>
-          <a class="logo__link" href="https://www.codarius.com/">
+          <a class="logo__link" href="{{ site.data[page.lang].navigation.codariusHref }}">
           {%if site.data[page.lang].navigation.logo_image3 %}
             <img class="logo__image" src="{{ site.baseurl }}{{ site.data[page.lang].navigation.logo_image3 }}" alt="{{ site.data[page.lang].settings.title }}">
           {% else %}

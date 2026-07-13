@@ -2,6 +2,10 @@ logo_image: '/images/gotoma.svg'
 logo_image2: '/images/gotoma_general 1.svg'
 logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images/logo.png'.
 
+gotomaHref: 'https://www.gotoma.pl/'
+codariusHref: 'https://www.codarius.com/'
+gotomaGeneralHref: 'https://www.gotomageneral.pl/'
+
 menu__settings:
   menu__items:
     - title: 'O grupie'
