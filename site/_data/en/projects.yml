@@ -3,7 +3,7 @@ logo_image2: '/images/gotoma_general 1.svg'
 logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images/logo.png'.
 
 gotomaHref: 'https://www.gotoma.pl/en/'
-codariusHref: 'https://www.codarius.com/'
+codariusHref: 'https://www.codarius.com/cennik'
 gotomaGeneralHref: 'https://www.gotomageneral.pl/en/'
 
 header_href: 'about-us'
@@ -185,7 +185,7 @@ slider_partners:
   - href: "https://pimcore.com/"
     logo: "/images/partners/pimcore.webp"
     alt: "Pimcore"
-  - href: "https://ergonode.com/"
+  - href: "https://www.ergonode.com/?r=0"
     logo: "/images/partners/ergonode.svg"
     alt: "Ergonode"
   - href: "https://www.spiree.io/"
@@ -200,7 +200,7 @@ slider_partners:
   - href: "https://echallenge.pl/"
     logo: "/images/partners/sosimplefuture.png"
     alt: "SoSimpleFuture"
-  - href: "https://www.codarius.com/"
+  - href: "https://www.codarius.com/cennik"
     logo: "/images/partners/codarius.svg"
     alt: "Codarius"
   - href: "https://netige.pl/"
@@ -238,7 +238,7 @@ tooltips:
         - name: "Codarius"
           logo: "/images/partners/codarius.svg"
           alt: "Codarius"
-          href: "https://www.codarius.com/"
+          href: "https://www.codarius.com/cennik"
         - name: "GOTOMA S.H."
           logo: "/images/partners/gotoma_black.svg"
           alt: "GOTOMA S.H."
@@ -307,7 +307,7 @@ tooltips:
         - name: "Codarius"
           logo: "/images/partners/codarius.svg"
           alt: "Codarius"
-          href: "https://www.codarius.com/"
+          href: "https://www.codarius.com/cennik"
         - name: "Moonwise"
           logo: "/images/partners/moonwise.webp"
           alt: "Moonwise"
