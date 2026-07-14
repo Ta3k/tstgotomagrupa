@@ -1,7 +1,67 @@
 <!-- begin projects -->
+
+<section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-results">
+  <div class="container">
+    <div class="grid-container-solutions">
+      <div class="header-card-solutions">
+        <h2 class="stat-value-solutions-header">{{site.data[page.lang].projects.item82}}</h2>
+        <p class="stat-label-solutions-header">
+          {{site.data[page.lang].projects.item83}}
+        </p>
+      </div>
+      
+      {% assign solutions = site.data[page.lang].projects.solutions %}
+
+      {% for solution in solutions %}
+        <div class="stat-card-solutions">
+          <img src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}">
+          <span class="stat-value-solutions">{{ solution.title }}</span>
+          <span class="stat-label-solutions">{{ solution.description }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
 <section id="{{site.data[page.lang].projects.header_href}}" class="stats-clients-results">
   <div class="container">
     
+    
+
+    <div class="grid-container">
+      <div class="header-card stat-card">
+        <h2 class="stat-value">{{site.data[page.lang].projects.header}}</h2>
+        <p class="stat-label">
+          {{site.data[page.lang].projects.item1}}
+        </p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{site.data[page.lang].projects.item2}}</span>
+        <span class="stat-label">{{site.data[page.lang].projects.item3}}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{site.data[page.lang].projects.item4}}</span>
+        <span class="stat-label">{{site.data[page.lang].projects.item5}}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{site.data[page.lang].projects.item6}}</span>
+        <span class="stat-label">{{site.data[page.lang].projects.item7}}</span>
+      </div>
+      <div class="logo-item"><img src="/images/Logo_AbakonBD_gold_normal 1.webp" alt="Abakon BD"></div>
+      <div class="logo-item"><img src="/images/braciaktrans 1.webp" alt="Bracia Ktrans"></div>
+      <div class="logo-item"><img src="/images/farmona.webp" alt="Farmona"></div>
+      <div class="logo-item"><img src="/images/forum.webp" alt="Forum Ekonomiczne"></div>
+      <div class="logo-item"><img src="/images/globkurier.webp" alt="Globkurier"></div>
+      <div class="logo-item"><img src="/images/manpowergroup.webp" alt="ManpowerGroup"></div>
+      <div class="logo-item"><img src="/images/model.webp" alt="Model"></div>
+      <div class="logo-item"><img src="/images/moraj.webp" alt="Moraj"></div>
+      <div class="logo-item"><img src="/images/printdisplay.webp" alt="Print Display"></div>
+      <div class="logo-item"><img src="/images/sollers.webp" alt="Sollers"></div>
+      <div class="logo-item"><img src="/images/tatrastyle.webp" alt="Tatra Style"></div>
+      <div class="logo-item"><img src="/images/tdc.webp" alt="TDC Polska"></div>
+    </div>
+
     <a class="partner-banner" href="{{site.data[page.lang].projects.enovaHref}}" target="_blank">
       <div class="banner-left">
         <span href="{{site.data[page.lang].projects.enovaHref}}" target="_blank"><img src="/images/enova365_white.svg" alt="Enova" />
@@ -42,41 +102,34 @@
       </div>
       <!-- <a class="works-button c-button c-button--secondary c-button--small" href="{{site.data[page.lang].projects.erpFactoryHref}}"><ion-icon name="arrow-up-right" style="color: white;"></ion-icon></a> -->
     </a>
-
-    <div class="grid-container">
-      <div class="header-card stat-card">
-        <h2 class="stat-value">{{site.data[page.lang].projects.header}}</h2>
-        <p class="stat-label">
-          {{site.data[page.lang].projects.item1}}
-        </p>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item2}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item3}}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item4}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item5}}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item6}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item7}}</span>
-      </div>
-      <div class="logo-item"><img src="/images/Logo_AbakonBD_gold_normal 1.webp" alt="Abakon BD"></div>
-      <div class="logo-item"><img src="/images/braciaktrans 1.webp" alt="Bracia Ktrans"></div>
-      <div class="logo-item"><img src="/images/farmona.webp" alt="Farmona"></div>
-      <div class="logo-item"><img src="/images/forum.webp" alt="Forum Ekonomiczne"></div>
-      <div class="logo-item"><img src="/images/globkurier.webp" alt="Globkurier"></div>
-      <div class="logo-item"><img src="/images/manpowergroup.webp" alt="ManpowerGroup"></div>
-      <div class="logo-item"><img src="/images/model.webp" alt="Model"></div>
-      <div class="logo-item"><img src="/images/moraj.webp" alt="Moraj"></div>
-      <div class="logo-item"><img src="/images/printdisplay.webp" alt="Print Display"></div>
-      <div class="logo-item"><img src="/images/sollers.webp" alt="Sollers"></div>
-      <div class="logo-item"><img src="/images/tatrastyle.webp" alt="Tatra Style"></div>
-      <div class="logo-item"><img src="/images/tdc.webp" alt="TDC Polska"></div>
-    </div>
-
+    
   </div>
+</section>
+
+<section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-partners">
+  <div class="container">    
+    <div class="header-card-partners">
+      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item84}}</h2>
+      <p class="stat-label-partners-header">
+        {{site.data[page.lang].projects.item85}}
+      </p>
+    </div>
+    <div class="slider-container">
+      <div class="slider-track">
+        {% assign slider_partners = site.data[page.lang].projects.slider_partners %}
+        {% for copy in (1..2) %}
+          {% for partner in slider_partners %}
+            <div class="partner-item">
+              <a href="{{ partner.href }}" target="_blank" rel="noopener noreferrer">
+                <img src="{{ partner.logo | relative_url }}" alt="{{ partner.alt | escape }}">
+              </a>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
 </section>
 
 
@@ -722,55 +775,9 @@
   </div>
 </section>
 
-<section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-results">
-  <div class="container">
-    <div class="grid-container-solutions">
-      <div class="header-card-solutions">
-        <h2 class="stat-value-solutions-header">{{site.data[page.lang].projects.item82}}</h2>
-        <p class="stat-label-solutions-header">
-          {{site.data[page.lang].projects.item83}}
-        </p>
-      </div>
-      
-      {% assign solutions = site.data[page.lang].projects.solutions %}
 
-      {% for solution in solutions %}
-        <div class="stat-card-solutions">
-          <img src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}">
-          <span class="stat-value-solutions">{{ solution.title }}</span>
-          <span class="stat-label-solutions">{{ solution.description }}</span>
-        </div>
-      {% endfor %}
-    </div>
 
-  </div>
-</section>
 
-<section id="{{site.data[page.lang].projects.header_href}}" class="stats-solutions-partners">
-  <div class="container">    
-    <div class="header-card-partners">
-      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item84}}</h2>
-      <p class="stat-label-partners-header">
-        {{site.data[page.lang].projects.item85}}
-      </p>
-    </div>
-    <div class="slider-container">
-      <div class="slider-track">
-        {% assign slider_partners = site.data[page.lang].projects.slider_partners %}
-        {% for copy in (1..2) %}
-          {% for partner in slider_partners %}
-            <div class="partner-item">
-              <a href="{{ partner.href }}" target="_blank" rel="noopener noreferrer">
-                <img src="{{ partner.logo | relative_url }}" alt="{{ partner.alt | escape }}">
-              </a>
-            </div>
-          {% endfor %}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <!-- </div> -->
-</section>
 
 
 <!-- end projects -->
