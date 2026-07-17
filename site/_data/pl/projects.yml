@@ -5,7 +5,7 @@ logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images
 header_href: 'o-grupie'
 header:  'Liczby, klienci i rezultaty'
 
-enovaHref: 'https://enova.pl/'
+enovaHref: 'https://gotomageneral.com/enova365/'
 evolumaHref: 'https://evoluma.pl/'
 erpFactoryHref: 'https://erpfactory.tech/'
 
@@ -169,7 +169,7 @@ slider_partners:
   - href: "https://raynetcrm.pl/"
     logo: "/images/partners/raynet.svg"
     alt: "RaynetCRM"
-  - href: "https://enova.pl/"
+  - href: "https://gotomageneral.com/enova365/"
     logo: "/images/partners/enova365.svg"
     alt: "Enova365"
   - href: "https://erpfactory.tech/"
@@ -400,7 +400,7 @@ tooltips:
         - name: "Enova365"
           logo: "/images/partners/enova365.svg"
           alt: "Enova365"
-          href: "https://www.enova.pl/"
+          href: "https://gotomageneral.com/enova365/"
         - name: "ERP Factory"
           logo: "/images/partners/erp-factory.png"
           alt: "ERP Factory"

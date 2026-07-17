@@ -9,7 +9,7 @@ gotomaGeneralHref: 'https://www.gotomageneral.pl/en/'
 header_href: 'about-us'
 header:  'Numbers, clients and results'
 
-enovaHref: 'https://enova.pl/en/homepage/'
+enovaHref: 'https://gotomageneral.com/en/enova365'
 evolumaHref: 'https://evoluma.pl/en/home'
 erpFactoryHref: 'https://erpfactory.tech/'
 
@@ -173,7 +173,7 @@ slider_partners:
   - href: "https:///raynetcrm.com"
     logo: "/images/partners/raynet.svg"
     alt: "RaynetCRM"
-  - href: "https://enova.pl/en/homepage/"
+  - href: "https://gotomageneral.com/en/enova365"
     logo: "/images/partners/enova365.svg"
     alt: "Enova365"
   - href: "https://erpfactory.tech/"
@@ -404,7 +404,7 @@ tooltips:
         - name: "Enova365"
           logo: "/images/partners/enova365.svg"
           alt: "Enova365"
-          href: "https://enova.pl/en/homepage/"
+          href: "https://gotomageneral.com/en/enova365"
         - name: "ERP Factory"
           logo: "/images/partners/erp-factory.png"
           alt: "ERP Factory"
