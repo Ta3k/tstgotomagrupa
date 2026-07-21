@@ -1423,8 +1423,8 @@ canvas {
     bottom: 5vh;
     left: 0;
     z-index: 2;
-    width: 64%;
-    overflow: visible;
+    width: 100%;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, .1);
     border-radius: 24px;
     background:
@@ -1434,7 +1434,7 @@ canvas {
       0 40px 120px rgba(0, 0, 0, .75),
       inset 0 0 0 1px rgba(255, 255, 255, .025);
     clip-path: inset(-100vw);
-    will-change: clip-path;
+    will-change: width, clip-path;
 
     &::after {
       content: "";

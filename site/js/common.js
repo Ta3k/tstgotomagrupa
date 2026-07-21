@@ -511,8 +511,8 @@ document.addEventListener("DOMContentLoaded", function () {
               ease: "none",
               scrollTrigger: {
                 trigger: finalSection,
-                start: "top 88%",
-                end: "top 58%",
+                start: "top 98%",
+                end: "top 76%",
                 scrub: 1
               }
             }
@@ -650,9 +650,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const getFocus = index => {
         const layout = getLayout();
         const center = centers[index];
+        const focusWidth = layout.storyRect.width * .64;
         return {
           scale: layout.zoomScale,
-          x: layout.visualRect.width * .48 - center.x * layout.zoomScale,
+          x: focusWidth * .48 - center.x * layout.zoomScale,
           y: layout.visualRect.height * .5 - center.y * layout.zoomScale
         };
       };
@@ -692,7 +693,7 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${Math.round(window.innerHeight * (steps.length * 1.02 + 2))}`,
+          end: () => `+=${Math.round(window.innerHeight * (steps.length * .62 + 1.4))}`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -703,14 +704,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       timeline
         .to(header, { autoAlpha: 0, y: -32, duration: .55 })
-        .to(visual, { clipPath: "inset(0px round 24px)", duration: .9 }, "<")
+        .to(visual, { width: "64%", clipPath: "inset(0px round 24px)", duration: .9 }, "<")
         .to(nodes, { opacity: .68, duration: .55 }, "<")
         .to(diagram, {
           x: () => getFocus(0).x,
           y: () => getFocus(0).y,
           scale: () => getFocus(0).scale,
-          duration: 1.15
-        }, "<")
+          duration: .9
+        }, 0)
         .to(nodes[0], { opacity: 1, scale: 1.06, duration: .45 }, "<+.35")
         .set(stepCounter, { attr: stepDigits(0) }, "<")
         .to(eyebrow, { autoAlpha: 1, y: 0, duration: .35 }, "<")
@@ -770,7 +771,7 @@ document.addEventListener("DOMContentLoaded", function () {
           scale: () => getFull("scale"),
           duration: 1.05
         })
-        .to(visual, { clipPath: "inset(-100vw)", duration: .85 }, "<")
+        .to(visual, { width: "100%", clipPath: "inset(-100vw)", duration: .85 }, "<")
         .to(desktop, { autoAlpha: .18, scale: .985, duration: .45 });
 
       requestAnimationFrame(() => {
