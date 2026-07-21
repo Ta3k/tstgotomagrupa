@@ -868,8 +868,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const getLayout = () => {
           const stageRect = mobile.getBoundingClientRect();
           const isTablet = window.matchMedia("(min-width: 577px)").matches;
-          const topInset = isTablet ? Math.max(120, header.offsetHeight + 48) : 88;
-          const bottomInset = isTablet ? 24 : 0;
+          const topInset = Math.max(
+            isTablet ? 120 : 140,
+            header.offsetHeight + (isTablet ? 48 : 40)
+          );
+          const bottomInset = isTablet ? 24 : 16;
           const fullScale = Math.min(
             (stageRect.width - 30) / 382,
             (stageRect.height - topInset - bottomInset) / 1210,
@@ -883,9 +886,7 @@ document.addEventListener("DOMContentLoaded", function () {
             full: {
               scale: fullScale,
               x: (stageRect.width - 382 * fullScale) / 2,
-              y: isTablet
-                ? topInset + Math.max(0, (stageRect.height - topInset - bottomInset - fullHeight) / 2)
-                : (stageRect.height - fullHeight) / 2
+              y: topInset + Math.max(0, (stageRect.height - topInset - bottomInset - fullHeight) / 2)
             },
             zoomScale
           };
