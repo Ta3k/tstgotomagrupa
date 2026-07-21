@@ -2,9 +2,12 @@
   position: fixed;
   bottom: 40px;
   right: -100px;
-  z-index: 1;
+  z-index: 1100;
   width: 36px;
   height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 18px;
   line-height: 36px;
   text-align: center;
@@ -22,10 +25,10 @@
 
 @media only screen and (max-width: $tablet) {
   .top {
-    bottom: 25px;
+    bottom: max(25px, calc(env(safe-area-inset-bottom) + 16px));
 
     &.is-active {
-      right: 30px;
+      right: 20px;
     }
   }
 }

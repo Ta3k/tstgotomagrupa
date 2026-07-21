@@ -291,27 +291,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // Scroll to top
   ============================ */
   const btnScrollToTop = document.querySelector(".top");
-  const menu  = document.querySelector(".main-nav");
+  const pageHeader = document.querySelector(".c-header");
 
-  window.addEventListener("scroll", function () {
-    const menuBottom = menu.getBoundingClientRect().bottom;
+  if (btnScrollToTop) {
+    const updateScrollToTop = () => {
+      const hasPassedHeader = pageHeader
+        ? pageHeader.getBoundingClientRect().bottom <= 0
+        : window.scrollY > window.innerHeight * .5;
 
-    if (menuBottom <= 0) {
-      btnScrollToTop.classList.add("is-active");
-    } else {
-      btnScrollToTop.classList.remove("is-active");
-    }
-  });
+      btnScrollToTop.classList.toggle("is-active", hasPassedHeader);
+    };
 
-  btnScrollToTop.addEventListener("click", function () {
-    if (window.scrollY != 0) {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      })
-    }
-  });
+    window.addEventListener("scroll", updateScrollToTop, { passive: true });
+    updateScrollToTop();
+
+    btnScrollToTop.addEventListener("click", function () {
+      if (window.scrollY !== 0) {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      }
+    });
+  }
 
   /* =================================
   // Whole-page scroll choreography
@@ -903,6 +906,21 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         const getFull = property => getLayout().full[property];
+        const getExitFull = property => {
+          const stageRect = mobile.getBoundingClientRect();
+          const scale = Math.min(
+            (stageRect.width - 24) / 382,
+            (stageRect.height - 24) / 1210,
+            .78
+          );
+          const layout = {
+            scale,
+            x: (stageRect.width - 382 * scale) / 2,
+            y: (stageRect.height - 1210 * scale) / 2
+          };
+
+          return layout[property];
+        };
 
         gsap.set(diagram, {
           x: () => getFull("x"),
@@ -998,16 +1016,15 @@ document.addEventListener("DOMContentLoaded", function () {
             autoAlpha: 0,
             yPercent: 120,
             pointerEvents: "none",
-            duration: .35
+            duration: .22
           })
-          .to(nodes, { opacity: 1, scale: 1, duration: .45 }, "<")
+          .to(nodes, { opacity: 1, scale: 1, duration: .25 }, "<")
           .to(diagram, {
-            x: () => getFull("x"),
-            y: () => getFull("y"),
-            scale: () => getFull("scale"),
-            duration: .95
-          })
-          .to(mobile, { autoAlpha: .2, scale: .99, duration: .4 });
+            x: () => getExitFull("x"),
+            y: () => getExitFull("y"),
+            scale: () => getExitFull("scale"),
+            duration: .55
+          });
 
         requestAnimationFrame(() => {
           ScrollTrigger.sort();
