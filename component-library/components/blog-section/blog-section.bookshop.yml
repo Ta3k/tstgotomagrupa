@@ -24,4 +24,7 @@ preview:
   link_url: /blog
 
 # Any extra CloudCannon inputs configuration to apply to the blueprint
-_inputs: {}
+_inputs:
+  show_posts:
+    type: switch
+    label: Show section

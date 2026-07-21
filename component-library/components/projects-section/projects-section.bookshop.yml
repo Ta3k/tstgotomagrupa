@@ -3,24 +3,20 @@ spec:
   structures:
     - content_blocks
   label: Projects
-  description: Projects Section with heading, a description and a link
+  description: Client results, logos, and group company banners
   icon: wysiwyg
   tags:
     - Content
 
 # Defines the structure of this component, as well as the default values
 blueprint:
-  title: ""
-  description_html: ""
-  link_url: ""
-  show_projects: false
+  show_projects: true
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
-preview:
-  title: Latest Works
-  description_html: I show only my best works built completely with passion,
-    simplicity, and creativity!
-  link_url: /projects
+preview: {}
 
 # Any extra CloudCannon inputs configuration to apply to the blueprint
-_inputs: {}
+_inputs:
+  show_projects:
+    type: switch
+    label: Show section

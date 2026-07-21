@@ -1,0 +1,28 @@
+<!-- begin partners -->
+{% if include.show_partners != false %}
+<section id="partners" class="stats-solutions-partners">
+  <div class="container">
+    <div class="header-card-partners">
+      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item84}}</h2>
+      <p class="stat-label-partners-header">
+        {{site.data[page.lang].projects.item85}}
+      </p>
+    </div>
+    <div class="slider-container">
+      <div class="slider-track">
+        {% assign slider_partners = site.data[page.lang].projects.slider_partners %}
+        {% for copy in (1..2) %}
+          {% for partner in slider_partners %}
+            <div class="partner-item">
+              <a href="{{ partner.href }}" target="_blank" rel="noopener noreferrer">
+                <img src="{{ partner.logo | relative_url }}" alt="{{ partner.alt | escape }}">
+              </a>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- end partners -->

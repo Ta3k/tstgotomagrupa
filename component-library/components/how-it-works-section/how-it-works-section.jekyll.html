@@ -1,0 +1,646 @@
+<!-- begin how it works -->
+{% if include.show_how_it_works != false %}
+<section id="{% if page.lang == 'pl' %}jak-to-dziala{% else %}how-it-works{% endif %}" class="stats-how-it-works">
+  <div class="scheme-section__inner container">
+    <div class="scheme-desktop">
+    <div class="header-card-partners">
+      <h2 class="stat-value-partners-header">{{site.data[page.lang].projects.item14}}</h2>
+      <p class="stat-label-partners-header">
+        {{site.data[page.lang].projects.item15}}
+      </p>
+    </div>
+    <div class="scheme-story">
+      <div class="scheme-story__visual">
+    <div class="scheme-diagram" style="--canvas-w: 1024; --canvas-h: 768;">
+      <!-- <div class="scheme-diagram__dots" aria-hidden="true"></div> -->
+
+      <div class="dotsTest"><canvas></canvas></div>
+      <div class="scheme-header-box">
+        <div class="scheme-header-box__title">
+          {{site.data[page.lang].projects.item16}}<br>
+          {{site.data[page.lang].projects.item17}}
+        </div>
+
+        <button class="scheme-finance" type="button" data-tooltip="finance">
+          <span class="scheme-finance__icon"><img src="/images/icons/hand-coins.png" alt="Finansowanie"></span>
+          <span>
+            <strong>{{site.data[page.lang].projects.item18}}</strong>
+            <small>{{site.data[page.lang].projects.item19}}</small>
+          </span>
+        </button>
+      </div>
+      
+      <svg class="scheme-lines" viewBox="0 0 1024 768" aria-hidden="true" focusable="false">
+        <!-- mała linia pomiędzy WMS / AMS i TMS -->
+        
+        <!-- Cyberbezpieczeństwo / obszar całego diagramu -->
+        <path class="scheme-frame scheme-frame--security"
+              fill="none"
+              stroke="rgba(255, 130, 130, 0.55)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M28 145
+                H956
+                C968 145 976 153 976 165
+                V670
+                C976 682 968 690 956 690
+                H28
+                C16 690 8 682 8 670
+                V165
+                C8 153 16 145 28 145
+                Z" />
+        
+        <path class="scheme-line scheme-line--blue"
+              d="M485 211 H525" />
+
+        <!-- WMS / AMS + TMS -> ERP -->
+        <path class="scheme-line scheme-line--blue"
+              d="M385 250 V282 C385 295 394 300 407 300 H485 C500 300 505 310 505 325 V365" />
+
+        <path class="scheme-line scheme-line--blue"
+              d="M615 250 V282 C615 295 606 300 593 300 H525 C510 300 505 310 505 325 V365" />
+
+        <!-- ERP -> APLIKACJE CUSTOM -->
+        <path class="scheme-line scheme-line--blue"
+              d="M505 485 V512" />
+
+        <!-- lewa zaokrąglona gałąź do custom -->
+        <path class="scheme-line scheme-line--violet"
+      d="M405 560
+         H390
+         C378 560 370 552 370 540
+         V528
+         C370 516 378 512 390 512
+         H505" />
+
+<!-- prawa gałąź: wychodzi z boku boxa -->
+<path class="scheme-line scheme-line--violet"
+      d="M640 560
+         H655
+         C667 560 675 552 675 540
+         V528
+         C675 516 667 512 655 512
+         H505" />
+
+        <!-- Leady / CRM -> ERP -->
+        <path class="scheme-line scheme-line--magenta"
+              d="M170 370 V435" />
+
+        <path class="scheme-line scheme-line--magenta"
+              d="M260 475 H325 C350 475 350 420 380 420" />
+
+        <!-- TMS -> SPRZĘT -->
+        <path class="scheme-line scheme-line--orange"
+              d="M710 210 H835 C865 210 870 225 870 255" />
+
+        <!-- ERP -> SPRZĘT -->
+        <path class="scheme-line scheme-line--orange"
+              d="M745 275
+                H708
+                C688 275 682 288 676 304
+                C670 322 664 340 646 340
+                H628
+                C614 340 606 352 606 368
+                V386
+                C606 392 611 395 618 395
+                H650" />
+
+        <!-- ERP -> MES -->
+        <path class="scheme-line scheme-line--green"
+              d="M745 355 H700 C670 355 680 405 650 405" />
+
+        <!-- ERP -> PIM -->
+        <path class="scheme-line scheme-line--green"
+              d="M745 475 H700 C670 475 680 430 650 430" />
+
+        <!-- pionowe połączenia po prawej -->
+        <path class="scheme-line scheme-line--orange"
+              d="M870 307 V320" />
+
+        <path class="scheme-line scheme-line--green"
+              d="M870 402 V440" />
+
+        <!-- Sklepy internetowe -> Leady -->
+        <path class="scheme-line scheme-line--magenta"
+              d="M173 282 V320" />
+
+        
+      </svg>
+
+      <button class="scheme-node scheme-node--shops scheme-node--magenta"
+              type="button"
+              style="--x: 78; --y: 200; --w: 210; --h: 82;"
+              data-tooltip="shops">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon">
+            <img src="/images/icons/shopping-bag.svg" alt="Sklepy internetowe">
+          </span>
+          {{site.data[page.lang].projects.item61}}
+        </span>
+        <span class="scheme-node__text">
+          {{site.data[page.lang].projects.item62}}
+        </span>
+      </button>
+      
+      <button class="scheme-node scheme-node--security scheme-node--security-accent"
+            type="button"
+            style="--x: 750; --y: 564; --w: 246; --h: 92;"
+            data-tooltip="security">
+      <span class="scheme-node__title">
+        <span class="scheme-node__icon">
+          <img src="/images/icons/shield-check.svg" alt="Cyberbezpieczeństwo">
+        </span>
+        {{site.data[page.lang].projects.item55}}
+      </span>
+      <span class="scheme-node__text">
+        {{site.data[page.lang].projects.item56}}
+      </span>
+    </button>
+
+      <button class="scheme-node scheme-node--wms scheme-node--blue"
+              type="button"
+              style="--x: 300; --y: 170; --w: 185; --h: 82;" data-tooltip="wms">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/warehouse.png" alt="WMS / AMS"></span>
+          {{site.data[page.lang].projects.item20}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item21}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--tms scheme-node--blue"
+              type="button"
+              style="--x: 525; --y: 170; --w: 185; --h: 82;" data-tooltip="tms">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/van.png" alt="TMS"></span>
+          {{site.data[page.lang].projects.item22}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item23}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--erp scheme-node--neutral"
+              type="button"
+              style="--x: 380; --y: 365; --w: 270; --h: 115;" data-tooltip="erp">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/server.png" alt="ERP"></span>
+          ERP
+        </span>
+        <span class="scheme-node__text">
+          {{site.data[page.lang].projects.item24}}<br>
+          {{site.data[page.lang].projects.item25}}<br>
+          {{site.data[page.lang].projects.item26}}
+        </span>
+      </button>
+
+      <button class="scheme-node scheme-node--custom scheme-node--violet"
+              type="button"
+              style="--x: 402; --y: 535; --w: 240; --h: 95;" data-tooltip="custom">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/folder-code.png" alt="APLIKACJE CUSTOM"></span>
+          {{site.data[page.lang].projects.item27}}
+        </span>
+        <span class="scheme-node__text">
+          {{site.data[page.lang].projects.item28}}<br>
+          {{site.data[page.lang].projects.item29}}
+        </span>
+      </button>
+
+      <button class="scheme-node scheme-node--leads scheme-node--magenta"
+              type="button"
+              style="--x: 78; --y: 320; --w: 190; --h: 82;" data-tooltip="leads">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/users-round.png" alt="Leady"></span>
+          {{site.data[page.lang].projects.item30}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item31}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--crm scheme-node--magenta"
+              type="button"
+              style="--x: 78; --y: 440; --w: 190; --h: 82;"
+              data-tooltip="crm">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/headset.png" alt="CRM"></span>
+          {{site.data[page.lang].projects.item32}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item33}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--hardware scheme-node--orange"
+              type="button"
+              style="--x: 745; --y: 225; --w: 195; --h: 82;" data-tooltip="hardware">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/hard-drive.png" alt="SPRZĘT"></span>
+          {{site.data[page.lang].projects.item34}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item35}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--mes scheme-node--green"
+              type="button"
+              style="--x: 745; --y: 320; --w: 195; --h: 82;" data-tooltip="mes">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/factory.png" alt="MES"></span>
+          {{site.data[page.lang].projects.item36}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item37}}</span>
+      </button>
+
+      <button class="scheme-node scheme-node--pim scheme-node--green"
+              type="button"
+              style="--x: 745; --y: 440; --w: 195; --h: 82;" data-tooltip="pim">
+        <span class="scheme-node__title">
+          <span class="scheme-node__icon"><img src="/images/icons/package-search.png" alt="PIM"></span>
+          {{site.data[page.lang].projects.item38}}
+        </span>
+        <span class="scheme-node__text">{{site.data[page.lang].projects.item39}}</span>
+      </button>
+
+      <div class="scheme-integrations">
+        <div class="scheme-integrations__brand">
+          <span class="scheme-integrations__brand-icon"><img src="/images/icons/infinity.png" alt="INTEGRACJE"></span>
+          <strong>{{site.data[page.lang].projects.item40}}<br>
+            {{site.data[page.lang].projects.item41}}</strong>
+        </div>
+
+        <div class="scheme-integrations__item">
+          <span><img src="/images/icons/unplug.png" alt="API"></span>
+          {{site.data[page.lang].projects.item42}}
+        </div>
+
+        <div class="scheme-integrations__item">
+          <span><img style="max-width: none;" src="/images/icons/refresh-ccw.png" alt="Synchronizacja"></span>
+          {{site.data[page.lang].projects.item43}}<br>
+          {{site.data[page.lang].projects.item44}}
+        </div>
+
+        <div class="scheme-integrations__item">
+          <span><img style="max-width: none;" src="/images/icons/settings.png" alt="Automatyzacja"></span>
+          {{site.data[page.lang].projects.item45}}<br>
+          {{site.data[page.lang].projects.item46}}
+        </div>
+
+        <div class="scheme-integrations__item">
+          <span><img src="/images/icons/arrow-left-right.png" alt="Wymiana informacji"></span>
+          {{site.data[page.lang].projects.item47}}<br>
+          {{site.data[page.lang].projects.item48}}
+        </div>
+      </div>
+    </div>
+      </div>
+
+      {% assign tooltips = site.data[page.lang].projects.tooltips %}
+      <aside class="scheme-story__content" aria-live="polite">
+        <div class="scheme-story__eyebrow" aria-hidden="true">
+          <span class="scheme-story__step" data-tens="0" data-ones="1"></span>
+          <span class="scheme-story__progress"><i></i></span>
+          <span class="scheme-story__total">{{ tooltips.size | prepend: '0' | slice: -2, 2 }}</span>
+        </div>
+
+        {% for tooltip in tooltips %}
+          <div class="scheme-tooltip scheme-tooltip--{{ tooltip.color }}"
+               data-scheme-tooltip="{{ tooltip.key }}">
+            <div class="scheme-tooltip__header">
+              <span class="scheme-tooltip__icon"><img src="{{ tooltip.icon }}" alt=""></span>
+
+              <div>
+                <strong class="scheme-tooltip__title">{{ tooltip.title }}</strong>
+                <p class="scheme-tooltip__description">{{ tooltip.description }}</p>
+              </div>
+            </div>
+
+            {% if tooltip.partners and tooltip.partners.size > 0 %}
+              <div class="scheme-tooltip__divider"></div>
+              <strong class="scheme-tooltip__label">
+                {{ tooltip.partners_label | default: "Partnerzy obszaru:" }}
+              </strong>
+
+              <div class="scheme-tooltip__partners">
+                {% for partner in tooltip.partners %}
+                  <div class="scheme-tooltip__partner">
+                    <a href="{{ partner.href | relative_url }}" target="_blank" rel="noopener noreferrer">
+                      <img src="{{ partner.logo | relative_url }}"
+                           alt="{{ partner.alt | default: partner.name | escape }}">
+                    </a>
+                  </div>
+                {% endfor %}
+
+                {% assign partner_remainder = tooltip.partners.size | modulo: 2 %}
+                {% if partner_remainder != 0 %}
+                  <div class="scheme-tooltip__partner scheme-tooltip__partner--empty"></div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </aside>
+    </div>
+    </div>
+    <div class="scheme-mobile">
+  <div class="header-card-partners">
+    <h2 class="stat-value-partners-header">
+      {{site.data[page.lang].projects.item49}}</h2>
+    <p class="stat-label-partners-header">
+      {{site.data[page.lang].projects.item50}}
+    </p>
+  </div>
+
+  <div class="scheme-mobile-diagram">
+    <div class="scheme-mobile-diagram__dots" aria-hidden="true"></div>
+
+    <svg class="scheme-mobile-diagram__lines" viewBox="0 0 382 1210" aria-hidden="true" focusable="false">
+      <!-- blue -->
+      <line x1="206" y1="459" x2="190" y2="459" class="scheme-mobile-line scheme-mobile-line--blue" />
+      <line x1="190" y1="470" x2="190" y2="752" class="scheme-mobile-line scheme-mobile-line--blue" />
+      <path d="M174 340H176C183.732 340 190 346.268 190 354V470"
+            class="scheme-mobile-line scheme-mobile-line--blue" />
+
+      <!-- magenta -->
+      <line x1="115" y1="513" x2="115" y2="534" class="scheme-mobile-line scheme-mobile-line--magenta" />
+      <line x1="115" y1="622" x2="115" y2="643" class="scheme-mobile-line scheme-mobile-line--magenta" />
+      <line x1="115" y1="731" x2="115" y2="752" class="scheme-mobile-line scheme-mobile-line--magenta" />
+
+      <!-- green -->
+      <line x1="267" y1="622" x2="267" y2="643" class="scheme-mobile-line scheme-mobile-line--green" />
+      <line x1="267" y1="731" x2="267" y2="752" class="scheme-mobile-line scheme-mobile-line--green" />
+
+      <!-- indigo -->
+      <line x1="190" y1="840" x2="190" y2="861" class="scheme-mobile-line scheme-mobile-line--indigo" />
+
+      <!-- orange right rail -->
+      <path d="M326 798H335C337.209 798 339 796.209 339 794V336C339 333.791 337.209 332 335 332H326"
+            class="scheme-mobile-line scheme-mobile-line--orange" />
+      <line x1="326" y1="458" x2="339" y2="458" class="scheme-mobile-line scheme-mobile-line--orange" />
+      <line x1="326" y1="587" x2="340" y2="587" class="scheme-mobile-line scheme-mobile-line--orange" />
+
+      <!-- red outer frame -->
+      <path d="M54 219.5H41.5C33.768 219.5 27.5 225.768 27.5 233.5V956.5C27.5 964.232 33.768 970.5 41.5 970.5H338.5C346.232 970.5 352.5 964.232 352.5 956.5V233.5C352.5 225.768 346.232 219.5 338.5 219.5H326"
+            class="scheme-mobile-line scheme-mobile-line--red" />
+    </svg>
+
+    <div class="scheme-mobile-bar scheme-mobile-bar--header"
+         style="--mx: 28; --my: 27; --mw: 325; --mh: 140;">
+      <p class="scheme-mobile-bar__title">
+        {{site.data[page.lang].projects.item51}}<br>
+        {{site.data[page.lang].projects.item52}}
+      </p>
+
+      <button class="scheme-mobile-finance" type="button" data-mobile-tooltip-trigger="finance">
+        <span class="scheme-mobile-finance__left">
+          <span class="scheme-mobile-finance__icon">
+            <img src="{{ '/images/icons/hand-coins.png' | relative_url }}" alt="" aria-hidden="true">
+          </span>
+          <strong>{{site.data[page.lang].projects.item53}}</strong>
+        </span>
+
+        <span class="scheme-mobile-finance__right">{{site.data[page.lang].projects.item54}}</span>
+      </button>
+    </div>
+
+    <button class="scheme-mobile-node scheme-mobile-node--cyber"
+            type="button"
+            style="--mx: 54; --my: 181; --mw: 272; --mh: 92;"
+            data-mobile-tooltip-trigger="security">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/shield-check.svg' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item55}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item56}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--green"
+            type="button"
+            style="--mx: 54; --my: 294; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="pim">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/package-search.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item57}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item58}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--orange"
+            type="button"
+            style="--mx: 206; --my: 294; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="hardware">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/hard-drive.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item59}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item60}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--magenta"
+            type="button"
+            style="--mx: 54; --my: 403; --mw: 120; --mh: 110;"
+            data-mobile-tooltip-trigger="shops">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/shopping-bag.svg' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item61}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item62}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--blue"
+            type="button"
+            style="--mx: 206; --my: 403; --mw: 120; --mh: 110;"
+            data-mobile-tooltip-trigger="tms">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/van.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item63}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item64}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--magenta"
+            type="button"
+            style="--mx: 54; --my: 534; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="leads">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/users-round.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item65}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item66}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--green"
+            type="button"
+            style="--mx: 206; --my: 534; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="mes">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/factory.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item67}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item68}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--magenta"
+            type="button"
+            style="--mx: 54; --my: 643; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="crm">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/headset.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item69}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item70}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--blue"
+            type="button"
+            style="--mx: 206; --my: 643; --mw: 120; --mh: 88;"
+            data-mobile-tooltip-trigger="wms">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/warehouse.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item71}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item72}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--neutral"
+            type="button"
+            style="--mx: 52; --my: 752; --mw: 274; --mh: 88;"
+            data-mobile-tooltip-trigger="erp">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/server.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item73}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item74}}</span>
+    </button>
+
+    <button class="scheme-mobile-node scheme-mobile-node--indigo"
+            type="button"
+            style="--mx: 52; --my: 861; --mw: 274; --mh: 88;"
+            data-mobile-tooltip-trigger="custom">
+      <span class="scheme-mobile-node__head">
+        <span class="scheme-mobile-node__icon">
+          <img src="{{ '/images/icons/folder-code.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item75}}</strong>
+      </span>
+      <span class="scheme-mobile-node__text">{{site.data[page.lang].projects.item76}}</span>
+    </button>
+
+    <div class="scheme-mobile-bar scheme-mobile-bar--footer"
+         style="--mx: 28; --my: 997; --mw: 325; --mh: 188;">
+      <div class="scheme-mobile-integrations__title">
+        <span class="scheme-mobile-integrations__icon">
+          <img src="{{ '/images/icons/infinity.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <strong>{{site.data[page.lang].projects.item77}}</strong>
+      </div>
+
+      <div class="scheme-mobile-integrations__item">
+        <span class="scheme-mobile-integrations__item-icon">
+          <img src="{{ '/images/icons/unplug.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <span>{{site.data[page.lang].projects.item78}}</span>
+      </div>
+
+      <div class="scheme-mobile-integrations__item">
+        <span class="scheme-mobile-integrations__item-icon">
+          <img src="{{ '/images/icons/refresh-ccw.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <span>{{site.data[page.lang].projects.item79}}</span>
+      </div>
+
+      <div class="scheme-mobile-integrations__item">
+        <span class="scheme-mobile-integrations__item-icon">
+          <img src="{{ '/images/icons/settings.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <span>{{site.data[page.lang].projects.item80}}</span>
+      </div>
+
+      <div class="scheme-mobile-integrations__item">
+        <span class="scheme-mobile-integrations__item-icon">
+          <img src="{{ '/images/icons/arrow-left-right.png' | relative_url }}" alt="" aria-hidden="true">
+        </span>
+        <span>{{site.data[page.lang].projects.item81}}</span>
+      </div>
+    </div>
+  </div>
+  {% assign tooltips = site.data[page.lang].projects.tooltips %}
+
+<div class="scheme-mobile-tooltip-backdrop" data-mobile-tooltip-backdrop></div>
+
+{% for tooltip in tooltips %}
+  <div class="scheme-mobile-tooltip scheme-mobile-tooltip--{{ tooltip.color }}"
+       data-mobile-tooltip="{{ tooltip.key }}"
+       aria-hidden="true">
+
+    <button class="scheme-mobile-tooltip__close"
+            type="button"
+            data-mobile-tooltip-close
+            aria-label="Zamknij">
+      ×
+    </button>
+
+    <div class="scheme-mobile-tooltip__header">
+      <span class="scheme-mobile-tooltip__icon">
+        <img src="{{ tooltip.icon | relative_url }}" alt="" aria-hidden="true">
+      </span>
+
+      <div class="scheme-mobile-tooltip__content">
+        <strong class="scheme-mobile-tooltip__title">{{ tooltip.title }}</strong>
+
+        <p class="scheme-mobile-tooltip__description">
+          {{ tooltip.description }}
+        </p>
+      </div>
+    </div>
+
+    {% if tooltip.partners and tooltip.partners.size > 0 %}
+      <div class="scheme-mobile-tooltip__divider"></div>
+
+      <strong class="scheme-mobile-tooltip__label">
+        {{ tooltip.partners_label | default: "Partnerzy obszaru:" }}
+      </strong>
+
+      <div class="scheme-mobile-tooltip__partners">
+        {% for partner in tooltip.partners %}
+          <div class="scheme-mobile-tooltip__partner">
+            <a href="{{ partner.href | relative_url }}" target="_blank" rel="noopener noreferrer">
+              <img src="{{ partner.logo | relative_url }}"
+                   alt="{{ partner.alt | default: partner.name | escape }}">
+            </a>
+          </div>
+        {% endfor %}
+
+        {% assign partner_remainder = tooltip.partners.size | modulo: 2 %}
+        {% if partner_remainder != 0 %}
+          <div class="scheme-mobile-tooltip__partner scheme-mobile-tooltip__partner--empty"></div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- {% if tooltip.cta && false %}
+      <a class="scheme-mobile-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
+        {{ tooltip.cta.text }}
+      </a>
+    {% endif %} -->
+  </div>
+{% endfor %}
+</div>
+  </div>
+</section>
+{% endif %}
+<!-- end how it works -->

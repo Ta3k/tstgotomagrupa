@@ -1,0 +1,26 @@
+<!-- begin solutions -->
+{% if include.show_solutions != false %}
+<section id="solutions" class="stats-solutions-results">
+  <div class="container">
+    <div class="grid-container-solutions">
+      <div class="header-card-solutions">
+        <h2 class="stat-value-solutions-header">{{site.data[page.lang].projects.item82}}</h2>
+        <p class="stat-label-solutions-header">
+          {{site.data[page.lang].projects.item83}}
+        </p>
+      </div>
+
+      {% assign solutions = site.data[page.lang].projects.solutions %}
+
+      {% for solution in solutions %}
+        <div class="stat-card-solutions">
+          <img src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}">
+          <span class="stat-value-solutions">{{ solution.title }}</span>
+          <span class="stat-label-solutions">{{ solution.description }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- end solutions -->
