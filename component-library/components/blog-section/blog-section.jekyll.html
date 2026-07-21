@@ -1,5 +1,5 @@
 <!-- begin blog -->
-<section id="{% if page.lang == 'pl' %}jak-to-dziala{% else %}how-it-works{% endif %} class="stats-how-it-works">
+<section id="{% if page.lang == 'pl' %}jak-to-dziala{% else %}how-it-works{% endif %}" class="stats-how-it-works">
   <div class="scheme-section__inner container">
     <div class="scheme-desktop">
     <div class="header-card-partners">
@@ -8,57 +8,10 @@
         {{site.data[page.lang].projects.item15}}
       </p>
     </div>
+    <div class="scheme-story">
+      <div class="scheme-story__visual">
     <div class="scheme-diagram" style="--canvas-w: 1024; --canvas-h: 768;">
       <!-- <div class="scheme-diagram__dots" aria-hidden="true"></div> -->
-       {% assign tooltips = site.data[page.lang].projects.tooltips %}
-
-{% for tooltip in tooltips %}
-  <div class="scheme-tooltip scheme-tooltip--{{ tooltip.color }}"
-       data-scheme-tooltip="{{ tooltip.key }}"
-       style="--tx: {{ tooltip.x }}; --ty: {{ tooltip.y }};">
-       
-    <div class="scheme-tooltip__header">
-      <span class="scheme-tooltip__icon"><img src="{{ tooltip.icon }}" alt=""></span>
-
-      <div>
-        <strong class="scheme-tooltip__title">{{ tooltip.title }}</strong>
-        <p class="scheme-tooltip__description">
-          {{ tooltip.description }}
-        </p>
-      </div>
-    </div>
-
-    {% if tooltip.partners and tooltip.partners.size > 0 %}
-      <div class="scheme-tooltip__divider"></div>
-
-      <strong class="scheme-tooltip__label">
-        {{ tooltip.partners_label | default: "Partnerzy obszaru:" }}
-      </strong>
-
-      <div class="scheme-tooltip__partners">
-        {% for partner in tooltip.partners %}
-          <div class="scheme-tooltip__partner">
-            <a href="{{ partner.href | relative_url }}" target="_blank" rel="noopener noreferrer">
-              <img src="{{ partner.logo | relative_url }}"
-                   alt="{{ partner.alt | default: partner.name | escape }}">
-            </a>
-          </div>
-        {% endfor %}
-
-        {% assign partner_remainder = tooltip.partners.size | modulo: 2 %}
-        {% if partner_remainder != 0 %}
-          <div class="scheme-tooltip__partner scheme-tooltip__partner--empty"></div>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    <!-- {% if tooltip.cta and 2>1 %}
-      <a class="scheme-tooltip__cta" href="{{ tooltip.cta.href | relative_url }}">
-        {{ tooltip.cta.text }}
-      </a>
-    {% endif %} -->
-  </div>
-{% endfor %}
 
       <div class="dotsTest"><canvas></canvas></div>
       <div class="scheme-header-box">
@@ -332,6 +285,54 @@
           {{site.data[page.lang].projects.item48}}
         </div>
       </div>
+    </div>
+      </div>
+
+      {% assign tooltips = site.data[page.lang].projects.tooltips %}
+      <aside class="scheme-story__content" aria-live="polite">
+        <div class="scheme-story__eyebrow" aria-hidden="true">
+          <span class="scheme-story__step" data-tens="0" data-ones="1"></span>
+          <span class="scheme-story__progress"><i></i></span>
+          <span class="scheme-story__total">{{ tooltips.size | prepend: '0' | slice: -2, 2 }}</span>
+        </div>
+
+        {% for tooltip in tooltips %}
+          <div class="scheme-tooltip scheme-tooltip--{{ tooltip.color }}"
+               data-scheme-tooltip="{{ tooltip.key }}">
+            <div class="scheme-tooltip__header">
+              <span class="scheme-tooltip__icon"><img src="{{ tooltip.icon }}" alt=""></span>
+
+              <div>
+                <strong class="scheme-tooltip__title">{{ tooltip.title }}</strong>
+                <p class="scheme-tooltip__description">{{ tooltip.description }}</p>
+              </div>
+            </div>
+
+            {% if tooltip.partners and tooltip.partners.size > 0 %}
+              <div class="scheme-tooltip__divider"></div>
+              <strong class="scheme-tooltip__label">
+                {{ tooltip.partners_label | default: "Partnerzy obszaru:" }}
+              </strong>
+
+              <div class="scheme-tooltip__partners">
+                {% for partner in tooltip.partners %}
+                  <div class="scheme-tooltip__partner">
+                    <a href="{{ partner.href | relative_url }}" target="_blank" rel="noopener noreferrer">
+                      <img src="{{ partner.logo | relative_url }}"
+                           alt="{{ partner.alt | default: partner.name | escape }}">
+                    </a>
+                  </div>
+                {% endfor %}
+
+                {% assign partner_remainder = tooltip.partners.size | modulo: 2 %}
+                {% if partner_remainder != 0 %}
+                  <div class="scheme-tooltip__partner scheme-tooltip__partner--empty"></div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </aside>
     </div>
     </div>
     <div class="scheme-mobile">
