@@ -528,8 +528,8 @@ document.addEventListener("DOMContentLoaded", function () {
               ease: "none",
               scrollTrigger: {
                 trigger: finalSection,
-                start: "top 74%",
-                end: "bottom 66%",
+                start: "top 98%",
+                end: "top 76%",
                 scrub: 1
               }
             }
