@@ -28,7 +28,7 @@ item12:  'ERP Factory, we develop our own products'
 item13:  'We design and develop our own ERP system for production and business, which meets real operational needs — from planning to process control.'
 
 item14: 'How does it work?'
-item15: 'We combine ready-made partner solutions with integrations and custom-built applications.'
+item15: 'GOTOMA Group brings software, e-commerce, and IT infrastructure together into one powerful, connected ecosystem. We design, integrate, and implement solutions that streamline operations, accelerate sales, and prepare your business for automation and AI-driven growth.'
 item16: 'GOTOMA GENERAL - DIGITALIZATION COORDINATION,'
 item17: 'IT360, PROJECT OWNERSHIP'
 item18: 'Financing'
@@ -63,7 +63,7 @@ item46: 'automation'
 item47: 'Information'
 item48: 'exchange'
 item49: 'How does it work?'
-item50: 'We combine ready-made partner solutions with integrations and custom-built applications.'
+item50: 'GOTOMA Group brings software, e-commerce, and IT infrastructure together into one powerful, connected ecosystem. We design, integrate, and implement solutions that streamline operations, accelerate sales, and prepare your business for automation and AI-driven growth.'
 item51: 'GOTOMA GENERAL - DIGITALIZATION COORDINATION,'
 item52: 'IT360, PROJECT OWNERSHIP'
 item53: 'Financing'
@@ -188,13 +188,13 @@ slider_partners:
   - href: "https://www.ergonode.com/?r=0"
     logo: "/images/partners/ergonode.svg"
     alt: "Ergonode"
-  - href: "https://www.spiree.io/"
+  - href: "https://www.spiree.io/en/"
     logo: "/images/partners/spiree.png"
     alt: "Spiree"
   - href: "https://softlike.com/"
     logo: "/images/partners/softlike.png"
     alt: "softlike"
-  - href: "https://optidata.pl/"
+  - href: "https://www.optidata.pl/en"
     logo: "/images/partners/optidata.svg"
     alt: "Optidata"
   - href: "https://echallenge.pl/"
@@ -218,7 +218,7 @@ slider_partners:
   - href: "https://astradigital.pl/"
     logo: "/images/partners/adastra.svg"
     alt: "Ad Astra"
-  - href: "https://smarthubgroup.eu/"
+  - href: "https://smarthubgroup.eu/en/"
     logo: "/images/partners/smarthub_logo_black.svg"
     alt: "Smarthub"
   - href: "https://www.gotomageneral.com/en/"
@@ -258,7 +258,7 @@ tooltips:
         - name: "spiree"
           logo: "/images/partners/spiree.png"
           alt: "spiree"
-          href: "https://www.spiree.io/"
+          href: "https://www.spiree.io/en/"
         - name: "GOTOMA GENERAL"
           logo: "/images/partners/gotoma-general.png"
           alt: "GOTOMA GENERAL"
@@ -311,7 +311,7 @@ tooltips:
         - name: "Moonwise"
           logo: "/images/partners/moonwise.webp"
           alt: "Moonwise"
-          href: "https://moonwise.pl/"
+          href: "https://moonwise.pl/en/home/"
         - name: "Ad Astra"
           logo: "/images/partners/adastra.svg"
           alt: "Ad Astra"
@@ -472,14 +472,14 @@ tooltips:
       description: "Centralization of product data for sales and distribution."
       partners_label: "Area partners:"
       partners:
-        - name: "Pimcore"
-          logo: "/images/partners/pimcore.webp"
-          alt: "Pimcore"
-          href: "https://pimcore.com"
         - name: "Ergonode"
           logo: "/images/partners/ergonode.svg"
           alt: "Ergonode"
           href: "https://www.ergonode.com/?r=0"
+        - name: "Pimcore"
+          logo: "/images/partners/pimcore.webp"
+          alt: "Pimcore"
+          href: "https://pimcore.com"
         - name: "GOTOMA S.H."
           logo: "/images/partners/gotoma_black.svg"
           alt: "GOTOMA"

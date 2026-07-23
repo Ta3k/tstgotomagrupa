@@ -24,7 +24,7 @@ item12:  'ERP Factory, rozwijamy własne produkty'
 item13:  'Projektujemy i rozwijamy własny system ERP dla produkcji i biznesu, który odpowiada na realne potrzeby operacyjne - od planowania po kontrolę procesów.'
 
 item14: 'Jak to działa?'
-item15: 'Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami tworzonymi na miarę.'
+item15: 'Grupa GOTOMA łączy software, e‑commerce i infrastrukturę IT w jeden spójny ekosystem. Projektujemy, integrujemy i uruchamiamy rozwiązania, które porządkują procesy, zwiększają sprzedaż i przygotowują na automatyzację oraz wykorzystanie AI.'
 item16: 'GOTOMA GENERAL - KOORDYNACJA CYFRYZACJI,'
 item17: 'IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT'
 item18: 'Finansowanie'
@@ -59,7 +59,7 @@ item46: 'procesów'
 item47: 'Wymiana'
 item48: 'informacji'
 item49: 'Jak to działa?'
-item50: 'Łączymy gotowe rozwiązania partnerów z integracjami i aplikacjami tworzonymi na miarę.'
+item50: 'Grupa GOTOMA łączy software, e‑commerce i infrastrukturę IT w jeden spójny ekosystem. Projektujemy, integrujemy i uruchamiamy rozwiązania, które porządkują procesy, zwiększają sprzedaż i przygotowują na automatyzację oraz wykorzystanie AI.'
 item51: 'GOTOMA GENERAL - KOORDYNACJA CYFRYZACJI,'
 item52: 'IT360, ODPOWIEDZIALNOŚĆ ZA PROJEKT'
 item53: 'Finansowanie'
@@ -468,14 +468,14 @@ tooltips:
       description: "Centralizacja danych produktowych dla sprzedaży i dystrybucji."
       partners_label: "Partnerzy obszaru:"
       partners:
-        - name: "Pimcore"
-          logo: "/images/partners/pimcore.webp"
-          alt: "Pimcore"
-          href: "https://pimcore.com"
         - name: "Ergonode"
           logo: "/images/partners/ergonode.svg"
           alt: "Ergonode"
           href: "https://www.ergonode.com/pl"
+        - name: "Pimcore"
+          logo: "/images/partners/pimcore.webp"
+          alt: "Pimcore"
+          href: "https://pimcore.com"
         - name: "GOTOMA S.H."
           logo: "/images/partners/gotoma_black.svg"
           alt: "GOTOMA"
