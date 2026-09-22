@@ -134,11 +134,14 @@
           visibility: visible;
           transform: scale(1);
           box-shadow: none;
+          background-color: transparent;
+          border-radius: 0;
 
           .nav__link {
             margin-left: 8px;
             margin-bottom: 16px;
             font-size: 15px;
+            color: $text-color;
 
             &::before {
               content: "– ";
