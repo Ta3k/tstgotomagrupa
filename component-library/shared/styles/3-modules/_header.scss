@@ -302,7 +302,8 @@
         vertical-align: middle;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-within {
         .dropdown-menu {
           opacity: 1;
           visibility: visible;
@@ -319,7 +320,7 @@
     transform: translateZ(0) scale(0.9);
     backface-visibility: hidden;
     z-index: 100;
-    min-width: 150px;
+    min-width: 280px;
     display: block;
     padding: 20px;
     opacity: 0;

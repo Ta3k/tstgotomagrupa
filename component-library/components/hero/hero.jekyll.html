@@ -9,16 +9,18 @@
           <div class="{{c}}__left">
             <h1 class="{{c}}__title">{{ include.title }}</h1>
             <div class="{{c}}__description">{{ include.description_html }}</div>
-            <div class="{{c}}__btn">
-              <a class="works-button c-button c-button--secondary c-button--small" href="{{ include.works_button_link }}">
-                {{ include.works_button }}
-              </a>
-            </div>
+            {% if include.works_button != "" and include.works_button_link != "" %}
+              <div class="{{c}}__btn">
+                <a class="works-button c-button c-button--secondary c-button--small" href="{{ include.works_button_link }}">
+                  {{ include.works_button }}
+                </a>
+              </div>
+            {% endif %}
           </div>
 
           <div class="{{c}}__right">
             <div class="{{c}}__image ">
-              <img class="spinning" loading="lazy" fetchpriority="high" src="{{ include.image }}" alt="{{ include.hero_image_alt }}">
+              <img class="spinning" loading="lazy" fetchpriority="high" src="{{ include.image }}" alt="{{ include.image_alt }}">
                <div class="glassContainer" style="left:50%"></div>
                <!-- <div class="glassContainer" style="left:50%"></div>
                <div class="glassContainer" style="left:60%"></div>

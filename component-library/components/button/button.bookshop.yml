@@ -1,6 +1,7 @@
 # Metadata about this component, to be used in the CMS
 spec:
-  structures: []
+  structures:
+    - content_blocks
   label: Button
   description: ""
   icon: crop_7_5
@@ -8,6 +9,8 @@ spec:
 
 # Defines the structure of this component, as well as the default values
 blueprint:
+  title: ""
+  description: ""
   label: ""
   type: Primary
   link_url: ""
@@ -17,6 +20,8 @@ blueprint:
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview:
+  title: Ready to start?
+  description: Tell us what you need and we will suggest the next step.
   label: Button
   link_url: /
 

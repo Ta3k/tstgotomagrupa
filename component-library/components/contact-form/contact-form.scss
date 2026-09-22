@@ -6,9 +6,9 @@
 	}
 
 	&__form-box {
-		max-width: 580px;
+		max-width: 880px;
 		margin: 0 auto;
-		padding-top: 140px;
+		padding-top: 72px;
 	}
 
 	&__contact-head {
@@ -20,6 +20,10 @@
 		display: inline-block;
 		margin-bottom: 20px;
 		font-size: 58px;
+
+		@media only screen and (max-width: $mobile) {
+			font-size: 36px;
+		}
 	}
 
 	&__contact-description {
@@ -45,22 +49,94 @@
 		}
 	}
 
+	&__form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+
+		@media only screen and (max-width: $mobile) {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+	}
+
+	&__form-label {
+		display: block;
+		margin-bottom: 10px;
+		font-size: 15px;
+		font-weight: 700;
+	}
+
+	&__form-hint {
+		display: block;
+		margin-top: 8px;
+		font-size: 14px;
+		color: rgba($text-color, .6);
+	}
+
+	&__fieldset {
+		padding: 0;
+		border: 0;
+	}
+
+	&__choices {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 10px 20px;
+
+		label {
+			display: flex;
+			align-items: flex-start;
+			gap: 8px;
+			font-size: 15px;
+		}
+
+		input {
+			margin-top: 4px;
+		}
+
+		@media only screen and (max-width: $mobile) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__consent {
+		font-size: 15px;
+
+		label {
+			display: flex;
+			align-items: flex-start;
+			gap: 10px;
+		}
+
+		input {
+			margin-top: 5px;
+		}
+	}
+
+	&__honeypot {
+		position: absolute;
+		left: -9999px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	&__form-input {
 		width: 100%;
 		padding: 22px;
 		font-size: 16px;
 		font-weight: 500;
-		border: 1px solid $border-color;
+		border: 1px solid rgba($white, .16);
 		border-radius: 8px;
 		outline: none;
 		transition: $global-transition;
 		resize: vertical;
-		color: $text-color;
-		background: $background-color-alt;
+		color: $white;
+		background: #111;
 
 		&::placeholder {
 			font-weight: 500;
-			color: rgba($text-color, 0.3);
+			color: rgba($white, 0.45);
 		}
 
 		&:focus {

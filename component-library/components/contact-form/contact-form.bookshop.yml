@@ -10,6 +10,7 @@ spec:
 
 # Defines the structure of this component, as well as the default values
 blueprint:
+  form_id: "contact"
   form_title: ""
   form_description: ""
   form_success_page: ""
@@ -18,6 +19,7 @@ blueprint:
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview:
+  form_id: contact
   form_title: Get in touch
   form_description: Vonge comes with a built-in contact form.
   form_success_page: /

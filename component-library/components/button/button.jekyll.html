@@ -1,7 +1,21 @@
-<a class="c-button c-button--{{include.type | slugify}} c-button--{{include.width | slugify | default: 'small'}}"
-   href="{{ include.link_url }}"
-   {% if include.open_in_new_tab %}
-        target="_blank"
-    {% endif %}>
+{% if include.title or include.description %}
+  <section class="c-service-cta">
+    <div class="container">
+      <div class="c-service-cta__inner">
+        {% if include.title %}<h2 class="c-service-cta__title">{{ include.title }}</h2>{% endif %}
+        {% if include.description %}<p class="c-service-cta__description">{{ include.description }}</p>{% endif %}
+        <a class="c-button c-button--{{include.type | slugify}} c-button--{{include.width | slugify | default: 'small'}}"
+          href="{{ include.link_url }}"
+          {% if include.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          {{ include.label }}
+        </a>
+      </div>
+    </div>
+  </section>
+{% else %}
+  <a class="c-button c-button--{{include.type | slugify}} c-button--{{include.width | slugify | default: 'small'}}"
+    href="{{ include.link_url }}"
+    {% if include.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
     {{ include.label }}
-</a>
+  </a>
+{% endif %}
