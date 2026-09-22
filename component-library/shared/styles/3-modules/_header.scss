@@ -24,6 +24,8 @@
 /* Logo */
 .logo {
   display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .logo__link {
@@ -40,16 +42,38 @@
 }
 
 .logo__image {
-  max-height: 60px;
-  height: 60px;
+  width: auto;
+  max-height: 48px;
+  height: 48px;
+
+  &.logo__image--erp-factory {
+    max-height: 36px;
+    height: 36px;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    max-height: 32px;
+    height: 32px;
+
+    &.logo__image--erp-factory {
+      max-height: 24px;
+      height: 24px;
+    }
+  }
 }
 
 
 .divider {
   width: 1px;
-  height: 56px;
+  height: 44px;
   background: #858585;
   margin: 0px 10px 0px 10px;
+
+  @media only screen and (max-width: $mobile) {
+    height: 28px;
+    margin-right: 4px;
+    margin-left: 4px;
+  }
 }
 
 /* Nav */
@@ -262,6 +286,10 @@
           background-color: $primary-color;
         }
       }
+
+      &.nav__link--placeholder {
+        cursor: default;
+      }
     }
 
     &.dropdown {
@@ -302,6 +330,7 @@
       display: flex;
       padding: 8px 12px;
       font-size: 15px;
+      color: $background-color;
       border-radius: 4px;
       will-change: transform;
 

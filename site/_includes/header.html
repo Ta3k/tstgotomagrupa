@@ -28,7 +28,14 @@
             {{ site.data.settings.title }}
           {% endif %}
           </a>
-          
+          <span class="divider"></span>
+          <a class="logo__link" href="{{ site.data[page.lang].navigation.erpFactoryHref }}">
+          {%if site.data[page.lang].navigation.logo_image4 %}
+            <img class="logo__image logo__image--erp-factory" src="{{ site.baseurl }}{{ site.data[page.lang].navigation.logo_image4 }}" alt="ERP Factory">
+          {% else %}
+            ERP Factory
+          {% endif %}
+          </a>
         </div>
 
         <nav class="main-nav">
@@ -60,9 +67,13 @@
                   </div>
                 </li>
 
-                {% else %}
+                {% elsif item.url %}
                 <li class="nav__item">
                   <a href="{{ item.url | relative_url }}" class="nav__link">{{ item.title }}</a>
+                </li>
+                {% else %}
+                <li class="nav__item">
+                  <span class="nav__link nav__link--placeholder" aria-disabled="true">{{ item.title }}</span>
                 </li>
                 {% endif %}
               {% endfor %}

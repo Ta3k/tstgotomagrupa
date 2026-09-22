@@ -1,21 +1,27 @@
 logo_image: '/images/gotoma.svg'
 logo_image2: '/images/gotoma_general 1.svg'
 logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images/logo.png'.
+logo_image4: '/images/erpfactory.png'
 logo_lang: '/images/pl.webp'
 lang_href: '/'
 
 gotomaHref: 'https://www.gotoma.pl/en/'
 codariusHref: 'https://www.codarius.com/cennik'
 gotomaGeneralHref: 'https://www.gotomageneral.pl/en/'
+erpFactoryHref: 'https://erpfactory.tech/'
 
 menu__settings:
   menu__items:
     - title: 'About us'
       url: 'en/#about-us'
-    - title: 'GOTOMA General'
-      url: 'en/#gotoma-general'
-    - title: 'GOTOMA Software House'
-      url: 'en/#gotoma-software-house'
-    - title: 'Codarius'
-      url: 'en/#codarius'
-      
+    - title: 'Our companies'
+      submenu:
+        - title: 'GOTOMA GENERAL'
+          url: 'https://gotomageneral.com/en/'
+        - title: 'GOTOMA Software House'
+          url: 'https://gotoma.pl/en/'
+        - title: 'Codarius'
+          url: 'https://codarius.com/'
+        - title: 'ERP Factory'
+          url: 'https://erpfactory.tech/'
+    - title: 'Services'
