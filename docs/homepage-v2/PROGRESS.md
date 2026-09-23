@@ -42,4 +42,10 @@ Build i testy: build zielony. Testów automatycznych jeszcze nie ma, powstaną w
 
 Decyzja właściciela (2026-09-23): **sekwencja diagramu ma 2 kroki (decyzja CEO)**, nie 12. Cele z Briefu wymagają aktualizacji (PLAN D1).
 
-Otwarte kwestie: decyzje D1–D11 w `PLAN.md`. Najpilniejsze: D1 (nowe liczby), D2 (usunięcie teleportu i scroll-jackingu), D3 (tekst „pomiń”).
+Decyzje D1–D11 podjęte 2026-09-23 i zapisane na początku `PLAN.md`:
+- sekwencja jednorazowa, bez teleportu i scroll-jackingu;
+- krótki pin na mobile;
+- nowe hero „wow”;
+- poprawki linków i tekstów EN;
+- usunięcie `index_pl.html`;
+- `noindex` zostaje (stage).

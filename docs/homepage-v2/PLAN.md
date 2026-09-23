@@ -2,6 +2,34 @@
 
 Podstawa: audyt w `AUDIT.md`. Punkt wyjścia to **localhost (HEAD), nie stage**. Localhost ma już decyzję CEO o 2 krokach sekwencji, nowe hero, lokalne zasoby i Lighthouse 83–85 (stage: 50–57). Stage z 12 krokami traktujemy jako referencję zachowań (panel, zoom, trasa), nie jako bazę kodu.
 
+## Decyzje właściciela (2026-09-23), obowiązują przed resztą planu
+
+- **D1: zatwierdzone.** Tempo z tabeli poniżej. Kryterium nadrzędne: ma wyglądać po prostu dobrze.
+- **D2: sekwencja wykonuje się raz.**
+  - Po zakończeniu nie odtwarza się przy scrollu w górę ani ponownie w dół. Diagram zostaje statyczny i interaktywny.
+  - Hamulec kółka usuwamy (scroll-jacking).
+  - Teleport zastępujemy zdjęciem pinu z kompensacją `scrollY` o wysokość usuniętego pin-spacera. Widok się nie przesuwa, a użytkownik jedzie dalej od tego samego miejsca, bez cofania o ~2100 px.
+- **D3:** link w czasie pinu ma teksty „Przejdź do marek” (PL) i „Skip to our brands” (EN). Dodać do `site/_data/{pl,en}`.
+- **D4:** mobile ma krótki pin (≤ 1,2 vh), jednorazowy jak na desktopie.
+- **D5: hero do przeprojektowania.** Ani wstęga, ani obracający się torus nie są wystarczające. Cel: efekt „wow” przy szybkim wczytaniu. LCP to tekst, bez czekania na JS. Grafika CSS/SVG albo lekki canvas ładowany po LCP. Bez ciężkiego WebGL i wideo.
+- **D6: poprawić linki.**
+  - (a) PL custom → GOTOMA S.H.: `https://www.gotoma.pl/`;
+  - (b) GOTOMA General wszędzie `https://www.gotomageneral.com/` (EN: `/en/`), także w headerze;
+  - (c) Codarius EN zostaje przy `/cennik`: nie ma wersji EN (`/en`, `/en/cennik`, `/en/pricing` dają 404);
+  - (d) `https://main.pl/en/`;
+  - (e) softlike wszędzie `https://softlike.pl/`, bo `softlike.com` nie odpowiada.
+- **D7: poprawić teksty PL w EN.**
+  - `aria-label` zamknięcia arkusza: „Zamknij” / „Close”.
+  - Fallback etykiety partnerów bierzemy z danych językowych.
+  - Alty ikon: tytuły obszarów z danych.
+  - „Back to top” / „Przewiń do góry”.
+- **D8:** `noindex, nofollow` zostaje na sztywno. Ta gałąź i repo trafiają tylko na stage, a produkcja ma własne wartości.
+- **D9:** usunąć `site/collections/_pages/index_pl.html`. Jedyne odwołania są w warunkach `runtime-scripts.html`, do uproszczenia.
+- **D10:** workflowy CI bez zmian.
+- **D11:** lista do sprawdzenia na prawdziwym iPhonie zostaje w raporcie końcowym.
+
+Poprawki z D6, D7 i D9 to zmiany wyłącznie w danych i drobnych szablonach. Robimy je na początku Etapu 2, zanim testy zapiszą oczekiwane linki.
+
 ## Zasada ogólna
 
 Rozwijamy istniejący kod `common.js` (matchMedia, funkcyjny layout, zoom na `.scheme-diagram`, panel `aside`, rysowana trasa, bottom-sheety). Nie przepisujemy go od zera. Przebudowa obejmuje tylko te fragmenty, które łamią Brief:
@@ -26,7 +54,8 @@ Desktop 1440×900:
 
 - 1920×1080: te same wartości w vh.
 - Mobile 390×844: pin ≤ 1,2 vh (teraz 2,6) albo brak pinu (patrz decyzja D4). Droga do kart ≤ 4,5 vh (teraz ~6,2).
-- Po zakończeniu sekwencji diagram zostaje na miejscu w stanie „cały diagram”, interaktywny (hover, focus, tap na każdym z 12 obszarów). Scrub jest w pełni odwracalny: scroll w górę odtwarza sekwencję wstecz.
+- Po zakończeniu sekwencji diagram zostaje na miejscu w stanie „cały diagram”, interaktywny (hover, focus, tap na każdym z 12 obszarów). Zgodnie z D2 sekwencja jest jednorazowa, bez replay i bez teleportu (kompensacja `scrollY`).
+- W trakcie pinu (przed zakończeniem) scrub reaguje normalnie w obie strony.
 
 ## Plan per sekcja
 
@@ -43,7 +72,7 @@ Desktop 1440×900:
 - `ScrollTrigger.refresh()` po `document.fonts.ready` i po załadowaniu obrazów w diagramie. Obsługa `orientationchange`.
 
 **Hero (Etap 3):**
-- Zostają wstęgi SVG (motyw złotej nici), a tekst hero pozostaje elementem LCP.
+- Nowa kompozycja „wow” (D5) zamiast wstęg i torusa. Kolorystyka i złoty akcent zostają. Tekst hero pozostaje elementem LCP. Grafika nie blokuje renderu (CSS/SVG, ewentualnie lekki canvas po LCP).
 - Mocniejsza kompozycja: tytuł wyżej i wyraźniej, mniej pustki nad tekstem (na 1440 tekst zaczyna się ~450 px, banner cookies go zasłania). Złota linia prowadzi wzrok do nagłówka diagramu.
 - Efekt „CRT collapse” bez pinu albo usunięty, jeśli nie obroni się w przeglądzie.
 - Zdjąć opóźnienie renderu h1 (~2 s). `hero-motion-active` nie może blokować niczego, co widać bez interakcji.
@@ -51,7 +80,7 @@ Desktop 1440×900:
 **Diagram desktop (Etap 4):**
 - Zostaje: matchMedia, `getLayout`/`getFocus`, zoom transformem, panel, trasa `strokeDashoffset`, 2 kroki.
 - Przebudowa:
-  1. Usunąć `handleStoryWheel` (scroll-jacking) i `completeDesktopStory` (kill, teleport). Timeline kończy się stanem „cały diagram”, potem pin się zwalnia.
+  1. Usunąć `handleStoryWheel` (scroll-jacking). W `completeDesktopStory` zostaje jednorazowość (D2), ale `window.scrollTo(0, storyStart)` zastępujemy kompensacją: `scrollY -= wysokość usuniętego spacera`. Timeline kończy się stanem „cały diagram”.
   2. Tworzyć ScrollTrigger od razu po załadowaniu runtime, a nie przy -20% viewportu. Przestrzeń pinu rezerwować w CSS, żeby wysokość strony była stała od początku. To naprawia anchory i gubienie fokusu.
   3. Zamiast `width`/`clip-path` użyć transformu na `.scheme-story__visual`.
   4. Ponownie mierzyć węzły przy refreshu.
