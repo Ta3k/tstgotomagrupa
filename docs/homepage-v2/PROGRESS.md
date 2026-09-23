@@ -71,3 +71,11 @@ Build zielony (`npm run build`). Testów automatycznych jeszcze nie ma: Etap 2 n
 Otwarte kwestie:
 - Wybór koncepcji (rekomendacja: C, alternatywa: A).
 - Dla C: akceptacja startu ruchu przy pierwszej interakcji i test na prawdziwym iPhonie.
+
+### Hero lab: iteracja po rozmowie (2026-09-23)
+
+- C v1 („złote morze o zachodzie”) zostało odrzucone: właściciel uznał, że wygląda jak tafla morza, a nie płynne złoto, i słabo wiąże się z grupą technologiczną.
+- C v2 „Płynne złoto”: struga polerowanego złota w świetle studyjnym. Przy scrollu spływa w dół, zwęża się i przechodzi w złotą nić do diagramu. Wydajność celowo niemierzona (decyzja właściciela: najpierw efekt).
+  - Sprawdzone wizualnie w Chromium z GPU (1440, 1920, 390, 360; PL/EN; sekwencja scrolla).
+- B+: ocena wykonalności przejścia prawdziwego diagramu z perspektywy 3D do widoku płaskiego. Test techniczny na prawdziwym DOM diagramu: ostry render, 57–60 fps.
+  - Szczegóły i ryzyka w `HERO.md`. Niczego nie wdrażałem.

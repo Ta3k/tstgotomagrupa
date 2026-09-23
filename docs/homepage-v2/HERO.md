@@ -7,7 +7,7 @@ Trzy działające prototypy nowego hero, PL i EN, desktop i mobile. Są to tymcz
 | Obecne hero (kontrola, te same sekcje poniżej) | http://localhost:6060/hero-lab/0/ | http://localhost:6060/en/hero-lab/0/ |
 | A „Zaćmienie” | http://localhost:6060/hero-lab/a/ | http://localhost:6060/en/hero-lab/a/ |
 | B „Ekosystem” | http://localhost:6060/hero-lab/b/ | http://localhost:6060/en/hero-lab/b/ |
-| C „Płynne złoto” | http://localhost:6060/hero-lab/c/ | http://localhost:6060/en/hero-lab/c/ |
+| C „Płynne złoto” (v2) | http://localhost:6060/hero-lab/c/ | http://localhost:6060/en/hero-lab/c/ |
 
 Serwer dev uruchamia się przez `npm start`. Po deployu na stage te same ścieżki będą działać pod adresem zwieksz-sprzedaz-online.pl.
 
@@ -68,33 +68,59 @@ Kod: `site/_includes/hero-lab/{copy,base,bar,a,b,c}.html`, strony `site/collecti
 - `offset-path` wymaga iOS 16+. Starsze wersje nie pokażą impulsów (`@supports`).
 - Koszt malowania na starszych iPhone'ach.
 
-## C. „Płynne złoto” (nocne morze złota)
+## C. „Płynne złoto” (v2, po rozmowie 2026-09-23)
+
+Pierwsza wersja C („złote morze o zachodzie”) czytała się jak pejzaż morski, a nie płynne złoto, i trudno ją było powiązać z grupą technologiczną. Została zastąpiona; stara wersja jest w historii (commit `da2a5f6`).
 
 **Idea.**
-- Nocne morze płynnego złota z perspektywą: gęsta, lśniąca tafla, niskie słońce i świetlna ścieżka na falach. Nagłówek na czarnym niebie nad horyzontem.
-- Efekt „premium” wynika z materiału i światła, nie z liczby efektów. To najsilniejsze „wow”.
-- Przy scrollu kamera pochyla się w złoto, które potem gaśnie w czerń sekcji diagramu.
+- Zbliżenie na strugę ciężkiego, polerowanego złota, która wyłania się z ciemności po prawej stronie i powoli spływa w dół szerokimi fałdami. Nagłówek jest na czerni po lewej.
+- Światło jest studyjne: softboxy, szerokie pasma połysku i nasycone cienie, więc materiał czyta się jako metal, nie woda. Refleksy przesuwają się za kursorem.
+- **Przy scrollu** złoto spływa w dół: struga przyspiesza, zwęża się i przesuwa do środka, a pod hero przechodzi w złotą nić wchodzącą w ramkę diagramu.
 
 **Technika.**
-- Surowy WebGL1 bez bibliotek: jeden trójkąt, fragment shader ~40 linii. Szum wartości z analitycznymi pochodnymi daje normalne bez dodatkowych próbek. Odbicie środowiska ze słońcem, fresnel i mgła przy horyzoncie.
-- Rozdzielczość: 0,6 DPR na desktopie, budżet 260 tys. px na telefonie, 30 fps na urządzeniach dotykowych.
-- Adaptacyjna jakość: przy wolnych klatkach rozdzielczość spada, maksymalnie trzykrotnie. W programowym WebKit spadła do ~25%.
-- Kompilacja przez `KHR_parallel_shader_compile`. Pauza poza ekranem i na ukrytej karcie.
-- **Start przy pierwszej interakcji** (ruch myszy, dotyk, scroll, klawisz), tak jak obecna klasa `hero-motion-active`. Do tego czasu i zawsze na słabszych urządzeniach widać statyczną wersję CSS: horyzont, tafla i migocząca ścieżka światła. Słabsze urządzenia to: renderer programowy, Save-Data, ≤ 2 GB RAM, ≤ 2 rdzenie.
-- Reduced motion: jedna nieruchoma klatka shadera.
+- Surowy WebGL1 bez bibliotek, jeden fragment shader.
+- Powierzchnia to pole wysokości: szum z zawinięciem domeny, wydłużony w pionie, plus zaokrąglony przekrój strugi. Normalne liczone z różnic skończonych, fresnel Schlicka dla złota, proceduralne studio i tone mapping ACES.
+- Przepływ jest całkowany w czasie, więc przyspieszenie przy scrollu nie powoduje skoków. Nić pod hero to element CSS sterowany postępem scrolla.
+- Start zaraz po załadowaniu („najlepszy efekt”, zgodnie z decyzją właściciela), rozdzielczość do 1× DPR.
+- Zostają: statyczna struga w CSS jako fallback, wykrywanie renderera programowego, pauza poza ekranem i jedna klatka przy reduced-motion.
+- Mobile: węższa struga u dołu pod CTA, ta sama mechanika spływania.
 
-**Koszt.**
-- ~8 KB gzip, 0 requestów.
-- Lighthouse ze startem przy interakcji: PL 90 / EN 90, LCP 3,55 / 3,54 s, TBT 0 / 0 ms, CLS 0 (jak kontrola).
-- **Ze startem od razu po `load`: PL 64–78, TBT 400–1260 ms (poza limitem Briefu).** Tworzenie kontekstu WebGL to ~140 ms przy CPU ×4, czyli ~35 ms na średnim telefonie, a pętla renderu konkuruje ze skryptami w oknie pomiaru.
-- W spoczynku z działającym shaderem (mobile, CPU ×4): **~+100 ms/s, najmniej z trzech**, bo pracę wykonuje GPU. Na desktopie ~+10 ms/s.
+**Koszt.** Na tym etapie celowo nie mierzony (decyzja właściciela: najpierw efekt). Wiadomo z v1:
+- start od razu po `load` może podbić TBT w Lighthouse (v1: 400–1260 ms);
+- możliwe środki zaradcze to start przy interakcji (v1: TBT 0), niższa rozdzielczość i limit 30 fps na telefonach.
 
-**Ryzyka na iOS Safari.**
-- WebGL działa, ale w trybie Low Power Mode rAF spada do 30 fps. Długie oglądanie grzeje telefon i zużywa baterię (łagodzą to pauza poza ekranem i limit 30 fps).
-- Utrata kontekstu po zejściu do tła: zostaje wersja CSS.
-- `requestIdleCallback` nie istnieje w Safari (jest fallback). Zmiany paska adresu: canvas przelicza rozmiar tylko przy `resize`.
-- Zrzuty Playwright WebKit na Windows nie pokazują canvasu WebGL, ale odczyt pikseli potwierdził poprawny render w WebKit.
-- **Trzeba potwierdzić na prawdziwym iPhonie:** płynność, temperaturę i wygląd przejścia CSS → shader.
+Do zmierzenia po akceptacji efektu.
+
+**Ryzyka na iOS Safari.** Jak w v1: Low Power Mode (30 fps), nagrzewanie przy długim oglądaniu, utrata kontekstu po zejściu do tła (zostaje wersja CSS). Do sprawdzenia na prawdziwym iPhonie.
+
+## B+ (propozycja): prawdziwy diagram w 3D zamiast płytki. Ocena wykonalności
+
+Pytanie właściciela: czy diagram może faktycznie przechodzić z półpłaskiej perspektywy pod kątem do diagramu, który jest widoczny w sekcji „Jak to działa?”. Niczego nie wdrażałem, zrobiłem tylko test techniczny.
+
+**Test (Chromium z GPU, 1440×900).**
+- Prawdziwy DOM diagramu (`.scheme-desktop .scheme-diagram`: 1024×768, 107 elementów, 15 z `filter: drop-shadow`) pochylony CSS 3D (`perspective(1600px) rotateX(52°) rotateZ(−30°)`) renderuje się ostro: napisy czytelne, świecące linie i kolory obszarów zostają.
+- Animacja 52° → 0° w 1,2 s: 57–60 fps, ~115 ms pracy wątku głównego łącznie.
+- Filtry `drop-shadow` dają jedno przycięcie ~83 ms przy pierwszym rastrze. Bez filtrów najgorsza klatka ma 17 ms.
+- WebKit w Playwright na Windows renderuje programowo (12 fps), więc nie jest miarodajny dla iPhone'a.
+
+**Jak by to działało.**
+1. Hero i diagram tworzą jedną przypiętą scenę. Na starcie diagram leży po prawej, pochylony ~50° i oświetlony złotem (złota nakładka `mix-blend-mode: color`), a po lewej jest nagłówek hero.
+2. **Faza 1** (~0,6–0,8 vh): tekst hero znika, diagram obraca się do płaskiego, przesuwa na środek i dochodzi do swojej docelowej skali. Złoto ustępuje prawdziwym kolorom obszarów, pojawia się „Jak to działa?”.
+3. **Faza 2:** obecna sekwencja 2 kroków (Finansowanie → Sklepy).
+4. **Faza 3:** jednorazowe zwolnienie pinu (D2), dalej statyczny, interaktywny diagram.
+
+Technicznie nie koliduje to z obecnym kodem: nowa zewnętrzna warstwa robi pochylenie 3D, a `.scheme-diagram` wewnątrz zachowuje dotychczasowe transformacje przybliżeń.
+
+**Wykonalność: wysoka.** Warunki i ryzyka:
+- **Tempo:** pin rośnie do ~2,3–2,6 vh, a droga do kart do ~4,2–4,5 vh (1440). To powyżej naszego celu D1 (≤ 4,0 vh), ale w limicie Briefu (≤ 6). Ewentualnie trzeba skrócić kroki.
+- **Pierwszy ekran:** diagram (107 elementów z poświatami) trafia do pierwszego widoku, więc pierwsze malowanie jest cięższe. LCP powinien zostać na h1, ale to trzeba zmierzyć. Poświaty (`drop-shadow`) należy wyłączyć na czas obrotu albo zastąpić wypieczonymi.
+- **Złoty klimat:** diagram jest wielokolorowy (magenta, niebieski, pomarańcz, zieleń, czerwona rama), więc w hero trzeba go „pozłocić” nakładką. Przejście złoto → kolory może być osobnym akcentem narracji.
+- **iOS Safari:** warstwa 3D z tekstem bywa rozmyta w trakcie animacji (ostrzy się po zatrzymaniu), a filtry są drogie. Wymaga testu na prawdziwym iPhonie.
+- **Mobile:** osobny, pionowy diagram (382×1210) słabo nadaje się do mocnego pochylenia. Propozycja: łagodna wersja (~25–30°, tylko faza 1) albo obecne zachowanie mobile bez zmian.
+- **Struktura:** hero i diagram stają się jedną sceną w szablonie (`index.html`, `home_en.html`, komponent hero lub how-it-works). Anchory i kolejność fokusu trzeba zaplanować razem (pin tworzony od razu, zgodnie z PLAN).
+- **Nakład pracy:** mniej więcej zakres Etapu 4 (diagram) plus 30–50% na scalenie z hero i wersję mobile.
+
+**Wybór:** B+ i C to dwa różne pomysły na hero. B+ opiera się na prawdziwym diagramie w 3D jako obiekcie, C na złotej strudze, która zamienia się w nić prowadzącą do diagramu. Łączenie obu w jednym hero byłoby przeładowane.
 
 ---
 
@@ -110,20 +136,13 @@ Kod: `site/_includes/hero-lab/{copy,base,bar,a,b,c}.html`, strony `site/collecti
 
 Uwaga do porównania z bazą z Etapu 1: strony labu mają tylko diagram i karty marek, więc ich wynik (~90) nie jest porównywalny z wynikiem całej strony głównej (83–85). Punktem odniesienia jest strona kontrolna `/hero-lab/0/`.
 
-## Rekomendacja
+## Rekomendacja (aktualizacja po rozmowie 2026-09-23)
 
-**C „Płynne złoto”**, z A jako bezpieczną alternatywą.
+Pierwotna rekomendacja (C v1) jest nieaktualna: C v1 okazało się pejzażem morskim, nie płynnym złotem. Na teraz:
 
-- **Za C:**
-  - Robi największe wrażenie i najbardziej oddaje „złoty klimat premium”. Wygląda jak realizacja, nie szablon.
-  - W Lighthouse jest na poziomie obecnego hero, a po starcie najmniej obciąża wątek główny.
-  - Horyzont i złoto naturalnie „przelewają się” w sekcję diagramu.
-  - Ma trzy poziomy jakości: shader, statyczny CSS i reduced-motion.
-- **Kompromis C, do Twojej decyzji:**
-  - Ruch złota zaczyna się przy pierwszej interakcji. Na desktopie to praktycznie od razu, na telefonie przy pierwszym dotyku lub scrollu. Pierwsza sekunda na telefonie to statyczny, ale efektowny kadr.
-  - Start bez interakcji łamie limit TBT z Briefu.
-  - Wymaga testu na prawdziwym iPhonie.
-- **A** daje „wow” animacją zapłonu w pierwszej sekundzie na każdym urządzeniu, jest czystym CSS i ma najmniejsze ryzyko. Wybrałbym ją, jeśli ruch od pierwszej chwili na telefonie jest ważniejszy niż efekt materiału.
-- **B** ma najlepszą narrację (zapowiedź diagramu), ale jest najbardziej „zajęta” i najdroższa w spoczynku. Wymagałaby przebudowy animacji. Nie rekomenduję jako hero; motyw płytki można ewentualnie wykorzystać w samym diagramie.
+- **C v2 „Płynne złoto”** jest do oceny przez właściciela jako efekt. Wydajność zmierzę dopiero po akceptacji wyglądu, razem z ewentualnymi środkami zaradczymi.
+- **B+ (prawdziwy diagram w 3D)** jest wykonalne z wysokim prawdopodobieństwem (test powyżej). Daje najmocniejsze powiązanie hero z diagramem, kosztem dłuższego pinu (~+0,7 vh) i scalenia hero z sekcją diagramu.
+- **A** zostaje najbezpieczniejszą alternatywą: czysty CSS, „wow” od pierwszej sekundy na każdym urządzeniu.
+- **B** (złota płytka jako osobna grafika) jest zastąpione przez propozycję B+.
 
-Po Twoim wyborze wybrana koncepcja zastąpi komponent `hero` na stronie głównej (PL i EN). Lab (`/hero-lab/*`, `site/_includes/hero-lab/`, flagę `homepage_runtime`) usunę po wdrożeniu.
+Po wyborze wybrana koncepcja zastąpi komponent `hero` na stronie głównej (PL i EN). Lab (`/hero-lab/*`, `site/_includes/hero-lab/`, flagę `homepage_runtime`) usunę po wdrożeniu.
