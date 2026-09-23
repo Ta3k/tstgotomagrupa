@@ -1,0 +1,1552 @@
+{
+  "lab0-pl": {
+    "url": "http://localhost:6070/hero-lab/0/",
+    "runs": [
+      {
+        "performance": 90,
+        "fcp_ms": 1521,
+        "lcp_ms": 3553,
+        "tbt_ms": 59,
+        "cls": 0,
+        "si_ms": 2589,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 547.6
+          },
+          "image": {
+            "requests": 50,
+            "kb": 417.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1523,
+        "lcp_ms": 3555,
+        "tbt_ms": 28,
+        "cls": 0,
+        "si_ms": 2596,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 547.6
+          },
+          "image": {
+            "requests": 50,
+            "kb": 417.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1523,
+        "lcp_ms": 3555,
+        "tbt_ms": 11,
+        "cls": 0,
+        "si_ms": 2719,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 547.6
+          },
+          "image": {
+            "requests": 50,
+            "kb": 417.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1523,
+      "lcp_ms": 3555,
+      "tbt_ms": 28,
+      "cls": 0,
+      "si_ms": 2596
+    },
+    "resources": {
+      "total": {
+        "requests": 62,
+        "kb": 547.6
+      },
+      "image": {
+        "requests": 50,
+        "kb": 417.5
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 15.9
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labA-pl": {
+    "url": "http://localhost:6070/hero-lab/a/",
+    "runs": [
+      {
+        "performance": 88,
+        "fcp_ms": 1525,
+        "lcp_ms": 3867,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 2224,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.4
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1372,
+        "lcp_ms": 3644,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 2005,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.4
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 89,
+        "fcp_ms": 1375,
+        "lcp_ms": 3783,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 2149,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.4
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 89,
+      "fcp_ms": 1375,
+      "lcp_ms": 3783,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 2149
+    },
+    "resources": {
+      "total": {
+        "requests": 63,
+        "kb": 610.4
+      },
+      "image": {
+        "requests": 51,
+        "kb": 477.5
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 18.6
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labB-pl": {
+    "url": "http://localhost:6070/hero-lab/b/",
+    "runs": [
+      {
+        "performance": 90,
+        "fcp_ms": 1375,
+        "lcp_ms": 3558,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1893,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 89,
+        "fcp_ms": 1373,
+        "lcp_ms": 3706,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1618,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1372,
+        "lcp_ms": 3555,
+        "tbt_ms": 3,
+        "cls": 0,
+        "si_ms": 1602,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 610.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1373,
+      "lcp_ms": 3558,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 1618
+    },
+    "resources": {
+      "total": {
+        "requests": 63,
+        "kb": 610.9
+      },
+      "image": {
+        "requests": 51,
+        "kb": 477.5
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 19.1
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labC-pl": {
+    "url": "http://localhost:6070/hero-lab/c/",
+    "runs": [
+      {
+        "performance": 76,
+        "fcp_ms": 1373,
+        "lcp_ms": 3646,
+        "tbt_ms": 546,
+        "cls": 0,
+        "si_ms": 2034,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 611.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 65,
+        "fcp_ms": 1373,
+        "lcp_ms": 3555,
+        "tbt_ms": 1339,
+        "cls": 0,
+        "si_ms": 2001,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 611.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 70,
+        "fcp_ms": 1373,
+        "lcp_ms": 3556,
+        "tbt_ms": 870,
+        "cls": 0,
+        "si_ms": 2241,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 611.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.1
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 70,
+      "fcp_ms": 1373,
+      "lcp_ms": 3556,
+      "tbt_ms": 870,
+      "cls": 0,
+      "si_ms": 2034
+    },
+    "resources": {
+      "total": {
+        "requests": 63,
+        "kb": 611.9
+      },
+      "image": {
+        "requests": 51,
+        "kb": 477.5
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 20.1
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "lab0-en": {
+    "url": "http://localhost:6070/en/hero-lab/0/",
+    "runs": [
+      {
+        "performance": 91,
+        "fcp_ms": 1373,
+        "lcp_ms": 3465,
+        "tbt_ms": 24,
+        "cls": 0,
+        "si_ms": 2395,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 534.7
+          },
+          "image": {
+            "requests": 50,
+            "kb": 416.2
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1373,
+        "lcp_ms": 3635,
+        "tbt_ms": 11,
+        "cls": 0,
+        "si_ms": 2352,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 534.7
+          },
+          "image": {
+            "requests": 50,
+            "kb": 416.2
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 89,
+        "fcp_ms": 1373,
+        "lcp_ms": 3623,
+        "tbt_ms": 26,
+        "cls": 0,
+        "si_ms": 2726,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 534.7
+          },
+          "image": {
+            "requests": 50,
+            "kb": 416.2
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 15.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1373,
+      "lcp_ms": 3623,
+      "tbt_ms": 24,
+      "cls": 0,
+      "si_ms": 2395
+    },
+    "resources": {
+      "total": {
+        "requests": 60,
+        "kb": 534.7
+      },
+      "image": {
+        "requests": 50,
+        "kb": 416.2
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 15.7
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labA-en": {
+    "url": "http://localhost:6070/en/hero-lab/a/",
+    "runs": [
+      {
+        "performance": 90,
+        "fcp_ms": 1372,
+        "lcp_ms": 3622,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 2001,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.5
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.4
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1373,
+        "lcp_ms": 3540,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1843,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.5
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.4
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 89,
+        "fcp_ms": 1370,
+        "lcp_ms": 3783,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1857,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.5
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.4
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1372,
+      "lcp_ms": 3622,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 1857
+    },
+    "resources": {
+      "total": {
+        "requests": 61,
+        "kb": 597.5
+      },
+      "image": {
+        "requests": 51,
+        "kb": 476.3
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 18.4
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labB-en": {
+    "url": "http://localhost:6070/en/hero-lab/b/",
+    "runs": [
+      {
+        "performance": 88,
+        "fcp_ms": 1373,
+        "lcp_ms": 3789,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1500,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 88,
+        "fcp_ms": 1374,
+        "lcp_ms": 3892,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1537,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 85,
+        "fcp_ms": 1370,
+        "lcp_ms": 4262,
+        "tbt_ms": 21,
+        "cls": 0,
+        "si_ms": 2640,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 597.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 18.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 88,
+      "fcp_ms": 1373,
+      "lcp_ms": 3892,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 1537
+    },
+    "resources": {
+      "total": {
+        "requests": 61,
+        "kb": 597.9
+      },
+      "image": {
+        "requests": 51,
+        "kb": 476.3
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 18.9
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labC-en": {
+    "url": "http://localhost:6070/en/hero-lab/c/",
+    "runs": [
+      {
+        "performance": 79,
+        "fcp_ms": 1373,
+        "lcp_ms": 3788,
+        "tbt_ms": 380,
+        "cls": 0,
+        "si_ms": 1822,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 598.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.8
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 71,
+        "fcp_ms": 1375,
+        "lcp_ms": 3792,
+        "tbt_ms": 702,
+        "cls": 0,
+        "si_ms": 2018,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 598.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.8
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 75,
+        "fcp_ms": 1373,
+        "lcp_ms": 3623,
+        "tbt_ms": 591,
+        "cls": 0,
+        "si_ms": 1863,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 598.9
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "document": {
+            "requests": 1,
+            "kb": 19.8
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 75,
+      "fcp_ms": 1373,
+      "lcp_ms": 3788,
+      "tbt_ms": 591,
+      "cls": 0,
+      "si_ms": 1863
+    },
+    "resources": {
+      "total": {
+        "requests": 61,
+        "kb": 598.9
+      },
+      "image": {
+        "requests": 51,
+        "kb": 476.3
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "document": {
+        "requests": 1,
+        "kb": 19.8
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "_meta": {
+    "date": "2026-09-23T18:05:47.034Z",
+    "runs": 3,
+    "lighthouse": "13.5.0",
+    "formFactor": "mobile (default throttling)"
+  }
+}

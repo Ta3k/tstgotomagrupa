@@ -1,0 +1,19 @@
+{% comment %} Pasek nawigacji labu (tylko prototypy, do usunięcia razem z labem). {% endcomment %}
+{% assign hl_prefix = "" %}{% if page.lang == 'en' %}{% assign hl_prefix = "/en" %}{% endif %}
+<nav class="hl-bar" aria-label="Hero lab">
+  <span class="hl-bar__tag">Hero lab</span>
+  {% assign hl_variants = "0,a,b,c" | split: "," %}
+  {% for v in hl_variants %}
+  <a href="{{ hl_prefix }}/hero-lab/{{ v }}/"{% if page.hero_lab == v %} aria-current="page"{% endif %}>{% if v == "0" %}{% if page.lang == "en" %}Current{% else %}Obecne{% endif %}{% else %}{{ v | upcase }}{% endif %}</a>
+  {% endfor %}
+  <span class="hl-bar__sep"></span>
+  <a href="/hero-lab/{{ page.hero_lab }}/"{% if page.lang != 'en' %} aria-current="true"{% endif %}>PL</a>
+  <a href="/en/hero-lab/{{ page.hero_lab }}/"{% if page.lang == 'en' %} aria-current="true"{% endif %}>EN</a>
+</nav>
+<style>
+  .hl-bar{position:fixed;right:16px;bottom:16px;z-index:2000;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:rgba(12,10,6,.78);border:1px solid rgba(228,173,80,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:600 12px/1 Poppins,system-ui,sans-serif;letter-spacing:.04em}
+  .hl-bar a{color:#d9c79f;text-decoration:none;padding:7px 10px;border-radius:999px}
+  .hl-bar a[aria-current]{background:#e4ad50;color:#120c02}
+  .hl-bar__tag{color:#8c7b58;padding:0 8px;text-transform:uppercase;font-size:10px}
+  .hl-bar__sep{width:1px;height:16px;background:rgba(228,173,80,.3);margin:0 4px}
+</style>

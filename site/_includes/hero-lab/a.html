@@ -1,0 +1,160 @@
+{% comment %}
+  Koncepcja A: "Zaćmienie" (diamond ring). Czysty CSS: czarny dysk, złota korona, rozbłysk
+  "diamentowego pierścienia" z anamorficzną smugą. Tekst leży na czarnym dysku (kontrast).
+  Ruch tylko transform/opacity (kompozytor). JS: postęp scrolla i lekka paralaksa wskaźnika.
+{% endcomment %}
+{% include hero-lab/copy.html %}
+{% include hero-lab/base.html %}
+<section class="hl hl-a" aria-labelledby="hl-title">
+  <div class="hl-a__sky" aria-hidden="true">
+    <div class="hl-a__bloom"></div>
+    <div class="hl-a__eclipse">
+      <div class="hl-a__corona"></div>
+      <div class="hl-a__streamers"></div>
+      <div class="hl-a__rim"></div>
+      <div class="hl-a__disc"></div>
+      <div class="hl-a__bead-orbit"><div class="hl-a__bead"><i class="hl-a__flare"></i></div></div>
+    </div>
+    <div class="hl-a__thread"><i></i></div>
+  </div>
+
+  <div class="hl__content hl-a__content container">
+    <p class="hl-eyebrow">{{ hl_eyebrow }}</p>
+    <h1 id="hl-title" class="hl-title hl-a__title">{{ hl_title }}</h1>
+    <p class="hl-lead hl-a__lead">{{ hl_lead }}</p>
+    <div class="hl-actions hl-a__actions">
+      <a class="hl-btn" href="{{ hl_cta_href }}">{{ hl_cta }}</a>
+      <a class="hl-cue" href="{{ hl_cue_href }}">{{ hl_cue }}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hl-a {
+    --d: min(88vw, 98svh, 1000px);           /* średnica dysku */
+    --cy: calc(var(--hl-header, 168px) + (100svh - var(--hl-header, 168px)) * .53);  /* środek zaćmienia */
+    --ba: 38deg;                              /* położenie rozbłysku na obręczy */
+    --p: var(--hl-p, 0);
+    justify-content: center;
+  }
+  .hl-a__sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .hl-a__bloom {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 45% at 50% calc(var(--cy) + var(--d) * .1), rgba(199, 134, 47, .20), transparent 70%),
+      radial-gradient(35% 30% at 72% 24%, rgba(255, 232, 164, .07), transparent 70%);
+    animation: hl-a-fade 2.2s .1s both cubic-bezier(.2, .7, .2, 1);
+  }
+  .hl-a__eclipse {
+    position: absolute; left: 50%; top: var(--cy); width: var(--d); aspect-ratio: 1;
+    transform:
+      translate(-50%, -50%)
+      translate(calc(var(--hl-mx, 0) * -10px), calc(var(--hl-my, 0) * -8px + var(--p) * 22svh))
+      scale(calc(1 + var(--p) * .18));
+    will-change: transform;
+  }
+  .hl-a__eclipse > * { position: absolute; border-radius: 50%; }
+  /* Miękka korona wokół dysku */
+  .hl-a__corona {
+    inset: -22%;
+    background: radial-gradient(closest-side, transparent 72%, rgba(255, 232, 164, .55) 76.5%, rgba(228, 173, 80, .28) 80%, rgba(199, 134, 47, .08) 88%, transparent 100%);
+    animation: hl-a-ignite 1.8s .35s both cubic-bezier(.2, .7, .2, 1);
+  }
+  /* Smugi korony: stożkowy gradient w masce pierścienia, powolny obrót (tylko transform) */
+  .hl-a__streamers {
+    inset: -30%;
+    background: conic-gradient(from 0deg,
+      rgba(247, 212, 127, 0) 0deg, rgba(247, 212, 127, .22) 18deg, rgba(247, 212, 127, 0) 34deg,
+      rgba(228, 173, 80, .14) 70deg, rgba(247, 212, 127, 0) 96deg, rgba(255, 232, 164, .26) 140deg,
+      rgba(247, 212, 127, 0) 162deg, rgba(228, 173, 80, .16) 205deg, rgba(247, 212, 127, 0) 236deg,
+      rgba(255, 232, 164, .2) 280deg, rgba(247, 212, 127, 0) 310deg, rgba(228, 173, 80, .15) 338deg, rgba(247, 212, 127, 0) 360deg);
+    -webkit-mask-image: radial-gradient(closest-side, transparent 58%, #000 61%, rgba(0, 0, 0, .5) 72%, transparent 100%);
+    mask-image: radial-gradient(closest-side, transparent 58%, #000 61%, rgba(0, 0, 0, .5) 72%, transparent 100%);
+    animation: hl-a-fade 2.4s .6s both, hl-a-spin 140s linear infinite;
+  }
+  /* Cienka, jasna obręcz: najjaśniejsza przy rozbłysku */
+  .hl-a__rim {
+    inset: -1px;
+    background: conic-gradient(from calc(var(--ba) - 60deg),
+      rgba(199, 134, 47, .25) 0deg, rgba(255, 246, 220, 1) 60deg, rgba(247, 212, 127, .75) 74deg,
+      rgba(199, 134, 47, .28) 130deg, rgba(122, 79, 23, .18) 220deg, rgba(199, 134, 47, .32) 300deg, rgba(199, 134, 47, .25) 360deg);
+    -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - 3px), #000 calc(100% - 1.5px), transparent 100%);
+    mask-image: radial-gradient(closest-side, transparent calc(100% - 3px), #000 calc(100% - 1.5px), transparent 100%);
+    animation: hl-a-ignite 1.4s .15s both cubic-bezier(.2, .7, .2, 1);
+  }
+  .hl-a__disc {
+    inset: 0;
+    background: radial-gradient(circle at 50% 35%, #0d0a06 0%, #050403 55%, #000 100%);
+    box-shadow: inset 0 0 90px 10px rgba(0, 0, 0, .95), inset 0 0 2px rgba(255, 232, 164, .2);
+  }
+  /* Rozbłysk "diamentowego pierścienia" */
+  .hl-a__bead-orbit { inset: 0; transform: rotate(calc(var(--ba) + var(--hl-mx, 0) * 3deg)); border-radius: 0 !important; }
+  .hl-a__bead {
+    position: absolute; left: 50%; top: 0; width: 0; height: 0;
+    transform: rotate(calc(-1 * (var(--ba) + var(--hl-mx, 0) * 3deg)));
+  }
+  .hl-a__bead::before, .hl-a__bead::after, .hl-a__flare { content: ""; position: absolute; left: 0; top: 0; border-radius: 50%; }
+  .hl-a__bead::before { /* jądro */
+    width: 26px; height: 26px; margin: -13px 0 0 -13px;
+    background: radial-gradient(circle, #fff 0%, #fff6dc 35%, rgba(255, 232, 164, 0) 70%);
+    animation: hl-a-bead 1.5s .55s both cubic-bezier(.2, .9, .2, 1.2), hl-a-twinkle 4.8s 2.2s ease-in-out infinite;
+  }
+  .hl-a__bead::after { /* poświata */
+    width: 320px; height: 320px; margin: -160px 0 0 -160px;
+    background: radial-gradient(circle, rgba(255, 232, 164, .55) 0%, rgba(228, 173, 80, .18) 25%, transparent 62%);
+    animation: hl-a-bead 1.8s .5s both cubic-bezier(.2, .8, .2, 1), hl-a-breathe 6s 2.3s ease-in-out infinite;
+  }
+  .hl-a__flare { /* anamorficzna smuga */
+    width: 110vw; height: 2px; margin: -1px 0 0 -55vw; border-radius: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(228, 173, 80, .15) 25%, rgba(255, 246, 220, .95) 50%, rgba(228, 173, 80, .15) 75%, transparent 100%);
+    box-shadow: 0 0 12px rgba(255, 232, 164, .6);
+    animation: hl-a-flare 1.6s .75s both cubic-bezier(.2, .8, .2, 1);
+  }
+  .hl-a__thread { /* nić prowadząca do diagramu */
+    position: absolute; left: 50%; bottom: 0; width: 1px; height: 26svh; transform-origin: bottom;
+    background: linear-gradient(to bottom, transparent, rgba(228, 173, 80, .7));
+    transform: translateX(-50%) scaleY(calc(.35 + var(--p) * 1.6));
+    opacity: calc(.4 + var(--p));
+  }
+  .hl-a__thread i {
+    position: absolute; left: -2px; top: 0; width: 5px; height: 5px; border-radius: 50%; background: #fff6dc;
+    box-shadow: 0 0 10px 2px rgba(255, 232, 164, .9); animation: hl-a-drip 3.2s 2s cubic-bezier(.6, 0, .4, 1) infinite;
+  }
+
+  .hl-a__content {
+    text-align: center; display: flex; flex-direction: column; align-items: center;
+    padding-top: 2svh; padding-bottom: 10svh;
+    opacity: calc(1 - var(--p) * 1.6); transform: translateY(calc(var(--p) * -6svh));
+  }
+  .hl-a .hl-eyebrow::after { content: ""; width: 36px; height: 1px; background: linear-gradient(-90deg, transparent, var(--gold-400)); }
+  .hl-a__title { font-size: clamp(44px, 5.6vw, 96px); }
+  .hl-a__title em { animation: hl-a-shine 2.6s 1s both cubic-bezier(.4, 0, .2, 1); }
+  .hl-a__lead { max-width: 44ch; margin-left: auto; margin-right: auto; }
+  .hl-a__actions { justify-content: center; }
+
+  @keyframes hl-a-fade { from { opacity: 0; } }
+  @keyframes hl-a-ignite { from { opacity: 0; transform: scale(.94); } }
+  @keyframes hl-a-spin { to { transform: rotate(360deg); } }
+  @keyframes hl-a-bead { 0% { opacity: 0; transform: scale(0); } 60% { opacity: 1; transform: scale(1.35); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes hl-a-twinkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+  @keyframes hl-a-breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.12); } }
+  @keyframes hl-a-flare { from { opacity: 0; transform: scaleX(0); } }
+  @keyframes hl-a-shine { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
+  @keyframes hl-a-drip { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(26svh); opacity: 0; } }
+
+  /* Mobile: łuk zaćmienia u góry, tekst w cieniu dysku, rozbłysk wyżej */
+  @media (max-width: 767px) {
+    .hl-a { --d: 158vw; --cy: calc(var(--hl-header, 100px) + 50svh); --ba: 22deg; justify-content: flex-end; }
+    .hl-a__content { padding-top: 0; padding-bottom: 12svh; }
+    .hl-a__title { font-size: clamp(36px, 10.6vw, 50px); }
+    .hl-a__bead::after { width: 220px; height: 220px; margin: -110px 0 0 -110px; }
+    .hl-a__streamers { animation: hl-a-fade 2.4s .6s both; } /* bez stałego obrotu na telefonie */
+    .hl-a__thread { height: 14svh; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hl-a *, .hl-a *::before, .hl-a *::after { animation: none !important; }
+  }
+</style>
+<script>
+  window.hlMotion(document.querySelector('.hl-a'));
+</script>

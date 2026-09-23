@@ -1,0 +1,394 @@
+{
+  "labC-pl": {
+    "url": "http://localhost:6070/hero-lab/c/",
+    "runs": [
+      {
+        "performance": 90,
+        "fcp_ms": 1371,
+        "lcp_ms": 3553,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1478,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 612.6
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.9
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 88,
+        "fcp_ms": 1520,
+        "lcp_ms": 3858,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1520,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 612.6
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.9
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 91,
+        "fcp_ms": 1378,
+        "lcp_ms": 3403,
+        "tbt_ms": 66,
+        "cls": 0,
+        "si_ms": 1783,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 63,
+            "kb": 612.6
+          },
+          "image": {
+            "requests": 51,
+            "kb": 477.5
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.9
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1378,
+      "lcp_ms": 3553,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 1520
+    },
+    "resources": {
+      "total": {
+        "requests": 63,
+        "kb": 612.6
+      },
+      "image": {
+        "requests": 51,
+        "kb": 477.5
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "document": {
+        "requests": 1,
+        "kb": 20.9
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "labC-en": {
+    "url": "http://localhost:6070/en/hero-lab/c/",
+    "runs": [
+      {
+        "performance": 85,
+        "fcp_ms": 1380,
+        "lcp_ms": 4247,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 3089,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 599.8
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.7
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1377,
+        "lcp_ms": 3543,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1534,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 599.8
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.7
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1378,
+        "lcp_ms": 3544,
+        "tbt_ms": 0,
+        "cls": 0,
+        "si_ms": 1550,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 61,
+            "kb": 599.8
+          },
+          "image": {
+            "requests": 51,
+            "kb": 476.3
+          },
+          "script": {
+            "requests": 4,
+            "kb": 58.1
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 20.7
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 20.7
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 90,
+      "fcp_ms": 1378,
+      "lcp_ms": 3544,
+      "tbt_ms": 0,
+      "cls": 0,
+      "si_ms": 1550
+    },
+    "resources": {
+      "total": {
+        "requests": 61,
+        "kb": 599.8
+      },
+      "image": {
+        "requests": 51,
+        "kb": 476.3
+      },
+      "script": {
+        "requests": 4,
+        "kb": 58.1
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "document": {
+        "requests": 1,
+        "kb": 20.7
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 20.7
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "_meta": {
+    "date": "2026-09-23T18:27:05.849Z",
+    "runs": 3,
+    "lighthouse": "13.5.0",
+    "formFactor": "mobile (default throttling)"
+  }
+}

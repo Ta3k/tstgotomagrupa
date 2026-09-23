@@ -2,7 +2,7 @@
 {% if page.url == nil or page.url == "" or page.url == "/" or page.url == "/index.html" or page.url == "/en/" or page.url == "/index_pl.html" %}
   {% assign is_homepage = true %}
 {% endif %}
-{% if page.path contains "_pages/index.html" or page.path contains "_pages/index_pl.html" or page.path contains "_pages/home_en.html" %}
+{% if page.homepage_runtime or page.path contains "_pages/index.html" or page.path contains "_pages/index_pl.html" or page.path contains "_pages/home_en.html" %}
   {% assign is_homepage = true %}
 {% endif %}
 

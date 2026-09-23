@@ -1,0 +1,209 @@
+{% comment %}
+  Koncepcja C: "Płynne złoto". Nocne morze płynnego złota z perspektywą i świetlną ścieżką od niskiego słońca.
+  Surowy WebGL1 (jeden trójkąt, fragment shader ~70 linii, bez bibliotek), renderowany w zmniejszonej
+  rozdzielczości, startuje dopiero po `load` (nie wpływa na LCP/TBT). Pod spodem statyczny fallback CSS
+  (słabe telefony, brak WebGL, Save-Data). Reduced motion: jedna nieruchoma klatka shadera.
+{% endcomment %}
+{% include hero-lab/copy.html %}
+{% include hero-lab/base.html %}
+<section class="hl hl-c" aria-labelledby="hl-title">
+  <div class="hl-c__sea" aria-hidden="true">
+    <div class="hl-c__fallback"></div>
+    <canvas class="hl-c__canvas"></canvas>
+    <div class="hl-c__shade"></div>
+  </div>
+
+  <div class="hl__content hl-c__content container">
+    <p class="hl-eyebrow">{{ hl_eyebrow }}</p>
+    <h1 id="hl-title" class="hl-title hl-c__title">{{ hl_title }}</h1>
+    <div class="hl-c__row">
+      <p class="hl-lead">{{ hl_lead }}</p>
+      <div class="hl-actions">
+        <a class="hl-btn" href="{{ hl_cta_href }}">{{ hl_cta }}</a>
+        <a class="hl-cue" href="{{ hl_cue_href }}">{{ hl_cue }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hl-c { --p: var(--hl-p, 0); --hz: 23%; justify-content: flex-start; }
+  .hl-c__sea { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .hl-c__fallback, .hl-c__canvas, .hl-c__shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* Statyczna wersja: horyzont, złota tafla i ścieżka światła (renderuje się od razu, bez JS) */
+  .hl-c__fallback {
+    background:
+      radial-gradient(18% 3% at 71% calc(100% - var(--hz)), rgba(255, 246, 220, .9), transparent 70%),
+      radial-gradient(22% 30% at 71% 100%, rgba(255, 232, 164, .35), transparent 70%),
+      conic-gradient(from 150deg at 71% 0%, transparent 0deg, rgba(255, 232, 164, .22) 18deg, rgba(255, 246, 220, .42) 30deg, rgba(255, 232, 164, .22) 42deg, transparent 60deg) 0 100% / 100% var(--hz) no-repeat,
+      radial-gradient(60% 18% at 71% calc(100% - var(--hz)), rgba(228, 173, 80, .45), transparent 70%),
+      linear-gradient(to bottom, #000 0, #000 calc(100% - var(--hz) - 1px), #d9a24c calc(100% - var(--hz)), #8a5a1c calc(100% - var(--hz) + 6px), #4a2f0c calc(100% - var(--hz) * .6), #1f1405 100%);
+  }
+  .hl-c__fallback::after { /* migotanie świetlnej ścieżki: poziome refleksy w kształcie klina od słońca */
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--hz);
+    background: repeating-linear-gradient(to bottom, rgba(255, 240, 200, 0) 0 5px, rgba(255, 244, 214, .55) 5px 6px, rgba(255, 240, 200, 0) 6px 11px, rgba(255, 236, 190, .3) 11px 12px);
+    -webkit-mask-image: conic-gradient(from 148deg at 71% 0%, transparent 0deg, #000 22deg, #000 42deg, transparent 64deg);
+    mask-image: conic-gradient(from 148deg at 71% 0%, transparent 0deg, #000 22deg, #000 42deg, transparent 64deg);
+    opacity: .8;
+  }
+  .hl-c__canvas { opacity: 0; transition: opacity 1.1s cubic-bezier(.2, .7, .2, 1); }
+  .hl-c__canvas.is-on { opacity: 1; }
+  .hl-c__shade { /* wyjście do czerni pod hero (przejście w diagram) */
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, calc(var(--p) * 1.2)) 100%);
+  }
+  .hl-c__content { padding-top: 5svh; opacity: calc(1 - var(--p) * 1.7); transform: translateY(calc(var(--p) * -6svh)); }
+  .hl-c__title { font-size: clamp(46px, 5.9vw, 108px); }
+  .hl-c__title em { animation: hl-c-shine 3s .6s both cubic-bezier(.4, 0, .2, 1); }
+  .hl-c__row { display: grid; grid-template-columns: minmax(0, 60ch); gap: 26px; margin-top: 28px; }
+  .hl-c__row .hl-lead { max-width: 60ch; }
+  .hl-c__row .hl-lead, .hl-c__row .hl-actions { margin: 0; }
+  @keyframes hl-c-shine { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
+  @media (max-width: 767px) {
+    .hl-c { --hz: 20%; }
+    .hl-c__content { padding-top: 4svh; }
+    .hl-c__title { font-size: clamp(38px, 11vw, 52px); }
+    .hl-c__row { margin-top: 18px; gap: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hl-c__title em { animation: none; } }
+</style>
+<script>
+(function () {
+  var hero = document.querySelector('.hl-c');
+  var canvas = hero.querySelector('.hl-c__canvas');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var coarse = window.matchMedia('(pointer: coarse)').matches;
+  var conn = navigator.connection || {};
+  // Słabsze urządzenia zostają na statycznym fallbacku CSS.
+  if (conn.saveData || (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2)) return;
+
+  var state = { p: 0, mx: 0, visible: true };
+  window.hlMotion(hero, {
+    onFrame: function (p) { state.p = p; },
+    onPointer: function (mx) { state.mx = mx; },
+    onVisible: function (v) { state.visible = v; if (v) kick(); }
+  });
+
+  var FRAG = [
+    '#ifdef GL_FRAGMENT_PRECISION_HIGH', 'precision highp float;', '#else', 'precision mediump float;', '#endif',
+    'uniform vec2 uR; uniform float uT, uS, uM, uH;',
+    'const vec3 G = vec3(1.0, .70, .30);',
+    'float h2(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }',
+    // szum wartości z pochodnymi (normalne bez dodatkowych próbek)
+    'vec3 nd(vec2 x){ vec2 i = floor(x), f = fract(x); vec2 u = f*f*(3.-2.*f), du = 6.*f*(1.-f);',
+    '  float a = h2(i), b = h2(i+vec2(1,0)), c = h2(i+vec2(0,1)), d = h2(i+vec2(1,1));',
+    '  return vec3(a+(b-a)*u.x+(c-a)*u.y+(a-b-c+d)*u.x*u.y, du*(vec2(b-a,c-a)+(a-b-c+d)*u.yx)); }',
+    'vec3 fbm(vec2 p){ float a = 0., w = .5, s = 1.; vec2 d = vec2(0.);',
+    '  for (int i = 0; i < 5; i++) { vec3 n = nd(p); a += w*n.x; d += w*s*n.yz; w *= .5; s *= 2.03; p = p*2.03 + vec2(1.7, 9.2); }',
+    '  return vec3(a, d); }',
+    'vec3 env(vec3 r, vec3 sd){ float h = max(r.y, 0.); float s = max(dot(r, sd), 0.);',
+    '  return G*.20*exp(-h*9.) + G*.045 + vec3(1., .93, .78)*pow(s, 900.)*26. + G*pow(s, 70.)*2.2 + G*pow(s, 9.)*.30; }',
+    'void main(){',
+    '  vec2 uv = gl_FragCoord.xy / uR; float asp = uR.x / uR.y;',
+    '  float H = mix(uH, .97, uS);',
+    '  vec3 sd = normalize(vec3(.22*asp/1.55 + uM*.08, .045, 1.));',
+    '  vec3 rd = normalize(vec3((uv.x-.5)*asp, uv.y - H, 1.55));',
+    '  vec3 col;',
+    '  if (rd.y >= 0.) {',
+    '    float sy = uv.y - H; float s = max(dot(rd, sd), 0.);',
+    '    col = G*.22*exp(-sy*30.) + G*pow(s, 160.)*.7 + G*pow(s, 18.)*.05 + vec3(1.,.92,.75)*pow(s, 5000.)*2.2;',
+    '  } else {',
+    '    float t = 1. / -rd.y; vec3 pos = rd*t;',
+    '    vec2 q = pos.xz*vec2(.26, .62); q.x += sin(q.y*1.3 + uT*.6)*.22; q.y -= uT*.42;',
+    '    vec3 f = fbm(q); float amp = .75 / (1. + t*.06);',
+    '    vec3 N = normalize(vec3(-f.y*.26*amp, 1., -f.z*.62*amp));',
+    '    vec3 r = reflect(rd, N);',
+    '    float F = .62 + .38*pow(1. - max(dot(-rd, N), 0.), 5.);',
+    '    col = G*.035*(.6 + f.x) + env(r, sd)*mix(G, vec3(1.), .22)*F;',
+    '    col = mix(G*.30, col, exp(-t*.03));',
+    '  }',
+    '  col += G*.6*exp(-abs(uv.y - H)*420.);',                 // linia horyzontu
+    '  col *= 1. - smoothstep(.55, 1., uS)*.85;',
+    '  col = 1. - exp(-col*1.5);',
+    '  col *= mix(.5, 1., smoothstep(1.3, .35, length((uv - vec2(.6, .42))*vec2(asp*.75, 1.))));',
+    '  gl_FragColor = vec4(pow(col, vec3(.62)), 1.);',
+    '}'
+  ].join('\n');
+  var VERT = 'attribute vec2 a; void main(){ gl_Position = vec4(a, 0., 1.); }';
+
+  var gl, prog, loc = {}, running = false, last = 0, t0 = 0, scale = coarse ? .5 : .6, budget = coarse ? 260000 : 720000;
+  var frames = 0, slow = 0, frameGap = coarse ? 1000 / 30 : 0, hz = .27, v, f, ext;
+  function readHz() { hz = parseFloat(getComputedStyle(hero).getPropertyValue('--hz')) / 100 || .27; }
+
+  function init() {
+    gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, powerPreference: 'low-power', preserveDrawingBuffer: false });
+    if (!gl) return false;
+    // Renderer programowy (brak GPU: SwiftShader, llvmpipe, Microsoft Basic Render) = zostajemy na fallbacku CSS.
+    var rend = String(gl.getParameter(gl.RENDERER) || '');
+    if (/^webkit webgl$/i.test(rend)) { var dbg = gl.getExtension('WEBGL_debug_renderer_info'); if (dbg) rend = String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)); }
+    if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(rend)) { var lose = gl.getExtension('WEBGL_lose_context'); if (lose) lose.loseContext(); return false; }
+    // Kompilacja równoległa (KHR_parallel_shader_compile): nie blokujemy wątku na wyniku kompilacji.
+    ext = gl.getExtension('KHR_parallel_shader_compile');
+    v = gl.createShader(gl.VERTEX_SHADER); gl.shaderSource(v, VERT); gl.compileShader(v);
+    f = gl.createShader(gl.FRAGMENT_SHADER); gl.shaderSource(f, FRAG); gl.compileShader(f);
+    prog = gl.createProgram(); gl.attachShader(prog, v); gl.attachShader(prog, f); gl.linkProgram(prog);
+    return true;
+  }
+  function ready() { return !ext || gl.getProgramParameter(prog, ext.COMPLETION_STATUS_KHR); }
+  function finish() {
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.warn(gl.getShaderInfoLog(f) || gl.getProgramInfoLog(prog)); return false; }
+    gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var a = gl.getAttribLocation(prog, 'a'); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
+    ['uR', 'uT', 'uS', 'uM', 'uH'].forEach(function (n) { loc[n] = gl.getUniformLocation(prog, n); });
+    canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); running = false; canvas.classList.remove('is-on'); });
+    return true;
+  }
+  function size() {
+    var w = canvas.clientWidth, h = canvas.clientHeight, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var s = Math.min(scale * dpr, Math.sqrt(budget / Math.max(1, w * h)));
+    var W = Math.max(2, Math.round(w * s)), Hh = Math.max(2, Math.round(h * s));
+    if (canvas.width !== W || canvas.height !== Hh) { canvas.width = W; canvas.height = Hh; gl.viewport(0, 0, W, Hh); }
+  }
+  var needSize = true;
+  function draw(now) {
+    if (needSize) { size(); needSize = false; }
+    gl.uniform2f(loc.uR, canvas.width, canvas.height);
+    gl.uniform1f(loc.uT, reduce ? 14.0 : (now - t0) / 1000 + 14.0);
+    gl.uniform1f(loc.uS, state.p);
+    gl.uniform1f(loc.uM, state.mx);
+    gl.uniform1f(loc.uH, hz);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+  function loop(now) {
+    if (!running) return;
+    if (!state.visible || document.hidden) { running = false; return; }
+    requestAnimationFrame(loop);
+    if (frameGap && now - last < frameGap - 1) return;
+    var dt = now - last; last = now;
+    draw(now);
+    // adaptacyjna jakość: jeśli klatki są wolne, zmniejsz rozdzielczość (maks. 2 razy)
+    if (++frames > 20 && frames < 200 && dt > (coarse ? 45 : 24)) { if (++slow > 12 && scale > .3) { scale *= .75; slow = 0; needSize = true; } }
+  }
+  function kick() { if (!gl || running || reduce) return; running = true; last = performance.now(); requestAnimationFrame(loop); }
+  function start() {
+    if (!init()) return;
+    readHz();
+    (function wait() {
+      if (!ready()) { setTimeout(wait, 50); return; }
+      if (!finish()) return;
+      t0 = performance.now();
+      draw(t0);
+      requestAnimationFrame(function () { canvas.classList.add('is-on'); });
+      if (!reduce) kick();
+    })();
+    window.addEventListener('resize', function () { readHz(); needSize = true; if (reduce && prog) requestAnimationFrame(function () { draw(performance.now()); }); }, { passive: true });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
+  }
+  // Start dopiero po pierwszej interakcji (jak hero-motion-active na obecnej stronie): tworzenie kontekstu WebGL
+  // kosztuje ~30-40 ms wątku głównego na średnim telefonie, więc nie płacimy go w oknie ładowania.
+  // Reduced motion: jedna klatka po załadowaniu (bez pętli).
+  var started = false;
+  function later() { if (started) return; started = true; (window.requestIdleCallback || function (fn) { setTimeout(fn, 60); })(start, { timeout: 500 }); }
+  function onLoad() {
+    if (reduce) { later(); return; }
+    ['pointermove', 'touchstart', 'scroll', 'keydown', 'wheel'].forEach(function (ev) { window.addEventListener(ev, later, { once: true, passive: true }); });
+  }
+  if (document.readyState === 'complete') onLoad(); else window.addEventListener('load', onLoad, { once: true });
+})();
+</script>

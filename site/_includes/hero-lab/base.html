@@ -1,0 +1,116 @@
+{% comment %}
+  Hero lab: wspólna baza (typografia, wsunięcie pod header, postęp scrolla).
+  Treść hero renderuje się bez JS; skrypt tylko ustawia --hl-p (0..1) i --hl-mx/--hl-my.
+{% endcomment %}
+<script>
+  // Header jest w normalnym przepływie; hero wsuwa się pod niego o jego wysokość.
+  (function () {
+    var h = document.querySelector('.c-header');
+    if (h) document.documentElement.style.setProperty('--hl-header', h.offsetHeight + 'px');
+  })();
+</script>
+<style>
+  /* Lab: Poppins 300/400 z font-display: swap (w bazie jest optional, przez co przy 1. wizycie leci Arial). */
+  @font-face { font-family: "Poppins"; font-weight: 400; font-display: swap; src: url("/assets/fonts/poppins-400-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Poppins"; font-weight: 400; font-display: swap; src: url("/assets/fonts/poppins-400-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  .c-header { position: relative; z-index: 30; }
+  .hl {
+    --gold-50: #fff6dc; --gold-100: #ffe8a4; --gold-200: #f7d47f; --gold-400: #e4ad50;
+    --gold-600: #c7862f; --gold-800: #7a4f17; --gold-900: #2b1b07;
+    position: relative; isolation: isolate; overflow: hidden;
+    min-height: 100vh; min-height: 100svh;
+    margin-top: calc(-1 * var(--hl-header, 168px));
+    padding-top: var(--hl-header, 168px);
+    background: #000; color: #fff;
+    display: flex; flex-direction: column;
+  }
+  .hl::after { /* miękkie wyjście w czerń sekcji diagramu */
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 24svh; z-index: 1; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .55) 55%, #000);
+  }
+  .hl__content { position: relative; z-index: 2; width: 100%; }
+  .hl--paused *, .hl--paused *::before, .hl--paused *::after { animation-play-state: paused !important; }
+  .hl-eyebrow {
+    display: inline-flex; align-items: center; gap: 14px; margin: 0 0 22px;
+    font: 600 12px/1.4 Poppins, "Helvetica Neue", Arial, sans-serif; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--gold-400);
+  }
+  .hl-eyebrow::before { content: ""; width: 36px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-400)); }
+  .hl-title {
+    margin: 0; font-family: Poppins, "Helvetica Neue", Arial, sans-serif; font-weight: 600;
+    letter-spacing: -.035em; line-height: .98; color: #fff; text-wrap: balance;
+  }
+  .hl-line { display: block; white-space: nowrap; }
+  .hl-title em {
+    font-style: normal;
+    background: linear-gradient(100deg, var(--gold-100) 0%, var(--gold-200) 28%, var(--gold-600) 55%, var(--gold-200) 78%, var(--gold-50) 100%);
+    background-size: 220% 100%; background-position: 0% 50%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hl-lead {
+    margin: 26px 0 0; max-width: 36ch;
+    font: 400 17px/1.7 Poppins, "Helvetica Neue", Arial, sans-serif; color: rgba(255, 255, 255, .72);
+  }
+  .hl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 34px; }
+  .hl-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border-radius: 999px;
+    font: 600 15px/1 Poppins, "Helvetica Neue", Arial, sans-serif; letter-spacing: .01em; color: #140d02; text-decoration: none;
+    background: linear-gradient(135deg, var(--gold-100), var(--gold-400) 55%, var(--gold-600));
+    box-shadow: 0 10px 40px -12px rgba(228, 173, 80, .7), inset 0 1px 0 rgba(255, 255, 255, .6);
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s;
+  }
+  .hl-btn::after { content: "→"; transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+  .hl-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 50px -12px rgba(228, 173, 80, .9), inset 0 1px 0 rgba(255, 255, 255, .6); color: #140d02; }
+  .hl-btn:hover::after { transform: translateX(4px); }
+  .hl-btn:focus-visible, .hl-cue:focus-visible { outline: 2px solid var(--gold-100); outline-offset: 4px; }
+  .hl-cue {
+    display: inline-flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, .78); text-decoration: none;
+    font: 500 14px/1 Poppins, "Helvetica Neue", Arial, sans-serif; letter-spacing: .02em;
+  }
+  .hl-cue::before {
+    content: ""; width: 1px; height: 28px;
+    background: linear-gradient(var(--gold-400), transparent); transform-origin: top;
+    animation: hl-cue 2.4s cubic-bezier(.6, 0, .2, 1) infinite;
+  }
+  .hl-cue:hover { color: #fff; }
+  @keyframes hl-cue { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .hl-cue::before { animation: none; } }
+  @media (max-width: 767px) {
+    .hl-line { display: inline; white-space: normal; }
+    .hl-eyebrow { font-size: 11px; letter-spacing: .2em; margin-bottom: 16px; }
+    .hl-eyebrow::before, .hl-eyebrow::after { display: none !important; }
+    .hl-lead { font-size: 15.5px; margin-top: 18px; }
+    .hl-actions { margin-top: 26px; gap: 14px 22px; }
+    .hl-btn { padding: 15px 24px; font-size: 14.5px; }
+  }
+</style>
+<script>
+  // Postęp scrolla hero -> --hl-p (0..1) i wskaźnik -> --hl-mx/--hl-my (-1..1). Tylko gdy hero widoczne.
+  window.hlMotion = function (hero, opts) {
+    opts = opts || {};
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !hero) return { reduce: true };
+    var visible = true, raf = 0, mx = 0, my = 0;
+    var finePointer = window.matchMedia('(pointer: fine)').matches;
+    function frame() {
+      raf = 0;
+      var r = hero.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / (r.height || 1)));
+      hero.style.setProperty('--hl-p', p.toFixed(4));
+      if (opts.onFrame) opts.onFrame(p);
+    }
+    function queue() { if (visible && !raf) raf = requestAnimationFrame(frame); }
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; hero.classList.toggle('hl--paused', !visible); if (opts.onVisible) opts.onVisible(visible); queue(); }).observe(hero);
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
+    if (finePointer) {
+      hero.addEventListener('pointermove', function (e) {
+        mx = (e.clientX / window.innerWidth) * 2 - 1; my = (e.clientY / window.innerHeight) * 2 - 1;
+        hero.style.setProperty('--hl-mx', mx.toFixed(3)); hero.style.setProperty('--hl-my', my.toFixed(3));
+        if (opts.onPointer) opts.onPointer(mx, my);
+      }, { passive: true });
+    }
+    queue();
+    return { reduce: false, finePointer: finePointer };
+  };
+</script>
