@@ -7,6 +7,7 @@ Trzy działające prototypy nowego hero, PL i EN, desktop i mobile. Są to tymcz
 | Obecne hero (kontrola, te same sekcje poniżej) | http://localhost:6060/hero-lab/0/ | http://localhost:6060/en/hero-lab/0/ |
 | A „Zaćmienie” | http://localhost:6060/hero-lab/a/ | http://localhost:6060/en/hero-lab/a/ |
 | B „Ekosystem” | http://localhost:6060/hero-lab/b/ | http://localhost:6060/en/hero-lab/b/ |
+| B+ „Diagram jako hero” | http://localhost:6060/hero-lab/d/ | http://localhost:6060/en/hero-lab/d/ |
 | C „Płynne złoto” (v2) | http://localhost:6060/hero-lab/c/ | http://localhost:6060/en/hero-lab/c/ |
 
 Serwer dev uruchamia się przez `npm start`. Po deployu na stage te same ścieżki będą działać pod adresem zwieksz-sprzedaz-online.pl.
@@ -121,6 +122,25 @@ Technicznie nie koliduje to z obecnym kodem: nowa zewnętrzna warstwa robi pochy
 - **Nakład pracy:** mniej więcej zakres Etapu 4 (diagram) plus 30–50% na scalenie z hero i wersję mobile.
 
 **Wybór:** B+ i C to dwa różne pomysły na hero. B+ opiera się na prawdziwym diagramie w 3D jako obiekcie, C na złotej strudze, która zamienia się w nić prowadzącą do diagramu. Łączenie obu w jednym hero byłoby przeładowane.
+
+## B+ „Diagram jako hero” (prototyp, 2026-09-23)
+
+Adresy: http://localhost:6060/hero-lab/d/ · http://localhost:6060/en/hero-lab/d/ (w pasku labu: „B+”).
+
+**Idea.** Obiektem hero jest prawdziwy diagram „Jak to działa?”, w obecnych kolorach, bez złocenia (zgoda właściciela). Na starcie leży po prawej, pochylony w 3D, delikatnie „pływa” i przesuwa się po nim pasmo światła. Przy scrollu obraca się do widoku płaskiego i dojeżdża na swoje miejsce w sekcji, dokładnie pod nagłówek „Jak to działa?”, który pojawia się na końcu przejścia. Dalej jest zwykły scroll.
+
+**Technika.**
+- Diagram zostaje w swojej sekcji w DOM.
+- Skrypt labu (`site/_includes/hero-lab/d.html`) liczy jego naturalne położenie i nakłada jeden transform (`translate3d` + `perspective` + `rotateX/Z` + `scale`) zależny od scrolla. Bez pinu i bez GSAP.
+- Hero jest przezroczyste i leży nad sekcją, więc diagram przejeżdża pod tekstem hero.
+- Desktop: przelot z prawej części hero do kadru „nagłówek + diagram”, ok. 1 wysokość ekranu scrolla.
+- Mobile: łagodna wersja. Diagram jedzie w normalnym przepływie pod nagłówkiem i tylko prostuje się (34° → 0°), gdy wjeżdża na ekran. Na telefonie hero pokazuje sam tekst i złotą poświatę.
+
+**Uproszczenia prototypu (do rozwiązania przy wdrożeniu).**
+- Obecna 2-krokowa sekwencja (Finansowanie → Sklepy) jest na tej stronie wyłączona, a pod diagramem widać statyczną listę opisów. We wdrożeniu sekwencja startowałaby po wylądowaniu diagramu (plan z oceny wykonalności B+).
+- Wydajność niemierzona (decyzja właściciela).
+
+**Sprawdzone.** Chromium z GPU: 1440, 1920, 390 (PL/EN), kadry sekwencji scrolla. Chromium, WebKit i Firefox: brak błędów konsoli i poziomego scrolla.
 
 ---
 

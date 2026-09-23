@@ -2,9 +2,9 @@
 {% assign hl_prefix = "" %}{% if page.lang == 'en' %}{% assign hl_prefix = "/en" %}{% endif %}
 <nav class="hl-bar" aria-label="Hero lab">
   <span class="hl-bar__tag">Hero lab</span>
-  {% assign hl_variants = "0,a,b,c" | split: "," %}
+  {% assign hl_variants = "0,a,b,c,d" | split: "," %}
   {% for v in hl_variants %}
-  <a href="{{ hl_prefix }}/hero-lab/{{ v }}/"{% if page.hero_lab == v %} aria-current="page"{% endif %}>{% if v == "0" %}{% if page.lang == "en" %}Current{% else %}Obecne{% endif %}{% else %}{{ v | upcase }}{% endif %}</a>
+  <a href="{{ hl_prefix }}/hero-lab/{{ v }}/"{% if page.hero_lab == v %} aria-current="page"{% endif %}>{% if v == "0" %}{% if page.lang == "en" %}Current{% else %}Obecne{% endif %}{% elsif v == "d" %}B+{% else %}{{ v | upcase }}{% endif %}</a>
   {% endfor %}
   <span class="hl-bar__sep"></span>
   <a href="/hero-lab/{{ page.hero_lab }}/"{% if page.lang != 'en' %} aria-current="true"{% endif %}>PL</a>

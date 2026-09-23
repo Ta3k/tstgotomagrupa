@@ -79,3 +79,4 @@ Otwarte kwestie:
   - Sprawdzone wizualnie w Chromium z GPU (1440, 1920, 390, 360; PL/EN; sekwencja scrolla).
 - B+: ocena wykonalności przejścia prawdziwego diagramu z perspektywy 3D do widoku płaskiego. Test techniczny na prawdziwym DOM diagramu: ostry render, 57–60 fps.
   - Szczegóły i ryzyka w `HERO.md`. Niczego nie wdrażałem.
+- B+ „Diagram jako hero”: prototyp `/hero-lab/d/` (PL/EN). Prawdziwy diagram przechodzi z perspektywy 3D w hero do widoku płaskiego w sekcji. Na mobile łagodna wersja. Obecna sekwencja 2 kroków jest na tej stronie wyłączona (uproszczenie prototypu).
