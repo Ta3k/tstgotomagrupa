@@ -98,3 +98,12 @@ Build zielony. Testów automatycznych nadal brak: Etap 2 nie jest wykonany.
 Otwarte kwestie:
 - Etap 2 (testy) oraz poprawki D6/D7 (linki, teksty EN) planowane na jego początek.
 - Na prawdziwym iPhonie trzeba sprawdzić maski i poświatę zaćmienia (pamięć GPU, `svh`).
+
+### Menu i poprawka hero na podstronach (2026-09-23)
+
+- Menu przestylowane w złotej kolorystyce (`_header.scss`, złote zmienne w `_B_color-scheme.scss`):
+  - desktop: jasne pozycje z cienką złotą linią przy hover/focus i obracającą się strzałką; podmenu jako ciemny, półprzezroczysty panel ze złotą obwódką i strzałką przy hover, z „mostem” nad przerwą, żeby nie znikało przy przejściu kursorem;
+  - mobile: złote kreski przy podpozycjach, złoty przycisk zamknięcia, flaga języka obok niego (wcześniej nachodziła na „Menu”);
+  - usunięty martwy kod `.lang-switcher` / `.dropdown { background: #222 }`, który dawał szare tło pozycji „Nasze firmy” i „Usługi”.
+- Hero na podstronach usług (14 stron PL/EN używa tego samego komponentu): przywrócone wyświetlanie `description_html` (po wdrożeniu „Zaćmienia” opisy znikały), a link „Jak to działa?” pokazuje się tylko na stronach z diagramem.
+- Sprawdzone: Chromium i WebKit (1440, 390), strona główna i podstrony, hover, klawiatura, menu mobilne. Brak błędów i poziomego scrolla.

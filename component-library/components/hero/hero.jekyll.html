@@ -6,6 +6,9 @@
 {% endcomment %}
 {% assign c = "c-hero" %}
 {% if page.lang == 'en' %}{% assign cue_href = "#how-it-works" %}{% else %}{% assign cue_href = "#jak-to-dziala" %}{% endif %}
+{% comment %} Link „Jak to działa?” tylko na stronach z sekcją diagramu (strona główna); podstrony go nie mają. {% endcomment %}
+{% assign has_diagram = false %}
+{% for block in page.content_blocks %}{% if block._bookshop_name == "how-it-works-section" %}{% assign has_diagram = true %}{% endif %}{% endfor %}
 <script>
   (function () {
     var h = document.querySelector('.c-header');
@@ -31,13 +34,20 @@
         {%- for line in include.title_lines -%}<span class="{{c}}__line">{{ line }}</span>{% unless forloop.last %}{{ " " }}{% endunless %}{%- endfor -%}
       {%- else -%}{{ include.title }}{%- endif -%}
     </h1>
-    {% if include.description %}<p class="{{c}}__lead">{{ include.description }}</p>{% endif %}
+    {% if include.description and include.description != "" %}
+      <p class="{{c}}__lead">{{ include.description }}</p>
+    {% elsif include.description_html and include.description_html != "" %}
+      <div class="{{c}}__lead">{{ include.description_html }}</div>
+    {% endif %}
+    {% assign has_btn = false %}{% if include.works_button and include.works_button != "" and include.works_button_link != "" %}{% assign has_btn = true %}{% endif %}
+    {% if has_btn or has_diagram %}
     <div class="{{c}}__actions">
-      {% if include.works_button and include.works_button != "" and include.works_button_link != "" %}
+      {% if has_btn %}
         <a class="{{c}}__btn works-button" href="{{ include.works_button_link }}">{{ include.works_button }}</a>
       {% endif %}
-      <a class="{{c}}__cue" href="{{ cue_href }}">{{ site.data[page.lang].projects.item14 }}</a>
+      {% if has_diagram %}<a class="{{c}}__cue" href="{{ cue_href }}">{{ site.data[page.lang].projects.item14 }}</a>{% endif %}
     </div>
+    {% endif %}
   </div>
 </section>
 <script>

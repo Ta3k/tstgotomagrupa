@@ -210,7 +210,7 @@
     margin: 0;
     color: #fff;
     font-family: $heading-font-family;
-    font-size: clamp(44px, 5.6vw, 96px);
+    font-size: clamp(40px, 5.6vw, 96px);
     font-weight: 600;
     line-height: .98;
     letter-spacing: -.035em;
@@ -238,6 +238,17 @@
     margin: 26px auto 0;
     color: rgba(255, 255, 255, .72);
     font: 400 17px/1.7 $base-font-family;
+
+    // wariant z description_html (podstrony): akapity w środku
+    p {
+      margin: 0;
+      font: inherit;
+      color: inherit;
+    }
+
+    p + p {
+      margin-top: .6em;
+    }
   }
 
   &__actions {

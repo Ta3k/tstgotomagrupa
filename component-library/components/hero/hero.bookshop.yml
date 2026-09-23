@@ -16,6 +16,7 @@ blueprint:
   title: ""
   title_lines: []
   description: ""
+  description_html: ""
   works_button: ""
   works_button_link: ""
 
