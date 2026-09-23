@@ -105,14 +105,18 @@
     display: block;
     margin: 0;
     opacity: 0;
+    visibility: hidden; // zamknięte menu nie może przechwytywać kliknięć (header ma z-index nad hero)
+    pointer-events: none;
     overflow: auto;
     background: #000;
-    transition: all .25s ease;
+    transition: opacity .25s ease, visibility 0s linear .25s;
 
     &.is-open {
       z-index: 999;
       opacity: 1;
-      transition: all .25s ease;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity .25s ease, visibility 0s;
     }
 
     // przełącznik języka w otwartym menu: obok przycisku zamknięcia (ten sam pasek)

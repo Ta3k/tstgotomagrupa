@@ -133,3 +133,14 @@ Sprawdzone:
 - wszystkie 14 stron w Chromium (1440 i 390): brak błędów i poziomego scrolla;
 - 2 strony także w WebKit i Firefox; akordeon działa z klawiatury;
 - reduced-motion i brak JS: nic nie jest ukryte.
+
+### Ekran przejścia między stronami + diagnoza scrolla (2026-09-24)
+
+- Ekran przejścia wzorowany na myfoodstories.pl (`site/_includes/page-transition.html`, `3-modules/_page-transition.scss`, dołączony w `_layouts/default.html`):
+  - złota kurtyna z napisem „Grupa GOTOMA” / „GOTOMA Group”;
+  - przy kliknięciu linku do innej strony witryny wjeżdża od dołu (0,62 s, nawigacja po 0,56 s), a na nowej stronie odjeżdża w górę;
+  - wejście pojawia się tylko po nawigacji wewnętrznej (flaga w sessionStorage), więc pierwsza wizyta nie jest opóźniona;
+  - pomija kotwice, linki zewnętrzne, nowe karty i modyfikatory; obsługuje powrót „wstecz” (bfcache); przy reduced-motion jest wyłączona;
+  - sprawdzone w Chromium i WebKit (1440 i 390).
+- Naprawiony błąd: zamknięte menu mobilne przechwytywało kliknięcia na telefonie (np. przycisk w hero). Przyczyna: `z-index` headera dodany przy wdrożeniu hero. Teraz zamknięte menu ma `visibility: hidden`.
+- Diagnoza skoków scrolla diagramu: `docs/homepage-v2/SCROLL-DIAGNOZA.md`. Poprawka czeka na akceptację.

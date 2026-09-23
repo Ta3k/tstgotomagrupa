@@ -1,0 +1,66 @@
+{% comment %}
+  Ekran przejścia między stronami (style: component-library/shared/styles/3-modules/_page-transition.scss).
+  Musi stać na samym początku <body>: skrypt ustawia html.pt-enter zanim cokolwiek się wyrenderuje,
+  więc po nawigacji wewnętrznej strona nie "mignie" przed zasłoną.
+{% endcomment %}
+{% if page.lang == 'en' %}{% assign pt_name = "GOTOMA Group" %}{% else %}{% assign pt_name = "Grupa GOTOMA" %}{% endif %}
+<script>
+  (function () {
+    var d = document.documentElement;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    try {
+      if (sessionStorage.getItem('gotoma-pt') === '1') d.classList.add('pt-enter');
+      sessionStorage.removeItem('gotoma-pt');
+    } catch (e) {}
+  })();
+</script>
+<div class="page-curtain" aria-hidden="true">
+  <div class="page-curtain__inner">
+    <span class="page-curtain__ring"></span>
+    <span class="page-curtain__name">{{ pt_name }}</span>
+    <span class="page-curtain__sub">IT 360</span>
+  </div>
+</div>
+<script>
+  (function () {
+    var d = document.documentElement;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var timer;
+
+    // Wejście: odsłoń stronę, gdy DOM jest gotowy
+    function reveal() {
+      if (!d.classList.contains('pt-enter')) return;
+      requestAnimationFrame(function () {
+        d.classList.add('pt-entering');
+        setTimeout(function () { d.classList.remove('pt-enter', 'pt-entering'); }, 900);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', reveal, { once: true });
+    else reveal();
+
+    // Powrót przyciskiem "wstecz" (bfcache): zdejmij kurtynę
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) { clearTimeout(timer); d.classList.remove('pt-leaving', 'pt-enter', 'pt-entering'); }
+    });
+
+    if (reduce) return;
+
+    // Wyjście: tylko zwykłe kliknięcia w linki do innych stron tej witryny
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target && a.target !== '_self' || a.hasAttribute('download') || a.getAttribute('rel') === 'external') return;
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || /^(mailto|tel|sms|javascript):/i.test(href)) return;
+      var url;
+      try { url = new URL(a.href, location.href); } catch (err) { return; }
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.search === location.search) return; // kotwica na tej samej stronie
+      e.preventDefault();
+      clearTimeout(timer);
+      try { sessionStorage.setItem('gotoma-pt', '1'); } catch (err) {}
+      d.classList.add('pt-leaving');
+      timer = setTimeout(function () { location.href = url.href; }, 560);
+    });
+  })();
+</script>
