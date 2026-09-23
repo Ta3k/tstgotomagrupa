@@ -107,3 +107,29 @@ Otwarte kwestie:
   - usunięty martwy kod `.lang-switcher` / `.dropdown { background: #222 }`, który dawał szare tło pozycji „Nasze firmy” i „Usługi”.
 - Hero na podstronach usług (14 stron PL/EN używa tego samego komponentu): przywrócone wyświetlanie `description_html` (po wdrożeniu „Zaćmienia” opisy znikały), a link „Jak to działa?” pokazuje się tylko na stronach z diagramem.
 - Sprawdzone: Chromium i WebKit (1440, 390), strona główna i podstrony, hover, klawiatura, menu mobilne. Brak błędów i poziomego scrolla.
+
+### Strony usług: złoty redesign (2026-09-23)
+
+Dotyczy 14 stron (7 PL + 7 EN). Teksty i markup w front matter bez zmian, wszystko w CSS i w małym skrypcie:
+- `component-library/components/content/content.scss`:
+  - złota numeracja sekcji (01, 02…) z linią, większe nagłówki i leady;
+  - karty z ciemnego szkła ze złotą krawędzią, linią światła i poświatą pod kursorem przy hover; w kartach marek cała karta jest klikalna, a link złoty;
+  - kroki procesu na złotej osi z punktami (oś rysuje się przy wejściu);
+  - wyróżnienia jako panele ze złotą obwódką i obracającym się pierścieniem (motyw z hero);
+  - FAQ jako akordeon;
+  - siatka dwóch kart w dwóch kolumnach.
+- `content.jekyll.html`: skrypt dla stron z `service-page`:
+  - akordeon FAQ (`aria-expanded`, `inert`);
+  - kaskadowe wejścia sekcji i kart przez IntersectionObserver;
+  - pozycja kursora dla poświaty.
+  - Bez JS i przy reduced-motion cała treść jest widoczna.
+- `button.scss`:
+  - `c-button--primary` złoty (używany tylko na stronach usług i w formularzu);
+  - końcowe CTA jako złoty panel z pierścieniem zaćmienia.
+- `contact-form.scss` (Konsultacja 360°): formularz w złotym panelu, złote focus/checkboxy/linki, ciemne opcje selectów.
+- Przycisk „do góry”: złoty, większy, z etykietą PL/EN (wcześniej pusty biały krąg z etykietą po angielsku).
+
+Sprawdzone:
+- wszystkie 14 stron w Chromium (1440 i 390): brak błędów i poziomego scrolla;
+- 2 strony także w WebKit i Firefox; akordeon działa z klawiatury;
+- reduced-motion i brak JS: nic nie jest ukryte.

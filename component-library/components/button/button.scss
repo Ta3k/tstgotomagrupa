@@ -21,18 +21,39 @@
     transform: translateY(2px) scale(0.98);
   }
 
+  // Główny przycisk: złoto marki (strony usług, formularz)
   &--primary {
-    color: $white;
-    background: linear-gradient(90deg, $primary-color 0%, $secondary-color 167%);
+    color: #140d02;
+    border-radius: 999px;
+    background: linear-gradient(135deg, $gold-100, $gold-400 55%, $gold-600);
+    box-shadow: 0 12px 40px -14px rgba($gold-400, .75), inset 0 1px 0 rgba(255, 255, 255, .6);
+
+    &::after {
+      content: "→";
+      margin-left: 12px;
+      transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+    }
 
     &:hover {
-      color: $white !important;
+      color: #140d02 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px -14px rgba($gold-400, .95), inset 0 1px 0 rgba(255, 255, 255, .6);
 
-      &:before {
+      &::before {
         opacity: 1;
+      }
+
+      &::after {
+        transform: translateX(4px);
       }
     }
 
+    &:focus-visible {
+      outline: 2px solid $gold-100;
+      outline-offset: 4px;
+    }
+
+    // przesuwający się połysk
     &::before {
       content: "";
       position: absolute;
@@ -43,9 +64,8 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      will-change: transform;
-      transition: opacity 0.35s;
-      background: linear-gradient(90deg, $primary-color 0%, $secondary-color 107%);
+      transition: opacity .35s;
+      background: linear-gradient(135deg, $gold-50, $gold-200 50%, $gold-400);
     }
   }
 
@@ -70,38 +90,109 @@
   }
 }
 
+// Końcowe CTA stron usług: panel ze złotą obwódką i zaćmieniem w tle
 .c-service-cta {
-  padding: 0 0 96px;
+  padding: 0 0 110px;
 
   &__inner {
-    padding: 48px;
+    position: relative;
+    isolation: isolate;
+    padding: 80px 48px 76px;
+    overflow: hidden;
     text-align: center;
-    border: 1px solid rgba($white, .14);
-    border-radius: 24px;
-    background: #111;
+    border: 1px solid transparent;
+    border-radius: 28px;
+    background:
+      radial-gradient(70% 90% at 50% 120%, rgba($gold-600, .35), transparent 70%) padding-box,
+      linear-gradient(180deg, #120e08, #070605) padding-box,
+      linear-gradient(160deg, rgba($gold-100, .8), rgba($gold-600, .2) 40%, rgba($gold-400, .1) 60%, rgba($gold-200, .6)) border-box;
+    box-shadow: 0 50px 110px -60px rgba($gold-400, .6);
+
+    // pierścień zaćmienia wschodzący od dołu
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -520px;
+      z-index: -1;
+      width: 760px;
+      height: 760px;
+      margin-left: -380px;
+      border-radius: 50%;
+      background: conic-gradient(from 300deg, rgba($gold-600, .15), rgba($gold-50, .95) 60deg, rgba($gold-400, .4) 100deg, rgba($gold-600, .1) 200deg, rgba($gold-600, .15) 360deg);
+      -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px), transparent 100%);
+      mask-image: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px), transparent 100%);
+      animation: svc-cta-spin 50s linear infinite;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -300px;
+      z-index: -1;
+      width: 700px;
+      height: 400px;
+      margin-left: -350px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba($gold-400, .22), transparent);
+    }
   }
 
   &__title {
-    margin-bottom: 16px;
-    font-size: 38px;
+    max-width: 20em;
+    margin: 0 auto 18px;
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -.02em;
+    background: linear-gradient(100deg, $white 20%, $gold-100 60%, $gold-400);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   &__description {
-    max-width: 760px;
-    margin: 0 auto 28px;
-    color: rgba($white, .72);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    color: rgba($white, .76);
+    font-size: 18px;
+    line-height: 1.7;
   }
 
   @media only screen and (max-width: $mobile) {
-    padding-bottom: 60px;
+    padding-bottom: 64px;
 
     &__inner {
-      padding: 32px 20px;
-      border-radius: 16px;
+      padding: 48px 22px 52px;
+      border-radius: 20px;
+
+      &::before {
+        width: 520px;
+        height: 520px;
+        margin-left: -260px;
+        bottom: -380px;
+      }
     }
 
-    &__title {
-      font-size: 28px;
+    &__description {
+      font-size: 16px;
+    }
+
+    .c-button--large {
+      padding: 20px 28px;
+      font-size: 16px;
+      white-space: normal;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__inner::before {
+      animation: none;
+    }
+  }
+}
+
+@keyframes svc-cta-spin {
+  to { transform: rotate(360deg); }
 }

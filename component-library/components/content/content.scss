@@ -17,49 +17,180 @@
   max-width: 1180px;
 }
 
+/* =========================================================
+   Strony usług (article.service-page w content_html)
+   Złote akcenty spójne z hero "Zaćmienie". Markup pochodzi z front matter,
+   więc struktura wizualna (numeracja, oś kroków, panele) jest w CSS.
+   Animacje wejścia i akordeon FAQ: skrypt w content.jekyll.html
+   (tylko z JS i bez prefers-reduced-motion; bez JS treść jest w pełni widoczna).
+   ========================================================= */
 .service-page {
+  --svc-card: linear-gradient(180deg, rgba(24, 19, 11, .92), rgba(10, 9, 7, .96));
+  --svc-line: rgba(228, 173, 80, .22);
+  counter-reset: svc-section;
+  padding-top: 24px;
+
   .service-section {
-    margin-bottom: 88px;
+    position: relative;
+    margin-bottom: 120px;
   }
 
+  // numerujemy tylko sekcje z własnym nagłówkiem (panel bez nagłówka nie zabiera numeru)
+  .service-section:has(> h2) {
+    counter-increment: svc-section;
+  }
+
+  // Nagłówek sekcji: złoty numer + linia
   .service-section > h2 {
-    margin-bottom: 24px;
-    font-size: 38px;
+    position: relative;
+    max-width: 18em;
+    margin-bottom: 22px;
+    padding-top: 44px;
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+
+    &::before {
+      content: counter(svc-section, decimal-leading-zero);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $gold-400;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: .16em;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 38px;
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(90deg, $gold-400, transparent);
+    }
   }
 
   .service-section > p {
-    max-width: 900px;
-    color: rgba($text-color, .78);
+    max-width: 62ch;
+    color: rgba($text-color, .74);
+    font-size: 18px;
+    line-height: 1.75;
   }
 
+  .service-section > h2 + p {
+    color: rgba($text-color, .84);
+    font-size: 19px;
+  }
+
+  // Siatki kart
   .service-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-    margin-top: 32px;
+    gap: 20px;
+    margin-top: 44px;
   }
 
   .service-grid--four {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .service-card,
-  .service-highlight {
-    padding: 28px;
-    border: 1px solid rgba($white, .14);
-    border-radius: 18px;
-    background: #111;
+  // dwie karty: dwie kolumny (bez pustej trzeciej)
+  @media only screen and (min-width: $mobile + 1) {
+    .service-grid:has(> :nth-child(2):last-child) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .service-grid + p {
+    margin-top: 32px;
+  }
+
+  // Karta: ciemne szkło, złota krawędź przy hover, poświata pod kursorem (--mx/--my z JS)
+  .service-card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 28px 28px;
+    overflow: hidden;
+    border: 1px solid rgba($white, .08);
+    border-radius: 20px;
+    background: var(--svc-card);
+    box-shadow: 0 20px 50px -30px rgba(0, 0, 0, .9);
+    transition: transform .45s cubic-bezier(.2, .8, .2, 1), border-color .35s, box-shadow .45s;
+
+    // złota linia światła na górnej krawędzi
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($gold-100, .9), transparent);
+      opacity: .35;
+      transform: scaleX(.4);
+      transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .4s;
+    }
+
+    // miękka złota poświata pod kursorem
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba($gold-400, .13), transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba($gold-400, .38);
+      box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .95), 0 20px 60px -40px rgba($gold-400, .5);
+
+      &::before {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
   }
 
   .service-card h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
     margin-bottom: 14px;
-    font-size: 22px;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.25;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $gold-400;
+      box-shadow: 0 0 10px rgba($gold-400, .8);
+      transform: translateY(-3px);
+    }
   }
 
   .service-card p,
   .service-highlight p {
     margin-bottom: 0;
-    color: rgba($white, .72);
+    color: rgba($white, .7);
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   .service-card p + p,
@@ -67,53 +198,391 @@
     margin-top: 16px;
   }
 
+  // Link w karcie marki: złoty ze strzałką; cała karta klikalna
   .service-card__link {
     display: inline-flex;
-    margin-top: 20px;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 24px;
     border-bottom: 0;
-    color: $link-color;
+    color: $gold-200;
+    font-size: 15px;
+    font-weight: 600;
+    text-wrap: balance;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+    }
+
+    &:hover {
+      color: $gold-100;
+      border-bottom: 0;
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid $gold-100;
+        outline-offset: -2px;
+      }
+    }
   }
 
+  .service-card:has(.service-card__link):hover .service-card__link {
+    color: $gold-100;
+  }
+
+  // Kroki procesu: oś ze złotymi punktami nad kartami
+  .service-grid--four {
+    position: relative;
+    padding-top: 34px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 28px;
+      right: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba($gold-400, .1), rgba($gold-400, .6) 20%, rgba($gold-400, .6) 80%, rgba($gold-400, .1));
+      transform-origin: left;
+    }
+
+    .service-card {
+      overflow: visible;
+
+      // punkt na osi
+      &::before {
+        top: -34px;
+        left: 28px;
+        right: auto;
+        width: 13px;
+        height: 13px;
+        border: 1px solid $gold-400;
+        border-radius: 50%;
+        background: #0b0906;
+        box-shadow: 0 0 0 4px rgba($gold-400, .08), 0 0 14px rgba($gold-400, .55);
+        opacity: 1;
+        transform: none;
+        transition: background-color .3s;
+      }
+
+      &::after {
+        border-radius: inherit;
+      }
+
+      &:hover::before {
+        background: $gold-400;
+        transform: none;
+      }
+
+      h3 {
+        color: $gold-100;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // Wyróżnienie: panel ze złotą obwódką, poświatą i pierścieniem zaćmienia w tle
   .service-highlight {
-    margin-top: 32px;
+    position: relative;
+    isolation: isolate;
+    margin-top: 28px;
+    padding: 44px 48px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 24px;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba($gold-600, .2), transparent 55%) padding-box,
+      linear-gradient(180deg, #16110a, #0a0806) padding-box,
+      linear-gradient(135deg, rgba($gold-100, .75), rgba($gold-600, .25) 35%, rgba($gold-400, .1) 60%, rgba($gold-200, .55)) border-box;
+    box-shadow: 0 40px 90px -50px rgba($gold-400, .55);
+
+    // pierścień (motyw z hero)
+    &::before {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: 50%;
+      z-index: -1;
+      width: 380px;
+      height: 380px;
+      margin-top: -190px;
+      border-radius: 50%;
+      background: conic-gradient(from 200deg, rgba($gold-600, .1), rgba($gold-50, .9) 40deg, rgba($gold-400, .35) 70deg, rgba($gold-600, .08) 160deg, rgba($gold-600, .12) 360deg);
+      -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px), transparent 100%);
+      mask-image: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px), transparent 100%);
+      opacity: .7;
+      animation: svc-spin 60s linear infinite;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      z-index: -1;
+      width: 260px;
+      height: 260px;
+      margin-top: -130px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba($gold-400, .16), transparent);
+    }
+
+    h2,
+    h3 {
+      max-width: 22em;
+      margin-bottom: 14px;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 600;
+      line-height: 1.2;
+      background: linear-gradient(100deg, $gold-50, $gold-200 45%, $gold-400);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      max-width: 70ch;
+      color: rgba($white, .78);
+      font-size: 17px;
+    }
   }
 
-  .service-highlight h3 {
-    margin-bottom: 12px;
-    font-size: 24px;
+  // Sekcja zbudowana tylko z wyróżnienia: większy panel
+  .service-section > .service-highlight:first-child {
+    margin-top: 0;
+    padding: 64px 64px 60px;
+
+    h2 {
+      font-size: clamp(28px, 3vw, 42px);
+    }
   }
 
-  .service-faq h3 {
-    margin: 28px 0 8px;
+  // FAQ bez JS: lista z liniami
+  .service-faq > h3 {
+    margin: 0;
+    padding: 26px 0 10px;
+    border-top: 1px solid var(--svc-line);
     font-size: 20px;
+    font-weight: 600;
+  }
+
+  .service-faq > h3:first-of-type {
+    margin-top: 36px;
+  }
+
+  // FAQ z JS: akordeon
+  .svc-faq {
+    margin-top: 40px;
+    border-top: 1px solid var(--svc-line);
+  }
+
+  .svc-faq__item {
+    border-bottom: 1px solid var(--svc-line);
+  }
+
+  .svc-faq__q {
+    margin: 0;
+    font-size: inherit;
+  }
+
+  .svc-faq__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    padding: 26px 4px;
+    border: 0;
+    background: none;
+    color: $white;
+    font: 600 19px/1.35 $base-font-family;
+    text-align: left;
+    cursor: pointer;
+    transition: color .25s;
+
+    &::after {
+      content: "";
+      flex: none;
+      width: 30px;
+      height: 30px;
+      border: 1px solid rgba($gold-400, .45);
+      border-radius: 50%;
+      background:
+        linear-gradient($gold-200, $gold-200) center / 11px 1.5px no-repeat,
+        linear-gradient($gold-200, $gold-200) center / 1.5px 11px no-repeat;
+      transition: transform .4s cubic-bezier(.2, .8, .2, 1), background-color .3s;
+    }
+
+    &:hover {
+      color: $gold-100;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gold-100;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    &[aria-expanded="true"] {
+      color: $gold-100;
+
+      &::after {
+        transform: rotate(45deg);
+        background-color: rgba($gold-400, .12);
+      }
+    }
+  }
+
+  .svc-faq__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .45s cubic-bezier(.2, .8, .2, 1);
+
+    > div {
+      overflow: hidden;
+    }
+
+    p {
+      max-width: 72ch;
+      margin: 0;
+      padding: 0 4px 28px;
+      color: rgba($white, .72);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+  }
+
+  .svc-faq__item.is-open .svc-faq__a {
+    grid-template-rows: 1fr;
+  }
+
+  // Animacje wejścia (tylko z JS)
+  .svc-reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+
+    &.is-in {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  // karty wchodzą z opóźnieniem, a po wejściu wracają do szybkiego hover
+  .service-card.svc-reveal.is-in {
+    transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .45s cubic-bezier(.2, .8, .2, 1), border-color .35s, box-shadow .45s;
+  }
+
+  // oś kroków rysuje się przy wejściu
+  .service-grid--four.svc-line::before {
+    transform: scaleX(0);
+    transition: transform 1.4s cubic-bezier(.2, .7, .2, 1) .15s;
+  }
+
+  .service-grid--four.svc-line.is-in::before {
+    transform: scaleX(1);
+  }
+
+  @media only screen and (max-width: $desktop) {
+    .service-grid--four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 0;
+
+      &::before {
+        display: none;
+      }
+
+      .service-card {
+        padding-top: 52px;
+
+        &::before {
+          top: 26px;
+        }
+      }
+    }
   }
 
   @media only screen and (max-width: $tablet) {
-    .service-grid,
-    .service-grid--four {
+    .service-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
   @media only screen and (max-width: $mobile) {
+    padding-top: 8px;
+
     .service-section {
-      margin-bottom: 60px;
+      margin-bottom: 80px;
     }
 
-    .service-section > h2 {
-      font-size: 30px;
+    .service-section > p,
+    .service-section > h2 + p {
+      font-size: 16.5px;
     }
 
     .service-grid,
     .service-grid--four {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .service-card {
+      padding: 24px 22px;
+      border-radius: 16px;
+    }
+
+    .service-grid--four .service-card {
+      padding-top: 48px;
+
+      &::before {
+        top: 22px;
+        left: 22px;
+      }
+    }
+
+    .service-highlight,
+    .service-section > .service-highlight:first-child {
+      padding: 32px 24px;
+      border-radius: 18px;
+
+      &::before {
+        right: -200px;
+        opacity: .45;
+      }
+    }
+
+    .svc-faq__btn {
+      padding: 22px 2px;
+      font-size: 17px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-highlight::before {
+      animation: none;
     }
 
     .service-card,
-    .service-highlight {
-      padding: 22px;
-      border-radius: 14px;
+    .service-card::before,
+    .svc-faq__a {
+      transition: none;
     }
   }
+}
+
+@keyframes svc-spin {
+  to { transform: rotate(360deg); }
 }

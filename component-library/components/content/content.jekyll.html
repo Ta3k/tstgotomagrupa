@@ -3,3 +3,97 @@
     {{include.content_html }}
   </div>
 </div>
+{% if include.content_html contains "service-page" %}
+<script>
+  // Strony usług: akordeon FAQ, wejścia sekcji i kart, poświata kart pod kursorem.
+  // Bez JS wszystko jest widoczne; przy prefers-reduced-motion bez animacji wejścia.
+  (function () {
+    var page = document.querySelector('.service-page');
+    if (!page) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // FAQ: pary h3 + p -> akordeon (pierwsze pytanie otwarte)
+    page.querySelectorAll('.service-faq').forEach(function (faq, fi) {
+      var qs = Array.prototype.slice.call(faq.querySelectorAll(':scope > h3'));
+      if (!qs.length) return;
+      var list = document.createElement('div');
+      list.className = 'svc-faq';
+      qs.forEach(function (h, i) {
+        var answer = [];
+        var n = h.nextElementSibling;
+        while (n && n.tagName !== 'H3') { answer.push(n); n = n.nextElementSibling; }
+        var id = 'svc-faq-' + fi + '-' + i;
+        var item = document.createElement('div');
+        item.className = 'svc-faq__item' + (i === 0 ? ' is-open' : '');
+        var q = document.createElement('h3');
+        q.className = 'svc-faq__q';
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'svc-faq__btn';
+        btn.id = id + '-q';
+        btn.setAttribute('aria-expanded', i === 0 ? 'true' : 'false');
+        btn.setAttribute('aria-controls', id);
+        btn.textContent = h.textContent;
+        q.appendChild(btn);
+        var a = document.createElement('div');
+        a.className = 'svc-faq__a';
+        a.id = id;
+        a.setAttribute('role', 'region');
+        a.setAttribute('aria-labelledby', btn.id);
+        var inner = document.createElement('div');
+        answer.forEach(function (el) { inner.appendChild(el); });
+        a.appendChild(inner);
+        if (i !== 0) inner.setAttribute('inert', '');
+        item.appendChild(q); item.appendChild(a);
+        list.appendChild(item);
+        h.remove();
+        btn.addEventListener('click', function () {
+          var open = !item.classList.contains('is-open');
+          item.classList.toggle('is-open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (open) inner.removeAttribute('inert'); else inner.setAttribute('inert', '');
+        });
+      });
+      faq.appendChild(list);
+    });
+
+    // Poświata kart pod kursorem
+    if (window.matchMedia('(pointer: fine)').matches) {
+      page.addEventListener('pointermove', function (e) {
+        var card = e.target.closest && e.target.closest('.service-card');
+        if (!card) return;
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }, { passive: true });
+    }
+
+    // Wejścia: nagłówki, leady, karty (kaskadowo w siatce), panele, FAQ
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var targets = [];
+    page.querySelectorAll('.service-section').forEach(function (sec) {
+      Array.prototype.forEach.call(sec.children, function (el) {
+        if (el.classList.contains('service-grid')) {
+          if (el.classList.contains('service-grid--four')) { el.classList.add('svc-line'); targets.push(el); }
+          Array.prototype.forEach.call(el.children, function (card, i) { card.style.setProperty('--i', i); targets.push(card); });
+        } else {
+          targets.push(el);
+        }
+      });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    targets.forEach(function (el) {
+      // elementy już widoczne przy starcie nie migają
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * .92) { el.classList.add('is-in'); return; }
+      if (el.classList.contains('svc-line')) { io.observe(el); return; }
+      el.classList.add('svc-reveal');
+      io.observe(el);
+    });
+  })();
+</script>
+{% endif %}

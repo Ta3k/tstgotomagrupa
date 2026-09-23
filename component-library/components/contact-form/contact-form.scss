@@ -6,9 +6,22 @@
 	}
 
 	&__form-box {
-		max-width: 880px;
-		margin: 0 auto;
-		padding-top: 72px;
+		position: relative;
+		max-width: 920px;
+		margin: 0 auto 100px;
+		padding: 64px 56px 40px;
+		border: 1px solid transparent;
+		border-radius: 28px;
+		background:
+			radial-gradient(90% 60% at 50% 0%, rgba($gold-600, .18), transparent 70%) padding-box,
+			linear-gradient(180deg, #110d08, #070605) padding-box,
+			linear-gradient(160deg, rgba($gold-100, .7), rgba($gold-600, .18) 40%, rgba($gold-400, .08) 65%, rgba($gold-200, .45)) border-box;
+		box-shadow: 0 50px 110px -70px rgba($gold-400, .6);
+
+		@media only screen and (max-width: $mobile) {
+			padding: 40px 20px 20px;
+			border-radius: 20px;
+		}
 	}
 
 	&__contact-head {
@@ -19,7 +32,13 @@
 	&__contact-title {
 		display: inline-block;
 		margin-bottom: 20px;
-		font-size: 58px;
+		font-size: clamp(36px, 4vw, 52px);
+		font-weight: 600;
+		letter-spacing: -.02em;
+		background: linear-gradient(100deg, $white 20%, $gold-100 60%, $gold-400);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 
 		@media only screen and (max-width: $mobile) {
 			font-size: 36px;
@@ -27,8 +46,12 @@
 	}
 
 	&__contact-description {
-		font-size: 20px;
-		font-weight: 600;
+		max-width: 620px;
+		margin: 0 auto;
+		color: rgba($white, .76);
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.7;
 
 		@media only screen and (max-width: $mobile) {
 			font-size: 16px;
@@ -63,8 +86,25 @@
 	&__form-label {
 		display: block;
 		margin-bottom: 10px;
-		font-size: 15px;
-		font-weight: 700;
+		color: rgba($white, .9);
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: .02em;
+	}
+
+	legend#{&}__form-label {
+		color: $gold-200;
+	}
+
+	input[type="checkbox"] {
+		accent-color: $gold-400;
+		width: 17px;
+		height: 17px;
+	}
+
+	&__consent a {
+		color: $gold-200;
+		border-bottom: 1px solid rgba($gold-400, .4);
 	}
 
 	&__form-hint {
@@ -126,13 +166,22 @@
 		padding: 22px;
 		font-size: 16px;
 		font-weight: 500;
-		border: 1px solid rgba($white, .16);
-		border-radius: 8px;
+		border: 1px solid rgba($white, .12);
+		border-radius: 12px;
 		outline: none;
 		transition: $global-transition;
 		resize: vertical;
 		color: $white;
-		background: #111;
+		background: rgba(255, 255, 255, .03);
+
+		&:hover {
+			border-color: rgba($gold-400, .35);
+		}
+
+		option {
+			color: $white;
+			background: #14100a;
+		}
 
 		&::placeholder {
 			font-weight: 500;
@@ -140,8 +189,8 @@
 		}
 
 		&:focus {
-			border-color: $primary-color;
-			box-shadow: 0px 4px 10px rgba($primary-color, 0.25);
+			border-color: $gold-400;
+			box-shadow: 0 0 0 4px rgba($gold-400, .12), 0 10px 30px -12px rgba($gold-400, .45);
 		}
 	}
 }
