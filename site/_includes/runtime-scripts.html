@@ -1,0 +1,56 @@
+{% assign is_homepage = false %}
+{% if page.url == nil or page.url == "" or page.url == "/" or page.url == "/index.html" or page.url == "/en/" or page.url == "/index_pl.html" %}
+  {% assign is_homepage = true %}
+{% endif %}
+{% if page.path contains "_pages/index.html" or page.path contains "_pages/index_pl.html" or page.path contains "_pages/home_en.html" %}
+  {% assign is_homepage = true %}
+{% endif %}
+
+{% if is_homepage %}
+  <script>
+    (() => {
+      const sources = [
+        "/js/vendor/gsap-3.12.5.min.js",
+        "/js/vendor/scrolltrigger-3.12.5.min.js",
+        "/js/common.min.js"
+      ];
+      const loadScript = (src) => new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+      const loadRuntime = () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(async () => {
+            for (const src of sources) {
+              await loadScript(src);
+            }
+          });
+        });
+      };
+
+      if (document.readyState === "complete") {
+        loadRuntime();
+      } else {
+        window.addEventListener("load", loadRuntime, { once: true });
+      }
+
+      const enableHeroMotion = () => {
+        document.documentElement.classList.add("hero-motion-active");
+      };
+      ["pointermove", "touchstart", "scroll", "keydown"].forEach((eventName) => {
+        window.addEventListener(eventName, enableHeroMotion, {
+          once: true,
+          passive: eventName !== "keydown"
+        });
+      });
+    })();
+  </script>
+{% else %}
+  <script defer src="/js/scripts.js"></script>
+  <script defer src="/js/vendor/gsap-3.12.5.min.js"></script>
+  <script defer src="/js/vendor/scrolltrigger-3.12.5.min.js"></script>
+  <script defer src="/js/common.min.js"></script>
+{% endif %}

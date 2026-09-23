@@ -4,7 +4,8 @@
   "description": "Vonge template for CloudCannon",
   "scripts": {
     "jekyll:install": "bundle config set --local path 'vendor/bundle' && cross-env BUNDLE_GEMFILE=site/Gemfile bundle install",
-    "build": "cross-env BUNDLE_GEMFILE=site/Gemfile bundle exec jekyll build --source site",
+    "build:js": "esbuild site/js/common.js --minify --outfile=site/js/common.min.js",
+    "build": "npm run build:js && cross-env BUNDLE_GEMFILE=site/Gemfile bundle exec jekyll build --source site",
     "start": "cross-env BUNDLE_GEMFILE=site/Gemfile bundle exec jekyll serve --source site --port 6060 --trace --unpublished --livereload",
     "update-bookshop": "npx @bookshop/up@latest"
   },

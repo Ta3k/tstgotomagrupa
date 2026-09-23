@@ -13,7 +13,7 @@ erpFactoryHref: 'https://erpfactory.tech/'
 menu__settings:
   menu__items:
     - title: 'About us'
-      url: 'en/#about-us'
+      url: '/en/#about-us'
     - title: 'Our companies'
       submenu:
         - title: 'GOTOMA GENERAL'
@@ -25,3 +25,18 @@ menu__settings:
         - title: 'ERP Factory'
           url: 'https://erpfactory.tech/'
     - title: 'Services'
+      submenu:
+        - title: 'AI and automation'
+          url: '/en/business-solutions/ai-and-automation'
+        - title: 'Sales digitalisation'
+          url: '/en/business-solutions/sales-digitalisation'
+        - title: 'Digital transformation'
+          url: '/en/business-solutions/digital-transformation'
+        - title: 'E-commerce and B2B platforms'
+          url: '/en/business-solutions/e-commerce-and-b2b-platforms'
+        - title: 'IT for manufacturing and logistics'
+          url: '/en/business-solutions/it-for-manufacturing-and-logistics'
+        - title: 'Private AI and cybersecurity'
+          url: '/en/business-solutions/private-ai-and-cybersecurity'
+        - title: '360° Consultation'
+          url: '/en/business-solutions/360-consultation'

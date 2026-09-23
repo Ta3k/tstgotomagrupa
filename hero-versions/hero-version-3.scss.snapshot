@@ -3,18 +3,6 @@
 	$c: &;
 	position: relative;
 	overflow: hidden;
-	// The scroll-pinned collapse animation (see initializeHeroCollapse in
-	// common.js) freezes this section at its own natural height for the
-	// whole pin duration. That natural height is capped by the padding
-	// clamp + `&__inner`'s min-height, both of which top out well under
-	// 910px regardless of viewport size. On short-but-tall viewports
-	// (ultra-wide monitors, some laptop panels) that cap left the pinned
-	// section shorter than the actual viewport, exposing a hard-edged
-	// strip of plain page background below it for the entire pin range -
-	// most noticeable once the collapse animation starts moving. Forcing
-	// a full-viewport minimum height means the pinned section always
-	// covers the whole screen, so there's nothing behind it to reveal.
-	min-height: 100vh;
 	padding: clamp(92px, 12vw, 170px) 0;
 	background: #000;
 	isolation: isolate;
@@ -44,66 +32,6 @@
 		z-index: -2;
 		overflow: hidden;
 		pointer-events: none;
-	}
-
-	&__crt-collapse {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		overflow: hidden;
-		pointer-events: none;
-	}
-
-	&__crt-line,
-	&__crt-dot {
-		position: absolute;
-		top: 62%;
-		left: 78%;
-		opacity: 0;
-		pointer-events: none;
-		will-change: transform, opacity;
-	}
-
-	&__crt-line {
-		width: min(48vw, 760px);
-		height: 2px;
-		border-radius: 999px;
-		background: linear-gradient(
-			90deg,
-			transparent,
-			rgba(204, 139, 39, .42) 12%,
-			#ffe8a4 48%,
-			#fff8d5 50%,
-			#e4ad50 62%,
-			transparent
-		);
-		box-shadow:
-			0 0 4px rgba(255, 247, 207, .92),
-			0 0 15px rgba(238, 185, 83, .82),
-			0 0 42px rgba(186, 112, 22, .56);
-		transform: translate(-50%, -50%) scaleX(.02);
-		transform-origin: center;
-	}
-
-	&__crt-dot {
-		width: 17px;
-		height: 17px;
-		border: 1px solid rgba(255, 239, 180, .88);
-		border-radius: 50%;
-		background: radial-gradient(
-			circle,
-			#fffde4 0 12%,
-			#f7d47f 24%,
-			#c7862f 52%,
-			rgba(142, 78, 13, .3) 72%,
-			transparent 74%
-		);
-		box-shadow:
-			0 0 8px rgba(255, 246, 199, .94),
-			0 0 25px rgba(240, 187, 84, .78),
-			0 0 62px rgba(183, 108, 20, .48);
-		transform: translate(-50%, -50%) scale(.45);
-		transform-origin: center;
 	}
 
 	&__wave-art {
@@ -321,24 +249,6 @@
 			opacity: .66;
 		}
 
-		&__haze,
-		&__particles,
-		&__ribbon--back,
-		&__ribbon--front,
-		&__wave-lines path:nth-child(2),
-		&__wave-lines path:nth-child(3) {
-			animation: none;
-		}
-
-		&__ribbon--back,
-		&__ribbon--front {
-			opacity: .34;
-		}
-
-		&__particles {
-			opacity: .5;
-		}
-
 		&__inner {
 			align-items: flex-start;
 			min-height: 570px;
@@ -400,33 +310,33 @@
 @keyframes hero-line-one-morph {
 	0%,
 	100% {
-		d: path("M-80.0 347.0 C41.5 347.0 18.5 483.0 140.0 483.0 C261.5 483.0 238.5 347.0 360.0 347.0 C481.5 347.0 458.5 483.0 580.0 483.0 C701.5 483.0 678.5 347.0 800.0 347.0 C921.5 347.0 898.5 483.0 1020.0 483.0 C1141.5 483.0 1118.5 347.0 1240.0 347.0 C1361.5 347.0 1338.5 483.0 1460.0 483.0 C1581.5 483.0 1558.5 347.0 1680.0 347.0");
+		d: path("M-80 467 C131 355 286 381 441 461 C616 552 752 545 922 405 C1090 267 1193 345 1318 425 C1457 514 1570 412 1680 351");
 	}
 
 	50% {
-		d: path("M-80.0 483.0 C41.5 483.0 18.5 347.0 140.0 347.0 C261.5 347.0 238.5 483.0 360.0 483.0 C481.5 483.0 458.5 347.0 580.0 347.0 C701.5 347.0 678.5 483.0 800.0 483.0 C921.5 483.0 898.5 347.0 1020.0 347.0 C1141.5 347.0 1118.5 483.0 1240.0 483.0 C1361.5 483.0 1338.5 347.0 1460.0 347.0 C1581.5 347.0 1558.5 483.0 1680.0 483.0");
+		d: path("M-80 486 C128 592 288 538 444 405 C612 262 756 350 924 490 C1094 632 1190 504 1320 382 C1458 252 1572 340 1680 438");
 	}
 }
 
 @keyframes hero-line-two-morph {
 	0%,
 	100% {
-		d: path("M-80.0 424.0 C24.9 424.0 5.1 516.0 110.0 516.0 C214.9 516.0 195.1 424.0 300.0 424.0 C404.9 424.0 385.1 516.0 490.0 516.0 C594.9 516.0 575.1 424.0 680.0 424.0 C784.9 424.0 765.1 516.0 870.0 516.0 C974.9 516.0 955.1 424.0 1060.0 424.0 C1164.9 424.0 1145.1 516.0 1250.0 516.0 C1354.9 516.0 1335.1 424.0 1440.0 424.0 C1544.9 424.0 1525.1 516.0 1630.0 516.0");
+		d: path("M-70 527 C127 434 244 453 379 516 C552 596 696 596 847 486 C1011 367 1119 370 1255 460 C1401 557 1535 520 1680 439");
 	}
 
 	50% {
-		d: path("M-80.0 516.0 C24.9 516.0 5.1 424.0 110.0 424.0 C214.9 424.0 195.1 516.0 300.0 516.0 C404.9 516.0 385.1 424.0 490.0 424.0 C594.9 424.0 575.1 516.0 680.0 516.0 C784.9 516.0 765.1 424.0 870.0 424.0 C974.9 424.0 955.1 516.0 1060.0 516.0 C1164.9 516.0 1145.1 424.0 1250.0 424.0 C1354.9 424.0 1335.1 516.0 1440.0 516.0 C1544.9 516.0 1525.1 424.0 1630.0 424.0");
+		d: path("M-70 548 C124 624 247 548 382 450 C550 328 694 400 850 555 C1008 712 1120 584 1258 490 C1404 390 1534 410 1680 510");
 	}
 }
 
 @keyframes hero-line-three-morph {
 	0%,
 	100% {
-		d: path("M-80.0 344.0 C58.1 344.0 31.9 456.0 170.0 456.0 C308.1 456.0 281.9 344.0 420.0 344.0 C558.1 344.0 531.9 456.0 670.0 456.0 C808.1 456.0 781.9 344.0 920.0 344.0 C1058.1 344.0 1031.9 456.0 1170.0 456.0 C1308.1 456.0 1281.9 344.0 1420.0 344.0 C1558.1 344.0 1531.9 456.0 1670.0 456.0");
+		d: path("M-55 411 C152 326 300 508 491 397 C664 296 809 287 956 390 C1114 501 1296 282 1680 348");
 	}
 
 	50% {
-		d: path("M-80.0 456.0 C58.1 456.0 31.9 344.0 170.0 344.0 C308.1 344.0 281.9 456.0 420.0 456.0 C558.1 456.0 531.9 344.0 670.0 344.0 C808.1 344.0 781.9 456.0 920.0 456.0 C1058.1 456.0 1031.9 344.0 1170.0 344.0 C1308.1 344.0 1281.9 456.0 1420.0 456.0 C1558.1 456.0 1531.9 344.0 1670.0 344.0");
+		d: path("M-55 452 C150 540 302 342 494 446 C660 536 812 492 960 350 C1110 206 1300 470 1680 382");
 	}
 }
 
@@ -455,15 +365,6 @@
 	}
 }
 
-html:not(.hero-motion-active) {
-	.c-hero__haze,
-	.c-hero__ribbon,
-	.c-hero__wave-lines path,
-	.c-hero__particles {
-		animation-play-state: paused;
-	}
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.c-hero__haze,
 	.c-hero__ribbon,
@@ -473,17 +374,3 @@ html:not(.hero-motion-active) {
 	}
 }
 
-// The ribbons/wave-lines animate by morphing their `d` attribute every frame
-// while under a heavy Gaussian blur filter - both are expensive, and blur
-// cost scales with rendered pixel area. On very wide/ultra-wide viewports
-// this combination drops frames and the motion looks janky. Freezing the
-// shapes (still visible, just static) keeps the section smooth at large
-// sizes without touching layout or the collapse-animation coordinates.
-@media (min-width: 2200px) {
-	.c-hero__haze,
-	.c-hero__ribbon,
-	.c-hero__wave-lines path,
-	.c-hero__particles {
-		animation: none;
-	}
-}

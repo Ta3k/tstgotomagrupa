@@ -59,9 +59,9 @@
       </g>
 
       <g class="{{c}}__wave-lines" filter="url(#hero-line-glow)">
-        <path d="M-80.0 347.0 C41.5 347.0 18.5 483.0 140.0 483.0 C261.5 483.0 238.5 347.0 360.0 347.0 C481.5 347.0 458.5 483.0 580.0 483.0 C701.5 483.0 678.5 347.0 800.0 347.0 C921.5 347.0 898.5 483.0 1020.0 483.0 C1141.5 483.0 1118.5 347.0 1240.0 347.0 C1361.5 347.0 1338.5 483.0 1460.0 483.0 C1581.5 483.0 1558.5 347.0 1680.0 347.0" />
-        <path d="M-80.0 424.0 C24.9 424.0 5.1 516.0 110.0 516.0 C214.9 516.0 195.1 424.0 300.0 424.0 C404.9 424.0 385.1 516.0 490.0 516.0 C594.9 516.0 575.1 424.0 680.0 424.0 C784.9 424.0 765.1 516.0 870.0 516.0 C974.9 516.0 955.1 424.0 1060.0 424.0 C1164.9 424.0 1145.1 516.0 1250.0 516.0 C1354.9 516.0 1335.1 424.0 1440.0 424.0 C1544.9 424.0 1525.1 516.0 1630.0 516.0" />
-        <path d="M-80.0 344.0 C58.1 344.0 31.9 456.0 170.0 456.0 C308.1 456.0 281.9 344.0 420.0 344.0 C558.1 344.0 531.9 456.0 670.0 456.0 C808.1 456.0 781.9 344.0 920.0 344.0 C1058.1 344.0 1031.9 456.0 1170.0 456.0 C1308.1 456.0 1281.9 344.0 1420.0 344.0 C1558.1 344.0 1531.9 456.0 1670.0 456.0" />
+        <path d="M-80 467 C131 355 286 381 441 461 C616 552 752 545 922 405 C1090 267 1193 345 1318 425 C1457 514 1570 412 1680 351" />
+        <path d="M-70 527 C127 434 244 453 379 516 C552 596 696 596 847 486 C1011 367 1119 370 1255 460 C1401 557 1535 520 1680 439" />
+        <path d="M-55 411 C152 326 300 508 491 397 C664 296 809 287 956 390 C1114 501 1296 282 1680 348" />
       </g>
 
       <g class="{{c}}__particles">
@@ -83,10 +83,6 @@
       </g>
     </svg>
   </div>
-  <div class="{{c}}__crt-collapse" aria-hidden="true">
-    <span class="{{c}}__crt-line"></span>
-    <span class="{{c}}__crt-dot"></span>
-  </div>
 
   <div class="container">
     <div class="row">
@@ -95,13 +91,11 @@
           <div class="{{c}}__left">
             <h1 class="{{c}}__title">{{ include.title }}</h1>
             <div class="{{c}}__description">{{ include.description_html }}</div>
-            {% if include.works_button != "" and include.works_button_link != "" %}
-              <div class="{{c}}__btn">
-                <a class="works-button c-button c-button--secondary c-button--small" href="{{ include.works_button_link }}">
-                  {{ include.works_button }}
-                </a>
-              </div>
-            {% endif %}
+            <div class="{{c}}__btn">
+              <a class="works-button c-button c-button--secondary c-button--small" href="{{ include.works_button_link }}">
+                {{ include.works_button }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -109,3 +103,4 @@
   </div>
 </section>
 <!-- end hero -->
+

@@ -15,7 +15,7 @@
           {% for partner in slider_partners %}
             <div class="partner-item">
               <a href="{{ partner.href }}" target="_blank" rel="noopener noreferrer">
-                <img src="{{ partner.logo | relative_url }}" alt="{{ partner.alt | escape }}">
+                <img loading="lazy" decoding="async" src="{{ partner.logo | relative_url }}" alt="{{ partner.alt | escape }}">
               </a>
             </div>
           {% endfor %}

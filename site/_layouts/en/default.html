@@ -19,13 +19,10 @@
     -->
     {% bookshop_include page content_blocks=page.content_blocks page_theme=page.page_theme %}
 
-    <div class="top" title="Top"><ion-icon name="arrow-up" style="color: black;"></ion-icon></div>
+    {% include scroll-top.html %}
     {% include footer.html %}
 
-    <script src="/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="/js/common.js"></script>
+    {% include runtime-scripts.html %}
     
     <script>
     // Initialize CookieDialog
@@ -68,8 +65,19 @@
           'cookie_flags': 'SameSite=Strict;Secure'
         });
 
-        console.log('Google Analytics loaded with default denied consent');
       };
+    }
+
+    function scheduleGoogleAnalytics(consent) {
+      if (!consent || !consent.categories || !consent.categories.analytics) {
+        return;
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(initializeGoogleAnalytics, { timeout: 3000 });
+      } else {
+        window.setTimeout(initializeGoogleAnalytics, 1500);
+      }
     }
 
     // Update Google Analytics consent based on user choices
@@ -141,13 +149,14 @@
         },
         onAccept: function(consent) {
           updateGoogleConsent(consent);
-          console.log('Analytics enabled');
+          scheduleGoogleAnalytics(consent);
         },
         onReject: function(consent) {
           updateGoogleConsent(consent);
         },
         onChange: function(consent) {
           updateGoogleConsent(consent);
+          scheduleGoogleAnalytics(consent);
         }
       });
 
@@ -155,8 +164,8 @@
       const hasExistingConsent = dialog.hasConsent();
       const existingConsent = hasExistingConsent ? dialog.getConsent() : null;
 
-      // Initialize Google Analytics with current consent state
-      initializeGoogleAnalytics(existingConsent);
+      // Do not load analytics in a fresh session without consent.
+      scheduleGoogleAnalytics(existingConsent);
     });
 
 

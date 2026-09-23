@@ -5,7 +5,7 @@
     {% if include.post.image %}
     <div class="{{c}}__image-wrap">
       <a class="{{c}}__image" href="{{ include.post.callToActionUrl }}">
-        <img loading="lazy" src="{{ include.post.image }}" alt="{{ include.post.title }}">
+        <img loading="lazy" decoding="async" src="{{ include.post.image }}" alt="{{ include.post.title }}">
       </a>
     </div>
     {% endif %}
@@ -21,7 +21,7 @@
       {% endif %}
       
       <div class="{{c}}__image-title">
-        <img loading="lazy" src="{{ include.post.imageTitle }}" alt="{{ site.data.author.author_name }}">
+        <img loading="lazy" decoding="async" src="{{ include.post.imageTitle }}" alt="{{ site.data.author.author_name }}">
       </div>
 
       <h2 class="{{c}}__title">
@@ -50,7 +50,7 @@
                   stroke-linejoin="round"/>
           </svg> -->
           <a href="{{ include.post.callToActionUrl }}">
-            <img loading="lazy" src="{{ include.post.callToActionImage }}" alt="{{ site.data.author.author_name }}">
+            <img loading="lazy" decoding="async" src="{{ include.post.callToActionImage }}" alt="{{ site.data.author.author_name }}">
           </a>
         </div>
       </div>

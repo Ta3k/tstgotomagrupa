@@ -140,6 +140,7 @@ html.smooth-page-scroll {
   border: 1px solid rgba(255,255,255,0.16);
   padding: 14px 0px 28px 28px;
   text-align: left;
+  background-color: #000;
 
   @media only screen and (max-width: $tablet) {
     grid-column: span 1;
@@ -311,6 +312,7 @@ html.smooth-page-scroll {
 // }
 
 .logo-item {
+  background-color: #000;
   border: 1px solid rgba(255,255,255,0.1);
   padding: 22px;
   display: flex;
@@ -352,6 +354,7 @@ html.smooth-page-scroll {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  background-color: #000;
 
   @media only screen and (max-width: $tablet) {
     // grid-column: span 1;
@@ -1563,6 +1566,43 @@ canvas {
   .scheme-scroll-story .scheme-finance {
     transform-origin: center;
     will-change: transform, opacity, filter;
+  }
+
+  .scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story__eyebrow {
+    display: none;
+  }
+
+  .scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story-route {
+    display: none;
+  }
+
+  .scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story__content {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none;
+    pointer-events: none;
+  }
+
+  .scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story__content .scheme-tooltip {
+    top: var(--scheme-tooltip-y, 16px);
+    left: var(--scheme-tooltip-x, 16px);
+    width: min(420px, calc(100% - 32px));
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+    transform: translateY(10px) scale(.98);
+    transition:
+      opacity .16s ease,
+      transform .16s ease,
+      visibility .16s ease;
+  }
+
+  .scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-tooltip.is-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
   }
 }
 

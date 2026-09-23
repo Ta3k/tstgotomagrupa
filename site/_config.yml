@@ -17,6 +17,9 @@ exclude:
 include:
   - _cloudcannon
 
+sass:
+  style: compressed
+
 collections_dir: 'collections'
 
 collections:

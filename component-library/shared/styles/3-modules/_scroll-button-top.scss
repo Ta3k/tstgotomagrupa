@@ -1,4 +1,8 @@
 .top {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
   position: fixed;
   bottom: 40px;
   right: -100px;
@@ -17,6 +21,16 @@
   cursor: pointer;
   transition: all .25s ease;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.05);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
   &.is-active {
     right: 40px;

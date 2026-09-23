@@ -1,17 +1,11 @@
 let APP;
 
-document.addEventListener("DOMContentLoaded", function () {
+function initializeCommon() {
   'use strict';
 
   class App {
-    constructor () {
-      this.canvas = document.querySelector('canvas');
-
-      if (!this.canvas) {
-        console.warn('Brak elementu canvas');
-        return;
-      }
-
+    constructor (canvas) {
+      this.canvas = canvas;
       this.context = this.canvas.getContext('2d');
       this.canvas.width = this.width = 1024;// window.innerWidth;
       this.canvas.height = this.height = 768;// window.innerHeight;
@@ -29,12 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
       this.cols = Math.ceil(this.width / this.scl);
       this.rows = Math.ceil(this.height / this.scl);
 
+      // The grid starts flush at (0, 0) and steps by `scl`, so the last
+      // column/row lands short of the canvas's right/bottom edge (e.g. 1024/24
+      // leaves a 16px gap on the right but none on the left). Centering the
+      // whole grid in the leftover space spreads that gap evenly on both
+      // sides so the dots visually fill the container instead of looking
+      // flush-left/top with a gap bottom-right.
+      const offsetX = (this.width - (this.cols - 1) * this.scl) / 2;
+      const offsetY = (this.height - (this.rows - 1) * this.scl) / 2;
+
       let id = 0;
 
       for (let x = 0; x < this.cols; x += 1) {
         for (let y = 0; y < this.rows; y += 1) {
           this.dots.push(
-            new Dot(id, x * this.scl, y * this.scl, this.context, this.scl)
+            new Dot(id, offsetX + x * this.scl, offsetY + y * this.scl, this.context, this.scl)
           );
           id += 1;
         }
@@ -64,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mouseleaveHandler () {
       this.dots.forEach(d => {
         d.isHover = false;
+        d.targetRadius = 3;
       });
     }
 
@@ -92,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.scl = scl;
       this.isHover = false;
       this.isAnimated = false;
+      this.targetRadius = 2;
     }
 
     mousemove (mouse) {
@@ -111,21 +116,16 @@ document.addEventListener("DOMContentLoaded", function () {
         Math.abs(this.y - y) < this.scl / 4 * 2;
 
       if (this.isHover && !this.isCenter && !this.isClosest) {
-        gsap.to(this.new, 0.4, {
-          radius: 5
-        });
+        this.targetRadius = 5;
       } else if (this.isHover && this.isCenter) {
-        gsap.to(this.new, 0.4, {
-          radius: this.isClosest ? 9 : 6
-        });
+        this.targetRadius = this.isClosest ? 9 : 6;
       } else {
-        gsap.to(this.new, 0.4, {
-          radius: 3
-        });
+        this.targetRadius = 3;
       }
     }
 
     render () {
+      this.new.radius += (this.targetRadius - this.new.radius) * .18;
       this.context.beginPath();
       this.context.arc(this.new.x, this.new.y, this.new.radius, 0, 2 * Math.PI, false);
       this.context.fillStyle = this.new.color;
@@ -133,25 +133,72 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function init () {
-    APP = new App();
+  let canvasFrame = 0;
 
-    if (!APP.canvas) {
+  function init () {
+    const canvas = document.querySelector('.dotsTest canvas');
+
+    if (!canvas) {
       return;
     }
 
-    events();
-    loop();
+    const section = canvas.closest('.stats-how-it-works') || canvas;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const activate = () => {
+      if (!APP) {
+        APP = new App(canvas);
+        events();
+      }
+
+      APP.isActive = true;
+
+      if (reduceMotion) {
+        APP.render();
+      } else if (!canvasFrame) {
+        canvasFrame = requestAnimationFrame(loop);
+      }
+    };
+
+    const deactivate = () => {
+      if (APP) {
+        APP.isActive = false;
+      }
+
+      if (canvasFrame) {
+        cancelAnimationFrame(canvasFrame);
+        canvasFrame = 0;
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          activate();
+        } else {
+          deactivate();
+        }
+      }, { rootMargin: '240px 0px' });
+
+      observer.observe(section);
+    } else {
+      activate();
+    }
   }
 
   function loop () {
+    if (!APP || !APP.isActive) {
+      canvasFrame = 0;
+      return;
+    }
+
     APP.render();
-    requestAnimationFrame(loop);
+    canvasFrame = requestAnimationFrame(loop);
   }
 
   function events () {
-    document.addEventListener('mousemove', APP.mousemoveHandler, false);
-    document.addEventListener('mouseleave', APP.mouseleaveHandler, false);
+    APP.canvas.addEventListener('mousemove', APP.mousemoveHandler, { passive: true });
+    APP.canvas.addEventListener('mouseleave', APP.mouseleaveHandler, false);
     window.addEventListener('resize', APP.resize, false);
   }
 
@@ -160,8 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =======================
   // Menu
   ======================= */
-  var body = document.querySelector("body"),
-  menuOpenIcon = document.querySelector(".nav__icon-menu"),
+  var menuOpenIcon = document.querySelector(".nav__icon-menu"),
   menuCloseIcon = document.querySelector(".nav__icon-close"),
   menuItems = document.querySelectorAll(".nav__item"),
   menuList = document.querySelector(".main-nav");
@@ -188,18 +234,11 @@ document.addEventListener("DOMContentLoaded", function () {
     menuList.classList.remove("is-open");
   }
 
-  /* =======================
-  // Animation Load Page
-  ======================= */
-  setTimeout(function(){
-    body.classList.add("is-in");
-  },150)
-
   /* ==================================
   // Stop Animations After All Have Run
   ================================== */
   setTimeout(function(){
-    body.classList.add("stop-animations");
+    document.body.classList.add("stop-animations");
   },1500)
 
   /* ======================================
@@ -218,7 +257,9 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =======================
   // Responsive Videos
   ======================= */
-  reframe(".post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off)");
+  if (typeof reframe === "function") {
+    reframe(".post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off)");
+  }
 
 
   /* =======================
@@ -305,12 +346,29 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", updateScrollToTop, { passive: true });
     updateScrollToTop();
 
-    btnScrollToTop.addEventListener("click", function () {
+    btnScrollToTop.addEventListener("click", function (event) {
+      event.preventDefault();
+
       if (window.scrollY !== 0) {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth"
+        window.dispatchEvent(new CustomEvent("page:instant-scroll"));
+
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+
+        root.style.scrollBehavior = "auto";
+        window.scrollTo(0, 0);
+
+        if (typeof ScrollTrigger !== "undefined") {
+          ScrollTrigger.update(true);
+        }
+
+        requestAnimationFrame(() => {
+          root.style.scrollBehavior = previousScrollBehavior;
+          updateScrollToTop();
+
+          if (typeof ScrollTrigger !== "undefined") {
+            ScrollTrigger.update(true);
+          }
         });
       }
     });
@@ -327,24 +385,60 @@ document.addEventListener("DOMContentLoaded", function () {
     pageEffectsMedia.add(
       "(prefers-reduced-motion: no-preference)",
       () => {
-        document.documentElement.classList.add("smooth-page-scroll");
+        // Note: we intentionally do NOT enable the global CSS
+        // `scroll-behavior: smooth` here. It fights with ScrollTrigger's
+        // pin/scrub math (the browser eases scrollTop over ~300-500ms on every
+        // wheel tick, so ScrollTrigger reads a laggy scrollY), which is what
+        // caused pinned sections (the hero collapse, the "Jak to dziala"
+        // diagram) to feel like they jitter/slip instead of staying locked in
+        // place while scrolling through them. Anchor-nav clicks get their own
+        // explicit smooth scroll below instead, which doesn't have this problem
+        // since it's a one-off jump rather than a persistent property that
+        // intercepts every scroll input.
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          const id = link.getAttribute("href").slice(1);
 
-        const hero = document.querySelector(".c-hero");
-        const heroLeft = hero?.querySelector(".c-hero__left");
-        const heroRight = hero?.querySelector(".c-hero__right");
+          if (!id) {
+            return;
+          }
 
-        if (hero && heroLeft && heroRight) {
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 1
+          link.addEventListener("click", event => {
+            const target = document.getElementById(id);
+
+            if (!target) {
+              return;
             }
-          })
-            .to(heroLeft, { y: -72, autoAlpha: .35, ease: "none" }, 0)
-            .to(heroRight, { y: 90, scale: .9, rotation: 3, ease: "none" }, 0);
-        }
+
+            event.preventDefault();
+            const headerOffset = 32;
+            const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top, behavior: "smooth" });
+          });
+        });
+
+        const deferredObservers = [];
+        const whenNear = (element, setup) => {
+          if (!element) {
+            return;
+          }
+
+          if (!("IntersectionObserver" in window)) {
+            setup();
+            return;
+          }
+
+          const observer = new IntersectionObserver(entries => {
+            if (!entries[0].isIntersecting) {
+              return;
+            }
+
+            observer.disconnect();
+            setup();
+          }, { rootMargin: "500px 0px" });
+
+          observer.observe(element);
+          deferredObservers.push(observer);
+        };
 
         const sectionSelectors = [
           ".stats-clients-results",
@@ -360,26 +454,28 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
           }
 
-          section.classList.add("scroll-choreography-section");
-          gsap.fromTo(section,
-            { clipPath: "inset(4% 2% round 30px)" },
-            {
-              clipPath: "inset(0% 0% round 0px)",
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 96%",
-                end: "top 58%",
-                scrub: 1,
-                invalidateOnRefresh: true
+          whenNear(section, () => {
+            section.classList.add("scroll-choreography-section");
+            gsap.fromTo(section,
+              { clipPath: "inset(4% 2% round 30px)" },
+              {
+                clipPath: "inset(0% 0% round 0px)",
+                ease: "none",
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 96%",
+                  end: "top 58%",
+                  scrub: 1,
+                  invalidateOnRefresh: true
+                }
               }
-            }
-          );
+            );
+          });
         });
 
         const clients = document.querySelector(".stats-clients-results");
 
-        if (clients) {
+        whenNear(clients, () => {
           const gridItems = clients.querySelectorAll(".stat-card, .logo-item");
           const banners = clients.querySelectorAll(".partner-banner");
 
@@ -417,11 +513,11 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             );
           });
-        }
+        });
 
         const partners = document.querySelector(".stats-solutions-partners");
 
-        if (partners) {
+        whenNear(partners, () => {
           const heading = partners.querySelector(".header-card-partners");
           const slider = partners.querySelector(".slider-container");
 
@@ -455,11 +551,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           );
 
-        }
+        });
 
         const solutions = document.querySelector(".stats-solutions-results");
 
-        if (solutions) {
+        whenNear(solutions, () => {
           const heading = solutions.querySelector(".header-card-solutions");
           const cards = solutions.querySelectorAll(".stat-card-solutions");
 
@@ -495,11 +591,11 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             }
           );
-        }
+        });
 
         const finalSection = document.querySelector(".find-out-more");
 
-        if (finalSection) {
+        whenNear(finalSection, () => {
           const heading = finalSection.querySelector(".section__info");
           const cards = finalSection.querySelectorAll(".c-blog-card__inner");
 
@@ -534,9 +630,10 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             }
           );
-        }
+        });
 
         return () => {
+          deferredObservers.forEach(observer => observer.disconnect());
           document.documentElement.classList.remove("smooth-page-scroll");
           document.querySelectorAll(".scroll-choreography-section").forEach(section => {
             section.classList.remove("scroll-choreography-section");
@@ -546,10 +643,131 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
+  /* ==============================
+  // Hero scroll collapse
+  ============================== */
+  const initializeHeroCollapse = () => {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      typeof gsap === "undefined" ||
+      typeof ScrollTrigger === "undefined"
+    ) {
+      return;
+    }
+
+    const hero = document.querySelector(".c-hero");
+    const heroBackground = hero?.querySelector(".c-hero__background");
+    const crtLine = hero?.querySelector(".c-hero__crt-line");
+    const crtDot = hero?.querySelector(".c-hero__crt-dot");
+
+    if (!hero || !heroBackground || !crtLine || !crtDot) {
+      return;
+    }
+
+    gsap.set(crtLine, {
+      autoAlpha: 0,
+      scaleX: .02,
+      transformOrigin: "center"
+    });
+    gsap.set(crtDot, {
+      autoAlpha: 0,
+      scale: .45,
+      transformOrigin: "center"
+    });
+
+    gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: () => `+=${Math.round(window.innerHeight * .82)}`,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        scrub: true,
+        refreshPriority: 20,
+        invalidateOnRefresh: true
+      }
+    })
+      .to(heroBackground, {
+        scaleX: 1,
+        scaleY: .028,
+        autoAlpha: .86,
+        transformOrigin: "78% 62%",
+        duration: .66
+      }, 0)
+      .to(crtLine, {
+        autoAlpha: 1,
+        scaleX: 1,
+        duration: .13
+      }, .53)
+      .to(heroBackground, {
+        scaleX: .035,
+        scaleY: .01,
+        autoAlpha: .16,
+        duration: .25
+      }, .66)
+      .to(crtLine, {
+        scaleX: .035,
+        duration: .25
+      }, .66)
+      .to(crtDot, {
+        autoAlpha: 1,
+        scale: 1.35,
+        duration: .08
+      }, .84)
+      .to(heroBackground, {
+        autoAlpha: 0,
+        duration: .08
+      }, .91)
+      .to(crtLine, {
+        autoAlpha: 0,
+        scaleX: .012,
+        duration: .08
+      }, .91)
+      .to(crtDot, {
+        scale: 1,
+        duration: .06
+      }, .92)
+      .to(crtDot, {
+        autoAlpha: 0,
+        scale: .35,
+        duration: .05
+      }, .98);
+  };
+
+  requestAnimationFrame(initializeHeroCollapse);
+
+
+  const initializeWhenNear = (selector, setup) => {
+    const element = document.querySelector(selector);
+
+    if (!element) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setup();
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) {
+        return;
+      }
+
+      observer.disconnect();
+      setup();
+    }, { rootMargin: "-20% 0px" });
+
+    observer.observe(element);
+  };
+
   /* ==================================
   // Desktop diagram scroll experience
   ================================== */
-  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+  initializeWhenNear(".stats-how-it-works", () => {
+   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     const storyMedia = gsap.matchMedia();
 
     storyMedia.add("(min-width: 1024px)", () => {
@@ -563,25 +781,44 @@ document.addEventListener("DOMContentLoaded", function () {
       const eyebrow = content?.querySelector(".scheme-story__eyebrow");
       const stepCounter = content?.querySelector(".scheme-story__step");
       const progress = content?.querySelector(".scheme-story__progress i");
+      const total = content?.querySelector(".scheme-story__total");
       const tooltips = content ? Array.from(content.querySelectorAll("[data-scheme-tooltip]")) : [];
 
       if (!section || !desktop || !story || !visual || !diagram || !header || !content || !tooltips.length) {
         return;
       }
 
-      const steps = tooltips.map(tooltip => {
-        const key = tooltip.dataset.schemeTooltip;
+      if (section.dataset.scrollStoryCompleted === "true") {
+        section.classList.add("scheme-scroll-story", "scheme-scroll-story-complete");
+        requestAnimationFrame(() => {
+          document.dispatchEvent(new CustomEvent("scheme:desktop-interactive", {
+            detail: { diagram }
+          }));
+        });
+
+        return () => {
+          section.classList.remove("scheme-scroll-story", "scheme-scroll-story-complete");
+        };
+      }
+
+      const storyKeys = ["finance", "shops"];
+      const steps = storyKeys.map(key => {
+        const tooltip = tooltips.find(item => item.dataset.schemeTooltip === key);
         return {
           key,
           tooltip,
           node: diagram.querySelector(`[data-tooltip="${key}"]`)
         };
-      }).filter(step => step.node);
+      }).filter(step => step.node && step.tooltip);
 
-      if (steps.length !== tooltips.length) {
+      if (steps.length !== storyKeys.length) {
         return;
       }
 
+      const stepTooltips = steps.map(step => step.tooltip);
+      if (total) {
+        total.textContent = String(steps.length).padStart(2, "0");
+      }
       section.classList.add("scheme-scroll-story");
       gsap.registerPlugin(ScrollTrigger);
 
@@ -663,6 +900,16 @@ document.addEventListener("DOMContentLoaded", function () {
         "data-tens": Math.floor((index + 1) / 10),
         "data-ones": (index + 1) % 10
       });
+      const setDesktopStoryActive = active => {
+        section.classList.toggle("scheme-scroll-story-active", active);
+
+        if (active) {
+          diagram.querySelectorAll("[data-tooltip].is-active").forEach(node => {
+            node.classList.remove("is-active");
+          });
+          tooltips.forEach(tooltip => tooltip.classList.remove("is-active"));
+        }
+      };
 
       gsap.set(diagram, {
         x: () => getFull("x"),
@@ -674,33 +921,221 @@ document.addEventListener("DOMContentLoaded", function () {
       gsap.set(progress, { scaleX: 0 });
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        const firstFocus = getFocus(0);
-        gsap.set(diagram, firstFocus);
-        gsap.set(visual, { clipPath: "inset(0px round 24px)" });
-        gsap.set(tooltips[0], { autoAlpha: 1, y: 0, pointerEvents: "auto" });
-        gsap.set(eyebrow, { autoAlpha: 1, y: 0 });
-        gsap.set(progress, { scaleX: 1 / steps.length });
+        section.dataset.scrollStoryCompleted = "true";
+        section.classList.add("scheme-scroll-story-complete");
+        document.dispatchEvent(new CustomEvent("scheme:desktop-interactive", {
+          detail: { diagram }
+        }));
 
         return () => {
-          section.classList.remove("scheme-scroll-story");
+          section.classList.remove("scheme-scroll-story", "scheme-scroll-story-complete");
           routeSvg.remove();
-          gsap.set([diagram, visual, ...tooltips, eyebrow, progress], { clearProps: "all" });
+          gsap.set([visual, eyebrow, progress], { clearProps: "all" });
+          gsap.set(diagram, { clearProps: "transform" });
+          gsap.set(tooltips, { clearProps: "opacity,visibility,transform,pointerEvents" });
         };
       }
 
+      let completeDesktopStory = () => {};
       const timeline = gsap.timeline({
         defaults: { ease: "power2.inOut" },
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${Math.round(window.innerHeight * (steps.length * .62 + 1.4))}`,
+          end: () => `+=${Math.round(window.innerHeight * 2.4)}`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,
           refreshPriority: 10,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          onEnter: () => setDesktopStoryActive(true),
+          onEnterBack: () => setDesktopStoryActive(true),
+          onLeaveBack: () => setDesktopStoryActive(false),
+          onLeave: () => completeDesktopStory()
         }
       });
+
+      const storyTrigger = timeline.scrollTrigger;
+      const scrollingElement = document.scrollingElement || document.documentElement;
+      let brakeFrame = 0;
+      let brakeTarget = window.scrollY;
+      let lastWheelTime = 0;
+      let lastWheelDirection = 0;
+      let fastWheelEvents = 0;
+      let brakeOwnsScrollBehavior = false;
+      let previousBrakeScrollBehavior = "";
+
+      const stopScrollBrake = () => {
+        if (brakeFrame) {
+          cancelAnimationFrame(brakeFrame);
+          brakeFrame = 0;
+        }
+
+        brakeTarget = window.scrollY;
+
+        if (brakeOwnsScrollBehavior) {
+          document.documentElement.style.scrollBehavior = previousBrakeScrollBehavior;
+          brakeOwnsScrollBehavior = false;
+        }
+      };
+
+      const runScrollBrake = () => {
+        if (!storyTrigger?.isActive) {
+          stopScrollBrake();
+          return;
+        }
+
+        const distance = brakeTarget - window.scrollY;
+
+        if (Math.abs(distance) < .75) {
+          scrollingElement.scrollTop = brakeTarget;
+          brakeFrame = 0;
+          ScrollTrigger.update();
+          stopScrollBrake();
+          return;
+        }
+
+        scrollingElement.scrollTop = window.scrollY + distance * .28;
+        ScrollTrigger.update();
+        brakeFrame = requestAnimationFrame(runScrollBrake);
+      };
+
+      const handleStoryWheel = event => {
+        if (!storyTrigger?.isActive || event.ctrlKey || event.metaKey || event.shiftKey) {
+          fastWheelEvents = 0;
+          lastWheelTime = 0;
+          lastWheelDirection = 0;
+          stopScrollBrake();
+          return;
+        }
+
+        const deltaMultiplier = event.deltaMode === 1
+          ? 16
+          : event.deltaMode === 2
+            ? window.innerHeight
+            : 1;
+        const delta = event.deltaY * deltaMultiplier;
+        const deltaSize = Math.abs(delta);
+        const direction = Math.sign(delta);
+
+        if (!direction) {
+          return;
+        }
+
+        const now = performance.now();
+        const interval = lastWheelTime ? now - lastWheelTime : Infinity;
+        const changedDirection = lastWheelDirection && direction !== lastWheelDirection;
+        const triggerVelocity = typeof storyTrigger.getVelocity === "function"
+          ? Math.abs(storyTrigger.getVelocity())
+          : 0;
+        const isFastInput = deltaSize >= 180
+          || (interval < 56 && deltaSize >= 48)
+          || (triggerVelocity >= 3200 && interval < 70 && deltaSize >= 36);
+
+        if (changedDirection) {
+          fastWheelEvents = 0;
+          stopScrollBrake();
+        }
+
+        fastWheelEvents = isFastInput ? fastWheelEvents + 1 : 0;
+        lastWheelTime = now;
+        lastWheelDirection = direction;
+
+        const currentY = window.scrollY;
+        const leavingAtStart = direction < 0 && currentY <= storyTrigger.start + 2;
+        const leavingAtEnd = direction > 0 && currentY >= storyTrigger.end - 2;
+        const requiredFastEvents = deltaSize >= 320 ? 1 : 2;
+
+        if (!isFastInput || fastWheelEvents < requiredFastEvents || leavingAtStart || leavingAtEnd) {
+          if (!isFastInput) {
+            stopScrollBrake();
+          }
+          return;
+        }
+
+        if (!event.cancelable) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (!brakeOwnsScrollBehavior) {
+          previousBrakeScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = "auto";
+          brakeOwnsScrollBehavior = true;
+        }
+
+        if (!brakeFrame) {
+          brakeTarget = currentY;
+        }
+
+        const maxStep = Math.max(48, Math.min(72, window.innerHeight * .06));
+        const limitedDelta = direction * Math.min(deltaSize, maxStep);
+        brakeTarget = Math.max(
+          storyTrigger.start,
+          Math.min(storyTrigger.end, brakeTarget + limitedDelta)
+        );
+
+        if (!brakeFrame) {
+          brakeFrame = requestAnimationFrame(runScrollBrake);
+        }
+      };
+
+      window.addEventListener("wheel", handleStoryWheel, { passive: false });
+      window.addEventListener("page:instant-scroll", stopScrollBrake);
+
+      let desktopCompletionScheduled = false;
+      completeDesktopStory = () => {
+        if (desktopCompletionScheduled || section.dataset.scrollStoryCompleted === "true") {
+          return;
+        }
+
+        desktopCompletionScheduled = true;
+
+        requestAnimationFrame(() => {
+          const storyStart = Math.round(storyTrigger.start);
+          const root = document.documentElement;
+          const previousScrollBehavior = root.style.scrollBehavior;
+
+          section.dataset.scrollStoryCompleted = "true";
+          section.classList.add("scheme-scroll-story-complete");
+          section.classList.remove("scheme-scroll-story-active");
+          stopScrollBrake();
+          window.removeEventListener("wheel", handleStoryWheel);
+          window.removeEventListener("page:instant-scroll", stopScrollBrake);
+
+          timeline.progress(1).pause();
+          storyTrigger.kill(true);
+          timeline.kill();
+          routeSvg.remove();
+
+          gsap.set(
+            [desktop, header, visual, eyebrow, progress],
+            { clearProps: "all" }
+          );
+          gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
+          gsap.set(tooltips, { clearProps: "opacity,visibility,transform,pointerEvents" });
+          gsap.set(diagram, {
+            x: () => getFull("x"),
+            y: () => getFull("y"),
+            scale: () => getFull("scale")
+          });
+
+          root.style.scrollBehavior = "auto";
+          ScrollTrigger.refresh();
+          window.scrollTo(0, storyStart);
+          ScrollTrigger.update(true);
+
+          document.dispatchEvent(new CustomEvent("scheme:desktop-interactive", {
+            detail: { diagram }
+          }));
+
+          requestAnimationFrame(() => {
+            root.style.scrollBehavior = previousScrollBehavior;
+          });
+        });
+      };
+      timeline.eventCallback("onComplete", completeDesktopStory);
 
       timeline
         .to(header, { autoAlpha: 0, y: -32, duration: .55 })
@@ -716,7 +1151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .set(stepCounter, { attr: stepDigits(0) }, "<")
         .to(eyebrow, { autoAlpha: 1, y: 0, duration: .35 }, "<")
         .to(progress, { scaleX: 1 / steps.length, duration: .45 }, "<")
-        .to(tooltips[0], { autoAlpha: 1, y: 0, pointerEvents: "auto", duration: .55 }, "<+.05")
+        .to(stepTooltips[0], { autoAlpha: 1, y: 0, pointerEvents: "auto", duration: .55 }, "<+.05")
         .to({}, { duration: 1.25 });
 
       for (let index = 1; index < steps.length; index += 1) {
@@ -724,7 +1159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         timeline
           .addLabel(`step-${index + 1}`)
-          .to(tooltips[previous], {
+          .to(stepTooltips[previous], {
             autoAlpha: 0,
             y: -24,
             pointerEvents: "none",
@@ -747,7 +1182,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .to(nodes[index], { opacity: 1, scale: 1.06, duration: .35 }, "<")
           .set(stepCounter, { attr: stepDigits(index) }, "<")
           .to(progress, { scaleX: (index + 1) / steps.length, duration: .35 }, "<")
-          .to(tooltips[index], {
+          .to(stepTooltips[index], {
             autoAlpha: 1,
             y: 0,
             pointerEvents: "auto",
@@ -757,7 +1192,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       timeline
-        .to(tooltips[tooltips.length - 1], {
+        .to(stepTooltips[stepTooltips.length - 1], {
           autoAlpha: 0,
           y: -24,
           pointerEvents: "none",
@@ -780,21 +1215,33 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       return () => {
+        window.removeEventListener("wheel", handleStoryWheel);
+        window.removeEventListener("page:instant-scroll", stopScrollBrake);
+        stopScrollBrake();
         timeline.scrollTrigger?.kill();
         timeline.kill();
-        section.classList.remove("scheme-scroll-story");
+        section.classList.remove(
+          "scheme-scroll-story",
+          "scheme-scroll-story-active",
+          "scheme-scroll-story-complete"
+        );
         routeSvg.remove();
         stepCounter.setAttribute("data-tens", "0");
         stepCounter.setAttribute("data-ones", "1");
-        gsap.set([desktop, header, diagram, visual, ...nodes, ...tooltips, eyebrow, progress], { clearProps: "all" });
+        gsap.set([desktop, header, visual, eyebrow, progress], { clearProps: "all" });
+        gsap.set(diagram, { clearProps: "transform" });
+        gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
+        gsap.set(tooltips, { clearProps: "opacity,visibility,transform,pointerEvents" });
       };
     });
   }
+  });
 
   /* =================================
   // Mobile diagram scroll experience
   ================================= */
-  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+  initializeWhenNear(".stats-how-it-works", () => {
+   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     const mobileStoryMedia = gsap.matchMedia();
 
     mobileStoryMedia.add(
@@ -811,19 +1258,25 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        const steps = sheets.map(sheet => {
-          const key = sheet.dataset.mobileTooltip;
+        if (section.dataset.scrollStoryCompleted === "true") {
+          return;
+        }
+
+        const storyKeys = ["finance", "shops"];
+        const steps = storyKeys.map(key => {
+          const sheet = sheets.find(item => item.dataset.mobileTooltip === key);
           return {
             key,
             sheet,
             node: diagram.querySelector(`[data-mobile-tooltip-trigger="${key}"]`)
           };
-        }).filter(step => step.node);
+        }).filter(step => step.node && step.sheet);
 
-        if (steps.length !== sheets.length) {
+        if (steps.length !== storyKeys.length) {
           return;
         }
 
+        const stepSheets = steps.map(step => step.sheet);
         section.classList.add("scheme-mobile-scroll-story");
         document.body.classList.remove("scheme-mobile-tooltip-open");
         backdrop?.classList.remove("is-active");
@@ -945,20 +1398,65 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         };
 
+        let completeMobileStory = () => {};
         const timeline = gsap.timeline({
           defaults: { ease: "power2.inOut" },
           onUpdate: syncSheetAccessibility,
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: () => `+=${Math.round(window.innerHeight * (steps.length * .95 + 1.9))}`,
+            end: () => `+=${Math.round(window.innerHeight * 2.6)}`,
             pin: true,
             scrub: 1,
             anticipatePin: 1,
             refreshPriority: 10,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            onLeave: () => completeMobileStory()
           }
         });
+
+        const mobileStoryTrigger = timeline.scrollTrigger;
+        let mobileCompletionScheduled = false;
+        completeMobileStory = () => {
+          if (mobileCompletionScheduled || section.dataset.scrollStoryCompleted === "true") {
+            return;
+          }
+
+          mobileCompletionScheduled = true;
+
+          requestAnimationFrame(() => {
+            const storyStart = Math.round(mobileStoryTrigger.start);
+            const root = document.documentElement;
+            const previousScrollBehavior = root.style.scrollBehavior;
+
+            section.dataset.scrollStoryCompleted = "true";
+            timeline.progress(1).pause();
+            mobileStoryTrigger.kill(true);
+            timeline.kill();
+            routeSvg.remove();
+            section.classList.remove("scheme-mobile-scroll-story");
+
+            gsap.set([mobile, header, ...sheets], { clearProps: "all" });
+            gsap.set(diagram, { clearProps: "transform" });
+            gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
+            sheets.forEach(sheet => {
+              sheet.classList.remove("is-active");
+              sheet.setAttribute("aria-hidden", "true");
+            });
+            backdrop?.classList.remove("is-active");
+            document.body.classList.remove("scheme-mobile-tooltip-open");
+
+            root.style.scrollBehavior = "auto";
+            ScrollTrigger.refresh();
+            window.scrollTo(0, storyStart);
+            ScrollTrigger.update(true);
+
+            requestAnimationFrame(() => {
+              root.style.scrollBehavior = previousScrollBehavior;
+            });
+          });
+        };
+        timeline.eventCallback("onComplete", completeMobileStory);
 
         timeline
           .to(header, { autoAlpha: 0, y: -24, duration: .5 })
@@ -970,7 +1468,7 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 1.05
           }, "<")
           .to(nodes[0], { opacity: 1, scale: 1.05, duration: .4 }, "<+.3")
-          .to(sheets[0], {
+          .to(stepSheets[0], {
             autoAlpha: 1,
             yPercent: 0,
             pointerEvents: "auto",
@@ -982,7 +1480,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const previous = index - 1;
 
           timeline
-            .to(sheets[previous], {
+            .to(stepSheets[previous], {
               autoAlpha: 0,
               yPercent: 120,
               pointerEvents: "none",
@@ -1003,7 +1501,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, "<+.1")
             .to(routes[previous], { autoAlpha: 0, duration: .22 })
             .to(nodes[index], { opacity: 1, scale: 1.05, duration: .32 }, "<")
-            .to(sheets[index], {
+            .to(stepSheets[index], {
               autoAlpha: 1,
               yPercent: 0,
               pointerEvents: "auto",
@@ -1013,7 +1511,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         timeline
-          .to(sheets[sheets.length - 1], {
+          .to(stepSheets[stepSheets.length - 1], {
             autoAlpha: 0,
             yPercent: 120,
             pointerEvents: "none",
@@ -1037,45 +1535,83 @@ document.addEventListener("DOMContentLoaded", function () {
           timeline.kill();
           section.classList.remove("scheme-mobile-scroll-story");
           routeSvg.remove();
-          gsap.set([mobile, header, diagram, ...nodes, ...sheets], { clearProps: "all" });
+          gsap.set([mobile, header, ...sheets], { clearProps: "all" });
+          gsap.set(diagram, { clearProps: "transform" });
+          gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
           sheets.forEach(sheet => sheet.setAttribute("aria-hidden", "true"));
         };
       }
     );
   }
+  });
 
-  const diagrams = document.querySelectorAll(".scheme-diagram");
-  console.log(diagrams);
-  diagrams.forEach(diagram => {
-    if (diagram.closest(".scheme-scroll-story")) {
+  function enableDesktopSchemeTooltips(diagram) {
+    if (!diagram || diagram.dataset.desktopTooltipsEnabled === "true") {
       return;
     }
 
-    console.log(diagram);
+    const storySection = diagram.closest(".stats-how-it-works");
+
+    const tooltipScope = diagram.closest(".scheme-story") || storySection;
     const nodes = diagram.querySelectorAll("[data-tooltip]");
-    const tooltips = diagram.querySelectorAll("[data-scheme-tooltip]");
-    console.log(nodes);
-    console.log(tooltips);
+    const tooltips = tooltipScope?.querySelectorAll("[data-scheme-tooltip]") || [];
+
+    if (!nodes.length || !tooltips.length) {
+      return;
+    }
+
+    diagram.dataset.desktopTooltipsEnabled = "true";
     let hideTimer = null;
+    let activeKey = null;
 
     function clearTooltips() {
+      activeKey = null;
       nodes.forEach(node => node.classList.remove("is-active"));
       tooltips.forEach(tooltip => tooltip.classList.remove("is-active"));
     }
 
+    function positionTooltip(tooltip) {
+      const container = diagram.closest(".scheme-story") || storySection;
+
+      if (!container) {
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const diagramRect = diagram.getBoundingClientRect();
+      const tooltipStyle = getComputedStyle(tooltip);
+      const canvasWidth = parseFloat(getComputedStyle(diagram).getPropertyValue("--canvas-w")) || 1024;
+      const canvasHeight = parseFloat(getComputedStyle(diagram).getPropertyValue("--canvas-h")) || 768;
+      const coordinateX = parseFloat(tooltipStyle.getPropertyValue("--tx")) || 0;
+      const coordinateY = parseFloat(tooltipStyle.getPropertyValue("--ty")) || 0;
+      const left = diagramRect.left - containerRect.left
+        + coordinateX * (diagramRect.width / canvasWidth);
+      const top = diagramRect.top - containerRect.top
+        + coordinateY * (diagramRect.height / canvasHeight);
+
+      tooltip.style.setProperty("--scheme-tooltip-x", `${Math.round(left)}px`);
+      tooltip.style.setProperty("--scheme-tooltip-y", `${Math.round(top)}px`);
+    }
+
     function showTooltip(key) {
+      if (storySection?.classList.contains("scheme-scroll-story-active")) {
+        return;
+      }
+
       clearTimeout(hideTimer);
       clearTooltips();
 
       const node = diagram.querySelector(`[data-tooltip="${key}"]`);
-      const tooltip = diagram.querySelector(`[data-scheme-tooltip="${key}"]`);
+      const tooltip = tooltipScope.querySelector(`[data-scheme-tooltip="${key}"]`);
 
       if (node) {
         node.classList.add("is-active");
       }
 
       if (tooltip) {
+        positionTooltip(tooltip);
         tooltip.classList.add("is-active");
+        activeKey = key;
       }
     }
 
@@ -1089,8 +1625,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nodes.forEach(node => {
       const key = node.dataset.tooltip;
-      console.log(key);
-      console.log(node);
       node.addEventListener("mouseenter", () => showTooltip(key));
       node.addEventListener("focus", () => showTooltip(key));
 
@@ -1113,11 +1647,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     diagram.addEventListener("mouseleave", scheduleHide);
 
+    window.addEventListener("resize", () => {
+      if (activeKey) {
+        const node = diagram.querySelector(`[data-tooltip="${activeKey}"]`);
+        const tooltip = tooltipScope.querySelector(`[data-scheme-tooltip="${activeKey}"]`);
+
+        if (node && tooltip) {
+          positionTooltip(tooltip);
+        }
+      }
+    });
+
     document.addEventListener("keydown", event => {
       if (event.key === "Escape") {
         clearTooltips();
       }
     });
+  }
+
+  document.addEventListener("scheme:desktop-interactive", event => {
+    enableDesktopSchemeTooltips(event.detail?.diagram);
+  });
+
+  initializeWhenNear(".stats-how-it-works", () => {
+    document.querySelectorAll(".scheme-diagram").forEach(enableDesktopSchemeTooltips);
   });
 
 
@@ -1186,4 +1739,10 @@ document.addEventListener("DOMContentLoaded", function () {
       closeMobileTooltip();
     }
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeCommon, { once: true });
+} else {
+  initializeCommon();
+}
