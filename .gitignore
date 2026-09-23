@@ -3,6 +3,8 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+# biblioteki JS strony (GSAP, ScrollTrigger, cookiedialog) muszą trafić do repo, bo build CI ich nie pobiera
+!site/js/vendor/
 node_modules
 bookshop-live.js
 .DS_Store

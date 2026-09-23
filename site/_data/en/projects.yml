@@ -4,7 +4,7 @@ logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images
 
 gotomaHref: 'https://www.gotoma.pl/en/'
 codariusHref: 'https://www.codarius.com/cennik'
-gotomaGeneralHref: 'https://www.gotomageneral.pl/en/'
+gotomaGeneralHref: 'https://www.gotomageneral.com/en/'
 
 header_href: 'about-us'
 header:  'Numbers, clients and results'
@@ -188,7 +188,7 @@ slider_partners:
   - href: "https://www.spiree.io/en/"
     logo: "/images/partners/spiree.png"
     alt: "Spiree"
-  - href: "https://softlike.com/"
+  - href: "https://softlike.pl/"
     logo: "/images/partners/softlike.png"
     alt: "softlike"
   - href: "https://www.optidata.pl/en"
@@ -206,7 +206,7 @@ slider_partners:
   - href: "https://atman.pl/en/"
     logo: "/images/partners/atman.webp"
     alt: "Atman"
-  - href: "https://main.pl//en/"
+  - href: "https://main.pl/en/"
     logo: "/images/partners/main.webp"
     alt: "Main"
   - href: "https://moonwise.pl/en/home/"

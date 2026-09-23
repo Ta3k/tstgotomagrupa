@@ -149,3 +149,16 @@ Sprawdzone:
   - pin tworzony wcześniej;
   - płynne, niewidoczne zakończenie na desktopie i mobile.
   - Droga do kart: 4,33 vh (1440), 5,21 vh (390). Szczegóły i pomiary w `SCROLL-DIAGNOZA.md`.
+
+### Przygotowanie do deployu: GSAP w repo, linki D6, teksty D7 (2026-09-24)
+
+- `.gitignore`: wyjątek `!site/js/vendor/`. GSAP 3.12.5, ScrollTrigger i cookiedialog są teraz w repozytorium, więc build w CI (GitHub Pages) ma animacje, menu mobilne i diagram.
+- D6:
+  - GOTOMA General wszędzie `gotomageneral.com` (także w nagłówku);
+  - EN `main.pl/en/` (bez podwójnego ukośnika);
+  - softlike wszędzie `softlike.pl`;
+  - PL „Aplikacje custom” → GOTOMA S.H. `https://www.gotoma.pl/` (był pusty link).
+- D7 w diagramie:
+  - ikony obok nazw obszarów oznaczone jako dekoracyjne (`alt=""`, zamiast polskich altów w EN);
+  - `aria-label` zamknięcia arkusza „Close” w EN;
+  - fallback etykiety partnerów z danych językowych.
