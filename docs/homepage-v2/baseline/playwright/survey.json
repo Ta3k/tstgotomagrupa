@@ -1,0 +1,1314 @@
+[
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 6487,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 2102,
+      "end": 4694,
+      "len": 2592,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 3002,
+      "vh": 2.78,
+      "wheelSteps": 56
+    },
+    "backJumps": [
+      {
+        "from": 4600,
+        "to": 2102
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 6516,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 1102,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 1022,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 2102,
+        "end": 4694,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 6169,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 1784,
+      "end": 3944,
+      "len": 2160,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 2684,
+      "vh": 2.98,
+      "wheelSteps": 49
+    },
+    "backJumps": [
+      {
+        "from": 3900,
+        "to": 1784
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 6018,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 954,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 874,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 1784,
+        "end": 3944,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 6032,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 1669,
+      "end": 3589,
+      "len": 1920,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 2469,
+      "vh": 3.09,
+      "wheelSteps": 44
+    },
+    "backJumps": [
+      {
+        "from": 3500,
+        "to": 1669
+      }
+    ],
+    "overflowMax": 42,
+    "docHeightEnd": 5781,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 872,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 792,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 1669,
+        "end": 3589,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 10581,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 2000,
+      "end": 4662,
+      "len": 2662,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 3600,
+      "vh": 3.52,
+      "wheelSteps": 63
+    },
+    "backJumps": [
+      {
+        "from": 4600,
+        "to": 2000
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 10644,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 1056,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 976,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 2000,
+        "end": 4662,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 11285,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 1628,
+      "end": 3822,
+      "len": 2194,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 3028,
+      "vh": 3.59,
+      "wheelSteps": 53
+    },
+    "backJumps": [
+      {
+        "from": 3800,
+        "to": 1628
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 11289,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 172,
+        "end": 864,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 92,
+        "end": 784,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 1628,
+        "end": 3822,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "pl",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "http://localhost:6070/",
+    "docHeightInitial": 11094,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 1512,
+      "end": 3540,
+      "len": 2028,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 2812,
+      "vh": 3.61,
+      "wheelSteps": 49
+    },
+    "backJumps": [
+      {
+        "from": 3500,
+        "to": 1512
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 11099,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 172,
+        "end": 812,
+        "active": true
+      },
+      {
+        "id": "c-hero animate",
+        "start": 92,
+        "end": 732,
+        "active": false
+      },
+      {
+        "id": "jak-to-dziala",
+        "start": 1512,
+        "end": 3540,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 6486,
+    "pin": {
+      "id": "how-it-works",
+      "start": 2102,
+      "end": 4694,
+      "len": 2592,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 3002,
+      "vh": 2.78,
+      "wheelSteps": 56
+    },
+    "backJumps": [
+      {
+        "from": 4600,
+        "to": 2102
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 6515,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 1102,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 1022,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 2102,
+        "end": 4694,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 6169,
+    "pin": {
+      "id": "how-it-works",
+      "start": 1784,
+      "end": 3944,
+      "len": 2160,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 2684,
+      "vh": 2.98,
+      "wheelSteps": 49
+    },
+    "backJumps": [
+      {
+        "from": 3900,
+        "to": 1784
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 6018,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 954,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 874,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 1784,
+        "end": 3944,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 6018,
+    "pin": {
+      "id": "how-it-works",
+      "start": 1669,
+      "end": 3589,
+      "len": 1920,
+      "vh": 2.4
+    },
+    "cardsVisibleAt": {
+      "y": 2469,
+      "vh": 3.09,
+      "wheelSteps": 44
+    },
+    "backJumps": [
+      {
+        "from": 3500,
+        "to": 1669
+      }
+    ],
+    "overflowMax": 42,
+    "docHeightEnd": 5767,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 872,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 792,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 1669,
+        "end": 3589,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 10607,
+    "pin": {
+      "id": "how-it-works",
+      "start": 2000,
+      "end": 4662,
+      "len": 2662,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 3600,
+      "vh": 3.52,
+      "wheelSteps": 63
+    },
+    "backJumps": [
+      {
+        "from": 4600,
+        "to": 2000
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 10641,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 216,
+        "end": 1056,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 136,
+        "end": 976,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 2000,
+        "end": 4662,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 11109,
+    "pin": {
+      "id": "how-it-works",
+      "start": 1628,
+      "end": 3822,
+      "len": 2194,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 2928,
+      "vh": 3.47,
+      "wheelSteps": 52
+    },
+    "backJumps": [
+      {
+        "from": 3800,
+        "to": 1628
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 11113,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 172,
+        "end": 864,
+        "active": false
+      },
+      {
+        "id": "c-hero animate",
+        "start": 92,
+        "end": 784,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 1628,
+        "end": 3822,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "local",
+    "lang": "en",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "http://localhost:6070/en/",
+    "docHeightInitial": 11061,
+    "pin": {
+      "id": "how-it-works",
+      "start": 1512,
+      "end": 3540,
+      "len": 2028,
+      "vh": 2.6
+    },
+    "cardsVisibleAt": {
+      "y": 2812,
+      "vh": 3.61,
+      "wheelSteps": 49
+    },
+    "backJumps": [
+      {
+        "from": 3500,
+        "to": 1512
+      }
+    ],
+    "overflowMax": 0,
+    "docHeightEnd": 11065,
+    "allPinsSeen": [
+      {
+        "id": "c-hero animate",
+        "start": 172,
+        "end": 812,
+        "active": true
+      },
+      {
+        "id": "c-hero animate",
+        "start": 92,
+        "end": 732,
+        "active": false
+      },
+      {
+        "id": "how-it-works",
+        "start": 1512,
+        "end": 3540,
+        "active": true
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": []
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 14821,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 860,
+      "end": 10407,
+      "len": 9547,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 11300,
+      "vh": 10.46,
+      "wheelSteps": 113
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 14821,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 860,
+        "end": 10407,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170578314&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1873707027.1790170579&frm=0&ngs=1&pscdl=noapi&rcb=18&sr=1920x1080&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115616985~115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170578&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1911"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 13050,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 860,
+      "end": 8816,
+      "len": 7956,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 9700,
+      "vh": 10.78,
+      "wheelSteps": 97
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 13050,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 860,
+        "end": 8816,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170605941&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=238831447.1790170606&frm=0&ngs=1&pscdl=noapi&rcb=10&sr=1440x900&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120420414~120469145~120469153&sid=1790170605&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1776"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 12107,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 860,
+      "end": 7932,
+      "len": 7072,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 8800,
+      "vh": 11,
+      "wheelSteps": 88
+    },
+    "backJumps": [],
+    "overflowMax": 42,
+    "docHeightEnd": 12107,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 860,
+        "end": 7932,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170629547&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1891898048.1790170630&frm=0&ngs=1&pscdl=noapi&rcb=16&sr=1280x800&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170629&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1710"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 22809,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 996,
+      "end": 14615,
+      "len": 13619,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": null,
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 22815,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 996,
+        "end": 14615,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170651154&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1126257306.1790170652&frm=0&ngs=1&pscdl=noapi&rcb=1&sr=768x1024&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170651&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1790"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 21281,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 848,
+      "end": 12073,
+      "len": 11225,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": {
+      "y": 12900,
+      "vh": 15.28,
+      "wheelSteps": 129
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 21286,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 848,
+        "end": 12073,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170689636&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=16552457.1790170690&frm=0&ngs=1&pscdl=noapi&rcb=1&sr=390x844&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170689&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1512"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "pl",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/",
+    "docHeightInitial": 20684,
+    "pin": {
+      "id": "jak-to-dziala",
+      "start": 848,
+      "end": 11222,
+      "len": 10374,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": {
+      "y": 12000,
+      "vh": 15.38,
+      "wheelSteps": 120
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 20689,
+    "allPinsSeen": [
+      {
+        "id": "jak-to-dziala",
+        "start": 848,
+        "end": 11222,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170716039&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=753086770.1790170717&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=360x780&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121280969&sid=1790170716&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1866"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 14821,
+    "pin": {
+      "id": "how-it-works",
+      "start": 860,
+      "end": 10407,
+      "len": 9547,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 11300,
+      "vh": 10.46,
+      "wheelSteps": 113
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 14821,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 860,
+        "end": 10407,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za208zd9248985033xf1&_p=1790170740706&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=538044437.1790170741&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1920x1080&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938466~115938468~118897920~118897930~120213116~120385422~120469145~120469153~121280971&sid=1790170740&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1784"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 13050,
+    "pin": {
+      "id": "how-it-works",
+      "start": 860,
+      "end": 8816,
+      "len": 7956,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 9700,
+      "vh": 10.78,
+      "wheelSteps": 97
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 13050,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 860,
+        "end": 8816,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69m0h2v9248985033za200zd9248985033xf1&_p=1790170768374&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=281680933.1790170769&frm=0&ngs=1&pscdl=noapi&rcb=9&sr=1440x900&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121280969&sid=1790170768&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1878"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 12051,
+    "pin": {
+      "id": "how-it-works",
+      "start": 860,
+      "end": 7932,
+      "len": 7072,
+      "vh": 8.84
+    },
+    "cardsVisibleAt": {
+      "y": 8800,
+      "vh": 11,
+      "wheelSteps": 88
+    },
+    "backJumps": [],
+    "overflowMax": 42,
+    "docHeightEnd": 12051,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 860,
+        "end": 7932,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69m0h2v9248985033za200zd9248985033xf1&_p=1790170792128&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=744470539.1790170793&frm=0&ngs=1&pscdl=noapi&rcb=2&sr=1280x800&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120469145~120469153&sid=1790170792&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1811"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 22809,
+    "pin": {
+      "id": "how-it-works",
+      "start": 996,
+      "end": 14615,
+      "len": 13619,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": null,
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 22815,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 996,
+        "end": 14615,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170813768&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=858169781.1790170814&frm=0&ngs=1&pscdl=noapi&rcb=3&sr=768x1024&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170813&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1487"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 21267,
+    "pin": {
+      "id": "how-it-works",
+      "start": 874,
+      "end": 12099,
+      "len": 11225,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": {
+      "y": 12900,
+      "vh": 15.28,
+      "wheelSteps": 129
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 21271,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 874,
+        "end": 12099,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69m0h2v9248985033za200zd9248985033xf1&_p=1790170852400&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=212438524.1790170853&frm=0&ngs=1&pscdl=noapi&rcb=13&sr=390x844&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~119793974~120213116~120385423~120469145~120469153~121280969&sid=1790170852&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1805"
+    ]
+  },
+  {
+    "env": "stage",
+    "lang": "en",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "https://www.zwieksz-sprzedaz-online.pl/en/",
+    "docHeightInitial": 20523,
+    "pin": {
+      "id": "how-it-works",
+      "start": 938,
+      "end": 11312,
+      "len": 10374,
+      "vh": 13.3
+    },
+    "cardsVisibleAt": {
+      "y": 12100,
+      "vh": 15.51,
+      "wheelSteps": 121
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 20528,
+    "allPinsSeen": [
+      {
+        "id": "how-it-works",
+        "start": 938,
+        "end": 11312,
+        "active": false
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170878461&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1383154121.1790170879&frm=0&ngs=1&pscdl=noapi&rcb=7&sr=360x780&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170878&sct=1&seg=0&dl=https%3A%2F%2Fwww.zwieksz-sprzedaz-online.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1546"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 5084,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1500,
+      "vh": 1.39,
+      "wheelSteps": 15
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 5084,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170903504&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=2064786106.1790170904&frm=0&ngs=1&pscdl=noapi&rcb=13&sr=1920x1080&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170903&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=2015"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 5084,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1700,
+      "vh": 1.89,
+      "wheelSteps": 17
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 5084,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170911999&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=145959456.1790170913&frm=0&ngs=1&pscdl=noapi&rcb=3&sr=1440x900&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121280970&sid=1790170912&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1415"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 5126,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1800,
+      "vh": 2.25,
+      "wheelSteps": 18
+    },
+    "backJumps": [],
+    "overflowMax": 28,
+    "docHeightEnd": 5126,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170921878&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=684991818.1790170922&frm=0&ngs=1&pscdl=noapi&rcb=18&sr=1280x800&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118012008~118897920~118897930~120213116~120385422~120469145~120469153~121280970&sid=1790170921&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1913"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 9561,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2500,
+      "vh": 2.44,
+      "wheelSteps": 25
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 9566,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170931915&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=310272424.1790170932&frm=0&ngs=1&pscdl=noapi&rcb=13&sr=768x1024&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385422~120469145~120469153~121280970&sid=1790170931&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1874"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 10579,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2200,
+      "vh": 2.61,
+      "wheelSteps": 22
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 10583,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1h1v9248985033za208zd9248985033xf1&_p=1790170942288&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1958493798.1790170943&frm=0&ngs=1&pscdl=noapi&rcb=16&sr=390x844&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385422~120469145~120469153~121280971&sid=1790170942&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1866"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "pl",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "https://www.grupagotoma.pl/",
+    "docHeightInitial": 10802,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2100,
+      "vh": 2.69,
+      "wheelSteps": 21
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 10806,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170951458&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=384055772.1790170952&frm=0&ngs=1&pscdl=noapi&rcb=14&sr=360x780&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170951&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2F&dt=Grupa%20GOTOMA&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1432"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 1920,
+    "vw": 1920,
+    "vh": 1080,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 5084,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1500,
+      "vh": 1.39,
+      "wheelSteps": 15
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 5084,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za208zd9248985033xf1&_p=1790170960578&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=397076952.1790170961&frm=0&ngs=1&pscdl=noapi&rcb=8&sr=1920x1080&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938466~115938468~118897920~118897930~120213116~120385422~120469145~120469153~121280971&sid=1790170960&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1488"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 1440,
+    "vw": 1440,
+    "vh": 900,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 5084,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1700,
+      "vh": 1.89,
+      "wheelSteps": 17
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 5084,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170969808&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1871036139.1790170970&frm=0&ngs=1&pscdl=noapi&rcb=17&sr=1440x900&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170969&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1540"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 1280,
+    "vw": 1280,
+    "vh": 800,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 5070,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 1800,
+      "vh": 2.25,
+      "wheelSteps": 18
+    },
+    "backJumps": [],
+    "overflowMax": 27,
+    "docHeightEnd": 5070,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170978854&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=690102558.1790170979&frm=0&ngs=1&pscdl=noapi&rcb=4&sr=1280x800&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385422~120469145~120469153&sid=1790170978&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1385"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 768,
+    "vw": 768,
+    "vh": 1024,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 9586,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2500,
+      "vh": 2.44,
+      "wheelSteps": 25
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 9591,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790170988813&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=1612836606.1790170989&frm=0&ngs=1&pscdl=noapi&rcb=16&sr=768x1024&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790170988&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1783"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 390,
+    "vw": 390,
+    "vh": 844,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 10590,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2200,
+      "vh": 2.61,
+      "wheelSteps": 22
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 10595,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69m0h2v9248985033za200zd9248985033xf1&_p=1790170999251&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=2046459447.1790171000&frm=0&ngs=1&pscdl=noapi&rcb=15&sr=390x844&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120420415~120469145~120469153&sid=1790170999&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1965"
+    ]
+  },
+  {
+    "env": "prod",
+    "lang": "en",
+    "w": 360,
+    "vw": 360,
+    "vh": 780,
+    "url": "https://www.grupagotoma.pl/en/",
+    "docHeightInitial": 10666,
+    "pin": null,
+    "cardsVisibleAt": {
+      "y": 2200,
+      "vh": 2.82,
+      "wheelSteps": 22
+    },
+    "backJumps": [],
+    "overflowMax": 0,
+    "docHeightEnd": 10671,
+    "allPinsSeen": [],
+    "consoleErrors": [],
+    "failedRequests": [
+      "net::ERR_ABORTED https://region1.google-analytics.com/g/collect?v=2&tid=G-NRBTRG0DB8&gtm=45je69l1v9248985033za200zd9248985033xf1&_p=1790171008571&gcs=G111&gcd=13t3t3t2t5l1&npa=0&dma_cps=a&dma=1&cid=254645529.1790171009&frm=0&ngs=1&pscdl=noapi&rcb=19&sr=360x780&uaa=x86&uab=64&uafvl=HeadlessChrome%3B153.0.8010.12%7CNot_A%2520Brand%3B8.0.0.0%7CChromium%3B153.0.8010.12&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153&sid=1790171008&sct=1&seg=0&dl=https%3A%2F%2Fwww.grupagotoma.pl%2Fen%2F&dt=GOTOMA%20Group&_tu=QA&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&ep.anonymize_ip=true&tfd=1788"
+    ]
+  }
+]

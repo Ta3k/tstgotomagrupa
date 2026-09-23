@@ -1,0 +1,2407 @@
+{
+  "pl-1440-normal-trajectory": [
+    {
+      "i": 0,
+      "y": 100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0",
+      "done": false
+    },
+    {
+      "i": 3,
+      "y": 400,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0.25",
+      "done": false
+    },
+    {
+      "i": 6,
+      "y": 700,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0.66",
+      "done": false
+    },
+    {
+      "i": 9,
+      "y": 1000,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@1",
+      "done": false
+    },
+    {
+      "i": 12,
+      "y": 1300,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0",
+      "done": false
+    },
+    {
+      "i": 15,
+      "y": 1600,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0",
+      "done": false
+    },
+    {
+      "i": 18,
+      "y": 1900,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.05",
+      "done": false
+    },
+    {
+      "i": 21,
+      "y": 2200,
+      "step": "01",
+      "tips": "Finansowanie",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.19",
+      "done": false
+    },
+    {
+      "i": 24,
+      "y": 2500,
+      "step": "01",
+      "tips": "Finansowanie",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.33",
+      "done": false
+    },
+    {
+      "i": 27,
+      "y": 2800,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.47",
+      "done": false
+    },
+    {
+      "i": 30,
+      "y": 3100,
+      "step": "02",
+      "tips": "Sklepy internetowe",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.61",
+      "done": false
+    },
+    {
+      "i": 33,
+      "y": 3400,
+      "step": "02",
+      "tips": "Sklepy internetowe",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.75",
+      "done": false
+    },
+    {
+      "i": 36,
+      "y": 3700,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 jak-to-dziala:1784-3944@0.89",
+      "done": false
+    },
+    {
+      "i": 39,
+      "y": 1784,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1",
+      "done": true,
+      "BACKJUMP": 2116
+    },
+    {
+      "i": 42,
+      "y": 2084,
+      "step": "01",
+      "tips": "APLIKACJE CUSTOM",
+      "pins": "c-hero animate:136-874@1",
+      "done": true
+    },
+    {
+      "i": 45,
+      "y": 2384,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1",
+      "done": true
+    }
+  ],
+  "pl-1440-errors": [],
+  "pl-1440-fast": {
+    "atDiagram": {
+      "y": 1784,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        3216,
+        3216,
+        3216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown_immediate": {
+      "y": 3722,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1278,
+        1278,
+        1278
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.9
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown": {
+      "y": 3739,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1261,
+        1261,
+        1261
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.91
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstUp": {
+      "y": 2930,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [
+        "Sklepy internetowe"
+      ],
+      "cardsTop": [
+        2070,
+        2070,
+        2070
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.53
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "burstMs": 6856
+  },
+  "pl-1920-normal-trajectory": [
+    {
+      "i": 0,
+      "y": 100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0",
+      "done": false
+    },
+    {
+      "i": 3,
+      "y": 300,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.09",
+      "done": false
+    },
+    {
+      "i": 6,
+      "y": 700,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.55",
+      "done": false
+    },
+    {
+      "i": 9,
+      "y": 1000,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.88",
+      "done": false
+    },
+    {
+      "i": 12,
+      "y": 1300,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 15,
+      "y": 1600,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 18,
+      "y": 1900,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 21,
+      "y": 2200,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.04",
+      "done": false
+    },
+    {
+      "i": 24,
+      "y": 2500,
+      "step": "01",
+      "tips": "Finansowanie",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.15",
+      "done": false
+    },
+    {
+      "i": 27,
+      "y": 2800,
+      "step": "01",
+      "tips": "Finansowanie",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.27",
+      "done": false
+    },
+    {
+      "i": 30,
+      "y": 3100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.39",
+      "done": false
+    },
+    {
+      "i": 33,
+      "y": 3400,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.5",
+      "done": false
+    },
+    {
+      "i": 36,
+      "y": 3700,
+      "step": "02",
+      "tips": "Sklepy internetowe",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.62",
+      "done": false
+    },
+    {
+      "i": 39,
+      "y": 4000,
+      "step": "02",
+      "tips": "Sklepy internetowe",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.73",
+      "done": false
+    },
+    {
+      "i": 42,
+      "y": 4300,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.85",
+      "done": false
+    },
+    {
+      "i": 45,
+      "y": 4600,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 jak-to-dziala:2102-4694@0.96",
+      "done": false
+    },
+    {
+      "i": 46,
+      "y": 2102,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true,
+      "BACKJUMP": 2498
+    },
+    {
+      "i": 48,
+      "y": 2302,
+      "step": "01",
+      "tips": "ERP|APLIKACJE CUSTOM",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    },
+    {
+      "i": 51,
+      "y": 2602,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    },
+    {
+      "i": 54,
+      "y": 2902,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    }
+  ],
+  "pl-1920-errors": [],
+  "pl-1920-fast": {
+    "atDiagram": {
+      "y": 2102,
+      "ih": 1080,
+      "h": 9108,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        3828,
+        3828,
+        3828
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 2102,
+          "e": 4694,
+          "p": 0
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown_immediate": {
+      "y": 4163,
+      "ih": 1080,
+      "h": 9108,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1767,
+        1767,
+        1767
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.8
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown": {
+      "y": 4208,
+      "ih": 1080,
+      "h": 9108,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1722,
+        1722,
+        1722
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.81
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstUp": {
+      "y": 3237,
+      "ih": 1080,
+      "h": 9108,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2693,
+        2693,
+        2693
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.44
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "burstMs": 7560
+  },
+  "pl-kbd-PageDown": {
+    "cardsAt": {
+      "presses": 7,
+      "y": 2571,
+      "vh": 2.86
+    },
+    "seq": [
+      {
+        "i": 1,
+        "y": 787,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 2,
+        "y": 1574,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 3,
+        "y": 2361,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 4,
+        "y": 3148,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 5,
+        "y": 3935,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 6,
+        "y": 1784,
+        "step": "01",
+        "done": true,
+        "back": 2151
+      },
+      {
+        "i": 7,
+        "y": 2571,
+        "step": "01",
+        "done": true
+      }
+    ]
+  },
+  "pl-kbd-Space": {
+    "cardsAt": {
+      "presses": 7,
+      "y": 2789,
+      "vh": 3.1
+    },
+    "seq": [
+      {
+        "i": 1,
+        "y": 787,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 2,
+        "y": 1574,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 3,
+        "y": 2361,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 4,
+        "y": 3148,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 5,
+        "y": 3935,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 6,
+        "y": 2002,
+        "step": "01",
+        "done": true,
+        "back": 1933
+      },
+      {
+        "i": 7,
+        "y": 2789,
+        "step": "01",
+        "done": true
+      }
+    ]
+  },
+  "pl-kbd-EndHome": {
+    "end": {
+      "y": 1784,
+      "h": 6018,
+      "atBottom": false
+    },
+    "home": {
+      "y": 0
+    }
+  },
+  "pl-tab": {
+    "firstNode": 91,
+    "nodeCount": 11,
+    "firstPartnerInTip": 102,
+    "partnerStopsVisible": [
+      0,
+      0.997831,
+      0.997831,
+      0.68312
+    ],
+    "firstBrandCard": 17,
+    "brandCardStops": 6,
+    "noVisibleFocus": [],
+    "outOfView": [
+      "A.c-blog-card__image:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:"
+    ],
+    "stops": [
+      "0:A.logo__link:",
+      "1:A.logo__link:",
+      "2:A.logo__link:",
+      "3:A.logo__link:",
+      "4:A.logo__link:",
+      "5:A.nav__link:O grupie",
+      "6:SPAN.nav__link:Nasze firmy",
+      "7:SPAN.nav__link:Usługi",
+      "8:A.nav__link:AI i automatyzacja",
+      "9:A.nav__link:Cyfryzacja sprzedaży",
+      "10:A.nav__link:Transformacja cyfrowa",
+      "11:A.nav__link:E-commerce i platformy B2B",
+      "12:A.nav__link:IT dla produkcji i logistyki",
+      "13:A.nav__link:Private AI i cyberbezpieczeńst",
+      "14:A.nav__link:Konsultacja 360°",
+      "15:A.works-button:Dowiedz się więcej",
+      null,
+      "17:A.c-blog-card__image:",
+      "18:A.:Sprzedaż online i marketing",
+      "19:A.:Chcę sprzedawać więcej",
+      "20:A.:",
+      "21:A.c-blog-card__image:",
+      "22:A.:Dedykowane systemy i aplikacje",
+      "23:A.:Potrzebuję systemu",
+      "24:A.:",
+      "25:A.c-blog-card__image:",
+      "26:A.:Kompleksowe wdrożenia IT",
+      "27:A.:Szukam partnera IT",
+      "28:A.:",
+      "29:A.partner-banner:Oficjalne partnerstwo\n        ",
+      "30:A.partner-banner:Członkostwo w klastrze przemys",
+      "31:A.partner-banner:ERP Factory, rozwijamy własne ",
+      "32:A.:",
+      "33:A.:",
+      "34:A.:",
+      "35:A.:",
+      "36:A.:",
+      "37:A.:",
+      "38:A.:",
+      "39:A.:",
+      "40:A.:",
+      "41:A.:",
+      "42:A.:",
+      "43:A.:",
+      "44:A.:",
+      "45:A.:",
+      "46:A.:",
+      "47:A.:",
+      "48:A.:",
+      "49:A.:",
+      "50:A.:",
+      "51:A.:",
+      "52:A.:",
+      "53:A.:",
+      "54:A.:",
+      "55:A.:",
+      "56:A.:",
+      "57:A.:",
+      "58:A.:",
+      "59:A.:",
+      "60:A.:",
+      "61:A.:",
+      "62:A.:",
+      "63:A.:",
+      "64:A.:",
+      "65:A.:",
+      "66:A.:",
+      "67:A.:",
+      "68:A.:",
+      "69:A.:",
+      "70:A.:",
+      "71:A.:",
+      "72:A.:",
+      "73:A.:",
+      "74:BUTTON.top:",
+      "75:A.footer_nav__link:Ciasteczka & Polityka Prywatno",
+      null,
+      "77:A.logo__link:",
+      "78:A.logo__link:",
+      "79:A.logo__link:",
+      "80:A.logo__link:",
+      "81:A.logo__link:",
+      "82:A.nav__link:O grupie",
+      "83:SPAN.nav__link:Nasze firmy",
+      "84:A.nav__link:GOTOMA GENERAL",
+      "85:A.nav__link:GOTOMA Software House",
+      "86:A.nav__link:Codarius",
+      "87:A.nav__link:ERP Factory",
+      "88:SPAN.nav__link:Usługi",
+      "89:A.works-button:Dowiedz się więcej",
+      "90:BUTTON.scheme-finance:Finansowanie\n            Spraw",
+      "91:BUTTON.scheme-node:Sklepy internetowe\n        \n  ",
+      "92:BUTTON.scheme-node:Cyberbezpieczeństwo\n      \n   ",
+      "93:BUTTON.scheme-node:WMS / AMS\n        \n        Mag",
+      "94:BUTTON.scheme-node:TMS\n        \n        Transport",
+      "95:BUTTON.scheme-node:ERP\n        \n        \n        ",
+      "96:BUTTON.scheme-node:APLIKACJE CUSTOM\n        \n    ",
+      "97:BUTTON.scheme-node:Leady\n        \n        Pozyski",
+      "98:BUTTON.scheme-node:CRM\n        \n        Obsługa s",
+      "99:BUTTON.scheme-node:SPRZĘT\n        \n        Hardwa",
+      "100:BUTTON.scheme-node:MES\n        \n        Zarządzan",
+      "101:BUTTON.scheme-node:PIM\n        \n        Informacj",
+      "102:A.:[tip op=0]",
+      "103:A.:[tip op=0.997831]",
+      "104:A.:[tip op=0.997831]",
+      "105:A.:[tip op=0.68312]",
+      "106:A.c-blog-card__image:",
+      "107:A.:Sprzedaż online i marketing",
+      "108:A.:Chcę sprzedawać więcej",
+      "109:A.:",
+      "110:A.c-blog-card__image:",
+      "111:A.:Dedykowane systemy i aplikacje",
+      "112:A.:Potrzebuję systemu",
+      "113:A.:",
+      "114:A.c-blog-card__image:",
+      "115:A.:Kompleksowe wdrożenia IT",
+      "116:A.:Szukam partnera IT",
+      "117:A.:",
+      "118:A.partner-banner:Oficjalne partnerstwo\n        ",
+      "119:A.partner-banner:Członkostwo w klastrze przemys",
+      "120:A.partner-banner:ERP Factory, rozwijamy własne ",
+      "121:A.:",
+      "122:A.:",
+      "123:A.:",
+      "124:A.:",
+      "125:A.:",
+      "126:A.:",
+      "127:A.:",
+      "128:A.:",
+      "129:A.:",
+      "130:A.:",
+      "131:A.:",
+      "132:A.:",
+      "133:A.:",
+      "134:A.:",
+      "135:A.:",
+      "136:A.:",
+      "137:A.:",
+      "138:A.:",
+      "139:A.:",
+      "140:A.:",
+      "141:A.:",
+      "142:A.:",
+      "143:A.:",
+      "144:A.:",
+      "145:A.:",
+      "146:A.:",
+      "147:A.:",
+      "148:A.:",
+      "149:A.:",
+      "150:A.:",
+      "151:A.:",
+      "152:A.:",
+      "153:A.:",
+      "154:A.:",
+      "155:A.:",
+      "156:A.:",
+      "157:A.:",
+      "158:A.:",
+      "159:A.:"
+    ]
+  },
+  "pl-heroButton": {
+    "y": 1866,
+    "cardsTop": [
+      3134,
+      3134,
+      3134
+    ],
+    "pins": [
+      {
+        "id": "c-hero animate",
+        "s": 136,
+        "e": 874,
+        "p": 1
+      },
+      {
+        "id": "jak-to-dziala",
+        "s": 1784,
+        "e": 3944,
+        "p": 0.04
+      }
+    ],
+    "done": false
+  },
+  "pl-directHash": {
+    "y": 2097,
+    "cardsTop": [
+      2903,
+      2903,
+      2903
+    ],
+    "pins": [
+      {
+        "id": "c-hero animate",
+        "s": 216,
+        "e": 954,
+        "p": 1
+      },
+      {
+        "id": "jak-to-dziala",
+        "s": 1784,
+        "e": 3944,
+        "p": 0.14
+      }
+    ]
+  },
+  "pl-reduced": {
+    "pins": 0,
+    "visibleTipsAtRest": [],
+    "nodes": 12,
+    "hoverShown": [
+      "Finansowanie",
+      "Sklepy internetowe",
+      "Cyberbezpieczeństwo",
+      "WMS / AMS",
+      "WMS / AMS",
+      "WMS / AMS",
+      "APLIKACJE CUSTOM",
+      "Leady",
+      "CRM",
+      "SPRZĘT",
+      "SPRZĘT",
+      "SPRZĘT"
+    ]
+  },
+  "pl-resize": {
+    "before": {
+      "y": 2784,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2216,
+        2216,
+        2216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.46
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "mid": {
+      "y": 2784,
+      "ih": 720,
+      "h": 7386,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [
+        "Sklepy internetowe"
+      ],
+      "cardsTop": [
+        1383,
+        1383,
+        1383
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 726,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1563,
+          "e": 3291,
+          "p": 0.71
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "toMobile": {
+      "y": 2784,
+      "ih": 1100,
+      "h": 10748,
+      "storyCompleted": false,
+      "storyClass": false,
+      "visibleTips": [],
+      "cardsTop": [
+        3470,
+        3470,
+        4119
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1038,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 2138,
+          "e": 4998,
+          "p": 0.23
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "back": {
+      "y": 2784,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2216,
+        2216,
+        2216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "jak-to-dziala",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.46
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "errors": []
+  },
+  "en-1440-normal-trajectory": [
+    {
+      "i": 0,
+      "y": 100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0",
+      "done": false
+    },
+    {
+      "i": 3,
+      "y": 400,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0.25",
+      "done": false
+    },
+    {
+      "i": 6,
+      "y": 700,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@0.66",
+      "done": false
+    },
+    {
+      "i": 9,
+      "y": 1000,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-954@1",
+      "done": false
+    },
+    {
+      "i": 12,
+      "y": 1300,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0",
+      "done": false
+    },
+    {
+      "i": 15,
+      "y": 1600,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0",
+      "done": false
+    },
+    {
+      "i": 18,
+      "y": 1900,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.05",
+      "done": false
+    },
+    {
+      "i": 21,
+      "y": 2200,
+      "step": "01",
+      "tips": "Financing",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.19",
+      "done": false
+    },
+    {
+      "i": 24,
+      "y": 2500,
+      "step": "01",
+      "tips": "Financing",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.33",
+      "done": false
+    },
+    {
+      "i": 27,
+      "y": 2800,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.47",
+      "done": false
+    },
+    {
+      "i": 30,
+      "y": 3100,
+      "step": "02",
+      "tips": "E-commerce stores",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.61",
+      "done": false
+    },
+    {
+      "i": 33,
+      "y": 3400,
+      "step": "02",
+      "tips": "E-commerce stores",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.75",
+      "done": false
+    },
+    {
+      "i": 36,
+      "y": 3700,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1 how-it-works:1784-3944@0.89",
+      "done": false
+    },
+    {
+      "i": 39,
+      "y": 1784,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1",
+      "done": true,
+      "BACKJUMP": 2116
+    },
+    {
+      "i": 42,
+      "y": 2084,
+      "step": "01",
+      "tips": "CUSTOM APPLICATIONS",
+      "pins": "c-hero animate:136-874@1",
+      "done": true
+    },
+    {
+      "i": 45,
+      "y": 2384,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-874@1",
+      "done": true
+    }
+  ],
+  "en-1440-errors": [],
+  "en-1440-fast": {
+    "atDiagram": {
+      "y": 1784,
+      "ih": 900,
+      "h": 8177,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        3216,
+        3216,
+        3216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown_immediate": {
+      "y": 3705,
+      "ih": 900,
+      "h": 8177,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1295,
+        1295,
+        1295
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.89
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown": {
+      "y": 3739,
+      "ih": 900,
+      "h": 8177,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1261,
+        1261,
+        1261
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.91
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstUp": {
+      "y": 2930,
+      "ih": 900,
+      "h": 8177,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [
+        "E-commerce stores"
+      ],
+      "cardsTop": [
+        2070,
+        2070,
+        2070
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.53
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "burstMs": 6444
+  },
+  "en-1920-normal-trajectory": [
+    {
+      "i": 0,
+      "y": 100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0",
+      "done": false
+    },
+    {
+      "i": 3,
+      "y": 400,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.21",
+      "done": false
+    },
+    {
+      "i": 6,
+      "y": 700,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.55",
+      "done": false
+    },
+    {
+      "i": 9,
+      "y": 1000,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:216-1102@0.88",
+      "done": false
+    },
+    {
+      "i": 12,
+      "y": 1300,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 15,
+      "y": 1600,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 18,
+      "y": 1900,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0",
+      "done": false
+    },
+    {
+      "i": 21,
+      "y": 2200,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.04",
+      "done": false
+    },
+    {
+      "i": 24,
+      "y": 2500,
+      "step": "01",
+      "tips": "Financing",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.15",
+      "done": false
+    },
+    {
+      "i": 27,
+      "y": 2800,
+      "step": "01",
+      "tips": "Financing",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.27",
+      "done": false
+    },
+    {
+      "i": 30,
+      "y": 3100,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.39",
+      "done": false
+    },
+    {
+      "i": 33,
+      "y": 3400,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.5",
+      "done": false
+    },
+    {
+      "i": 36,
+      "y": 3700,
+      "step": "02",
+      "tips": "E-commerce stores",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.62",
+      "done": false
+    },
+    {
+      "i": 39,
+      "y": 4000,
+      "step": "02",
+      "tips": "E-commerce stores",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.73",
+      "done": false
+    },
+    {
+      "i": 42,
+      "y": 4300,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.85",
+      "done": false
+    },
+    {
+      "i": 45,
+      "y": 4600,
+      "step": "02",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1 how-it-works:2102-4694@0.96",
+      "done": false
+    },
+    {
+      "i": 46,
+      "y": 2102,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true,
+      "BACKJUMP": 2498
+    },
+    {
+      "i": 48,
+      "y": 2302,
+      "step": "01",
+      "tips": "ERP|CUSTOM APPLICATIONS",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    },
+    {
+      "i": 51,
+      "y": 2602,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    },
+    {
+      "i": 54,
+      "y": 2902,
+      "step": "01",
+      "tips": "",
+      "pins": "c-hero animate:136-1022@1",
+      "done": true
+    }
+  ],
+  "en-1920-errors": [],
+  "en-1920-fast": {
+    "atDiagram": {
+      "y": 2102,
+      "ih": 1080,
+      "h": 9107,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        3828,
+        3828,
+        3828
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 2102,
+          "e": 4694,
+          "p": 0
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown_immediate": {
+      "y": 4162,
+      "ih": 1080,
+      "h": 9107,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1768,
+        1768,
+        1768
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.79
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstDown": {
+      "y": 4208,
+      "ih": 1080,
+      "h": 9107,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        1722,
+        1722,
+        1722
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.81
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "afterBurstUp": {
+      "y": 3237,
+      "ih": 1080,
+      "h": 9107,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2693,
+        2693,
+        2693
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1022,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 2102,
+          "e": 4694,
+          "p": 0.44
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "burstMs": 7027
+  },
+  "en-kbd-PageDown": {
+    "cardsAt": {
+      "presses": 7,
+      "y": 2612,
+      "vh": 2.9
+    },
+    "seq": [
+      {
+        "i": 1,
+        "y": 787,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 2,
+        "y": 1574,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 3,
+        "y": 2361,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 4,
+        "y": 3148,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 5,
+        "y": 3935,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 6,
+        "y": 1825,
+        "step": "01",
+        "done": true,
+        "back": 2110
+      },
+      {
+        "i": 7,
+        "y": 2612,
+        "step": "01",
+        "done": true
+      }
+    ]
+  },
+  "en-kbd-Space": {
+    "cardsAt": {
+      "presses": 7,
+      "y": 2644,
+      "vh": 2.94
+    },
+    "seq": [
+      {
+        "i": 1,
+        "y": 787,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 2,
+        "y": 1574,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 3,
+        "y": 2361,
+        "step": "01",
+        "done": false
+      },
+      {
+        "i": 4,
+        "y": 3148,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 5,
+        "y": 3935,
+        "step": "02",
+        "done": false
+      },
+      {
+        "i": 6,
+        "y": 1857,
+        "step": "01",
+        "done": true,
+        "back": 2078
+      },
+      {
+        "i": 7,
+        "y": 2644,
+        "step": "01",
+        "done": true
+      }
+    ]
+  },
+  "en-kbd-EndHome": {
+    "end": {
+      "y": 1784,
+      "h": 6017,
+      "atBottom": false
+    },
+    "home": {
+      "y": 0
+    }
+  },
+  "en-tab": {
+    "firstNode": 94,
+    "nodeCount": 11,
+    "firstPartnerInTip": 105,
+    "partnerStopsVisible": [
+      0.822212,
+      1,
+      1
+    ],
+    "firstBrandCard": 17,
+    "brandCardStops": 6,
+    "noVisibleFocus": [],
+    "outOfView": [
+      "A.c-blog-card__image:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:",
+      "A.:"
+    ],
+    "stops": [
+      "0:A.logo__link:",
+      "1:A.logo__link:",
+      "2:A.logo__link:",
+      "3:A.logo__link:",
+      "4:A.logo__link:",
+      "5:A.nav__link:About us",
+      "6:SPAN.nav__link:Our companies",
+      "7:SPAN.nav__link:Services",
+      "8:A.nav__link:AI and automation",
+      "9:A.nav__link:Sales digitalisation",
+      "10:A.nav__link:Digital transformation",
+      "11:A.nav__link:E-commerce and B2B platforms",
+      "12:A.nav__link:IT for manufacturing and logis",
+      "13:A.nav__link:Private AI and cybersecurity",
+      "14:A.nav__link:360° Consultation",
+      "15:A.works-button:Learn more",
+      null,
+      "17:A.c-blog-card__image:",
+      "18:A.:Online sales and marketing",
+      "19:A.:I want to sell more",
+      "20:A.:",
+      "21:A.c-blog-card__image:",
+      "22:A.:Custom systems and application",
+      "23:A.:I need a system",
+      "24:A.:",
+      "25:A.c-blog-card__image:",
+      "26:A.:End to end IT implementations",
+      "27:A.:I look for IT partner",
+      "28:A.:",
+      "29:A.partner-banner:Official partnership\n        W",
+      "30:A.partner-banner:Membership in the industrial c",
+      "31:A.partner-banner:ERP Factory, we develop our ow",
+      "32:A.:",
+      "33:A.:",
+      "34:A.:",
+      "35:A.:",
+      "36:A.:",
+      "37:A.:",
+      "38:A.:",
+      "39:A.:",
+      "40:A.:",
+      "41:A.:",
+      "42:A.:",
+      "43:A.:",
+      "44:A.:",
+      "45:A.:",
+      "46:A.:",
+      "47:A.:",
+      "48:A.:",
+      "49:A.:",
+      "50:A.:",
+      "51:A.:",
+      "52:A.:",
+      "53:A.:",
+      "54:A.:",
+      "55:A.:",
+      "56:A.:",
+      "57:A.:",
+      "58:A.:",
+      "59:A.:",
+      "60:A.:",
+      "61:A.:",
+      "62:A.:",
+      "63:A.:",
+      "64:A.:",
+      "65:A.:",
+      "66:A.:",
+      "67:A.:",
+      "68:A.:",
+      "69:A.:",
+      "70:A.:",
+      "71:A.:",
+      "72:A.:",
+      "73:A.:",
+      "74:BUTTON.top:",
+      "75:A.footer_nav__link:Cookies & Privacy Policy",
+      null,
+      "77:A.logo__link:",
+      "78:A.logo__link:",
+      "79:A.logo__link:",
+      "80:A.logo__link:",
+      "81:A.logo__link:",
+      "82:A.nav__link:About us",
+      "83:SPAN.nav__link:Our companies",
+      "84:SPAN.nav__link:Services",
+      "85:A.nav__link:AI and automation",
+      "86:A.nav__link:Sales digitalisation",
+      "87:A.nav__link:Digital transformation",
+      "88:A.nav__link:E-commerce and B2B platforms",
+      "89:A.nav__link:IT for manufacturing and logis",
+      "90:A.nav__link:Private AI and cybersecurity",
+      "91:A.nav__link:360° Consultation",
+      "92:A.works-button:Learn more",
+      "93:BUTTON.scheme-finance:Financing\n            Check op",
+      "94:BUTTON.scheme-node:E-commerce stores\n        \n   ",
+      "95:BUTTON.scheme-node:Cybersecurity\n      \n      \n  ",
+      "96:BUTTON.scheme-node:WMS / AMS\n        \n        War",
+      "97:BUTTON.scheme-node:TMS\n        \n        Transport",
+      "98:BUTTON.scheme-node:ERP\n        \n        \n        ",
+      "99:BUTTON.scheme-node:CUSTOM APPLICATIONS\n        \n ",
+      "100:BUTTON.scheme-node:Leads\n        \n        Custome",
+      "101:BUTTON.scheme-node:CRM\n        \n        Sales sup",
+      "102:BUTTON.scheme-node:HARDWARE\n        \n        Hard",
+      "103:BUTTON.scheme-node:MES\n        \n        Productio",
+      "104:BUTTON.scheme-node:PIM\n        \n        Product i",
+      "105:A.:[tip op=0.822212]",
+      "106:A.:[tip op=1]",
+      "107:A.:[tip op=1]",
+      "108:A.c-blog-card__image:",
+      "109:A.:Online sales and marketing",
+      "110:A.:I want to sell more",
+      "111:A.:",
+      "112:A.c-blog-card__image:",
+      "113:A.:Custom systems and application",
+      "114:A.:I need a system",
+      "115:A.:",
+      "116:A.c-blog-card__image:",
+      "117:A.:End to end IT implementations",
+      "118:A.:I look for IT partner",
+      "119:A.:",
+      "120:A.partner-banner:Official partnership\n        W",
+      "121:A.partner-banner:Membership in the industrial c",
+      "122:A.partner-banner:ERP Factory, we develop our ow",
+      "123:A.:",
+      "124:A.:",
+      "125:A.:",
+      "126:A.:",
+      "127:A.:",
+      "128:A.:",
+      "129:A.:",
+      "130:A.:",
+      "131:A.:",
+      "132:A.:",
+      "133:A.:",
+      "134:A.:",
+      "135:A.:",
+      "136:A.:",
+      "137:A.:",
+      "138:A.:",
+      "139:A.:",
+      "140:A.:",
+      "141:A.:",
+      "142:A.:",
+      "143:A.:",
+      "144:A.:",
+      "145:A.:",
+      "146:A.:",
+      "147:A.:",
+      "148:A.:",
+      "149:A.:",
+      "150:A.:",
+      "151:A.:",
+      "152:A.:",
+      "153:A.:",
+      "154:A.:",
+      "155:A.:",
+      "156:A.:",
+      "157:A.:",
+      "158:A.:",
+      "159:A.:"
+    ]
+  },
+  "en-heroButton": {
+    "y": 1979,
+    "cardsTop": [
+      3021,
+      3021,
+      3021
+    ],
+    "pins": [
+      {
+        "id": "c-hero animate",
+        "s": 136,
+        "e": 874,
+        "p": 1
+      },
+      {
+        "id": "how-it-works",
+        "s": 1784,
+        "e": 3944,
+        "p": 0.09
+      }
+    ],
+    "done": false
+  },
+  "en-directHash": {
+    "y": 2100,
+    "cardsTop": [
+      2900,
+      2900,
+      2900
+    ],
+    "pins": [
+      {
+        "id": "c-hero animate",
+        "s": 216,
+        "e": 954,
+        "p": 1
+      },
+      {
+        "id": "how-it-works",
+        "s": 1784,
+        "e": 3944,
+        "p": 0.15
+      }
+    ]
+  },
+  "en-reduced": {
+    "pins": 0,
+    "visibleTipsAtRest": [],
+    "nodes": 12,
+    "hoverShown": [
+      "Financing",
+      "E-commerce stores",
+      "Cybersecurity",
+      "WMS / AMS",
+      "WMS / AMS",
+      "WMS / AMS",
+      "CUSTOM APPLICATIONS",
+      "Leads",
+      "CRM",
+      "HARDWARE",
+      "HARDWARE",
+      "HARDWARE"
+    ]
+  },
+  "en-resize": {
+    "before": {
+      "y": 2784,
+      "ih": 900,
+      "h": 8177,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2216,
+        2216,
+        2216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.46
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "mid": {
+      "y": 2784,
+      "ih": 720,
+      "h": 7330,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [
+        "E-commerce stores"
+      ],
+      "cardsTop": [
+        1383,
+        1383,
+        1383
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 726,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1563,
+          "e": 3291,
+          "p": 0.71
+        }
+      ],
+      "step": "02",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "toMobile": {
+      "y": 2784,
+      "ih": 1100,
+      "h": 10767,
+      "storyCompleted": false,
+      "storyClass": false,
+      "visibleTips": [],
+      "cardsTop": [
+        3470,
+        3470,
+        4119
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 1038,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 2138,
+          "e": 4998,
+          "p": 0.23
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "back": {
+      "y": 2784,
+      "ih": 900,
+      "h": 8178,
+      "storyCompleted": false,
+      "storyClass": true,
+      "visibleTips": [],
+      "cardsTop": [
+        2216,
+        2216,
+        2216
+      ],
+      "pins": [
+        {
+          "id": "c-hero animate",
+          "s": 136,
+          "e": 874,
+          "p": 1
+        },
+        {
+          "id": "how-it-works",
+          "s": 1784,
+          "e": 3944,
+          "p": 0.46
+        }
+      ],
+      "step": "01",
+      "total": "02",
+      "overflow": 0,
+      "sheetOpen": false,
+      "bodyOverflow": "visible"
+    },
+    "errors": []
+  },
+  "pixel7-pl-mobile": {
+    "cardsAt": {
+      "y": 2819,
+      "vh": 3.36
+    },
+    "traj": [
+      {
+        "i": 0,
+        "y": 120,
+        "pins": "c-hero animate:172-860@0"
+      },
+      {
+        "i": 4,
+        "y": 600,
+        "pins": "c-hero animate:172-860@0.62"
+      },
+      {
+        "i": 8,
+        "y": 1080,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0"
+      },
+      {
+        "i": 12,
+        "y": 1560,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0"
+      },
+      {
+        "i": 16,
+        "y": 2040,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0.19"
+      },
+      {
+        "i": 20,
+        "y": 2520,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0.41"
+      },
+      {
+        "i": 24,
+        "y": 3000,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0.63"
+      },
+      {
+        "i": 28,
+        "y": 3480,
+        "pins": "c-hero animate:92-780@1 jak-to-dziala:1619-3800@0.85"
+      },
+      {
+        "i": 31,
+        "y": 1619,
+        "pins": "c-hero animate:92-780@1",
+        "back": 2101
+      },
+      {
+        "i": 32,
+        "y": 1739,
+        "pins": "c-hero animate:92-780@1"
+      },
+      {
+        "i": 36,
+        "y": 2219,
+        "pins": "c-hero animate:92-780@1"
+      },
+      {
+        "i": 40,
+        "y": 2699,
+        "pins": "c-hero animate:92-780@1"
+      }
+    ],
+    "triggers": 12,
+    "tap": {
+      "sheetOpen": true,
+      "bodyOverflow": "hidden"
+    },
+    "errors": [],
+    "overflow": 0
+  },
+  "pixel7-en-mobile": {
+    "cardsAt": {
+      "y": 2819,
+      "vh": 3.36
+    },
+    "traj": [
+      {
+        "i": 0,
+        "y": 120,
+        "pins": "c-hero animate:172-860@0"
+      },
+      {
+        "i": 4,
+        "y": 600,
+        "pins": "c-hero animate:172-860@0.62"
+      },
+      {
+        "i": 8,
+        "y": 1080,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0"
+      },
+      {
+        "i": 12,
+        "y": 1560,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0"
+      },
+      {
+        "i": 16,
+        "y": 2040,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0.19"
+      },
+      {
+        "i": 20,
+        "y": 2520,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0.41"
+      },
+      {
+        "i": 24,
+        "y": 3000,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0.63"
+      },
+      {
+        "i": 28,
+        "y": 3480,
+        "pins": "c-hero animate:92-780@1 how-it-works:1619-3800@0.85"
+      },
+      {
+        "i": 31,
+        "y": 1619,
+        "pins": "c-hero animate:92-780@1",
+        "back": 2101
+      },
+      {
+        "i": 32,
+        "y": 1739,
+        "pins": "c-hero animate:92-780@1"
+      },
+      {
+        "i": 36,
+        "y": 2219,
+        "pins": "c-hero animate:92-780@1"
+      },
+      {
+        "i": 40,
+        "y": 2699,
+        "pins": "c-hero animate:92-780@1"
+      }
+    ],
+    "triggers": 12,
+    "tap": {
+      "sheetOpen": true,
+      "bodyOverflow": "hidden"
+    },
+    "errors": [],
+    "overflow": 0
+  },
+  "iphone13-pl-mobile": {
+    "cardsAt": {
+      "y": 2630,
+      "vh": 3.96
+    },
+    "traj": [
+      {
+        "i": 0,
+        "y": 120,
+        "pins": ""
+      },
+      {
+        "i": 4,
+        "y": 600,
+        "pins": ""
+      },
+      {
+        "i": 8,
+        "y": 1080,
+        "pins": ""
+      },
+      {
+        "i": 12,
+        "y": 1560,
+        "pins": "c-hero animate:172-716@1 jak-to-dziala:0-NaN@0"
+      },
+      {
+        "i": 16,
+        "y": 2040,
+        "pins": "c-hero animate:172-716@1 jak-to-dziala:1310-3036@0.35"
+      },
+      {
+        "i": 20,
+        "y": 2520,
+        "pins": "c-hero animate:172-716@1 jak-to-dziala:1310-3036@0.63"
+      },
+      {
+        "i": 24,
+        "y": 3000,
+        "pins": "c-hero animate:172-716@1 jak-to-dziala:1310-3036@0.98"
+      },
+      {
+        "i": 26,
+        "y": 1310,
+        "pins": "c-hero animate:92-636@1",
+        "back": 1810
+      },
+      {
+        "i": 28,
+        "y": 1550,
+        "pins": "c-hero animate:92-636@1"
+      },
+      {
+        "i": 32,
+        "y": 2030,
+        "pins": "c-hero animate:92-636@1"
+      },
+      {
+        "i": 36,
+        "y": 2510,
+        "pins": "c-hero animate:92-636@1"
+      }
+    ],
+    "triggers": 12,
+    "tap": {
+      "sheetOpen": true,
+      "bodyOverflow": "hidden"
+    },
+    "errors": [],
+    "overflow": 0
+  },
+  "iphone13-en-mobile": {
+    "cardsAt": {
+      "y": 2630,
+      "vh": 3.96
+    },
+    "traj": [
+      {
+        "i": 0,
+        "y": 120,
+        "pins": "c-hero animate:0-NaN@0"
+      },
+      {
+        "i": 4,
+        "y": 600,
+        "pins": "c-hero animate:0-NaN@0"
+      },
+      {
+        "i": 8,
+        "y": 1080,
+        "pins": "c-hero animate:0-NaN@0"
+      },
+      {
+        "i": 12,
+        "y": 1560,
+        "pins": "c-hero animate:92-636@1 how-it-works:1310-3036@0.14"
+      },
+      {
+        "i": 16,
+        "y": 2040,
+        "pins": "c-hero animate:92-636@1 how-it-works:1310-3036@0.35"
+      },
+      {
+        "i": 20,
+        "y": 2520,
+        "pins": "c-hero animate:92-636@1 how-it-works:1310-3036@0.7"
+      },
+      {
+        "i": 24,
+        "y": 3000,
+        "pins": "c-hero animate:92-636@1 how-it-works:1310-3036@0.91"
+      },
+      {
+        "i": 25,
+        "y": 1310,
+        "pins": "c-hero animate:92-636@1",
+        "back": 1690
+      },
+      {
+        "i": 28,
+        "y": 1670,
+        "pins": "c-hero animate:92-636@1"
+      },
+      {
+        "i": 32,
+        "y": 2150,
+        "pins": "c-hero animate:92-636@1"
+      },
+      {
+        "i": 36,
+        "y": 2630,
+        "pins": "c-hero animate:92-636@1"
+      }
+    ],
+    "triggers": 12,
+    "tap": {
+      "sheetOpen": true,
+      "bodyOverflow": "hidden"
+    },
+    "errors": [],
+    "overflow": 0
+  }
+}
