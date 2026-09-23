@@ -416,228 +416,68 @@ function initializeCommon() {
           });
         });
 
-        const deferredObservers = [];
-        const whenNear = (element, setup) => {
-          if (!element) {
+        // Dolne sekcje strony głównej: jednorazowe, kaskadowe wejścia (zamiast animacji sprzężonych ze scrollem,
+        // przez które treść była przyciemniona i nachodziła na siebie) + odliczanie liczb w statystykach.
+        const root = document.documentElement;
+        const revealTargets = [];
+        document.querySelectorAll("[data-reveal]").forEach(element => revealTargets.push(element));
+        document.querySelectorAll("[data-reveal-group]").forEach(group => {
+          Array.prototype.forEach.call(group.children, (child, index) => {
+            child.style.setProperty("--i", Math.min(index, 8));
+            revealTargets.push(child);
+          });
+        });
+
+        const countUp = element => {
+          const match = element.textContent.trim().match(/^(\D*)(\d+)(.*)$/);
+          if (!match) {
             return;
           }
-
-          if (!("IntersectionObserver" in window)) {
-            setup();
-            return;
-          }
-
-          const observer = new IntersectionObserver(entries => {
-            if (!entries[0].isIntersecting) {
-              return;
+          const [, prefix, digits, suffix] = match;
+          const target = parseInt(digits, 10);
+          const duration = 1400;
+          const startTime = performance.now();
+          const step = now => {
+            const t = Math.min(1, (now - startTime) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            element.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
+            if (t < 1) {
+              requestAnimationFrame(step);
+            } else {
+              element.textContent = `${prefix}${digits}${suffix}`;
             }
-
-            observer.disconnect();
-            setup();
-          }, { rootMargin: "500px 0px" });
-
-          observer.observe(element);
-          deferredObservers.push(observer);
+          };
+          requestAnimationFrame(step);
         };
 
-        const sectionSelectors = [
-          ".stats-clients-results",
-          ".stats-solutions-partners",
-          ".stats-solutions-results",
-          ".find-out-more"
-        ];
-
-        sectionSelectors.forEach(selector => {
-          const section = document.querySelector(selector);
-
-          if (!section) {
-            return;
-          }
-
-          whenNear(section, () => {
-            section.classList.add("scroll-choreography-section");
-            gsap.fromTo(section,
-              { clipPath: "inset(4% 2% round 30px)" },
-              {
-                clipPath: "inset(0% 0% round 0px)",
-                ease: "none",
-                scrollTrigger: {
-                  trigger: section,
-                  start: "top 96%",
-                  end: "top 58%",
-                  scrub: 1,
-                  invalidateOnRefresh: true
-                }
+        let revealObserver = null;
+        if (revealTargets.length && "IntersectionObserver" in window) {
+          root.classList.add("home-reveal-ready");
+          revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) {
+                return;
               }
-            );
+              entry.target.classList.add("is-in");
+              entry.target.querySelectorAll("[data-count]").forEach(countUp);
+              revealObserver.unobserve(entry.target);
+            });
+          }, { rootMargin: "0px 0px -8% 0px", threshold: .1 });
+
+          revealTargets.forEach(element => {
+            // elementy widoczne już przy starcie: bez animacji (nie migają)
+            if (element.getBoundingClientRect().top < window.innerHeight * .9) {
+              element.classList.add("is-in");
+              return;
+            }
+            revealObserver.observe(element);
           });
-        });
-
-        const clients = document.querySelector(".stats-clients-results");
-
-        whenNear(clients, () => {
-          const gridItems = clients.querySelectorAll(".stat-card, .logo-item");
-          const banners = clients.querySelectorAll(".partner-banner");
-
-          gsap.fromTo(gridItems,
-            { autoAlpha: .18, y: 88, scale: .92 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              stagger: .08,
-              ease: "none",
-              scrollTrigger: {
-                trigger: clients.querySelector(".grid-container") || clients,
-                start: "top 88%",
-                end: "bottom 58%",
-                scrub: 1
-              }
-            }
-          );
-
-          banners.forEach((banner, index) => {
-            gsap.fromTo(banner,
-              { autoAlpha: .25, x: index % 2 === 0 ? -90 : 90, scale: .97 },
-              {
-                autoAlpha: 1,
-                x: 0,
-                scale: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: banner,
-                  start: "top 94%",
-                  end: "top 66%",
-                  scrub: 1
-                }
-              }
-            );
-          });
-        });
-
-        const partners = document.querySelector(".stats-solutions-partners");
-
-        whenNear(partners, () => {
-          const heading = partners.querySelector(".header-card-partners");
-          const slider = partners.querySelector(".slider-container");
-
-          gsap.fromTo(heading,
-            { autoAlpha: .25, x: -80 },
-            {
-              autoAlpha: 1,
-              x: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: partners,
-                start: "top 90%",
-                end: "top 62%",
-                scrub: 1
-              }
-            }
-          );
-
-          gsap.fromTo(slider,
-            { autoAlpha: .2, x: 110 },
-            {
-              autoAlpha: 1,
-              x: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: partners,
-                start: "top 82%",
-                end: "center 58%",
-                scrub: 1
-              }
-            }
-          );
-
-        });
-
-        const solutions = document.querySelector(".stats-solutions-results");
-
-        whenNear(solutions, () => {
-          const heading = solutions.querySelector(".header-card-solutions");
-          const cards = solutions.querySelectorAll(".stat-card-solutions");
-
-          gsap.fromTo(heading,
-            { autoAlpha: .2, y: 70 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: heading,
-                start: "top 92%",
-                end: "top 62%",
-                scrub: 1
-              }
-            }
-          );
-
-          gsap.fromTo(cards,
-            { autoAlpha: .16, y: 100, scale: .9, rotationX: 10 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              rotationX: 0,
-              stagger: .1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: solutions.querySelector(".grid-container-solutions") || solutions,
-                start: "top 86%",
-                end: "bottom 68%",
-                scrub: 1
-              }
-            }
-          );
-        });
-
-        const finalSection = document.querySelector(".find-out-more");
-
-        whenNear(finalSection, () => {
-          const heading = finalSection.querySelector(".section__info");
-          const cards = finalSection.querySelectorAll(".c-blog-card__inner");
-
-          gsap.fromTo(heading,
-            { autoAlpha: .2, y: 60 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: finalSection,
-                start: "top 98%",
-                end: "top 76%",
-                scrub: 1
-              }
-            }
-          );
-
-          gsap.fromTo(cards,
-            { autoAlpha: .18, y: 110, scale: .92 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              stagger: .12,
-              ease: "none",
-              scrollTrigger: {
-                trigger: finalSection,
-                start: "top 98%",
-                end: "top 76%",
-                scrub: 1
-              }
-            }
-          );
-        });
+        }
 
         return () => {
-          deferredObservers.forEach(observer => observer.disconnect());
-          document.documentElement.classList.remove("smooth-page-scroll");
-          document.querySelectorAll(".scroll-choreography-section").forEach(section => {
-            section.classList.remove("scroll-choreography-section");
-          });
+          revealObserver?.disconnect();
+          root.classList.remove("home-reveal-ready");
+          document.querySelectorAll("[data-reveal], [data-reveal-group] > *").forEach(element => element.classList.add("is-in"));
         };
       }
     );
@@ -670,11 +510,31 @@ function initializeCommon() {
     observer.observe(element);
   };
 
-  /* Sekwencje diagramu tworzymy od razu po załadowaniu runtime (sekcja jest wtedy jeszcze pod ekranem),
-     żeby zmiana układu sekcji i wstawienie pin-spacera nie działy się na oczach użytkownika. */
+  /* Sekwencje diagramu tworzymy przy pierwszej interakcji (scroll, dotyk, klawisz, kliknięcie);
+     żeby dojść do diagramu i tak trzeba przewinąć stronę. Sekcja leży pod pełnoekranowym hero, więc w tym momencie jest jeszcze poza ekranem:
+     zmiana układu i wstawienie pin-spacera są niewidoczne, a ciężka konfiguracja (~200 ms) nie blokuje ładowania. */
+  const storySetups = [];
+  let storiesStarted = false;
+  const startStories = () => {
+    if (storiesStarted) {
+      return;
+    }
+    storiesStarted = true;
+    ["scroll", "wheel", "touchstart", "keydown", "pointerdown"].forEach(type => window.removeEventListener(type, startStories));
+    storySetups.forEach(setup => setup());
+  };
+  if (document.querySelector(".stats-how-it-works")) {
+    ["scroll", "wheel", "touchstart", "keydown", "pointerdown"].forEach(type => {
+      window.addEventListener(type, startStories, { passive: true });
+    });
+    // strona otwarta od razu niżej (odświeżenie w połowie, kotwica): nie czekamy
+    if (window.scrollY > window.innerHeight * .5) {
+      requestAnimationFrame(startStories);
+    }
+  }
   const initializeStoryNow = setup => {
     if (document.querySelector(".stats-how-it-works")) {
-      setup();
+      storySetups.push(setup);
     }
   };
 

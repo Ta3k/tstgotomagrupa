@@ -1,32 +1,23 @@
 <!-- begin blog -->
 {% if include.show_posts != false %}
-<section class="section blog find-out-more" id="{% if page.lang == 'pl' %}dowiedz-sie-wiecej{% else %}choose-what-you-need{% endif %}">
+<section class="c-brands" id="{% if page.lang == 'pl' %}dowiedz-sie-wiecej{% else %}choose-what-you-need{% endif %}">
   <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner animate">
+    <div class="c-home-head" data-reveal>
+      <h2 class="c-home-head__title">{{ include.title }}</h2>
+      {% if include.description_html and include.description_html != "" %}
+        <div class="c-home-head__lead">{{ include.description_html }}</div>
+      {% endif %}
+    </div>
 
-          <div class="section__info">
-            <div class="section__head">
-              <h2 class="section__title">{{ include.title }}</h2>
-            </div>
-            <div class="section__description">{{ include.description_html }}</div>
-          </div>
-
-          <div class="row">
-            {% assign lang = page.lang | default: "pl" %}
-
-            {% if site.posts.size > 0 %}
-              {% for post in site.posts offset:0 limit:6 %}
-                {% if post.lang == lang %}
-                  {% bookshop blog-card post=post %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          </div>
-
-        </div>
-      </div>
+    <div class="row c-brands__grid" data-reveal-group>
+      {% assign lang = page.lang | default: "pl" %}
+      {% if site.posts.size > 0 %}
+        {% for post in site.posts offset:0 limit:6 %}
+          {% if post.lang == lang %}
+            {% bookshop blog-card post=post %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>

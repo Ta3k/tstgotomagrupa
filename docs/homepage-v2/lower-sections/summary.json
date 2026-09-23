@@ -1,0 +1,394 @@
+{
+  "local-pl": {
+    "url": "http://localhost:6070/",
+    "runs": [
+      {
+        "performance": 87,
+        "fcp_ms": 1380,
+        "lcp_ms": 4026,
+        "tbt_ms": 22,
+        "cls": 0,
+        "si_ms": 2471,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 611.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 476
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 88,
+        "fcp_ms": 1375,
+        "lcp_ms": 3859,
+        "tbt_ms": 47,
+        "cls": 0,
+        "si_ms": 2161,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 611.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 476
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1372,
+        "lcp_ms": 3622,
+        "tbt_ms": 54,
+        "cls": 0,
+        "si_ms": 2153,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 62,
+            "kb": 611.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 476
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "font": {
+            "requests": 5,
+            "kb": 35.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.9
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 88,
+      "fcp_ms": 1375,
+      "lcp_ms": 3859,
+      "tbt_ms": 47,
+      "cls": 0,
+      "si_ms": 2161
+    },
+    "resources": {
+      "total": {
+        "requests": 62,
+        "kb": 611.2
+      },
+      "image": {
+        "requests": 50,
+        "kb": 476
+      },
+      "script": {
+        "requests": 4,
+        "kb": 57.5
+      },
+      "font": {
+        "requests": 5,
+        "kb": 35.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 25.4
+      },
+      "document": {
+        "requests": 1,
+        "kb": 16.9
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "local-en": {
+    "url": "http://localhost:6070/en/",
+    "runs": [
+      {
+        "performance": 89,
+        "fcp_ms": 1377,
+        "lcp_ms": 3702,
+        "tbt_ms": 9,
+        "cls": 0,
+        "si_ms": 2083,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 598.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 474.7
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 90,
+        "fcp_ms": 1370,
+        "lcp_ms": 3545,
+        "tbt_ms": 9,
+        "cls": 0,
+        "si_ms": 2147,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 598.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 474.7
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      },
+      {
+        "performance": 89,
+        "fcp_ms": 1372,
+        "lcp_ms": 3697,
+        "tbt_ms": 69,
+        "cls": 0,
+        "si_ms": 2160,
+        "lcp_element": null,
+        "resources": {
+          "total": {
+            "requests": 60,
+            "kb": 598.2
+          },
+          "image": {
+            "requests": 50,
+            "kb": 474.7
+          },
+          "script": {
+            "requests": 4,
+            "kb": 57.5
+          },
+          "stylesheet": {
+            "requests": 2,
+            "kb": 25.4
+          },
+          "font": {
+            "requests": 3,
+            "kb": 24
+          },
+          "document": {
+            "requests": 1,
+            "kb": 16.6
+          },
+          "media": {
+            "requests": 0,
+            "kb": 0
+          },
+          "other": {
+            "requests": 0,
+            "kb": 0
+          },
+          "third-party": {
+            "requests": 0,
+            "kb": 0
+          }
+        }
+      }
+    ],
+    "median": {
+      "performance": 89,
+      "fcp_ms": 1372,
+      "lcp_ms": 3697,
+      "tbt_ms": 9,
+      "cls": 0,
+      "si_ms": 2147
+    },
+    "resources": {
+      "total": {
+        "requests": 60,
+        "kb": 598.2
+      },
+      "image": {
+        "requests": 50,
+        "kb": 474.7
+      },
+      "script": {
+        "requests": 4,
+        "kb": 57.5
+      },
+      "stylesheet": {
+        "requests": 2,
+        "kb": 25.4
+      },
+      "font": {
+        "requests": 3,
+        "kb": 24
+      },
+      "document": {
+        "requests": 1,
+        "kb": 16.6
+      },
+      "media": {
+        "requests": 0,
+        "kb": 0
+      },
+      "other": {
+        "requests": 0,
+        "kb": 0
+      },
+      "third-party": {
+        "requests": 0,
+        "kb": 0
+      }
+    },
+    "lcp_element": null
+  },
+  "_meta": {
+    "date": "2026-09-23T23:50:03.905Z",
+    "runs": 3,
+    "lighthouse": "13.5.0",
+    "formFactor": "mobile (default throttling)"
+  }
+}

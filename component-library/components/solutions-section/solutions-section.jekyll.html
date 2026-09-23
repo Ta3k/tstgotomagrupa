@@ -1,22 +1,19 @@
 <!-- begin solutions -->
 {% if include.show_solutions != false %}
-<section id="solutions" class="stats-solutions-results">
+<section id="solutions" class="c-solutions">
   <div class="container">
-    <div class="grid-container-solutions">
-      <div class="header-card-solutions">
-        <h2 class="stat-value-solutions-header">{{site.data[page.lang].projects.item82}}</h2>
-        <p class="stat-label-solutions-header">
-          {{site.data[page.lang].projects.item83}}
-        </p>
-      </div>
+    <div class="c-home-head c-solutions__head" data-reveal>
+      <h2 class="c-home-head__title">{{ site.data[page.lang].projects.item82 }}</h2>
+      <p class="c-home-head__lead">{{ site.data[page.lang].projects.item83 }}</p>
+    </div>
 
-      {% assign solutions = site.data[page.lang].projects.solutions %}
-
+    {% assign solutions = site.data[page.lang].projects.solutions %}
+    <div class="c-solutions__grid" data-reveal-group>
       {% for solution in solutions %}
-        <div class="stat-card-solutions">
-          <img loading="lazy" decoding="async" src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}">
-          <span class="stat-value-solutions">{{ solution.title }}</span>
-          <span class="stat-label-solutions">{{ solution.description }}</span>
+        <div class="c-solution">
+          <span class="c-solution__media"><img loading="lazy" decoding="async" src="{{ solution.image | relative_url }}" alt="{{ solution.alt | escape }}"></span>
+          <span class="c-solution__title">{{ solution.title }}</span>
+          <span class="c-solution__text">{{ solution.description }}</span>
         </div>
       {% endfor %}
     </div>

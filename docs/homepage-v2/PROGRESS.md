@@ -162,3 +162,25 @@ Sprawdzone:
   - ikony obok nazw obszarów oznaczone jako dekoracyjne (`alt=""`, zamiast polskich altów w EN);
   - `aria-label` zamknięcia arkusza „Close” w EN;
   - fallback etykiety partnerów z danych językowych.
+
+### Etap 5–6: karty marek i dolne sekcje strony głównej w złotym stylu (2026-09-24)
+
+- Nowe szablony z własnymi klasami BEM:
+  - `blog-section` → `c-brands`;
+  - `projects-section` → `c-proof` + `c-banner`;
+  - `partners-section` → `c-partners`;
+  - `solutions-section` → `c-solutions`.
+- Style: `3-modules/_home-sections.scss`, karta marki: `blog-card.scss`. Teksty, dane, linki i kotwice (`#dowiedz-sie-wiecej`, `#o-grupie`, `#partners`, `#solutions` i EN) bez zmian.
+- **Karty marek:** pełne zdjęcie z gradientem, logo, tytuł, opis i złoty przycisk. Jeden link na kartę (rozciągnięty tytuł, wcześniej 4 przystanki Tab), złota obwódka i powiększenie zdjęcia przy hover/focus. Nagłówek karty zmieniony na h3.
+- **Liczby:** złote cyfry w kartach z odliczaniem przy wejściu (wartość jest w HTML od początku, kończy dokładnie na 13+ / 300+ / 70+).
+- **Klienci:** siatka 6×2 z liniami, białe logotypy rozjaśniające się przy hover.
+- **Partnerstwa:** 3 złote karty zamiast „schodków” (przy okazji poprawiony niepoprawny HTML ze `<span href>`).
+- **Partnerzy:** pasek z wygaszanymi krawędziami. Logotypy z nieprzezroczystym tłem w oryginalnych kolorach, druga kopia listy ukryta przed czytnikami i Tabem. Przy reduced-motion jest statyczna siatka.
+- **Rozwiązania:** karty w stylu stron usług.
+- **Animacje w `common.js`:** usunięte animacje sprzężone ze scrollem (przez nie treść była przyciemniona do 0,18 i nachodziła na siebie), w ich miejsce jednorazowe, kaskadowe wejścia (`[data-reveal]`, `[data-reveal-group]`). Znika też poziomy scroll przy 1280 px.
+- **Diagram:** sekwencja tworzona przy pierwszej interakcji, a nie od razu po załadowaniu. Usunęło to długie zadanie GSAP (~250 ms) z okna ładowania. Przełączenie przy końcu sekwencji nadal daje 0 px przesunięcia (desktop i mobile).
+
+Wyniki:
+- Lighthouse mobile ×3 (PL/EN): 88/89 (baza 83/85), LCP 3,86/3,70 s (baza 4,33/4,17), TBT 47/9 ms (baza 19/16; przebiegi PL 22–54 ms), CLS 0. Dane w `docs/homepage-v2/lower-sections/`.
+- Chromium, WebKit i Firefox; 1440, 1280, 390; PL i EN: brak poziomego scrolla i błędów, wszystkie elementy widoczne po przewinięciu, odliczanie działa. Reduced-motion: wszystko widoczne od razu, pasek statyczny.
+- Stare reguły tych sekcji w `_sections.scss` są już nieużywane. Do usunięcia przy porządkach (Etap 7).

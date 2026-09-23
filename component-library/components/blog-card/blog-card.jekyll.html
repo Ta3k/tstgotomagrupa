@@ -1,12 +1,20 @@
 {% assign c = "c-blog-card" %}
-<div id="{{ include.post.idHref }}" class="{{c}} col col-4 col-d-6 col-t-12">
+{% case include.post.idHref %}
+  {% when "codarius" %}{% assign brand = "Codarius" %}
+  {% when "gotoma-software-house" %}{% assign brand = "GOTOMA Software House" %}
+  {% when "gotoma-general" %}{% assign brand = "GOTOMA General" %}
+  {% else %}{% assign brand = "" %}
+{% endcase %}
+{% comment %}
+  Karta marki: całe zdjęcie z ciemnym gradientem, logo, tytuł, opis i złoty przycisk.
+  Jeden link na kartę (tytuł, rozciągnięty na całą kartę), przycisk jest wizualnym elementem linku.
+{% endcomment %}
+<article id="{{ include.post.idHref }}" class="{{c}} col col-4 col-d-6 col-t-12">
   <div class="{{c}}__inner">
 
     {% if include.post.image %}
-    <div class="{{c}}__image-wrap">
-      <a class="{{c}}__image" href="{{ include.post.callToActionUrl }}">
-        <img loading="lazy" decoding="async" src="{{ include.post.image }}" alt="{{ include.post.title }}">
-      </a>
+    <div class="{{c}}__media">
+      <img loading="lazy" decoding="async" src="{{ include.post.image }}" alt="">
     </div>
     {% endif %}
 
@@ -19,42 +27,28 @@
         {% endfor %}
       </div>
       {% endif %}
-      
-      <div class="{{c}}__image-title">
-        <img loading="lazy" decoding="async" src="{{ include.post.imageTitle }}" alt="{{ site.data.author.author_name }}">
-      </div>
 
-      <h2 class="{{c}}__title">
-        <a href="{{ include.post.callToActionUrl }}">{{ include.post.title }}</a>
-      </h2>
+      {% if include.post.imageTitle %}
+      <div class="{{c}}__image-title">
+        <img loading="lazy" decoding="async" src="{{ include.post.imageTitle }}" alt="{{ brand }}">
+      </div>
+      {% endif %}
+
+      <h3 class="{{c}}__title">
+        <a class="{{c}}__link" href="{{ include.post.callToActionUrl }}">{{ include.post.title }}</a>
+      </h3>
 
       <p class="{{c}}__excerpt">
-        {% if include.post.description %}{{ include.post.description }}{% else %}{{ include.post.content | strip_html | truncate: 120 }}{% endif
-        %}
+        {% if include.post.description %}{{ include.post.description }}{% else %}{{ include.post.content | strip_html | truncate: 120 }}{% endif %}
       </p>
 
-      <div class="{{c}}__meta">
-        <div class="{{c}}__info">
-          <a href="{{ include.post.callToActionUrl }}">
-            <div class="{{c}}__author-name">{{ include.post.callToAction }}</div>
-          </a>
-          <!-- <span class="{{c}}__date"><time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date_to_string
-              }}</time></span> -->
-        </div>
-        <div class="{{c}}__author-image">
-          <!-- <svg width="44" height="44" viewBox="0 0 24 24">
-            <path d="M7 17L17 7M17 7H9M17 7V15"
-                  stroke="white"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-          </svg> -->
-          <a href="{{ include.post.callToActionUrl }}">
-            <img loading="lazy" decoding="async" src="{{ include.post.callToActionImage }}" alt="{{ site.data.author.author_name }}">
-          </a>
-        </div>
-      </div>
+      {% if include.post.callToAction %}
+      <span class="{{c}}__cta" aria-hidden="true">
+        <span class="{{c}}__cta-label">{{ include.post.callToAction }}</span>
+        <span class="{{c}}__cta-icon">→</span>
+      </span>
+      {% endif %}
 
     </div>
   </div>
-</div>
+</article>

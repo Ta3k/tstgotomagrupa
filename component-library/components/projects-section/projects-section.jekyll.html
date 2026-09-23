@@ -1,83 +1,59 @@
 <!-- begin projects -->
 {% if include.show_projects != false %}
-<section id="{{site.data[page.lang].projects.header_href}}" class="stats-clients-results">
+{% assign d = site.data[page.lang].projects %}
+{% assign clients = "Logo_AbakonBD_gold_normal 1.webp|Abakon BD,braciaktrans 1.webp|Bracia Ktrans,farmona.webp|Farmona,forum.webp|Forum Ekonomiczne,globkurier.webp|Globkurier,manpowergroup.webp|ManpowerGroup,model.webp|Model,moraj.webp|Moraj,printdisplay.webp|Print Display,sollers.webp|Sollers,tatrastyle.webp|Tatra Style,tdc.webp|TDC Polska" | split: "," %}
+<section id="{{ d.header_href }}" class="c-proof">
   <div class="container">
-    
-    
 
-    <div class="grid-container">
-      <div class="header-card stat-card">
-        <h2 class="stat-value">{{site.data[page.lang].projects.header}}</h2>
-        <p class="stat-label">
-          {{site.data[page.lang].projects.item1}}
-        </p>
+    <div class="c-proof__top">
+      <div class="c-home-head c-proof__head" data-reveal>
+        <h2 class="c-home-head__title">{{ d.header }}</h2>
+        <p class="c-home-head__lead">{{ d.item1 }}</p>
       </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item2}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item3}}</span>
+
+      <div class="c-proof__stats" data-reveal-group>
+        <div class="c-proof__stat">
+          <span class="c-proof__value" data-count>{{ d.item2 }}</span>
+          <span class="c-proof__label">{{ d.item3 }}</span>
+        </div>
+        <div class="c-proof__stat">
+          <span class="c-proof__value" data-count>{{ d.item4 }}</span>
+          <span class="c-proof__label">{{ d.item5 }}</span>
+        </div>
+        <div class="c-proof__stat">
+          <span class="c-proof__value" data-count>{{ d.item6 }}</span>
+          <span class="c-proof__label">{{ d.item7 }}</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item4}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item5}}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">{{site.data[page.lang].projects.item6}}</span>
-        <span class="stat-label">{{site.data[page.lang].projects.item7}}</span>
-      </div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/Logo_AbakonBD_gold_normal 1.webp" alt="Abakon BD"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/braciaktrans 1.webp" alt="Bracia Ktrans"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/farmona.webp" alt="Farmona"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/forum.webp" alt="Forum Ekonomiczne"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/globkurier.webp" alt="Globkurier"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/manpowergroup.webp" alt="ManpowerGroup"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/model.webp" alt="Model"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/moraj.webp" alt="Moraj"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/printdisplay.webp" alt="Print Display"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/sollers.webp" alt="Sollers"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/tatrastyle.webp" alt="Tatra Style"></div>
-      <div class="logo-item"><img loading="lazy" decoding="async" src="/images/tdc.webp" alt="TDC Polska"></div>
     </div>
 
-    <a class="partner-banner" href="{{site.data[page.lang].projects.enovaHref}}" target="_blank">
-      <div class="banner-left">
-        <span href="{{site.data[page.lang].projects.enovaHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/enova365_white.svg" alt="Enova" />
-      </div>
-      <div class="banner-content">
-        <span class="banner-title">{{site.data[page.lang].projects.item8}}</span>
-        <p class="stat-label">{{site.data[page.lang].projects.item9}}</p>
-      </div>
-      <div class="banner-right">
-        <span href="{{site.data[page.lang].projects.enovaHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/arrow.png" alt="Enova" />
-      </div>
-      <!-- <a href="{{site.data[page.lang].projects.enovaHref}}"><img loading="lazy" decoding="async" src="/images/arrow.png" alt="Enova" /></a> -->
-      <!-- <a class="works-button c-button c-button--secondary c-button--small" href="{{site.data[page.lang].projects.evolumaHref}}"><ion-icon name="arrow-up-right" style="color: white;"></ion-icon></a> -->
-    </a>
-    <a class="partner-banner" href="{{site.data[page.lang].projects.evolumaHref}}" target="_blank">
-      <div class="banner-left">
-        <span href="{{site.data[page.lang].projects.evolumaHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/evoluma white 2.png" alt="Evoluma" />
-      </div>
-      <div class="banner-content">
-        <span class="banner-title">{{site.data[page.lang].projects.item10}}</span>
-        <p class="stat-label">{{site.data[page.lang].projects.item11}}</p>
-      </div>
-      <div class="banner-right">
-        <span href="{{site.data[page.lang].projects.evolumaHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/arrow.png" alt="Evoluma" />
-      </div>
-      <!-- <a class="works-button c-button c-button--secondary c-button--small" href="{{site.data[page.lang].projects.evolumaHref}}"><ion-icon name="arrow-up-right" style="color: white;"></ion-icon></a> -->
-    </a>
-    <a class="partner-banner" href="{{site.data[page.lang].projects.erpFactoryHref}}" target="_blank">
-      <div class="banner-left">
-        <span href="{{site.data[page.lang].projects.erpFactoryHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/erpfactory.png" alt="ERP Factory" />
-      </div>
-      <div class="banner-content">
-        <span class="banner-title">{{site.data[page.lang].projects.item12}}</span>
-        <p class="stat-label">{{site.data[page.lang].projects.item13}}</p>
-      </div>
-      <div class="banner-right">
-        <span href="{{site.data[page.lang].projects.erpFactoryHref}}" target="_blank"><img loading="lazy" decoding="async" src="/images/arrow.png" alt="ERP Factory" /></span>
-      </div>
-      <!-- <a class="works-button c-button c-button--secondary c-button--small" href="{{site.data[page.lang].projects.erpFactoryHref}}"><ion-icon name="arrow-up-right" style="color: white;"></ion-icon></a> -->
-    </a>
+    <div class="c-proof__clients" data-reveal-group>
+      {% for client in clients %}
+        {% assign parts = client | split: "|" %}
+        <div class="c-proof__logo"><img loading="lazy" decoding="async" src="/images/{{ parts[0] }}" alt="{{ parts[1] }}"></div>
+      {% endfor %}
+    </div>
+
+    <div class="c-proof__banners" data-reveal-group>
+      <a class="c-banner" href="{{ d.enovaHref }}" target="_blank" rel="noopener noreferrer">
+        <span class="c-banner__logo"><img loading="lazy" decoding="async" src="/images/enova365_white.svg" alt="enova365"></span>
+        <span class="c-banner__title">{{ d.item8 }}</span>
+        <span class="c-banner__text">{{ d.item9 }}</span>
+        <span class="c-banner__arrow" aria-hidden="true"></span>
+      </a>
+      <a class="c-banner" href="{{ d.evolumaHref }}" target="_blank" rel="noopener noreferrer">
+        <span class="c-banner__logo"><img loading="lazy" decoding="async" src="/images/evoluma white 2.png" alt="Evoluma"></span>
+        <span class="c-banner__title">{{ d.item10 }}</span>
+        <span class="c-banner__text">{{ d.item11 }}</span>
+        <span class="c-banner__arrow" aria-hidden="true"></span>
+      </a>
+      <a class="c-banner" href="{{ d.erpFactoryHref }}" target="_blank" rel="noopener noreferrer">
+        <span class="c-banner__logo"><img loading="lazy" decoding="async" src="/images/erpfactory.png" alt="ERP Factory"></span>
+        <span class="c-banner__title">{{ d.item12 }}</span>
+        <span class="c-banner__text">{{ d.item13 }}</span>
+        <span class="c-banner__arrow" aria-hidden="true"></span>
+      </a>
+    </div>
 
   </div>
 </section>

@@ -1,0 +1,555 @@
+/* =========================================================
+   Dolne sekcje strony głównej: marki (c-brands), liczby i klienci (c-proof),
+   partnerzy (c-partners), rozwiązania (c-solutions). Złote akcenty spójne z hero.
+   Wejścia: [data-reveal] / [data-reveal-group] + klasy .is-in (skrypt w common.js);
+   bez JS i przy reduced-motion treść jest od razu widoczna.
+   ========================================================= */
+
+// Nagłówek sekcji (bez nowych tekstów: złota kreska z punktem jako ozdobnik)
+.c-home-head {
+  max-width: 760px;
+  margin-bottom: 48px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 1px;
+    margin-bottom: 26px;
+    background: linear-gradient(90deg, $gold-400, transparent);
+    box-shadow: -2px 0 0 1.5px $gold-400; // punkt na początku linii
+  }
+
+  &__title {
+    margin: 0;
+    color: $white;
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+  }
+
+  &__lead,
+  &__lead p {
+    max-width: 62ch;
+    margin: 18px 0 0;
+    color: rgba($white, .74);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+
+/* ---------- Marki ---------- */
+.c-brands {
+  padding: 120px 0 72px;
+
+  &__grid {
+    align-items: stretch;
+  }
+}
+
+/* ---------- Liczby, klienci, partnerstwa ---------- */
+.c-proof {
+  padding: 72px 0 40px;
+
+  &__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+
+  &__head {
+    margin-bottom: 0;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  &__stat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px 24px 24px;
+    overflow: hidden;
+    border: 1px solid rgba($gold-400, .22);
+    border-radius: 20px;
+    background:
+      radial-gradient(120% 90% at 0% 0%, rgba($gold-600, .16), transparent 60%),
+      linear-gradient(180deg, rgba(24, 19, 11, .92), rgba(10, 9, 7, .96));
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 22px;
+      right: 22px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($gold-100, .9), transparent);
+    }
+  }
+
+  &__value {
+    font-family: $heading-font-family;
+    font-size: clamp(40px, 4.4vw, 64px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(100deg, $gold-50, $gold-200 40%, $gold-400 75%, $gold-600);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &__label {
+    color: rgba($white, .72);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  // logotypy klientów
+  &__clients {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid rgba($white, .08);
+    border-radius: 20px;
+    background: rgba($white, .08); // linie siatki
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 116px;
+    padding: 22px;
+    background: #050403;
+    transition: background-color .4s;
+
+    img {
+      max-width: 100%;
+      max-height: 38px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: .62;
+      transition: opacity .4s, transform .5s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    &:hover {
+      background: radial-gradient(90% 90% at 50% 50%, rgba($gold-600, .14), #050403 70%);
+
+      img {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // banery partnerstw
+  &__banners {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 56px;
+  }
+}
+
+.c-banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px 28px 30px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 22px;
+  color: $white;
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba($gold-600, .18), transparent 60%) padding-box,
+    linear-gradient(180deg, #15100a, #080705) padding-box,
+    linear-gradient(145deg, rgba($gold-100, .6), rgba($gold-600, .15) 40%, rgba($gold-400, .08) 65%, rgba($gold-200, .4)) border-box;
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s;
+
+  &:hover,
+  &:focus-visible {
+    color: $white;
+    transform: translateY(-4px);
+    box-shadow: 0 30px 70px -40px rgba($gold-400, .7);
+
+    .c-banner__arrow {
+      background-color: $gold-400;
+      border-color: $gold-400;
+
+      &::before {
+        border-color: #140d02;
+        transform: translate(2px, -2px) rotate(45deg);
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $gold-100;
+    outline-offset: 3px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    height: 44px;
+
+    img {
+      width: auto;
+      max-width: 150px;
+      max-height: 40px;
+    }
+  }
+
+  &__title {
+    margin-top: 6px;
+    color: $gold-100;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  &__text {
+    color: rgba($white, .72);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  // strzałka ↗ w kółku
+  &__arrow {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba($gold-400, .5);
+    border-radius: 50%;
+    transition: background-color .3s, border-color .3s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin: -5px 0 0 -6px;
+      border-top: 1.5px solid $gold-200;
+      border-right: 1.5px solid $gold-200;
+      transform: rotate(45deg);
+      transition: transform .35s cubic-bezier(.2, .8, .2, 1), border-color .3s;
+    }
+  }
+}
+
+/* ---------- Partnerzy (pasek) ---------- */
+.c-partners {
+  padding: 96px 0 72px;
+  overflow: hidden;
+
+  &__marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 6px 0;
+    border-top: 1px solid rgba($gold-400, .18);
+    border-bottom: 1px solid rgba($gold-400, .18);
+    background: linear-gradient(90deg, rgba($gold-600, .05), rgba($gold-600, .1) 50%, rgba($gold-600, .05));
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: c-partners-scroll 46s linear infinite;
+  }
+
+  &__marquee:hover &__track,
+  &__marquee:focus-within &__track {
+    animation-play-state: paused;
+  }
+
+  &__item {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 96px;
+    padding: 0 30px;
+
+    img {
+      max-width: 100%;
+      max-height: 34px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: .6;
+      transition: opacity .35s, transform .45s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    &:hover img,
+    &:focus-visible img {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gold-100;
+      outline-offset: -6px;
+      border-radius: 12px;
+    }
+
+    // logotypy z własnym, nieprzezroczystym tłem (przygotowane na ciemne tło): oryginalne kolory,
+    // bo filtr "na biało" zamieniłby je w jednolite prostokąty
+    img[src*="elpartners"],
+    img[src*="gotoma_black"],
+    img[src*="atman"],
+    img[src*="/main."],
+    img[src*="moonwise"],
+    img[src*="gotoma-general"] {
+      max-height: 44px;
+      border-radius: 8px;
+      filter: none;
+      opacity: .8;
+    }
+  }
+}
+
+@keyframes c-partners-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Rozwiązania ---------- */
+.c-solutions {
+  padding: 72px 0 120px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+.c-solution {
+  position: relative;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 18px;
+  row-gap: 6px;
+  align-items: start;
+  padding: 18px 20px 18px 18px;
+  border: 1px solid rgba($white, .08);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(24, 19, 11, .9), rgba(10, 9, 7, .95));
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), border-color .35s, box-shadow .45s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($gold-100, .9), transparent);
+    opacity: .3;
+    transform: scaleX(.4);
+    transition: opacity .4s, transform .6s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba($gold-400, .38);
+    box-shadow: 0 24px 50px -32px rgba($gold-400, .55);
+
+    &::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .c-solution__media img {
+      transform: scale(1.08);
+    }
+  }
+
+  &__media {
+    grid-row: 1 / 3;
+    width: 76px;
+    height: 76px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgba($gold-400, .25);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+    }
+  }
+
+  &__title {
+    padding-top: 4px;
+    color: $gold-100;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  &__text {
+    color: rgba($white, .7);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+}
+
+/* ---------- Wejścia (tylko z JS, bez reduced-motion) ---------- */
+html.home-reveal-ready {
+  [data-reveal],
+  [data-reveal-group] > * {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  [data-reveal].is-in,
+  [data-reveal-group] > .is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  // po wejściu karty wracają do szybkich przejść hover
+  .c-banner.is-in,
+  .c-solution.is-in,
+  .c-proof__stat.is-in {
+    transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .45s cubic-bezier(.2, .8, .2, 1), border-color .35s, box-shadow .45s;
+    transition-delay: 0s;
+  }
+}
+
+/* ---------- Responsywność ---------- */
+@media only screen and (max-width: $desktop) {
+  .c-proof__top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .c-proof__clients {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .c-proof__banners,
+  .c-solutions__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: $mobile) {
+  .c-home-head {
+    margin-bottom: 32px;
+
+    &__lead,
+    &__lead p {
+      font-size: 16.5px;
+    }
+  }
+
+  .c-brands {
+    padding: 80px 0 48px;
+  }
+
+  .c-proof {
+    padding: 48px 0 24px;
+
+    &__stats {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    &__stat {
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 20px;
+    }
+
+    &__value {
+      min-width: 3.2ch;
+      font-size: 44px;
+    }
+
+    &__clients {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-radius: 16px;
+    }
+
+    &__logo {
+      min-height: 84px;
+      padding: 14px;
+
+      img {
+        max-height: 28px;
+      }
+    }
+
+    &__banners {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 40px;
+    }
+  }
+
+  .c-banner {
+    padding: 24px 22px;
+  }
+
+  .c-partners {
+    padding: 72px 0 48px;
+
+    &__item {
+      width: 150px;
+      height: 80px;
+      padding: 0 20px;
+    }
+  }
+
+  .c-solutions {
+    padding: 48px 0 80px;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-partners__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+
+    // bez animacji wystarczy jedna kopia listy
+    > [aria-hidden="true"] {
+      display: none;
+    }
+  }
+
+  .c-partners__marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

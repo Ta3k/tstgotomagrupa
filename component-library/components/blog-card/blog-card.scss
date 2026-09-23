@@ -1,278 +1,229 @@
-/* Posts List */
+/* Karta marki (sekcja "Wybierz czego potrzebujesz")
+   Pełne zdjęcie, ciemny gradient od dołu, logo, tytuł, opis, złoty przycisk.
+   Cała karta klikalna (rozciągnięty link tytułu), złota obwódka i powiększenie zdjęcia przy hover/focus. */
 .c-blog-card {
-  margin-bottom: 20px;
-  will-change: transform;
-  transition: transform .2s;
   display: flex;
-
-  &:hover {
-    transform: translateY(-4px);
-
-    .article__inner {
-      box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  @media only screen and (max-width: $tablet) {
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+  margin-bottom: 24px;
 
   &__inner {
-    border-radius: 5px;
-    overflow: hidden;
-    transform: translate(0);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.07);
-    transition: box-shadow .2s;
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
-    height: 100%;
-  }
-
-  &__image-wrap {
-    background: #000;
-  }
-
-  &__image {
-    position: relative;
-    display: block;
-    height: 0;
-    // padding-bottom: 71.25%;
-    padding-bottom: 178.00%;
-    background: #000;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 100%;
+    aspect-ratio: 4 / 5.4;
     overflow: hidden;
+    border: 1px solid rgba($white, .1);
+    border-radius: 24px;
+    background: #0b0906;
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, .95);
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1), border-color .4s, box-shadow .5s;
 
-    img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background-color: #000;
-    }
-  }
-
-  &__content {
-    position: relative;
-    height: 100%;
-    z-index: 1;
-    padding: 6px 18px 18px 18px;
-    padding-bottom: 5px;
-    margin-top: -210px;
-    border-radius: 0px 0px 0 0;
-    // background: $background-color-alt;
-    background: transparent;          /* blur what's behind */
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-
-    @media only screen and (max-width: $mobile) {
-      padding: 6px 10px 6px 10px;
-    }
-  }
-
-  &__image-title {
-    // position: relative;
-    display: block;
-    // height: 0;
-    // padding-bottom: 71.25%;
-    // padding-bottom: 178.00%;
-    // background: $blue-gray;
-    // overflow: hidden;
-
-    img {
-      max-height: 36px;
-      // position: absolute;
-      // width: 100%;
-      // height: 100%;
-      // object-fit: cover;
-      // background-color: $blue-gray;
-    }
-  }
-
-  &__tags-box {
-    display: flex;
-  }
-
-  &__tag {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 0 4px 4px 0;
-    font-size: 12px;
-    line-height: 10px;
-    font-weight: 600;
-    text-transform: capitalize;
-    border-radius: 8px;
-    overflow: hidden;
-    color: $white;
-    background: linear-gradient(90deg, $primary-color 0%, $secondary-color 167%);
-
-    &:hover {
-      &:before {
-        opacity: 1;
-      }
-    }
-
+    // złota linia światła u góry
     &::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 0;
-      z-index: -1;
-      display: block;
-      width: 100%;
-      height: 100%;
+      left: 26px;
+      right: 26px;
+      z-index: 3;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($gold-100, .95), transparent);
       opacity: 0;
-      border-radius: 8px;
-      will-change: transform;
-      transition: opacity 0.35s;
-      background: linear-gradient(90deg, $primary-color 0%, $secondary-color 107%);
+      transform: scaleX(.3);
+      transition: opacity .4s, transform .7s cubic-bezier(.2, .8, .2, 1);
     }
 
-    &:last-child {
-      margin: 0 0 4px 0;
+  }
+
+  // zdjęcie pod treścią (z-index -1 w izolowanym kontekście karty), z gradientem czytelności
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #000;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 22%, rgba(5, 4, 3, .55) 50%, rgba(5, 4, 3, .92) 72%, #050403 100%);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      transform: scale(1.02);
+      transition: transform 1.1s cubic-bezier(.2, .8, .2, 1), filter .6s;
+      filter: saturate(.92);
     }
   }
 
+  // bez własnego pozycjonowania: rozciągnięty link tytułu obejmuje całą kartę
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px 28px 30px;
+  }
+
+  &__image-title img {
+    display: block;
+    width: auto;
+    max-height: 40px;
+  }
+
   &__title {
-    margin: 6px 0 5px 0px ;
-    // font-size: 24px;
-    // line-height: 1.3;
-    // font-weight: 700;
-
-    font-family: Poppins;
+    margin: 0;
+    font-family: $heading-font-family;
+    font-size: 24px;
     font-weight: 600;
-    font-style: SemiBold;
-    font-size: 18px;
-    // leading-trim: NONE;
-    line-height: 22px;
-    letter-spacing: 0%;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
 
+  // jeden link na kartę: rozciągnięty na całą powierzchnię
+  &__link {
+    color: $white;
 
-    a {
-      &:hover {
-        color: $text-color;
-      }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      border-radius: 24px;
     }
 
-    @media only screen and (max-width: $mobile) {
-      font-size: 16px;
+    &:hover {
+      color: $white;
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid $gold-100;
+        outline-offset: -3px;
+      }
     }
   }
 
   &__excerpt {
     display: -webkit-box;
-    min-height: 80px;
-    color: $text-color;
-    overflow-y: hidden;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    margin-bottom: 0;
-    font-family: Poppins;
-    font-weight: 400;
-    font-style: Regular;
-    font-size: 13px;
-    leading-trim: NONE;
-    line-height: 16px;
-    letter-spacing: 0%;
-
-    @media only screen and (max-width: $mobile) {
-      line-height: 16px;
-    }
-  }
-
-  &__meta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-top:5px;
-  }
-
-  &__arrow-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-
-    /* Glass effect */
-    background: rgba(255, 255, 255, 0.05);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    
-
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.2),
-      inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  }
-
-  &__arrow {
-    transform: rotate(45deg);
-  }
-
-  &__author-image {
-    position: relative;
-    width: 33px;
-    height: 33px;
-    margin-left: 8px;
-    margin-right: 8px;
-    border-radius: 50%;
+    margin: 0;
     overflow: hidden;
-    background-color: $blue-gray;
+    color: rgba($white, .74);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
 
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      border-radius: 50%;
-      object-fit: cover;
+  &__cta {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+    padding: 13px 20px 13px 22px;
+    border-radius: 999px;
+    color: #140d02;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    background: linear-gradient(135deg, $gold-100, $gold-400 55%, $gold-600);
+    box-shadow: 0 12px 30px -14px rgba($gold-400, .8), inset 0 1px 0 rgba(255, 255, 255, .6);
+    transition: box-shadow .4s, transform .4s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  &__cta-icon {
+    transition: transform .4s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  // tagi (lista bloga)
+  &__tags-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__tag {
+    position: relative;
+    z-index: 5;
+    padding: 7px 12px;
+    border: 1px solid rgba($gold-400, .4);
+    border-radius: 999px;
+    color: $gold-100;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: capitalize;
+  }
+
+  // hover / focus całej karty
+  &__inner:hover,
+  &__inner:focus-within {
+    transform: translateY(-6px);
+    border-color: rgba($gold-400, .55);
+    box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .95), 0 24px 70px -40px rgba($gold-400, .65);
+
+    &::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .c-blog-card__media img {
+      transform: scale(1.07);
+      filter: saturate(1.05);
+    }
+
+    .c-blog-card__cta {
+      box-shadow: 0 18px 40px -14px rgba($gold-400, .95), inset 0 1px 0 rgba(255, 255, 255, .6);
+    }
+
+    .c-blog-card__cta-icon {
+      transform: translateX(4px);
     }
   }
 
-  &__info {
-    display: flex;
-    flex-direction: column;
+  @media only screen and (max-width: $tablet) {
+    &__inner {
+      aspect-ratio: 4 / 4.6;
+    }
   }
 
-  &__author-name {
-    margin-bottom: 6px;
-    // font-size: 16px;
-    // line-height: 1;
-    // font-weight: 600;
+  @media only screen and (max-width: $mobile) {
+    margin-bottom: 16px;
 
-    font-family: Poppins;
-    font-weight: 500;
-    font-style: Medium;
-    font-size: 14px;
-    // leading-trim: NONE;
-    line-height: 100%;
-    letter-spacing: 0%;
+    &__inner {
+      aspect-ratio: 4 / 5;
+      border-radius: 20px;
+    }
 
+    &__content {
+      padding: 22px 20px 24px;
+    }
+
+    &__title {
+      font-size: 21px;
+    }
+
+    &__link::after {
+      border-radius: 20px;
+    }
   }
 
-  &__date {
-    font-size: 12px;
-    line-height: 14px;
+  @media (prefers-reduced-motion: reduce) {
+    &__inner,
+    &__media img,
+    &__cta-icon {
+      transition: none;
+    }
   }
 }
-
-  
-
-
-  
-
-  
-
-  
-
-
-
-
-
