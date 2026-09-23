@@ -29,7 +29,7 @@ Kod: `site/_includes/hero-lab/{copy,base,bar,a,b,c}.html`, strony `site/collecti
 **Idea.**
 - Monumentalne złote zaćmienie: czarny dysk z koroną światła i rozbłyskiem „diamentowego pierścienia” z anamorficzną smugą.
 - Nagłówek leży na czarnym dysku, co daje maksymalny kontrast i skupia uwagę.
-- W pierwszej sekundzie obręcz się „zapala”, a przy scrollu zaćmienie zachodzi i wygasa w czerń sekcji diagramu. (Złotą nić prowadzącą do diagramu usunięto 2026-09-23 na prośbę właściciela: była za cienka, wyglądała jak artefakt.)
+- W pierwszej sekundzie obręcz się „zapala”, a przy scrollu zaćmienie zachodzi i wygasa w czerń sekcji diagramu: zamiast krótkiej ciemnej nakładki zaćmienie jest maskowane długim gradientem, który wydłuża się ze scrollem, a samo zaćmienie przygasa, więc nie ma poziomej krawędzi na styku z sekcją. (Złotą nić prowadzącą do diagramu usunięto 2026-09-23 na prośbę właściciela: była za cienka, wyglądała jak artefakt.)
 
 **Technika.**
 - Czysty CSS: gradienty radialne i stożkowe, maski pierścienia, animacje wyłącznie `transform`/`opacity`.

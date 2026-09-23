@@ -36,7 +36,16 @@
     --p: var(--hl-p, 0);
     justify-content: center;
   }
-  .hl-a__sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  /* Przejście w sekcję diagramu: zamiast krótkiej ciemnej nakładki (base .hl::after) maskujemy samo zaćmienie
+     długim, łagodnym gradientem; przy scrollu maska się wydłuża, a zaćmienie przygasa ("zachodzi"). */
+  .hl.hl-a::after { display: none; }
+  .hl-a__sky {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    --m0: calc(62% - var(--p) * 30%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 var(--m0), rgba(0, 0, 0, .72) calc(var(--m0) + 12%), rgba(0, 0, 0, .38) calc(var(--m0) + 24%), rgba(0, 0, 0, .12) calc(var(--m0) + 32%), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 var(--m0), rgba(0, 0, 0, .72) calc(var(--m0) + 12%), rgba(0, 0, 0, .38) calc(var(--m0) + 24%), rgba(0, 0, 0, .12) calc(var(--m0) + 32%), transparent 100%);
+    opacity: calc(1 - var(--p) * .6);
+  }
   .hl-a__bloom {
     position: absolute; inset: 0;
     background:
