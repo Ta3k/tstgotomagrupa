@@ -15,14 +15,18 @@ await p.addInitScript(() => {
   Event.prototype.preventDefault = function () { if (this.type === 'wheel' || this.type === 'touchmove') log('preventDefault', this.type); return pd.call(this); };
   const sto = window.scrollTo;
   window.scrollTo = function (...a) { log('scrollTo()', JSON.stringify(a).slice(0, 60) + ' from ' + Math.round(scrollY)); return sto.apply(this, a); };
-  let lastY = 0, lastH = 0, lastN = -1, lastDone = null, lastPins = '';
+  let lastY = 0, lastH = 0, lastN = -1, lastDone = null, lastPins = '', lastVis = null;
   const frame = () => {
     const y = Math.round(scrollY), h = document.documentElement.scrollHeight;
     const sec = document.querySelector('#jak-to-dziala, #how-it-works');
     const n = window.ScrollTrigger ? ScrollTrigger.getAll().length : -1;
     const pins = window.ScrollTrigger ? ScrollTrigger.getAll().filter((t) => t.pin).map((t) => `${t.trigger.id || 'x'}:${Math.round(t.start)}-${Math.round(t.end)}`).join(' ') : '';
     const done = sec?.dataset.scrollStoryCompleted || null;
-    if (Math.abs(y - lastY) > 160) log('JUMP', `${lastY} -> ${y} (${y - lastY})`);
+    // pozycja widocznych elementów w oknie (to widzi użytkownik)
+    const pick = (q) => { const e = document.querySelector(q); if (!e) return null; const r = e.getBoundingClientRect(); return Math.round(r.top); };
+    const vis = { diag: pick(innerWidth < 1024 ? '.scheme-mobile-diagram' : '.scheme-diagram'), next: pick('#dowiedz-sie-wiecej, #choose-what-you-need'), head: pick('#jak-to-dziala .header-card-partners, #jak-to-dziala h2') };
+    if (Math.abs(y - lastY) > 160) log('JUMP', `${lastY} -> ${y} (${y - lastY}) | na ekranie: diagram ${lastVis && lastVis.diag} -> ${vis.diag}, nagłówek ${lastVis && lastVis.head} -> ${vis.head}, karty ${lastVis && lastVis.next} -> ${vis.next}`);
+    lastVis = vis;
     if (h !== lastH) log('docHeight', `${lastH} -> ${h}`);
     if (n !== lastN) log('triggers', n);
     if (pins !== lastPins) log('pins', pins || '-');

@@ -1658,7 +1658,8 @@ canvas {
 
     .scheme-mobile-tooltip {
       position: absolute;
-      bottom: max(10px, env(safe-area-inset-bottom));
+      // scena może być wyższa niż ekran (wysokość sekcji z normalnego układu): kotwica do dołu ekranu
+      bottom: calc(var(--story-extra, 0px) + max(10px, env(safe-area-inset-bottom)));
       max-height: min(43svh, 390px);
       padding: 18px 18px 20px;
       background: rgba(6, 6, 10, .94);

@@ -144,3 +144,8 @@ Sprawdzone:
   - sprawdzone w Chromium i WebKit (1440 i 390).
 - Naprawiony błąd: zamknięte menu mobilne przechwytywało kliknięcia na telefonie (np. przycisk w hero). Przyczyna: `z-index` headera dodany przy wdrożeniu hero. Teraz zamknięte menu ma `visibility: hidden`.
 - Diagnoza skoków scrolla diagramu: `docs/homepage-v2/SCROLL-DIAGNOZA.md`. Poprawka czeka na akceptację.
+- Naprawa scrolla diagramu wdrożona:
+  - bez teleportu i hamulca kółka;
+  - pin tworzony wcześniej;
+  - płynne, niewidoczne zakończenie na desktopie i mobile.
+  - Droga do kart: 4,33 vh (1440), 5,21 vh (390). Szczegóły i pomiary w `SCROLL-DIAGNOZA.md`.

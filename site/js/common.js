@@ -670,10 +670,34 @@ function initializeCommon() {
     observer.observe(element);
   };
 
+  /* Sekwencje diagramu tworzymy od razu po załadowaniu runtime (sekcja jest wtedy jeszcze pod ekranem),
+     żeby zmiana układu sekcji i wstawienie pin-spacera nie działy się na oczach użytkownika. */
+  const initializeStoryNow = setup => {
+    if (document.querySelector(".stats-how-it-works")) {
+      setup();
+    }
+  };
+
+  /* Zdjęcie pinu po jednorazowej sekwencji bez skoku: sekcja zostaje w tym samym miejscu okna,
+     a scrollY koryguje się o wysokość usuniętego pin-spacera (i ewentualną zmianę układu). */
+  const releaseStoryPin = (trigger, section, applyStaticLayout) => {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    const topBefore = section.getBoundingClientRect().top;
+
+    root.style.scrollBehavior = "auto";
+    trigger.kill(true);
+    applyStaticLayout();
+    const topAfter = section.getBoundingClientRect().top;
+    window.scrollTo(0, window.scrollY + (topAfter - topBefore));
+    ScrollTrigger.refresh();
+    root.style.scrollBehavior = previousScrollBehavior;
+  };
+
   /* ==================================
   // Desktop diagram scroll experience
   ================================== */
-  initializeWhenNear(".stats-how-it-works", () => {
+  initializeStoryNow(() => {
    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     const storyMedia = gsap.matchMedia();
 
@@ -728,6 +752,7 @@ function initializeCommon() {
       }
       section.classList.add("scheme-scroll-story");
       gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.config({ ignoreMobileResize: true });
 
       const svgNamespace = "http://www.w3.org/2000/svg";
       const routeSvg = document.createElementNS(svgNamespace, "svg");
@@ -851,146 +876,19 @@ function initializeCommon() {
           start: "top top",
           end: () => `+=${Math.round(window.innerHeight * 2.4)}`,
           pin: true,
-          scrub: 1,
+          scrub: .6,
           anticipatePin: 1,
           refreshPriority: 10,
           invalidateOnRefresh: true,
           onEnter: () => setDesktopStoryActive(true),
           onEnterBack: () => setDesktopStoryActive(true),
-          onLeaveBack: () => setDesktopStoryActive(false),
-          onLeave: () => completeDesktopStory()
+          onLeaveBack: () => setDesktopStoryActive(false)
         }
       });
 
       const storyTrigger = timeline.scrollTrigger;
-      const scrollingElement = document.scrollingElement || document.documentElement;
-      let brakeFrame = 0;
-      let brakeTarget = window.scrollY;
-      let lastWheelTime = 0;
-      let lastWheelDirection = 0;
-      let fastWheelEvents = 0;
-      let brakeOwnsScrollBehavior = false;
-      let previousBrakeScrollBehavior = "";
-
-      const stopScrollBrake = () => {
-        if (brakeFrame) {
-          cancelAnimationFrame(brakeFrame);
-          brakeFrame = 0;
-        }
-
-        brakeTarget = window.scrollY;
-
-        if (brakeOwnsScrollBehavior) {
-          document.documentElement.style.scrollBehavior = previousBrakeScrollBehavior;
-          brakeOwnsScrollBehavior = false;
-        }
-      };
-
-      const runScrollBrake = () => {
-        if (!storyTrigger?.isActive) {
-          stopScrollBrake();
-          return;
-        }
-
-        const distance = brakeTarget - window.scrollY;
-
-        if (Math.abs(distance) < .75) {
-          scrollingElement.scrollTop = brakeTarget;
-          brakeFrame = 0;
-          ScrollTrigger.update();
-          stopScrollBrake();
-          return;
-        }
-
-        scrollingElement.scrollTop = window.scrollY + distance * .28;
-        ScrollTrigger.update();
-        brakeFrame = requestAnimationFrame(runScrollBrake);
-      };
-
-      const handleStoryWheel = event => {
-        if (!storyTrigger?.isActive || event.ctrlKey || event.metaKey || event.shiftKey) {
-          fastWheelEvents = 0;
-          lastWheelTime = 0;
-          lastWheelDirection = 0;
-          stopScrollBrake();
-          return;
-        }
-
-        const deltaMultiplier = event.deltaMode === 1
-          ? 16
-          : event.deltaMode === 2
-            ? window.innerHeight
-            : 1;
-        const delta = event.deltaY * deltaMultiplier;
-        const deltaSize = Math.abs(delta);
-        const direction = Math.sign(delta);
-
-        if (!direction) {
-          return;
-        }
-
-        const now = performance.now();
-        const interval = lastWheelTime ? now - lastWheelTime : Infinity;
-        const changedDirection = lastWheelDirection && direction !== lastWheelDirection;
-        const triggerVelocity = typeof storyTrigger.getVelocity === "function"
-          ? Math.abs(storyTrigger.getVelocity())
-          : 0;
-        const isFastInput = deltaSize >= 180
-          || (interval < 56 && deltaSize >= 48)
-          || (triggerVelocity >= 3200 && interval < 70 && deltaSize >= 36);
-
-        if (changedDirection) {
-          fastWheelEvents = 0;
-          stopScrollBrake();
-        }
-
-        fastWheelEvents = isFastInput ? fastWheelEvents + 1 : 0;
-        lastWheelTime = now;
-        lastWheelDirection = direction;
-
-        const currentY = window.scrollY;
-        const leavingAtStart = direction < 0 && currentY <= storyTrigger.start + 2;
-        const leavingAtEnd = direction > 0 && currentY >= storyTrigger.end - 2;
-        const requiredFastEvents = deltaSize >= 320 ? 1 : 2;
-
-        if (!isFastInput || fastWheelEvents < requiredFastEvents || leavingAtStart || leavingAtEnd) {
-          if (!isFastInput) {
-            stopScrollBrake();
-          }
-          return;
-        }
-
-        if (!event.cancelable) {
-          return;
-        }
-
-        event.preventDefault();
-
-        if (!brakeOwnsScrollBehavior) {
-          previousBrakeScrollBehavior = document.documentElement.style.scrollBehavior;
-          document.documentElement.style.scrollBehavior = "auto";
-          brakeOwnsScrollBehavior = true;
-        }
-
-        if (!brakeFrame) {
-          brakeTarget = currentY;
-        }
-
-        const maxStep = Math.max(48, Math.min(72, window.innerHeight * .06));
-        const limitedDelta = direction * Math.min(deltaSize, maxStep);
-        brakeTarget = Math.max(
-          storyTrigger.start,
-          Math.min(storyTrigger.end, brakeTarget + limitedDelta)
-        );
-
-        if (!brakeFrame) {
-          brakeFrame = requestAnimationFrame(runScrollBrake);
-        }
-      };
-
-      window.addEventListener("wheel", handleStoryWheel, { passive: false });
-      window.addEventListener("page:instant-scroll", stopScrollBrake);
-
+      // Jednorazowe zakończenie: odpala się, gdy animacja (po wygładzeniu scrub) faktycznie dojdzie do końca.
+      // Ostatnia klatka osi czasu = stan statyczny sekcji, więc zdjęcie pinu jest niewidoczne.
       let desktopCompletionScheduled = false;
       completeDesktopStory = () => {
         if (desktopCompletionScheduled || section.dataset.scrollStoryCompleted === "true") {
@@ -1000,46 +898,26 @@ function initializeCommon() {
         desktopCompletionScheduled = true;
 
         requestAnimationFrame(() => {
-          const storyStart = Math.round(storyTrigger.start);
-          const root = document.documentElement;
-          const previousScrollBehavior = root.style.scrollBehavior;
-
           section.dataset.scrollStoryCompleted = "true";
-          section.classList.add("scheme-scroll-story-complete");
-          section.classList.remove("scheme-scroll-story-active");
-          stopScrollBrake();
-          window.removeEventListener("wheel", handleStoryWheel);
-          window.removeEventListener("page:instant-scroll", stopScrollBrake);
 
-          timeline.progress(1).pause();
-          storyTrigger.kill(true);
-          timeline.kill();
-          routeSvg.remove();
-
-          gsap.set(
-            [desktop, header, visual, eyebrow, progress],
-            { clearProps: "all" }
-          );
-          gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
-          gsap.set(tooltips, { clearProps: "opacity,visibility,transform,pointerEvents" });
-          gsap.set(diagram, {
-            x: () => getFull("x"),
-            y: () => getFull("y"),
-            scale: () => getFull("scale")
+          releaseStoryPin(storyTrigger, section, () => {
+            timeline.kill();
+            routeSvg.remove();
+            section.classList.add("scheme-scroll-story-complete");
+            section.classList.remove("scheme-scroll-story-active");
+            gsap.set([desktop, header, visual, eyebrow, progress], { clearProps: "all" });
+            gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
+            gsap.set(tooltips, { clearProps: "opacity,visibility,transform,pointerEvents" });
+            gsap.set(diagram, {
+              x: () => getFull("x"),
+              y: () => getFull("y"),
+              scale: () => getFull("scale")
+            });
           });
-
-          root.style.scrollBehavior = "auto";
-          ScrollTrigger.refresh();
-          window.scrollTo(0, storyStart);
-          ScrollTrigger.update(true);
 
           document.dispatchEvent(new CustomEvent("scheme:desktop-interactive", {
             detail: { diagram }
           }));
-
-          requestAnimationFrame(() => {
-            root.style.scrollBehavior = previousScrollBehavior;
-          });
         });
       };
       timeline.eventCallback("onComplete", completeDesktopStory);
@@ -1114,7 +992,7 @@ function initializeCommon() {
           duration: 1.05
         })
         .to(visual, { width: "100%", clipPath: "inset(-100vw)", duration: .85 }, "<")
-        .to(desktop, { autoAlpha: .18, scale: .985, duration: .45 });
+        .to(header, { autoAlpha: 1, y: 0, duration: .5 }, "<+.35");
 
       requestAnimationFrame(() => {
         ScrollTrigger.sort();
@@ -1122,9 +1000,6 @@ function initializeCommon() {
       });
 
       return () => {
-        window.removeEventListener("wheel", handleStoryWheel);
-        window.removeEventListener("page:instant-scroll", stopScrollBrake);
-        stopScrollBrake();
         timeline.scrollTrigger?.kill();
         timeline.kill();
         section.classList.remove(
@@ -1147,7 +1022,7 @@ function initializeCommon() {
   /* =================================
   // Mobile diagram scroll experience
   ================================= */
-  initializeWhenNear(".stats-how-it-works", () => {
+  initializeStoryNow(() => {
    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     const mobileStoryMedia = gsap.matchMedia();
 
@@ -1184,10 +1059,59 @@ function initializeCommon() {
         }
 
         const stepSheets = steps.map(step => step.sheet);
+
+        // Naturalny (statyczny) układ nagłówka i diagramu względem sekcji. Ostatnia klatka sekwencji
+        // ustawia je dokładnie tak, więc po zdjęciu pinu i powrocie do zwykłego układu nic nie przeskakuje.
+        const natural = { headerX: 0, headerY: 0, x: 0, y: 0, scale: 1, sectionHeight: 0 };
+        const measureNatural = () => {
+          const wasStory = section.classList.contains("scheme-mobile-scroll-story");
+          const diagramTransform = diagram.style.transform;
+          const headerTransform = header.style.transform;
+          diagram.style.transform = "none";
+          header.style.transform = "none";
+          mobile.style.height = "";
+          // ScrollTrigger w trakcie pinu wpisuje sekcji inline padding: 0 i stałe wymiary; do pomiaru je zdejmujemy
+          const sectionCss = section.style.cssText;
+          ["padding", "height", "max-height", "width", "max-width"].forEach(prop => section.style.removeProperty(prop));
+
+          section.classList.remove("scheme-mobile-scroll-story");
+          const sectionRect = section.getBoundingClientRect();
+          const headerRect = header.getBoundingClientRect();
+          const diagramRect = diagram.getBoundingClientRect();
+
+          section.classList.add("scheme-mobile-scroll-story");
+          const storySectionRect = section.getBoundingClientRect();
+          const storyHeaderRect = header.getBoundingClientRect();
+          const storyDiagramRect = diagram.getBoundingClientRect();
+
+          natural.headerX = (headerRect.left - sectionRect.left) - (storyHeaderRect.left - storySectionRect.left);
+          natural.headerY = (headerRect.top - sectionRect.top) - (storyHeaderRect.top - storySectionRect.top);
+          natural.x = (diagramRect.left - sectionRect.left) - (storyDiagramRect.left - storySectionRect.left);
+          natural.y = (diagramRect.top - sectionRect.top) - (storyDiagramRect.top - storySectionRect.top);
+          natural.scale = diagramRect.width / 382;
+          natural.sectionHeight = sectionRect.height;
+
+          // Scena sekwencji ma tę samą wysokość co sekcja w zwykłym układzie: po zdjęciu pinu
+          // nic pod sekcją się nie przesuwa. Animacja dzieje się w górnym ekranie sceny,
+          // a arkusze opisów są kotwiczone do dołu ekranu (--story-extra).
+          mobile.style.height = `${Math.round(natural.sectionHeight)}px`;
+          section.style.setProperty("--story-extra", `${Math.max(0, Math.round(natural.sectionHeight - window.innerHeight))}px`);
+
+          if (!wasStory) {
+            section.classList.remove("scheme-mobile-scroll-story");
+          }
+          const storyExtra = section.style.getPropertyValue("--story-extra");
+          section.style.cssText = sectionCss;
+          section.style.setProperty("--story-extra", storyExtra);
+          diagram.style.transform = diagramTransform;
+          header.style.transform = headerTransform;
+        };
+        measureNatural();
         section.classList.add("scheme-mobile-scroll-story");
         document.body.classList.remove("scheme-mobile-tooltip-open");
         backdrop?.classList.remove("is-active");
         gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({ ignoreMobileResize: true });
 
         const svgNamespace = "http://www.w3.org/2000/svg";
         const routeSvg = document.createElementNS(svgNamespace, "svg");
@@ -1231,6 +1155,7 @@ function initializeCommon() {
         const nodes = steps.map(step => step.node);
         const getLayout = () => {
           const stageRect = mobile.getBoundingClientRect();
+          const visibleHeight = Math.min(stageRect.height, window.innerHeight);
           const isTablet = window.matchMedia("(min-width: 577px)").matches;
           const topInset = Math.max(
             isTablet ? 120 : 140,
@@ -1239,7 +1164,7 @@ function initializeCommon() {
           const bottomInset = isTablet ? 24 : 16;
           const fullScale = Math.min(
             (stageRect.width - 30) / 382,
-            (stageRect.height - topInset - bottomInset) / 1210,
+            (visibleHeight - topInset - bottomInset) / 1210,
             .78
           );
           const zoomScale = Math.min(Math.max(fullScale * 1.75, 1.05), 1.25);
@@ -1250,8 +1175,9 @@ function initializeCommon() {
             full: {
               scale: fullScale,
               x: (stageRect.width - 382 * fullScale) / 2,
-              y: topInset + Math.max(0, (stageRect.height - topInset - bottomInset - fullHeight) / 2)
+              y: topInset + Math.max(0, (visibleHeight - topInset - bottomInset - fullHeight) / 2)
             },
+            visibleHeight,
             zoomScale
           };
         };
@@ -1262,27 +1188,11 @@ function initializeCommon() {
           return {
             scale: layout.zoomScale,
             x: layout.stageRect.width / 2 - center.x * layout.zoomScale,
-            y: Math.min(layout.stageRect.height * .3, 250) - center.y * layout.zoomScale
+            y: Math.min(layout.visibleHeight * .3, 250) - center.y * layout.zoomScale
           };
         };
 
         const getFull = property => getLayout().full[property];
-        const getExitFull = property => {
-          const stageRect = mobile.getBoundingClientRect();
-          const scale = Math.min(
-            (stageRect.width - 24) / 382,
-            (stageRect.height - 24) / 1210,
-            .78
-          );
-          const layout = {
-            scale,
-            x: (stageRect.width - 382 * scale) / 2,
-            y: (stageRect.height - 1210 * scale) / 2
-          };
-
-          return layout[property];
-        };
-
         gsap.set(diagram, {
           x: () => getFull("x"),
           y: () => getFull("y"),
@@ -1314,11 +1224,10 @@ function initializeCommon() {
             start: "top top",
             end: () => `+=${Math.round(window.innerHeight * 2.6)}`,
             pin: true,
-            scrub: 1,
+            scrub: .4,
             anticipatePin: 1,
             refreshPriority: 10,
-            invalidateOnRefresh: true,
-            onLeave: () => completeMobileStory()
+            invalidateOnRefresh: true
           }
         });
 
@@ -1332,34 +1241,23 @@ function initializeCommon() {
           mobileCompletionScheduled = true;
 
           requestAnimationFrame(() => {
-            const storyStart = Math.round(mobileStoryTrigger.start);
-            const root = document.documentElement;
-            const previousScrollBehavior = root.style.scrollBehavior;
-
             section.dataset.scrollStoryCompleted = "true";
-            timeline.progress(1).pause();
-            mobileStoryTrigger.kill(true);
-            timeline.kill();
-            routeSvg.remove();
-            section.classList.remove("scheme-mobile-scroll-story");
+            ScrollTrigger.removeEventListener("refreshInit", measureNatural);
 
-            gsap.set([mobile, header, ...sheets], { clearProps: "all" });
-            gsap.set(diagram, { clearProps: "transform" });
-            gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
-            sheets.forEach(sheet => {
-              sheet.classList.remove("is-active");
-              sheet.setAttribute("aria-hidden", "true");
-            });
-            backdrop?.classList.remove("is-active");
-            document.body.classList.remove("scheme-mobile-tooltip-open");
-
-            root.style.scrollBehavior = "auto";
-            ScrollTrigger.refresh();
-            window.scrollTo(0, storyStart);
-            ScrollTrigger.update(true);
-
-            requestAnimationFrame(() => {
-              root.style.scrollBehavior = previousScrollBehavior;
+            releaseStoryPin(mobileStoryTrigger, section, () => {
+              timeline.kill();
+              routeSvg.remove();
+              section.classList.remove("scheme-mobile-scroll-story");
+              section.style.removeProperty("--story-extra");
+              gsap.set([mobile, header, ...sheets], { clearProps: "all" });
+              gsap.set(diagram, { clearProps: "transform" });
+              gsap.set(nodes, { clearProps: "opacity,transform,filter,visibility" });
+              sheets.forEach(sheet => {
+                sheet.classList.remove("is-active");
+                sheet.setAttribute("aria-hidden", "true");
+              });
+              backdrop?.classList.remove("is-active");
+              document.body.classList.remove("scheme-mobile-tooltip-open");
             });
           });
         };
@@ -1426,11 +1324,19 @@ function initializeCommon() {
           })
           .to(nodes, { opacity: 1, scale: 1, duration: .25 }, "<")
           .to(diagram, {
-            x: () => getExitFull("x"),
-            y: () => getExitFull("y"),
-            scale: () => getExitFull("scale"),
-            duration: .55
-          });
+            x: () => natural.x,
+            y: () => natural.y,
+            scale: () => natural.scale,
+            duration: .7
+          })
+          .to(header, {
+            autoAlpha: 1,
+            x: () => natural.headerX,
+            y: () => natural.headerY,
+            duration: .45
+          }, "<+.2");
+
+        ScrollTrigger.addEventListener("refreshInit", measureNatural);
 
         requestAnimationFrame(() => {
           ScrollTrigger.sort();
@@ -1438,9 +1344,11 @@ function initializeCommon() {
         });
 
         return () => {
+          ScrollTrigger.removeEventListener("refreshInit", measureNatural);
           timeline.scrollTrigger?.kill();
           timeline.kill();
           section.classList.remove("scheme-mobile-scroll-story");
+          section.style.removeProperty("--story-extra");
           routeSvg.remove();
           gsap.set([mobile, header, ...sheets], { clearProps: "all" });
           gsap.set(diagram, { clearProps: "transform" });
