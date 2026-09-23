@@ -166,3 +166,26 @@ Pierwotna rekomendacja (C v1) jest nieaktualna: C v1 okazało się pejzażem mor
 - **B** (złota płytka jako osobna grafika) jest zastąpione przez propozycję B+.
 
 Po wyborze wybrana koncepcja zastąpi komponent `hero` na stronie głównej (PL i EN). Lab (`/hero-lab/*`, `site/_includes/hero-lab/`, flagę `homepage_runtime`) usunę po wdrożeniu.
+
+## Decyzja i wdrożenie (2026-09-23)
+
+Właściciel wybrał **A „Zaćmienie”**. B, B+ i C uznał za trudne i dziwnie wykonane. Przed wdrożeniem w A:
+- usunięto złotą nić pod hero, bo była za cienka i wyglądała jak artefakt;
+- wygaszenie zaćmienia w sekcję diagramu zrobiono maską wydłużającą się ze scrollem, bez krawędzi na styku.
+
+Wdrożenie:
+- `component-library/components/hero/hero.jekyll.html`, `hero.scss` i `hero.bookshop.yml` zostały przepisane na „Zaćmienie” w konwencji BEM `c-hero__*`. Style trafiają do `main.css`, a mały skrypt inline obsługuje postęp scrolla i paralaksę.
+- Front matter stron (`index.html`, `home_en.html`) ma nowe pola `eyebrow`, `title_lines` i `description`. Teksty są 1:1 z poprzednich. `title` zostaje jako wersja bez podziału na linie.
+- `.c-header` dostał `position: relative; z-index: 30`, bo hero wsuwa się pod header.
+- Usunięte: pin „CRT collapse” hero (`initializeHeroCollapse` w `common.js`), klasa `hero-motion-active` w `runtime-scripts.html`, lab (`/hero-lab/*`, `site/_includes/hero-lab/`, flaga `homepage_runtime`) oraz duplikat `index_pl.html` (decyzja D9).
+- Poppins 400 ma teraz `font-display: swap` (`_base.scss`). Lead hero nie renderuje się już w Arialu przy pierwszej wizycie.
+- Poprzednie hero (wstęgi) jest w historii (commit `c376a8d`). Starsze wersje są w `hero-versions/`.
+
+Wyniki (build produkcyjny, Lighthouse mobile, mediana ×3, `docs/homepage-v2/hero-final/`):
+
+| | Performance | LCP | TBT | CLS | Requesty |
+|---|---|---|---|---|---|
+| PL: baza → teraz | 83 → **89** | 4,33 → **3,71 s** | 19 → **0 ms** | 0 → 0 | 61 → 63 |
+| EN: baza → teraz | 85 → **89** | 4,17 → **3,71 s** | 16 → **0 ms** | 0 → 0 | 59 → 61 |
+
+Droga do kart marek (kółko, 1440 / 390): 5,44 → **4,44** vh / ~6,2 → **5,33** vh, dzięki usunięciu pinu hero. Teleport diagramu nadal jest (Etap 4).

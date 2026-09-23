@@ -1,111 +1,70 @@
 <!-- begin hero -->
+{% comment %}
+  Hero "Zaćmienie": czarny dysk ze złotą koroną i rozbłyskiem "diamentowego pierścienia" (czysty CSS).
+  Tekst renderuje się bez JS (h1 = LCP). Skrypt na dole tylko ustawia postęp scrolla (--hero-p)
+  i lekką paralaksę wskaźnika (--hero-mx/--hero-my); przy prefers-reduced-motion nic nie robi.
+{% endcomment %}
 {% assign c = "c-hero" %}
-<section class="{{c}} animate">
-  <div class="{{c}}__background" aria-hidden="true">
-    <svg class="{{c}}__wave-art" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMid slice" role="presentation" focusable="false">
-      <defs>
-        <linearGradient id="hero-ribbon-back" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#7b4a12" stop-opacity="0" />
-          <stop offset=".18" stop-color="#9c681f" stop-opacity=".2" />
-          <stop offset=".5" stop-color="#e3b65c" stop-opacity=".42" />
-          <stop offset=".82" stop-color="#a36c22" stop-opacity=".18" />
-          <stop offset="1" stop-color="#6e4310" stop-opacity="0" />
-        </linearGradient>
-        <linearGradient id="hero-ribbon-main" x1="0" y1=".5" x2="1" y2=".5">
-          <stop offset="0" stop-color="#8b5515" stop-opacity="0" />
-          <stop offset=".2" stop-color="#c28a32" stop-opacity=".24" />
-          <stop offset=".46" stop-color="#f2d184" stop-opacity=".72" />
-          <stop offset=".62" stop-color="#d49b3d" stop-opacity=".42" />
-          <stop offset=".84" stop-color="#f0ca72" stop-opacity=".28" />
-          <stop offset="1" stop-color="#7f4c12" stop-opacity="0" />
-        </linearGradient>
-        <linearGradient id="hero-ribbon-front" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#a2681c" stop-opacity=".02" />
-          <stop offset=".28" stop-color="#e2ad4c" stop-opacity=".34" />
-          <stop offset=".52" stop-color="#ffe5a0" stop-opacity=".58" />
-          <stop offset=".72" stop-color="#bd7f29" stop-opacity=".24" />
-          <stop offset="1" stop-color="#7c4810" stop-opacity="0" />
-        </linearGradient>
-        <linearGradient id="hero-line-gold" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#b97821" stop-opacity="0" />
-          <stop offset=".22" stop-color="#dfaa4c" stop-opacity=".36" />
-          <stop offset=".5" stop-color="#fff0b3" stop-opacity=".9" />
-          <stop offset=".78" stop-color="#d89d3e" stop-opacity=".3" />
-          <stop offset="1" stop-color="#9b5f17" stop-opacity="0" />
-        </linearGradient>
-        <radialGradient id="hero-particle-gold">
-          <stop offset="0" stop-color="#fff5c5" />
-          <stop offset=".28" stop-color="#edc66d" stop-opacity=".88" />
-          <stop offset="1" stop-color="#b97922" stop-opacity="0" />
-        </radialGradient>
-        <filter id="hero-ribbon-blur" x="-10%" y="-40%" width="120%" height="180%">
-          <feGaussianBlur stdDeviation="18" />
-        </filter>
-        <filter id="hero-line-glow" x="-20%" y="-100%" width="140%" height="300%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      <ellipse class="{{c}}__haze" cx="930" cy="390" rx="650" ry="240" />
-
-      <g class="{{c}}__ribbons">
-        <path class="{{c}}__ribbon {{c}}__ribbon--back" d="M-130 426 C120 297 283 512 495 390 C666 292 800 273 956 385 C1116 500 1300 270 1730 345 L1730 478 C1397 390 1190 594 969 462 C758 337 665 500 475 516 C262 534 88 401 -130 543 Z" />
-        <path class="{{c}}__ribbon {{c}}__ribbon--main" d="M-130 492 C123 422 264 325 447 440 C625 552 762 553 932 399 C1100 248 1193 335 1320 416 C1448 498 1568 390 1730 306 L1730 451 C1510 578 1395 551 1244 454 C1089 356 1036 441 921 525 C748 652 558 560 402 483 C235 400 78 562 -130 594 Z" />
-        <path class="{{c}}__ribbon {{c}}__ribbon--front" d="M-130 532 C98 430 221 463 369 526 C546 602 698 610 845 490 C1008 357 1126 360 1254 455 C1399 563 1536 518 1730 413 L1730 529 C1514 650 1351 645 1196 535 C1078 451 1013 488 864 589 C690 707 495 663 345 590 C182 512 42 606 -130 662 Z" />
-      </g>
-
-      <g class="{{c}}__wave-lines" filter="url(#hero-line-glow)">
-        <path d="M-80.0 347.0 C41.5 347.0 18.5 483.0 140.0 483.0 C261.5 483.0 238.5 347.0 360.0 347.0 C481.5 347.0 458.5 483.0 580.0 483.0 C701.5 483.0 678.5 347.0 800.0 347.0 C921.5 347.0 898.5 483.0 1020.0 483.0 C1141.5 483.0 1118.5 347.0 1240.0 347.0 C1361.5 347.0 1338.5 483.0 1460.0 483.0 C1581.5 483.0 1558.5 347.0 1680.0 347.0" />
-        <path d="M-80.0 424.0 C24.9 424.0 5.1 516.0 110.0 516.0 C214.9 516.0 195.1 424.0 300.0 424.0 C404.9 424.0 385.1 516.0 490.0 516.0 C594.9 516.0 575.1 424.0 680.0 424.0 C784.9 424.0 765.1 516.0 870.0 516.0 C974.9 516.0 955.1 424.0 1060.0 424.0 C1164.9 424.0 1145.1 516.0 1250.0 516.0 C1354.9 516.0 1335.1 424.0 1440.0 424.0 C1544.9 424.0 1525.1 516.0 1630.0 516.0" />
-        <path d="M-80.0 344.0 C58.1 344.0 31.9 456.0 170.0 456.0 C308.1 456.0 281.9 344.0 420.0 344.0 C558.1 344.0 531.9 456.0 670.0 456.0 C808.1 456.0 781.9 344.0 920.0 344.0 C1058.1 344.0 1031.9 456.0 1170.0 456.0 C1308.1 456.0 1281.9 344.0 1420.0 344.0 C1558.1 344.0 1531.9 456.0 1670.0 456.0" />
-      </g>
-
-      <g class="{{c}}__particles">
-        <circle cx="520" cy="365" r="4" /><circle cx="558" cy="392" r="2.5" />
-        <circle cx="601" cy="341" r="3" /><circle cx="639" cy="377" r="5" />
-        <circle cx="682" cy="326" r="2" /><circle cx="720" cy="352" r="3.5" />
-        <circle cx="761" cy="301" r="2.5" /><circle cx="803" cy="337" r="4" />
-        <circle cx="842" cy="286" r="2" /><circle cx="881" cy="320" r="3" />
-        <circle cx="925" cy="275" r="5" /><circle cx="970" cy="317" r="2.5" />
-        <circle cx="1011" cy="296" r="3.5" /><circle cx="1052" cy="337" r="2" />
-        <circle cx="1098" cy="312" r="4" /><circle cx="1142" cy="353" r="2.5" />
-        <circle cx="1184" cy="326" r="3" /><circle cx="1228" cy="369" r="5" />
-        <circle cx="1274" cy="348" r="2" /><circle cx="1312" cy="389" r="3.5" />
-        <circle cx="480" cy="409" r="2" /><circle cx="577" cy="309" r="1.8" />
-        <circle cx="670" cy="407" r="2.2" /><circle cx="746" cy="386" r="1.7" />
-        <circle cx="826" cy="367" r="2" /><circle cx="908" cy="349" r="1.8" />
-        <circle cx="997" cy="365" r="2.2" /><circle cx="1082" cy="382" r="1.7" />
-        <circle cx="1164" cy="397" r="2" /><circle cx="1250" cy="408" r="1.8" />
-      </g>
-    </svg>
-  </div>
-  <div class="{{c}}__crt-collapse" aria-hidden="true">
-    <span class="{{c}}__crt-line"></span>
-    <span class="{{c}}__crt-dot"></span>
+{% if page.lang == 'en' %}{% assign cue_href = "#how-it-works" %}{% else %}{% assign cue_href = "#jak-to-dziala" %}{% endif %}
+<script>
+  (function () {
+    var h = document.querySelector('.c-header');
+    if (h) document.documentElement.style.setProperty('--hero-header', h.offsetHeight + 'px');
+  })();
+</script>
+<section class="{{c}}" aria-labelledby="hero-title">
+  <div class="{{c}}__sky" aria-hidden="true">
+    <div class="{{c}}__bloom"></div>
+    <div class="{{c}}__eclipse">
+      <div class="{{c}}__corona"></div>
+      <div class="{{c}}__streamers"></div>
+      <div class="{{c}}__rim"></div>
+      <div class="{{c}}__disc"></div>
+      <div class="{{c}}__bead-orbit"><div class="{{c}}__bead"><i class="{{c}}__flare"></i></div></div>
+    </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="{{c}}__inner">
-          <div class="{{c}}__left">
-            <h1 class="{{c}}__title">{{ include.title }}</h1>
-            <div class="{{c}}__description">{{ include.description_html }}</div>
-            {% if include.works_button != "" and include.works_button_link != "" %}
-              <div class="{{c}}__btn">
-                <a class="works-button c-button c-button--secondary c-button--small" href="{{ include.works_button_link }}">
-                  {{ include.works_button }}
-                </a>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+  <div class="{{c}}__content container">
+    {% if include.eyebrow %}<p class="{{c}}__eyebrow">{{ include.eyebrow }}</p>{% endif %}
+    <h1 id="hero-title" class="{{c}}__title">
+      {%- if include.title_lines -%}
+        {%- for line in include.title_lines -%}<span class="{{c}}__line">{{ line }}</span>{% unless forloop.last %}{{ " " }}{% endunless %}{%- endfor -%}
+      {%- else -%}{{ include.title }}{%- endif -%}
+    </h1>
+    {% if include.description %}<p class="{{c}}__lead">{{ include.description }}</p>{% endif %}
+    <div class="{{c}}__actions">
+      {% if include.works_button and include.works_button != "" and include.works_button_link != "" %}
+        <a class="{{c}}__btn works-button" href="{{ include.works_button_link }}">{{ include.works_button }}</a>
+      {% endif %}
+      <a class="{{c}}__cue" href="{{ cue_href }}">{{ site.data[page.lang].projects.item14 }}</a>
     </div>
   </div>
 </section>
+<script>
+  (function () {
+    var hero = document.querySelector('.c-hero');
+    if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var visible = true, raf = 0;
+    function frame() {
+      raf = 0;
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty('--hero-p', Math.min(1, Math.max(0, -r.top / (r.height || 1))).toFixed(4));
+    }
+    function queue() { if (visible && !raf) raf = requestAnimationFrame(frame); }
+    new IntersectionObserver(function (e) {
+      visible = e[0].isIntersecting;
+      hero.classList.toggle('c-hero--paused', !visible);
+      queue();
+    }).observe(hero);
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
+    if (window.matchMedia('(pointer: fine)').matches) {
+      hero.addEventListener('pointermove', function (e) {
+        hero.style.setProperty('--hero-mx', ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
+        hero.style.setProperty('--hero-my', ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
+      }, { passive: true });
+    }
+    queue();
+  })();
+</script>
 <!-- end hero -->

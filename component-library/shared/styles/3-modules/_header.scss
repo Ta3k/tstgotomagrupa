@@ -1,5 +1,7 @@
 /* Header */
 .c-header {
+  position: relative;
+  z-index: 30; // nad hero, które wsuwa się pod header (margin-top w hero.scss)
   height: auto;
   transition: $global-transition;
 }

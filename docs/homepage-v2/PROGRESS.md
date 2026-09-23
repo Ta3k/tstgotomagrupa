@@ -80,3 +80,21 @@ Otwarte kwestie:
 - B+: ocena wykonalności przejścia prawdziwego diagramu z perspektywy 3D do widoku płaskiego. Test techniczny na prawdziwym DOM diagramu: ostry render, 57–60 fps.
   - Szczegóły i ryzyka w `HERO.md`. Niczego nie wdrażałem.
 - B+ „Diagram jako hero”: prototyp `/hero-lab/d/` (PL/EN). Prawdziwy diagram przechodzi z perspektywy 3D w hero do widoku płaskiego w sekcji. Na mobile łagodna wersja. Obecna sekwencja 2 kroków jest na tej stronie wyłączona (uproszczenie prototypu).
+
+## Etap 3: hero „Zaćmienie” wdrożone (2026-09-23)
+
+Zrobione:
+- Hero A „Zaćmienie” zastąpiło poprzedni komponent na stronie głównej PL i EN. Szczegóły w `HERO.md` („Decyzja i wdrożenie”).
+- Usunięte: pin „CRT collapse” hero, lab `/hero-lab/*`, duplikat `index_pl.html` (D9).
+- Poppins 400 ma `font-display: swap`.
+
+Wyniki:
+- Lighthouse mobile, mediana ×3: PL 83 → 89, EN 85 → 89. LCP 3,71 s (było 4,33 / 4,17), TBT 0 ms, CLS 0. Surowe dane w `docs/homepage-v2/hero-final/`.
+- Chromium, WebKit i Firefox; 1440, 1920, 390, 360; PL i EN: brak błędów konsoli, nieudanych requestów i poziomego scrolla. Header i menu mobilne działają nad hero.
+- Droga do kart marek: 4,44 vh (1440), 5,33 vh (390).
+
+Build zielony. Testów automatycznych nadal brak: Etap 2 nie jest wykonany.
+
+Otwarte kwestie:
+- Etap 2 (testy) oraz poprawki D6/D7 (linki, teksty EN) planowane na jego początek.
+- Na prawdziwym iPhonie trzeba sprawdzić maski i poświatę zaćmienia (pamięć GPU, `svh`).

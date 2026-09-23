@@ -3,7 +3,7 @@ spec:
   structures:
     - content_blocks
   label: Hero
-  description: Page hero with heading, description, button, and a golden 360-degree visual
+  description: Page hero "Zaćmienie" (golden eclipse) with eyebrow, heading, lead, button and a link to the diagram
   icon: wysiwyg
   tags:
     - Structure
@@ -12,18 +12,20 @@ spec:
 
 # Defines the structure of this component, as well as the default values
 blueprint:
+  eyebrow: ""
   title: ""
-  description_html: ""
+  title_lines: []
+  description: ""
   works_button: ""
   works_button_link: ""
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview:
-  title: Te
-  description_html: Technologia, marketing i sprzedaż 
-    w jednym miejscu
-  works_button: Dowiedź się więcej
-  works_button_link: "#projects"
+  eyebrow: Grupa GOTOMA, pełne wsparcie, IT 360.
+  title: Technologia, sprzęt i marketing w <strong>jednym</strong> miejscu
+  description: Strony, sklepy, aplikacje, rozwiązania AI i infrastrukturę IT.
+  works_button: Dowiedz się więcej
+  works_button_link: "#dowiedz-sie-wiecej"
 
 # Any extra CloudCannon inputs configuration to apply to the blueprint
 _inputs: {}
