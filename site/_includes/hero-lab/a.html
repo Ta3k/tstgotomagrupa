@@ -15,7 +15,6 @@
       <div class="hl-a__disc"></div>
       <div class="hl-a__bead-orbit"><div class="hl-a__bead"><i class="hl-a__flare"></i></div></div>
     </div>
-    <div class="hl-a__thread"><i></i></div>
   </div>
 
   <div class="hl__content hl-a__content container">
@@ -110,17 +109,6 @@
     box-shadow: 0 0 12px rgba(255, 232, 164, .6);
     animation: hl-a-flare 1.6s .75s both cubic-bezier(.2, .8, .2, 1);
   }
-  .hl-a__thread { /* nić prowadząca do diagramu */
-    position: absolute; left: 50%; bottom: 0; width: 1px; height: 26svh; transform-origin: bottom;
-    background: linear-gradient(to bottom, transparent, rgba(228, 173, 80, .7));
-    transform: translateX(-50%) scaleY(calc(.35 + var(--p) * 1.6));
-    opacity: calc(.4 + var(--p));
-  }
-  .hl-a__thread i {
-    position: absolute; left: -2px; top: 0; width: 5px; height: 5px; border-radius: 50%; background: #fff6dc;
-    box-shadow: 0 0 10px 2px rgba(255, 232, 164, .9); animation: hl-a-drip 3.2s 2s cubic-bezier(.6, 0, .4, 1) infinite;
-  }
-
   .hl-a__content {
     text-align: center; display: flex; flex-direction: column; align-items: center;
     padding-top: 2svh; padding-bottom: 10svh;
@@ -140,7 +128,6 @@
   @keyframes hl-a-breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.12); } }
   @keyframes hl-a-flare { from { opacity: 0; transform: scaleX(0); } }
   @keyframes hl-a-shine { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
-  @keyframes hl-a-drip { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(26svh); opacity: 0; } }
 
   /* Mobile: łuk zaćmienia u góry, tekst w cieniu dysku, rozbłysk wyżej */
   @media (max-width: 767px) {
@@ -149,7 +136,6 @@
     .hl-a__title { font-size: clamp(36px, 10.6vw, 50px); }
     .hl-a__bead::after { width: 220px; height: 220px; margin: -110px 0 0 -110px; }
     .hl-a__streamers { animation: hl-a-fade 2.4s .6s both; } /* bez stałego obrotu na telefonie */
-    .hl-a__thread { height: 14svh; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hl-a *, .hl-a *::before, .hl-a *::after { animation: none !important; }
