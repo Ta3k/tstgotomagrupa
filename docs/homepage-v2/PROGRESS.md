@@ -279,3 +279,22 @@ Wyniki:
   - błędy zwrócone przez CF7 pokazywane tak samo;
   - poprawiony błąd: komunikat o e-mailu pojawiający się w trakcie dotknięcia „Wyślij” przesuwał przycisk i dotknięcie trafiało obok (mobile). Teraz komunikat pokazuje się po puszczeniu.
 
+### Eksperyment „złoty diagram” (/?diagram=zloty) (2026-09-25)
+
+- Wariant sekcji „Jak to działa?” włączany parametrem `?diagram=zloty` (`?diagram=obecny` pokazuje obecny wygląd z paskiem do porównania). Bez parametru strona bez zmian.
+- Pliki: `site/_includes/diagram-lab.html` (dołączony w `default.html`), `3-modules/_theme-diagram-gold.scss` (wszystko pod `.scheme-gold`).
+- **Kropki:** nowy canvas na cały panel diagramu (desktop), na całą szerokość ekranu (mobile). Przygaszone złoto, dwie wolno wędrujące plamy światła, rzadkie rozbłyski, rozświetlenie pod kursorem. Warstwa bazowa jest rysowana raz; mobile 30 fps; poza ekranem pauza; reduced-motion: statycznie. Stare kropki (`.dotsTest`) są w wariancie usuwane.
+- **Złoto:**
+  - panel ze złotą obwódką i poświatą;
+  - złote ramki i gradient tytułu w nagłówku „GOTOMA GENERAL” i w pasku integracji;
+  - „Finansowanie” w złocie;
+  - złota linia u góry kart;
+  - złoty pasek postępu w sekwencji.
+  - Kolory kategorii (linie, poświaty kart) zostają.
+- **Animacje:**
+  - złote impulsy światła biegnące po liniach połączeń;
+  - dymki (desktop) wchodzą sprężyście z rozmyciem, z przebłyskiem światła i kaskadą treści (nagłówek, linia, partnerzy);
+  - karta z otwartym dymkiem ma rozchodzący się złoty pierścień;
+  - arkusze (mobile): złota obwódka, sprężysty wjazd, przebłysk, kaskada treści.
+- Przy okazji `order-lab.html` zachowuje inne parametry w adresie, więc oba eksperymenty mogą działać razem.
+

@@ -1,0 +1,399 @@
+/* =========================================================
+   Eksperyment „złoty diagram” (sekcja „Jak to działa?”).
+   Włączany parametrem ?diagram=zloty (site/_includes/diagram-lab.html dodaje klasę .scheme-gold
+   i rysuje kropki). Bez tej klasy nic się nie zmienia. Kolory kategorii (linie, poświaty kart)
+   zostają, złoto dochodzi w ramach, tekstach, kropkach, impulsach na liniach i dymkach.
+   Nazwa pliku zaczyna się od „theme-”, żeby ładował się po _sections.scss.
+   ========================================================= */
+$dg-ease: cubic-bezier(.2, .9, .25, 1.12);
+
+.stats-how-it-works.scheme-gold {
+
+  /* ---------- kropki (canvas z diagram-lab.html) ---------- */
+  .scheme-gold-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .scheme-diagram {
+    --scheme-bg: transparent;
+  }
+
+  .scheme-mobile-diagram {
+    background: transparent;
+  }
+
+  .scheme-mobile-diagram__dots {
+    display: none;
+  }
+
+  // mobile: kropki na całą szerokość ekranu, od diagramu w dół (nagłówek sekcji bez kropek)
+  .scheme-mobile {
+    position: relative;
+
+    > .scheme-gold-dots {
+      top: var(--gd-top, 0px);
+      left: calc(50% - 50vw);
+      width: 100vw;
+      height: calc(100% - var(--gd-top, 0px)); // canvas nie rozciąga się przez top+bottom
+      -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 70px), transparent 100%);
+      mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 70px), transparent 100%);
+    }
+  }
+
+  &:not(.scheme-mobile-scroll-story) .scheme-mobile > .header-card-partners {
+    position: relative;
+    z-index: 1;
+  }
+
+  &.scheme-mobile-scroll-story {
+    background:
+      radial-gradient(circle at 50% 32%, rgba($gold-600, .14), transparent 46%),
+      #000;
+  }
+
+  /* ---------- panel diagramu (desktop) ---------- */
+  &:not(.scheme-scroll-story) .scheme-story__visual {
+    position: relative;
+  }
+
+  &.scheme-scroll-story .scheme-story__visual {
+    border-color: rgba($gold-400, .26);
+    background:
+      radial-gradient(60% 60% at 50% 46%, rgba($gold-600, .11), transparent 70%),
+      radial-gradient(38% 42% at 88% 6%, rgba($gold-100, .05), transparent 70%),
+      #050403;
+    box-shadow:
+      0 40px 120px rgba(0, 0, 0, .75),
+      0 40px 100px -70px rgba($gold-400, .55),
+      inset 0 0 0 1px rgba($gold-400, .05);
+
+    // złota linia światła u góry panelu
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      z-index: 21;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($gold-100, .9), transparent);
+      pointer-events: none;
+    }
+  }
+
+  // panel opisu w trakcie sekwencji
+  &.scheme-scroll-story .scheme-story__eyebrow {
+    color: rgba($gold-200, .75);
+  }
+
+  &.scheme-scroll-story .scheme-story__progress i {
+    background: linear-gradient(90deg, $gold-600, $gold-100, $gold-400);
+    box-shadow: 0 0 12px rgba($gold-400, .9);
+  }
+
+  /* ---------- ramki: nagłówek, integracje (desktop i mobile) ---------- */
+  .scheme-header-box,
+  .scheme-integrations,
+  .scheme-mobile-bar--header,
+  .scheme-mobile-bar--footer {
+    border: 1px solid transparent;
+    background:
+      radial-gradient(120% 180% at 0% 0%, rgba($gold-600, .16), transparent 55%) padding-box,
+      linear-gradient(180deg, rgba(15, 11, 7, .97), rgba(5, 4, 3, .97)) padding-box,
+      linear-gradient(135deg, rgba($gold-100, .75), rgba($gold-600, .22) 40%, rgba($gold-400, .1) 70%, rgba($gold-200, .5)) border-box;
+    box-shadow: 0 24px 60px -34px rgba($gold-400, .45);
+  }
+
+  .scheme-header-box__title,
+  .scheme-mobile-bar__title {
+    background: linear-gradient(100deg, #fff 25%, $gold-100 62%, $gold-400);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .scheme-integrations__brand,
+  .scheme-mobile-integrations__title {
+    color: $gold-100;
+  }
+
+  .scheme-finance,
+  .scheme-mobile-finance {
+    border-color: rgba($gold-400, .6);
+    background: linear-gradient(180deg, rgba($gold-600, .16), rgba(5, 4, 3, .92));
+    transition: transform .3s $dg-ease, border-color .25s, box-shadow .3s;
+
+    small,
+    .scheme-mobile-finance__right {
+      color: $gold-100;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: $gold-100;
+      box-shadow: 0 0 0 1px rgba($gold-400, .35), 0 0 30px rgba($gold-400, .4);
+    }
+  }
+
+  // ikony w złotych ramkach: złoty odcień (ikony PNG są białe)
+  .scheme-finance__icon img,
+  .scheme-mobile-finance__icon img,
+  .scheme-integrations__brand-icon img,
+  .scheme-mobile-integrations__icon img {
+    filter: sepia(1) saturate(4) hue-rotate(-12deg) brightness(1.08);
+  }
+
+  /* ---------- karty ---------- */
+  .scheme-node,
+  .scheme-mobile-node {
+    transition:
+      transform .35s $dg-ease,
+      border-color .25s ease,
+      box-shadow .3s ease,
+      background-color .25s ease;
+
+    // złota linia u góry karty (spójna z kartami na reszcie strony)
+    &::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 16%;
+      right: 16%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($gold-100, .8), transparent);
+      opacity: .4;
+      pointer-events: none;
+      transition: opacity .3s ease, left .45s $dg-ease, right .45s $dg-ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &.is-active::after {
+      left: 5%;
+      right: 5%;
+      opacity: 1;
+    }
+  }
+
+  // karta z otwartym dymkiem: rozchodzący się złoty pierścień
+  .scheme-node.is-active {
+    animation: dg-node-ring 1.8s ease-out infinite;
+  }
+
+  /* ---------- impulsy światła na liniach (klony ścieżek z diagram-lab.html) ---------- */
+  .scheme-pulse {
+    fill: none;
+    stroke: $gold-100;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-dasharray: 4 96;
+    stroke-dashoffset: 100;
+    opacity: 0;
+    filter: drop-shadow(0 0 4px rgba($gold-100, .95)) drop-shadow(0 0 10px rgba($gold-400, .8));
+    animation: dg-pulse var(--pulse-d, 4.5s) linear var(--pulse-delay, 0s) infinite;
+  }
+
+  .scheme-mobile-diagram__lines .scheme-pulse {
+    stroke-width: 2;
+  }
+
+  /* ---------- dymki (desktop) ---------- */
+  .scheme-tooltip {
+    border: 1px solid transparent;
+    background:
+      radial-gradient(120% 90% at 0% 0%, rgba($gold-600, .2), transparent 55%) padding-box,
+      linear-gradient(180deg, #120e09, #060504) padding-box,
+      linear-gradient(145deg, rgba($gold-100, .8), rgba($gold-600, .22) 40%, rgba($gold-400, .1) 65%, rgba($gold-200, .5)) border-box;
+    box-shadow:
+      0 30px 80px -20px rgba(0, 0, 0, .9),
+      0 24px 80px -44px rgba($gold-400, .7);
+
+    // przebłysk światła przy otwarciu
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(105deg, transparent 42%, rgba($gold-100, .16) 50%, transparent 58%) no-repeat;
+      background-size: 250% 100%;
+      background-position: 130% 0;
+      pointer-events: none;
+    }
+
+    &.is-active::after {
+      animation: dg-sheen 1.1s .12s cubic-bezier(.4, 0, .2, 1) both;
+    }
+  }
+
+  .scheme-tooltip__icon,
+  .scheme-mobile-tooltip__icon {
+    border-color: rgba($gold-400, .45);
+    background: linear-gradient(180deg, rgba($gold-600, .22), rgba($gold-600, .06));
+    box-shadow: 0 0 22px -6px rgba($gold-400, .6);
+
+    img {
+      filter: sepia(1) saturate(4) hue-rotate(-12deg) brightness(1.08);
+    }
+  }
+
+  .scheme-tooltip__label,
+  .scheme-mobile-tooltip__label {
+    color: $gold-200;
+  }
+
+  .scheme-tooltip__divider,
+  .scheme-mobile-tooltip__divider {
+    background: linear-gradient(90deg, rgba($gold-400, .7), rgba($gold-400, .08));
+    transform-origin: left center;
+  }
+
+  // wejście dymka po sekwencji (hover/fokus): sprężyste, z rozmyciem; treść wchodzi kaskadowo
+  &.scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story__content .scheme-tooltip,
+  &:not(.scheme-scroll-story) .scheme-tooltip {
+    filter: blur(5px);
+    transform: translateY(16px) scale(.95);
+    transition:
+      opacity .24s ease,
+      visibility .24s ease,
+      transform .55s $dg-ease,
+      filter .32s ease;
+  }
+
+  &.scheme-scroll-story:not(.scheme-scroll-story-active) .scheme-story__content .scheme-tooltip.is-active,
+  &:not(.scheme-scroll-story) .scheme-tooltip.is-active {
+    filter: none;
+    transform: none !important;
+  }
+
+  .scheme-tooltip.is-active,
+  &:not(.scheme-mobile-scroll-story) .scheme-mobile-tooltip.is-active {
+    .scheme-tooltip__header,
+    .scheme-mobile-tooltip__header {
+      animation: dg-rise .5s .06s $dg-ease both;
+    }
+
+    .scheme-tooltip__divider,
+    .scheme-mobile-tooltip__divider {
+      animation: dg-line .6s .16s cubic-bezier(.4, 0, .2, 1) both;
+    }
+
+    .scheme-tooltip__label,
+    .scheme-mobile-tooltip__label {
+      animation: dg-rise .45s .2s $dg-ease both;
+    }
+
+    .scheme-tooltip__partner,
+    .scheme-mobile-tooltip__partner {
+      animation: dg-pop .5s $dg-ease both;
+      animation-delay: .26s;
+
+      &:nth-child(2) { animation-delay: .32s; }
+      &:nth-child(3) { animation-delay: .38s; }
+      &:nth-child(4) { animation-delay: .44s; }
+      &:nth-child(n+5) { animation-delay: .5s; }
+    }
+
+    .scheme-tooltip__icon,
+    .scheme-mobile-tooltip__icon {
+      animation: dg-icon .9s .1s ease-out both;
+    }
+
+    .scheme-mobile-tooltip__cta {
+      animation: dg-rise .45s .36s $dg-ease both;
+    }
+  }
+
+  /* ---------- arkusze (mobile) ---------- */
+  .scheme-mobile-tooltip {
+    border: 1px solid transparent;
+    background:
+      radial-gradient(120% 70% at 0% 0%, rgba($gold-600, .2), transparent 55%) padding-box,
+      linear-gradient(180deg, #120e09, #060504) padding-box,
+      linear-gradient(160deg, rgba($gold-100, .8), rgba($gold-600, .22) 40%, rgba($gold-400, .1) 65%, rgba($gold-200, .5)) border-box;
+    box-shadow:
+      0 -20px 70px rgba(0, 0, 0, .78),
+      0 -10px 60px -40px rgba($gold-400, .7);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(105deg, transparent 42%, rgba($gold-100, .14) 50%, transparent 58%) no-repeat;
+      background-size: 250% 100%;
+      background-position: 130% 0;
+      pointer-events: none;
+    }
+  }
+
+  &:not(.scheme-mobile-scroll-story) .scheme-mobile-tooltip {
+    transition:
+      opacity .25s ease,
+      visibility .3s ease,
+      transform .5s cubic-bezier(.2, .9, .25, 1.04);
+
+    &.is-active::after {
+      animation: dg-sheen 1.1s .2s cubic-bezier(.4, 0, .2, 1) both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scheme-node.is-active,
+    .scheme-pulse,
+    .scheme-tooltip::after,
+    .scheme-mobile-tooltip::after,
+    .scheme-tooltip.is-active *,
+    .scheme-mobile-tooltip.is-active * {
+      animation: none !important;
+    }
+
+    .scheme-pulse {
+      display: none;
+    }
+
+    .scheme-tooltip {
+      filter: none !important;
+    }
+  }
+}
+
+@keyframes dg-pulse {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  8% { opacity: 1; }
+  45% { stroke-dashoffset: 0; opacity: 1; }
+  52%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes dg-node-ring {
+  0% { outline: 1px solid rgba(255, 232, 164, .85); outline-offset: 2px; }
+  100% { outline: 1px solid rgba(255, 232, 164, 0); outline-offset: 12px; }
+}
+
+@keyframes dg-sheen {
+  from { background-position: 130% 0; }
+  to { background-position: -30% 0; }
+}
+
+@keyframes dg-rise {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes dg-pop {
+  from { opacity: 0; transform: translateY(6px) scale(.92); }
+}
+
+@keyframes dg-line {
+  from { transform: scaleX(0); }
+}
+
+@keyframes dg-icon {
+  0% { box-shadow: 0 0 0 0 rgba(255, 232, 164, .7); }
+  100% { box-shadow: 0 0 0 12px rgba(255, 232, 164, 0), 0 0 22px -6px rgba(228, 173, 80, .6); }
+}

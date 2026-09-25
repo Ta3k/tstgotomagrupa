@@ -1,0 +1,228 @@
+{% comment %}
+  Eksperyment „złoty diagram” (tymczasowe, do decyzji). Tylko strona główna i tylko z parametrem:
+  /?diagram=zloty  (wariant złoty)   /?diagram=obecny  (obecny wygląd, z paskiem do porównania).
+  Bez parametru skrypt kończy się w pierwszej linii. Style: 3-modules/_theme-diagram-gold.scss.
+  Działa przed common.js (na stronie głównej ładowanym po „load”), więc usuwa stare kropki,
+  zanim common.js je uruchomi.
+{% endcomment %}
+{% if page.path contains "_pages/index.html" or page.path contains "_pages/home_en.html" %}
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    if (!params.has('diagram')) return;
+    var gold = params.get('diagram') !== 'obecny';
+    var section = document.querySelector('.stats-how-it-works');
+    if (!section) return;
+    var en = document.documentElement.lang === 'en';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    /* ---------- pasek przełącznika ---------- */
+    function urlWith(value) {
+      var sp = new URLSearchParams(location.search);
+      sp.set('diagram', value);
+      return location.pathname + '?' + sp.toString() + '#' + section.id;
+    }
+    var bar = document.createElement('nav');
+    bar.className = 'dl-bar';
+    bar.setAttribute('aria-label', en ? 'Diagram variant' : 'Wariant diagramu');
+    bar.innerHTML = '<span class="dl-bar__tag">' + (en ? 'Diagram' : 'Diagram') + '</span>' +
+      '<a href="' + urlWith('obecny') + '"' + (gold ? '' : ' aria-current="true"') + '>' + (en ? 'Current' : 'Obecny') + '</a>' +
+      '<a href="' + urlWith('zloty') + '"' + (gold ? ' aria-current="true"' : '') + '>' + (en ? 'Gold' : 'Złoty') + '</a>';
+    document.body.appendChild(bar);
+    // przełącznik PL/EN zachowuje parametry eksperymentów
+    Array.prototype.forEach.call(document.querySelectorAll('.c-header .main-nav > .logo__link, .c-header .nav-button > .logo__link'), function (a) {
+      var base = a.getAttribute('href').split('?')[0].split('#')[0];
+      a.setAttribute('href', base + location.search);
+    });
+
+    if (!gold) return;
+    section.classList.add('scheme-gold');
+    var oldDots = section.querySelector('.dotsTest');
+    if (oldDots) oldDots.remove();
+
+    /* ---------- złote kropki ---------- */
+    var BASE = [199, 152, 78];
+    var LIGHT = [255, 236, 178];
+    var smooth = function (x) { return x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x); };
+
+    function GoldDots(host, opts) {
+      var canvas = document.createElement('canvas');
+      canvas.className = 'scheme-gold-dots';
+      canvas.setAttribute('aria-hidden', 'true');
+      host.insertBefore(canvas, host.firstChild);
+      var ctx = canvas.getContext('2d');
+      var baseLayer = document.createElement('canvas');
+      var bctx = baseLayer.getContext('2d');
+      var W = 0, H = 0, dpr = 1, xs, ys, n = 0, cols = 0, rows = 0, twinkle = [], lit, touched, touchedN = 0;
+      var S = opts.spacing, R0 = opts.radius;
+      var pointer = { x: -9999, y: -9999, on: false, k: 0 };
+      var visible = false, raf = 0, last = 0, needsBuild = true;
+
+      function build() {
+        needsBuild = false;
+        var w = opts.width ? opts.width() : canvas.clientWidth;
+        var h = canvas.clientHeight;
+        if (!w || !h) return false;
+        if (opts.width) canvas.style.width = w + 'px';
+        W = w; H = h;
+        dpr = Math.min(2, window.devicePixelRatio || 1);
+        canvas.width = baseLayer.width = Math.round(W * dpr);
+        canvas.height = baseLayer.height = Math.round(H * dpr);
+        // siatka zakotwiczona w lewym górnym rogu: przy zmianie szerokości panelu kropki się nie przesuwają
+        var off = S / 2;
+        cols = Math.ceil((W - off) / S) + 1;
+        rows = Math.ceil((H - off) / S) + 1;
+        n = cols * rows;
+        xs = new Float32Array(n); ys = new Float32Array(n);
+        lit = new Float32Array(n); touched = new Int32Array(n);
+        var i = 0;
+        for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++, i++) { xs[i] = off + c * S; ys[i] = off + r * S; }
+        // warstwa bazowa: przygaszone złoto, delikatnie słabsze przy krawędziach
+        bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        bctx.clearRect(0, 0, W, H);
+        for (i = 0; i < n; i++) {
+          var edge = Math.min(xs[i], ys[i], W - xs[i], H - ys[i]);
+          var a = opts.baseAlpha * (.55 + .45 * smooth(edge / 90));
+          bctx.fillStyle = 'rgba(' + BASE[0] + ',' + BASE[1] + ',' + BASE[2] + ',' + a.toFixed(3) + ')';
+          bctx.beginPath(); bctx.arc(xs[i], ys[i], R0, 0, 6.2832); bctx.fill();
+        }
+        // rozbłyski: ok. 6% kropek, każda we własnym rytmie
+        twinkle = [];
+        for (i = 0; i < n; i++) if (Math.random() < .06) twinkle.push([i, Math.random() * 6.2832, .00025 + Math.random() * .0004]);
+        return true;
+      }
+
+      function touch(i, v) {
+        if (lit[i] === 0) touched[touchedN++] = i;
+        if (v > lit[i]) lit[i] = v;
+      }
+      function lightArea(cx, cy, rad, strength) {
+        if (strength <= .01) return;
+        var c0 = Math.max(0, Math.floor((cx - rad) / S)), c1 = Math.min(cols - 1, Math.ceil((cx + rad) / S));
+        var r0 = Math.max(0, Math.floor((cy - rad) / S)), r1 = Math.min(rows - 1, Math.ceil((cy + rad) / S));
+        for (var r = r0; r <= r1; r++) for (var c = c0; c <= c1; c++) {
+          var i = r * cols + c, dx = xs[i] - cx, dy = ys[i] - cy;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < rad) touch(i, smooth(1 - d / rad) * strength);
+        }
+      }
+
+      function frame(t) {
+        raf = 0;
+        if (!visible) return;
+        if (opts.fps && t - last < 1000 / opts.fps) { raf = requestAnimationFrame(frame); return; }
+        last = t;
+        if (needsBuild && !build()) { raf = requestAnimationFrame(frame); return; }
+        draw(t);
+        if (!reduce) raf = requestAnimationFrame(frame);
+      }
+
+      function draw(t) {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(baseLayer, 0, 0);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        touchedN = 0;
+        var time = reduce ? 4000 : t;
+        // dwie wolno wędrujące plamy światła
+        var rad = Math.max(W, H) * opts.spotSize;
+        lightArea(W * (.5 + .36 * Math.sin(time * .00011)), H * (.5 + .34 * Math.sin(time * .00017 + 1.3)), rad, .55 + .2 * Math.sin(time * .0004));
+        lightArea(W * (.5 + .38 * Math.cos(time * .00008 + 2.1)), H * (.5 + .36 * Math.cos(time * .00013 + .4)), rad * .8, .42 + .18 * Math.cos(time * .0005));
+        // kursor
+        pointer.k += ((pointer.on ? 1 : 0) - pointer.k) * .12;
+        lightArea(pointer.x, pointer.y, opts.hoverRadius, pointer.k);
+        // rozbłyski
+        if (!reduce) for (var k = 0; k < twinkle.length; k++) {
+          var tw = twinkle[k], v = Math.pow((Math.sin(time * tw[2] + tw[1]) + 1) / 2, 22) * .55;
+          if (v > .02) touch(tw[0], v);
+        }
+        for (var j = 0; j < touchedN; j++) {
+          var i = touched[j], I = lit[i];
+          lit[i] = 0;
+          if (I < .03) continue;
+          var col = BASE.map(function (b, q) { return Math.round(b + (LIGHT[q] - b) * I); }).join(',');
+          var r = R0 + I * opts.grow;
+          if (I > .5) { // poświata tylko przy mocnym świetle (kursor, środek plamy), rozbłyski bez niej
+            ctx.fillStyle = 'rgba(' + col + ',' + (.13 * I).toFixed(3) + ')';
+            ctx.beginPath(); ctx.arc(xs[i], ys[i], r * 3.2, 0, 6.2832); ctx.fill();
+          }
+          ctx.fillStyle = 'rgba(' + col + ',' + Math.min(.95, opts.baseAlpha + .7 * I).toFixed(3) + ')';
+          ctx.beginPath(); ctx.arc(xs[i], ys[i], r, 0, 6.2832); ctx.fill();
+        }
+      }
+
+      function start() { if (!raf) raf = requestAnimationFrame(frame); }
+      this.resize = function () { needsBuild = true; if (reduce && visible) start(); };
+      new ResizeObserver(this.resize).observe(opts.observe || canvas);
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) start(); }, { rootMargin: '200px 0px' }).observe(host);
+
+      if (finePointer && opts.pointerTarget && !reduce) {
+        opts.pointerTarget.addEventListener('pointermove', function (e) {
+          var rect = canvas.getBoundingClientRect();
+          pointer.x = e.clientX - rect.left; pointer.y = e.clientY - rect.top; pointer.on = true;
+        }, { passive: true });
+        opts.pointerTarget.addEventListener('pointerleave', function () { pointer.on = false; });
+      }
+    }
+
+    // desktop: cały panel diagramu (canvas szerokości całej sceny, panel przy zwężaniu go przycina)
+    var visual = section.querySelector('.scheme-story__visual');
+    var story = section.querySelector('.scheme-story');
+    if (visual) {
+      new GoldDots(visual, {
+        spacing: 22, radius: 1.35, grow: 1.9, baseAlpha: .3, spotSize: .24, hoverRadius: 120,
+        width: function () { return Math.max(visual.clientWidth, story ? story.clientWidth : 0); },
+        observe: story || visual, pointerTarget: visual
+      });
+    }
+
+    // mobile/tablet: cała szerokość ekranu, od diagramu w dół
+    var mobile = section.querySelector('.scheme-mobile');
+    if (mobile) {
+      var mobileDots = new GoldDots(mobile, {
+        spacing: 18, radius: 1.1, grow: 1.5, baseAlpha: .32, spotSize: .22, hoverRadius: 90, fps: 30
+      });
+      var mobileDiagram = mobile.querySelector('.scheme-mobile-diagram');
+      var syncTop = function () {
+        var storyMode = section.classList.contains('scheme-mobile-scroll-story');
+        var top = storyMode || !mobileDiagram ? 0 : Math.max(0, mobileDiagram.offsetTop - 24);
+        mobile.style.setProperty('--gd-top', top + 'px');
+        mobileDots.resize();
+      };
+      syncTop();
+      new ResizeObserver(syncTop).observe(mobile);
+      new MutationObserver(syncTop).observe(section, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    /* ---------- impulsy światła na liniach ---------- */
+    if (!reduce) {
+      var SVG = 'http://www.w3.org/2000/svg';
+      Array.prototype.forEach.call(section.querySelectorAll('.scheme-lines .scheme-line, .scheme-mobile-diagram__lines .scheme-mobile-line:not(.scheme-mobile-line--red)'), function (el, k) {
+        var len = 0;
+        try { len = el.getTotalLength(); } catch (e) {}
+        if (len < 50) return;
+        var pulse = el.cloneNode(false);
+        pulse.removeAttribute('class');
+        pulse.removeAttribute('stroke');
+        pulse.removeAttribute('style');
+        pulse.setAttribute('class', 'scheme-pulse');
+        pulse.setAttribute('pathLength', '100');
+        pulse.style.setProperty('--pulse-d', (2.6 + len / 140).toFixed(2) + 's');
+        pulse.style.setProperty('--pulse-delay', (-(k * 0.83) % 5).toFixed(2) + 's');
+        el.parentNode.appendChild(pulse);
+      });
+    }
+  })();
+</script>
+<style>
+  .dl-bar{position:fixed;left:16px;bottom:16px;z-index:2000;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:rgba(12,10,6,.86);border:1px solid rgba(228,173,80,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font:600 12px/1 Poppins,system-ui,sans-serif;letter-spacing:.03em}
+  .dl-bar a{color:#d9c79f;text-decoration:none;padding:7px 12px;border-radius:999px}
+  .dl-bar a:hover{color:#fff}
+  .dl-bar a[aria-current]{background:#e4ad50;color:#120c02}
+  .dl-bar__tag{color:#8c7b58;padding:0 8px;text-transform:uppercase;font-size:10px}
+  .ol-on .dl-bar{bottom:calc(var(--ol-h,0px) + 24px)}
+  .scheme-mobile-tooltip-open .dl-bar{opacity:0;pointer-events:none}
+  @media (max-width:767px){.dl-bar{left:8px;bottom:8px}.ol-on .dl-bar{bottom:calc(var(--ol-h,0px) + 16px)}}
+</style>
+{% endif %}

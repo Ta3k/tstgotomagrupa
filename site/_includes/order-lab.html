@@ -71,7 +71,9 @@
       });
 
       // adres z kolejnością (do wysłania) i przełącznik PL/EN, który ją zachowuje
-      var q = '?kolejnosc=' + order.join('-');
+      var sp = new URLSearchParams(location.search);
+      sp.set('kolejnosc', order.join('-'));
+      var q = '?' + sp.toString();
       history.replaceState(null, '', location.pathname + q + location.hash);
       Array.prototype.forEach.call(document.querySelectorAll('.c-header .main-nav > .logo__link, .c-header .nav-button > .logo__link'), function (a) {
         a.setAttribute('href', a.getAttribute('href').split('?')[0].split('#')[0] + q);
