@@ -31,6 +31,14 @@
   {% assign msg_long = "The description is too long. Please shorten it a little." %}
   {% assign msg_heading = "[GOTOMA Group website – 360° Consultation]" %}
   {% assign msg_page = "Page" %}
+  {% assign err_situation = "Briefly describe your situation or process." %}
+  {% assign err_name = "Please enter your full name." %}
+  {% assign err_company = "Please enter your company name." %}
+  {% assign err_email = "Please enter your email address." %}
+  {% assign err_email_format = "Please enter a valid email address, e.g. john@company.com." %}
+  {% assign err_consent = "Please accept the terms to send the enquiry." %}
+  {% assign err_number = "Please enter a whole number greater than zero." %}
+  {% assign err_generic = "Please check this field." %}
 {% else %}
   {% assign form_subject = "Konsultacja 360° – nowe zgłoszenie" %}
   {% assign situation_label = "Opis sytuacji lub procesu *" %}
@@ -61,6 +69,14 @@
   {% assign msg_long = "Opis jest za długi. Skróć go trochę." %}
   {% assign msg_heading = "[Strona Grupy GOTOMA – Konsultacja 360°]" %}
   {% assign msg_page = "Strona" %}
+  {% assign err_situation = "Opisz krótko swoją sytuację lub proces." %}
+  {% assign err_name = "Podaj imię i nazwisko." %}
+  {% assign err_company = "Podaj nazwę firmy." %}
+  {% assign err_email = "Podaj adres e-mail." %}
+  {% assign err_email_format = "Wpisz poprawny adres e-mail, np. jan@firma.pl." %}
+  {% assign err_consent = "Zaznacz zgodę, żeby wysłać zgłoszenie." %}
+  {% assign err_number = "Podaj liczbę całkowitą większą od zera." %}
+  {% assign err_generic = "Sprawdź to pole." %}
 {% endif %}
 {% assign cf = site.data.contact_form %}
 <div class="{{c}}" id="{{ form_id }}">
@@ -169,6 +185,16 @@
       error: {{ msg_error | jsonify }},
       long: {{ msg_long | jsonify }}
     };
+    // walidacja w języku strony (zamiast dymków przeglądarki, które są w jej języku i poza stylistyką)
+    var ERR = {
+      opis_sytuacji: { required: {{ err_situation | jsonify }} },
+      name: { required: {{ err_name | jsonify }} },
+      firma: { required: {{ err_company | jsonify }} },
+      email: { required: {{ err_email | jsonify }}, format: {{ err_email_format | jsonify }} },
+      zgoda: { required: {{ err_consent | jsonify }} },
+      liczba_osob: { format: {{ err_number | jsonify }} },
+      generic: {{ err_generic | jsonify }}
+    };
     var MAX_MESSAGE = 2000;
     // pola CF7 -> nasze pola; reszta idzie w treść wiadomości
     var CF7_FIELDS = { 'your-name': 'name', 'your-company': 'firma', 'your-email': 'email' };
@@ -229,14 +255,59 @@
       }
     }
 
-    function markInvalid(form, cf7Invalid) {
-      Array.prototype.forEach.call(form.querySelectorAll('[aria-invalid="true"]'), function (el) { el.removeAttribute('aria-invalid'); });
-      (cf7Invalid || []).forEach(function (f) {
-        var ours = CF7_FIELDS[f.field] || (f.field === 'your-message' ? 'opis_sytuacji' : null);
-        var el = ours && form.querySelector('[name="' + ours + '"]');
-        if (el) el.setAttribute('aria-invalid', 'true');
+    // komunikat błędu pod polem (checkbox zgody: pod całą etykietą)
+    function errorAnchor(el) {
+      return el.type === 'checkbox' ? el.closest('label') : el;
+    }
+    function showError(el, text) {
+      var anchor = errorAnchor(el);
+      var id = 'cf-err-' + el.name;
+      var box = document.getElementById(id);
+      if (!box) {
+        box = document.createElement('p');
+        box.id = id;
+        box.className = 'c-contact-form__error';
+        anchor.insertAdjacentElement('afterend', box);
+      }
+      box.textContent = text;
+      el.setAttribute('aria-invalid', 'true');
+      el.setAttribute('aria-describedby', id);
+    }
+    function clearError(el) {
+      var box = document.getElementById('cf-err-' + el.name);
+      if (box) box.remove();
+      el.removeAttribute('aria-invalid');
+      el.removeAttribute('aria-describedby');
+    }
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    function fieldError(el) {
+      var value = el.type === 'checkbox' ? el.checked : el.value.trim();
+      var msgs = ERR[el.name] || {};
+      if (el.required && !value) return msgs.required || ERR.generic;
+      if (el.type === 'email' && value && !EMAIL_RE.test(value)) return msgs.format || ERR.generic;
+      if (el.name === 'liczba_osob' && value && !(/^\d+$/.test(value) && +value >= 1)) return msgs.format || ERR.generic;
+      return '';
+    }
+    function validate(form) {
+      var first = null;
+      Array.prototype.forEach.call(form.querySelectorAll('[name="opis_sytuacji"], [name="liczba_osob"], [name="name"], [name="firma"], [name="email"], [name="zgoda"]'), function (el) {
+        var err = fieldError(el);
+        if (err) { showError(el, err); first = first || el; } else { clearError(el); }
       });
-      var first = form.querySelector('[aria-invalid="true"]');
+      if (first) first.focus();
+      return !first;
+    }
+    function markInvalid(form, cf7Invalid) {
+      Array.prototype.forEach.call(form.querySelectorAll('[aria-invalid="true"]'), clearError);
+      var first = null;
+      (cf7Invalid || []).forEach(function (f) {
+        var ours = CF7_FIELDS[f.field] || (f.field === 'your-message' ? 'opis_sytuacji' : f.field === 'acceptance' ? 'zgoda' : null);
+        var el = ours && form.querySelector('[name="' + ours + '"]');
+        if (!el) return;
+        var msgs = ERR[el.name] || {};
+        showError(el, el.value && el.type === 'email' ? (msgs.format || ERR.generic) : (fieldError(el) || msgs.format || ERR.generic));
+        first = first || el;
+      });
       if (first) first.focus();
     }
 
@@ -377,9 +448,45 @@
       // reCAPTCHA dopiero przy pierwszym kontakcie z formularzem (nie obciąża ładowania strony)
       form.addEventListener('focusin', function () { loadRecaptcha().catch(function () {}); }, { once: true });
 
+      form.noValidate = true;
+      form.addEventListener('input', function (e) {
+        var el = e.target;
+        if (el.getAttribute && el.getAttribute('aria-invalid') === 'true' && !fieldError(el)) clearError(el);
+      });
+      form.addEventListener('change', function (e) {
+        var el = e.target;
+        if (el.getAttribute && el.getAttribute('aria-invalid') === 'true' && !fieldError(el)) clearError(el);
+      });
+      // zły format e-maila pokazujemy już po wyjściu z pola. Jeśli fokus zabrało kliknięcie/dotknięcie
+      // (np. przycisku „Wyślij”), komunikat pojawia się dopiero po puszczeniu, bo przesunięcie układu
+      // w trakcie kliknięcia sprawiało, że trafiało ono obok przycisku i zgłoszenie się nie wysyłało
+      var pointerDown = false;
+      document.addEventListener('pointerdown', function () { pointerDown = true; }, true);
+      document.addEventListener('pointerup', function () { setTimeout(function () { pointerDown = false; }, 0); }, true);
+      document.addEventListener('pointercancel', function () { pointerDown = false; }, true);
+      form.addEventListener('focusout', function (e) {
+        var el = e.target;
+        if (el.name !== 'email' || !el.value.trim()) return;
+        var run = function () {
+          if (document.activeElement === el) return;
+          var err = fieldError(el);
+          if (err) showError(el, err);
+        };
+        if (pointerDown) {
+          window.addEventListener('pointerup', function () { setTimeout(run, 0); }, { once: true, capture: true });
+        } else {
+          run();
+        }
+      });
+
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (form.dataset.busy === 'true') return;
+        if (!validate(form)) {
+          var st = form.querySelector('.c-contact-form__status');
+          if (st) st.hidden = true;
+          return;
+        }
 
         // honeypot: boty wypełniają ukryte pole — udajemy sukces, nic nie wysyłamy
         if (form.querySelector('[name="_gotcha"]').value) {

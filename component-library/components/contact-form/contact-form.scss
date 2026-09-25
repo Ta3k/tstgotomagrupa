@@ -318,6 +318,40 @@
 
 	&__form-input[aria-invalid="true"] {
 		border-color: rgba(230, 110, 90, .85) !important;
+		box-shadow: 0 0 0 4px rgba(230, 110, 90, .12);
+	}
+
+	input[type="checkbox"][aria-invalid="true"] {
+		border-color: rgba(240, 130, 110, .95);
+		box-shadow: 0 0 0 4px rgba(230, 110, 90, .14);
+	}
+
+	// komunikat walidacji pod polem (w języku strony, zamiast dymka przeglądarki)
+	&__error {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		margin: 8px 0 0;
+		color: #f4a393;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.45;
+		animation: c-contact-form-error .25s ease-out;
+
+		&::before {
+			content: "!";
+			display: inline-grid;
+			flex: none;
+			place-items: center;
+			width: 17px;
+			height: 17px;
+			margin-top: 1px;
+			border: 1px solid rgba(240, 130, 110, .75);
+			border-radius: 50%;
+			font-size: 11px;
+			font-weight: 700;
+			line-height: 1;
+		}
 	}
 
 	&__form-input {
@@ -363,5 +397,18 @@
 			border-color: $gold-400;
 			box-shadow: 0 0 0 4px rgba($gold-400, .12), 0 10px 30px -12px rgba($gold-400, .45);
 		}
+	}
+}
+
+@keyframes c-contact-form-error {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.c-contact-form__error {
+		animation: none;
 	}
 }

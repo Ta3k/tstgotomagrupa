@@ -272,4 +272,10 @@ Wyniki:
 - **Checkboxy:** ciemny kwadrat ze złotą obwódką, zaznaczony złoty z ciemnym ptaszkiem, fokus złoty, wyrównanie do pierwszej linii tekstu.
 - **Liczba osób:** bez systemowych strzałek (`inputmode="numeric"`).
 - Sprawdzone w Chromium, WebKit i Firefox (desktop) oraz na mobile; wartości z list trafiają do treści zgłoszenia.
+- **Walidacja formularza w języku strony** zamiast dymków przeglądarki (były w języku przeglądarki, np. „Please fill out this field.” na stronie PL):
+  - komunikaty PL/EN pod polem, w stylu strony, z czerwoną obwódką pola;
+  - fokus na pierwszym błędnym polu, błąd znika po poprawieniu, zły e-mail wykrywany po wyjściu z pola;
+  - sprawdzane: opis, imię i nazwisko, firma, e-mail (wymagany + format), zgoda, liczba osób (liczba całkowita ≥ 1);
+  - błędy zwrócone przez CF7 pokazywane tak samo;
+  - poprawiony błąd: komunikat o e-mailu pojawiający się w trakcie dotknięcia „Wyślij” przesuwał przycisk i dotknięcie trafiało obok (mobile). Teraz komunikat pokazuje się po puszczeniu.
 
