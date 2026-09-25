@@ -297,4 +297,7 @@ Wyniki:
   - karta z otwartym dymkiem ma rozchodzący się złoty pierścień;
   - arkusze (mobile): złota obwódka, sprężysty wjazd, przebłysk, kaskada treści.
 - Przy okazji `order-lab.html` zachowuje inne parametry w adresie, więc oba eksperymenty mogą działać razem.
+- **Mobile, zamykanie arkusza diagramu:**
+  - przycisk × ma obszar dotyku 44×44 px (wcześniej 28×28, łatwo było trafić obok) i leży nad nagłówkiem arkusza (w wariancie złotym animowany nagłówek zasłaniał jego narożniki);
+  - przycisk „do góry” chowa się, gdy arkusz jest otwarty (wcześniej zasłaniał logotypy partnerów).
 

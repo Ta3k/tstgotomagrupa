@@ -2273,27 +2273,37 @@ odkomentuj poniższy filtr:
 }
 
 .scheme-mobile-tooltip__close {
+  // obszar dotyku 44×44 (wcześniej 28×28 i palec łatwo trafiał obok), nad nagłówkiem arkusza
   position: absolute;
-  top: 12px;
-  right: 14px;
+  top: 4px;
+  right: 4px;
+  z-index: 3;
 
-  width: 28px;
-  height: 28px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   padding: 0;
 
-  color: rgba(255, 255, 255, .72);
+  color: rgba(255, 255, 255, .78);
   background: transparent;
   border: 0;
+  border-radius: 12px; // prawie kwadrat: cały obszar 44×44 reaguje na dotyk (koło odcinało narożniki)
 
   font-size: 30px;
-  line-height: 24px;
+  line-height: 1;
   font-weight: 300;
 
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .2s ease, background-color .2s ease;
 
   &:hover,
-  &:focus-visible {
+  &:focus-visible,
+  &:active {
     color: #fff;
+    background: rgba(255, 255, 255, .1);
     outline: none;
   }
 }
@@ -2303,7 +2313,7 @@ odkomentuj poniższy filtr:
   grid-template-columns: 42px 1fr;
   gap: 12px;
   align-items: flex-start;
-  padding-right: 32px;
+  padding-right: 40px; // miejsce na przycisk zamknięcia
 }
 
 .scheme-mobile-tooltip__icon {
@@ -2440,6 +2450,12 @@ odkomentuj poniższy filtr:
 
 body.scheme-mobile-tooltip-open {
   overflow: hidden;
+}
+
+// przycisk „do góry” nie może leżeć nad otwartym arkuszem
+body.scheme-mobile-tooltip-open .top {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .scheme-area-frame {
