@@ -300,4 +300,8 @@ Wyniki:
 - **Mobile, zamykanie arkusza diagramu:**
   - przycisk × ma obszar dotyku 44×44 px (wcześniej 28×28, łatwo było trafić obok) i leży nad nagłówkiem arkusza (w wariancie złotym animowany nagłówek zasłaniał jego narożniki);
   - przycisk „do góry” chowa się, gdy arkusz jest otwarty (wcześniej zasłaniał logotypy partnerów).
+- **Sprawdzeni partnerzy:**
+  - logotypy w oryginalnych kolorach (nie wolno ich zmieniać), bez filtra „na biało” i bez przygaszenia. Pasek jak na grupagotoma.pl: białe tło w szerokości treści, złota obwódka, krawędzie wygaszane do bieli;
+  - pliki logotypów są identyczne z produkcją;
+  - lista i kolejność bez zmian (decyzja z commita faa7202: Enova365 i Raynet na początku, bez ERP Factory).
 

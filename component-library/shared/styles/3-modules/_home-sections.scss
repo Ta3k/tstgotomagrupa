@@ -272,15 +272,40 @@
   padding: 96px 0 72px;
   overflow: hidden;
 
+  // Logotypy partnerów w oryginalnych kolorach (nie wolno ich zmieniać), więc jasny pasek jak na
+  // grupagotoma.pl: białe tło w szerokości treści, złota obwódka, krawędzie wygaszane do bieli.
   &__marquee {
     position: relative;
+    width: calc(100% - 2 * #{$container-offset});
+    max-width: 1180px;
+    margin: 0 auto;
     overflow: hidden;
-    padding: 6px 0;
-    border-top: 1px solid rgba($gold-400, .18);
-    border-bottom: 1px solid rgba($gold-400, .18);
-    background: linear-gradient(90deg, rgba($gold-600, .05), rgba($gold-600, .1) 50%, rgba($gold-600, .05));
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    padding: 2px 0;
+    border: 1px solid rgba($gold-400, .45);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 30px 70px -46px rgba($gold-400, .6);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 72px;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0));
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(-90deg, #fff, rgba(255, 255, 255, 0));
+    }
   }
 
   &__track {
@@ -307,14 +332,11 @@
       max-width: 100%;
       max-height: 34px;
       object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: .6;
-      transition: opacity .35s, transform .45s cubic-bezier(.2, .8, .2, 1);
+      transition: transform .45s cubic-bezier(.2, .8, .2, 1);
     }
 
     &:hover img,
     &:focus-visible img {
-      opacity: 1;
       transform: scale(1.06);
     }
 
@@ -324,8 +346,7 @@
       border-radius: 12px;
     }
 
-    // logotypy z własnym, nieprzezroczystym tłem (przygotowane na ciemne tło): oryginalne kolory,
-    // bo filtr "na biało" zamieniłby je w jednolite prostokąty
+    // logotypy z własnym, nieprzezroczystym tłem: trochę wyższe, z zaokrąglonymi rogami
     img[src*="elpartners"],
     img[src*="gotoma_black"],
     img[src*="atman"],
@@ -334,8 +355,6 @@
     img[src*="gotoma-general"] {
       max-height: 44px;
       border-radius: 8px;
-      filter: none;
-      opacity: .8;
     }
   }
 }
@@ -562,9 +581,9 @@ html.home-reveal-ready {
     }
   }
 
-  .c-partners__marquee {
-    -webkit-mask-image: none;
-    mask-image: none;
+  .c-partners__marquee::before,
+  .c-partners__marquee::after {
+    display: none;
   }
 }
 
