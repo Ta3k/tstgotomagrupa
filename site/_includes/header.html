@@ -61,11 +61,20 @@
               {% for item in site.data[page.lang].navigation.menu__settings.menu__items %}
                 {% if item.submenu %}
                 <li class="nav__item dropdown">
+                  {% comment %} Z własnym url: link (klik przenosi), podmenu dalej otwiera się na hover/focus. {% endcomment %}
+                  {% if item.url %}
+                  <a href="{{ item.url | relative_url }}" class="nav__link dropdown-toggle" aria-haspopup="true">{{ item.title }}
+                    <svg class="arrow-down nav-svg-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m7 9 5 5 5-5"></path>
+                    </svg>
+                  </a>
+                  {% else %}
                   <span class="nav__link dropdown-toggle" role="button" tabindex="0" aria-haspopup="true">{{ item.title }}
                     <svg class="arrow-down nav-svg-icon" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="m7 9 5 5 5-5"></path>
                     </svg>
                   </span>
+                  {% endif %}
                   <div class="dropdown-menu">
                     {% for submenu-item in item.submenu %}
                       <a href="{{ submenu-item.url }}" class="nav__link">{{submenu-item.title}}</a>

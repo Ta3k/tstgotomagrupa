@@ -19,6 +19,15 @@ blueprint:
   description_html: ""
   works_button: ""
   works_button_link: ""
+  badges_label: ""
+  badges:
+    - logo: ""
+      logo_alt: ""
+      logo_width: 120
+      logo_height: 36
+      label: ""
+      text: ""
+      url: ""
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview:

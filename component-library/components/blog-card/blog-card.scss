@@ -1,25 +1,26 @@
-/* Karta marki (sekcja "Wybierz czego potrzebujesz")
-   Pełne zdjęcie, ciemny gradient od dołu, logo, tytuł, opis, złoty przycisk.
+/* Karta marki (sekcja "Wybierz czego potrzebujesz", siatka 2×2 na desktopie)
+   Zdjęcie nad treścią (na tablecie obok treści), pod nim ciemny panel: logo, tytuł, pełny opis
+   i złoty przycisk wyrównany do dołu karty. Logo i tekst nie leżą na zdjęciu, więc są zawsze czytelne.
    Cała karta klikalna (rozciągnięty link tytułu), złota obwódka i powiększenie zdjęcia przy hover/focus. */
 .c-blog-card {
   display: flex;
   margin-bottom: 24px;
 
+  // uniesienie przy hover przez `top`, nie transform: przesuwana transformem warstwa karty lądowała
+  // na ułamkowych pikselach i na styku zdjęcia z treścią migała jasna linia
   &__inner {
     position: relative;
+    top: 0;
     isolation: isolate;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     width: 100%;
-    min-height: 100%;
-    aspect-ratio: 4 / 5.4;
     overflow: hidden;
     border: 1px solid rgba($white, .1);
     border-radius: 24px;
-    background: #0b0906;
+    background: linear-gradient(180deg, #0f0c08 0%, #080604 100%);
     box-shadow: 0 30px 70px -40px rgba(0, 0, 0, .95);
-    transition: transform .5s cubic-bezier(.2, .8, .2, 1), border-color .4s, box-shadow .5s;
+    transition: top .5s cubic-bezier(.2, .8, .2, 1), border-color .4s, box-shadow .5s;
 
     // złota linia światła u góry
     &::before {
@@ -35,51 +36,68 @@
       transform: scaleX(.3);
       transition: opacity .4s, transform .7s cubic-bezier(.2, .8, .2, 1);
     }
-
   }
 
-  // zdjęcie pod treścią (z-index -1 w izolowanym kontekście karty), z gradientem czytelności
+  // zdjęcie z miękkim przejściem w panel treści
   &__media {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
+    position: relative;
+    flex: none;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
     background: #000;
 
     &::after {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 22%, rgba(5, 4, 3, .55) 50%, rgba(5, 4, 3, .92) 72%, #050403 100%);
+      background: linear-gradient(180deg, rgba(8, 6, 4, 0) 62%, rgba(15, 12, 8, .9) 100%);
     }
 
+    // zoom przez wymiary, nie transform (osobna warstwa zdjęcia też dawała linię na styku)
     img {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      top: -1%;
+      left: -1%;
+      display: block;
+      width: 102%;
+      height: 102%;
+      max-width: none;
       object-fit: cover;
-      object-position: center 30%;
-      transform: scale(1.02);
-      transition: transform 1.1s cubic-bezier(.2, .8, .2, 1), filter .6s;
+      object-position: center 44%;
+      transition: top 1.1s cubic-bezier(.2, .8, .2, 1), left 1.1s cubic-bezier(.2, .8, .2, 1), width 1.1s cubic-bezier(.2, .8, .2, 1), height 1.1s cubic-bezier(.2, .8, .2, 1);
       filter: saturate(.92);
     }
+  }
+
+  // kadr zdjęcia pod urządzenie na zdjęciu (pionowe zdjęcia w poziomym kadrze): widać górę ekranu
+  &--gotoma-software-house &__media img {
+    object-position: center 20%;
+  }
+
+  &--gotoma-general &__media img {
+    object-position: center 24%;
   }
 
   // bez własnego pozycjonowania: rozciągnięty link tytułu obejmuje całą kartę
   &__content {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
+    align-items: flex-start;
     gap: 14px;
-    padding: 28px 28px 30px;
+    padding: 26px 28px 30px;
   }
 
   &__image-title img {
     display: block;
     width: auto;
-    max-height: 40px;
+    height: 34px;
   }
 
   &__title {
-    margin: 0;
+    margin: 4px 0 0;
     font-family: $heading-font-family;
     font-size: 24px;
     font-weight: 600;
@@ -114,23 +132,18 @@
   }
 
   &__excerpt {
-    display: -webkit-box;
     margin: 0;
-    overflow: hidden;
-    color: rgba($white, .74);
+    color: rgba($white, .72);
     font-size: 15px;
-    line-height: 1.6;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    -webkit-box-orient: vertical;
+    line-height: 1.65;
   }
 
+  // przycisk zawsze przy dolnej krawędzi: w rzędzie kart przyciski są na jednej linii
   &__cta {
     display: inline-flex;
-    align-self: flex-start;
     align-items: center;
     gap: 12px;
-    margin-top: 6px;
+    margin-top: auto;
     padding: 13px 20px 13px 22px;
     border-radius: 999px;
     color: #140d02;
@@ -169,7 +182,7 @@
   // hover / focus całej karty
   &__inner:hover,
   &__inner:focus-within {
-    transform: translateY(-6px);
+    top: -6px;
     border-color: rgba($gold-400, .55);
     box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .95), 0 24px 70px -40px rgba($gold-400, .65);
 
@@ -179,8 +192,10 @@
     }
 
     .c-blog-card__media img {
-      transform: scale(1.07);
-      filter: saturate(1.05);
+      top: -3.5%;
+      left: -3.5%;
+      width: 107%;
+      height: 107%;
     }
 
     .c-blog-card__cta {
@@ -192,9 +207,29 @@
     }
   }
 
-  @media only screen and (max-width: $tablet) {
+  // tablet: jedna karta w rzędzie, zdjęcie obok treści (bez osieroconej trzeciej karty)
+  @media only screen and (max-width: $desktop) and (min-width: #{$mobile + 1}) {
     &__inner {
-      aspect-ratio: 4 / 4.6;
+      flex-direction: row;
+    }
+
+    &__media {
+      width: 42%;
+      aspect-ratio: auto;
+      min-height: 300px;
+
+      &::after {
+        background: linear-gradient(90deg, rgba(8, 6, 4, 0) 70%, rgba(15, 12, 8, .9) 100%);
+      }
+    }
+
+    &__content {
+      justify-content: center;
+      padding: 32px 36px;
+    }
+
+    &__cta {
+      margin-top: 6px;
     }
   }
 
@@ -202,12 +237,20 @@
     margin-bottom: 16px;
 
     &__inner {
-      aspect-ratio: 4 / 5;
       border-radius: 20px;
     }
 
+    &__media {
+      aspect-ratio: 16 / 10;
+    }
+
     &__content {
-      padding: 22px 20px 24px;
+      gap: 12px;
+      padding: 20px 20px 24px;
+    }
+
+    &__image-title img {
+      height: 30px;
     }
 
     &__title {

@@ -34,6 +34,11 @@
       {% endfor %}
     </div>
 
+    {% comment %}
+      Banery enova365 / Evoluma / ERP Factory: ukryte, bo ich treści są teraz w innych miejscach strony
+      (karty w hero i karta ERP Factory w sekcji marek). Zostają w kodzie; włączenie: show_banners: true.
+    {% endcomment %}
+    {% if include.show_banners %}
     <div class="c-proof__banners" data-reveal-group>
       <a class="c-banner" href="{{ d.enovaHref }}" target="_blank" rel="noopener noreferrer">
         <span class="c-banner__logo"><img loading="lazy" decoding="async" src="/images/enova365_white.svg" alt="enova365"></span>
@@ -54,6 +59,7 @@
         <span class="c-banner__arrow" aria-hidden="true"></span>
       </a>
     </div>
+    {% endif %}
 
   </div>
 </section>

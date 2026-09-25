@@ -184,3 +184,42 @@ Wyniki:
 - Lighthouse mobile ×3 (PL/EN): 88/89 (baza 83/85), LCP 3,86/3,70 s (baza 4,33/4,17), TBT 47/9 ms (baza 19/16; przebiegi PL 22–54 ms), CLS 0. Dane w `docs/homepage-v2/lower-sections/`.
 - Chromium, WebKit i Firefox; 1440, 1280, 390; PL i EN: brak poziomego scrolla i błędów, wszystkie elementy widoczne po przewinięciu, odliczanie działa. Reduced-motion: wszystko widoczne od razu, pasek statyczny.
 - Stare reguły tych sekcji w `_sections.scss` są już nieużywane. Do usunięcia przy porządkach (Etap 7).
+
+### Poprawki: diagram na mobile i karty marek (2026-09-24)
+
+- **Diagram (mobile):** zbliżenie w sekwencji scrolla nie ucina już prawej kolumny. Skala jest ograniczona do szerokości ramki diagramu (x 22–360 w układzie 382), a przesunięcie trzyma ramkę w ekranie z marginesem 10 px (`getFocus` w `common.js`). Sprawdzone przy 390 i 360 px.
+- **Karty marek:**
+  - zdjęcie nad treścią, logo, tytuł i pełny opis na ciemnym panelu, a nie na zdjęciu (wcześniej logo nachodziło na zrzuty ekranu, a opis był ucinany do 4 linii);
+  - przyciski wyrównane do dołu, więc w rzędzie leżą na jednej linii;
+  - kadr zdjęcia dobrany do każdej marki (`c-blog-card--{idHref}`);
+  - tablet (577–1024): jedna karta w rzędzie, zdjęcie obok treści (wcześniej trzecia karta zostawała sama w rzędzie).
+- Sprawdzone: 360, 390, 820, 1024 i 1440 px; PL, EN i blog. Brak poziomego scrolla i błędów w konsoli.
+
+### Karty członkostw w hero i czwarta karta marki (ERP Factory) (2026-09-25)
+
+- **Hero:** pod przyciskami dwie karty-linki, Evoluma (profil członka klastra) i enova365 (gotomageneral.com), PL/EN, otwierane w nowej karcie. Dane są we front matter strony (`badges`, edytowalne w CMS).
+  - Desktop: lista ma zerową wysokość, więc nie przesuwa treści hero; na niskich ekranach lekko wystaje pod hero.
+  - Mobile: karty jedna pod drugą, hero wydłuża się o ich wysokość.
+  - Karty nie wygasają przy scrollu razem z treścią hero.
+  - `overflow: hidden` przeniesiony z `.c-hero` na `.c-hero__sky`.
+- **„Wybierz czego potrzebujesz”:**
+  - 4. karta ERP Factory: posty `2018-11-10-erp-factory-pl/en`, grafika `erpfactory_obrazek`;
+  - siatka 2×2 na desktopie (`col-6`), zdjęcie w proporcji 4:3; tablet i mobile bez zmian;
+  - poprawka: `blog-section` najpierw filtruje posty po języku, a dopiero potem stosuje `limit:6`. Wcześniej limit liczył posty obu języków i czwarta karta PL w ogóle by się nie pokazała.
+- **Karty marek, hover:** w trakcie animacji po najechaniu migała jasna linia na styku zdjęcia z treścią (ostatni rząd pikseli zdjęcia spod gradientu). Przyczyną było uniesienie karty przez `transform`, bo warstwa lądowała na ułamkowych pikselach. Teraz uniesienie idzie przez `top`, a zoom zdjęcia przez wymiary zamiast `scale()`. Sprawdzone klatka po klatce w Chromium, WebKit i Firefox, dla 4 kart, przy najechaniu i zjechaniu.
+- Złote kropki diagramu odłożone na branch `feature/diagram-gold-dots`.
+
+### Menu, przewijanie do sekcji, błysk liczb, ukryte banery (2026-09-25)
+
+- **Menu:**
+  - „O grupie” / „About us” prowadzi na stronę główną (`/`, `/en/`); na stronie głównej przewija na górę bez przeładowania.
+  - „Nasze firmy” / „Our companies” to link do sekcji marek (`/#dowiedz-sie-wiecej`, `/en/#choose-what-you-need`). Podmenu dalej otwiera się na hover/focus; w `header.html` pozycja z podmenu może mieć własny `url`.
+- **Naprawiony błąd przewijania do sekcji za diagramem** (dotyczył też przycisku „Dowiedz się więcej” w hero):
+  - pierwsze kliknięcie nie przewijało (desktop i mobile), bo tworzenie sekwencji diagramu przy pierwszej interakcji odświeżało ScrollTrigger i przerywało przewijanie;
+  - jeśli sekwencja już istniała, zdjęcie pinu w trakcie przewijania dawało lądowanie obok celu;
+  - wejście z podstrony z kotwicą lądowało ok. 2000 px za nisko.
+  - Teraz `scrollToSection` w `common.js` przy celu za diagramem tworzy i od razu kończy sekwencję (zdjęcie pinu), a dopiero potem przewija. Zwykłe przewijanie nadal odtwarza sekwencję.
+  - Sprawdzone: desktop/mobile × PL/EN × strona główna/podstrona; sekcja zawsze ląduje 32 px od góry.
+- **Liczby (13+, 300+, 70+):** ten sam przebłysk co na kartach członkostw w hero, kafelki po kolei (co 0,4 s); przy reduced-motion wyłączony.
+- **Banery enova365 / Evoluma / ERP Factory** w sekcji liczb są ukryte (treści są już w hero i w karcie ERP Factory), ale zostają w kodzie. Włączenie: `show_banners: true` w bloku `projects-section`, przełącznik w CMS.
+

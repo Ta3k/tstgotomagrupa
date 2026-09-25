@@ -49,6 +49,22 @@
     </div>
     {% endif %}
   </div>
+  {% comment %} Poza __content: nie wygasa razem z treścią przy scrollu. {% endcomment %}
+  {% if include.badges and include.badges.size > 0 %}
+  <ul class="{{c}}__badges"{% if include.badges_label %} aria-label="{{ include.badges_label }}"{% endif %}>
+    {% for badge in include.badges %}
+    <li class="{{c}}__badge-item">
+      {% if badge.url and badge.url != "" %}<a class="{{c}}__badge {{c}}__badge--link" href="{{ badge.url }}" target="_blank" rel="noopener noreferrer">{% else %}<div class="{{c}}__badge">{% endif %}
+      {% if badge.logo %}<img class="{{c}}__badge-logo" src="{{ badge.logo }}" alt="{{ badge.logo_alt }}" width="{{ badge.logo_width | default: 120 }}" height="{{ badge.logo_height | default: 36 }}" decoding="async">{% endif %}
+      <span class="{{c}}__badge-text">
+        {% if badge.label %}<span class="{{c}}__badge-label">{{ badge.label }}</span>{% endif %}
+        <span class="{{c}}__badge-title">{{ badge.text }}</span>
+      </span>
+      {% if badge.url and badge.url != "" %}<span class="{{c}}__badge-arrow" aria-hidden="true">↗</span></a>{% else %}</div>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 </section>
 <script>
   (function () {

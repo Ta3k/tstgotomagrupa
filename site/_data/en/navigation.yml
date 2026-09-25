@@ -13,8 +13,9 @@ erpFactoryHref: 'https://erpfactory.tech/'
 menu__settings:
   menu__items:
     - title: 'About us'
-      url: '/en/#about-us'
+      url: '/en/'
     - title: 'Our companies'
+      url: '/en/#choose-what-you-need'
       submenu:
         - title: 'GOTOMA GENERAL'
           url: 'https://gotomageneral.com/en/'

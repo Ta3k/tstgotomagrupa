@@ -11,6 +11,7 @@ spec:
 # Defines the structure of this component, as well as the default values
 blueprint:
   show_projects: true
+  show_banners: false
 
 # Overrides any fields in the blueprint when viewing this component in the component browser
 preview: {}
@@ -20,3 +21,6 @@ _inputs:
   show_projects:
     type: switch
     label: Show section
+  show_banners:
+    type: switch
+    label: Show partner banners (enova365, Evoluma, ERP Factory)

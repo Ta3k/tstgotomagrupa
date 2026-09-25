@@ -11,13 +11,11 @@
 
     <div class="row c-brands__grid" data-reveal-group>
       {% assign lang = page.lang | default: "pl" %}
-      {% if site.posts.size > 0 %}
-        {% for post in site.posts offset:0 limit:6 %}
-          {% if post.lang == lang %}
-            {% bookshop blog-card post=post %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+      {% comment %} Najpierw filtr języka, potem limit (inaczej limit liczy posty obu języków i ucina karty). {% endcomment %}
+      {% assign brand_posts = site.posts | where: "lang", lang %}
+      {% for post in brand_posts limit:6 %}
+        {% bookshop blog-card post=post %}
+      {% endfor %}
     </div>
   </div>
 </section>

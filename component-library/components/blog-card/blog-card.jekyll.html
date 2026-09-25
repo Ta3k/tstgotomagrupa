@@ -3,13 +3,14 @@
   {% when "codarius" %}{% assign brand = "Codarius" %}
   {% when "gotoma-software-house" %}{% assign brand = "GOTOMA Software House" %}
   {% when "gotoma-general" %}{% assign brand = "GOTOMA General" %}
+  {% when "erp-factory" %}{% assign brand = "ERP Factory" %}
   {% else %}{% assign brand = "" %}
 {% endcase %}
 {% comment %}
-  Karta marki: całe zdjęcie z ciemnym gradientem, logo, tytuł, opis i złoty przycisk.
+  Karta marki: zdjęcie nad treścią (na tablecie obok), logo, tytuł, pełny opis i złoty przycisk.
   Jeden link na kartę (tytuł, rozciągnięty na całą kartę), przycisk jest wizualnym elementem linku.
 {% endcomment %}
-<article id="{{ include.post.idHref }}" class="{{c}} col col-4 col-d-6 col-t-12">
+<article id="{{ include.post.idHref }}" class="{{c}}{% if include.post.idHref %} {{c}}--{{ include.post.idHref }}{% endif %} col col-6 col-d-12">
   <div class="{{c}}__inner">
 
     {% if include.post.image %}

@@ -395,24 +395,38 @@ function initializeCommon() {
         // explicit smooth scroll below instead, which doesn't have this problem
         // since it's a one-off jump rather than a persistent property that
         // intercepts every scroll input.
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-          const id = link.getAttribute("href").slice(1);
+        // Też linki z pełną ścieżką do tej samej strony (menu: "/#dowiedz-sie-wiecej", "/"),
+        // żeby nie skakały ani nie przeładowywały strony; "/" bez kotwicy przewija na górę.
+        document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach(link => {
+          let url;
+          try {
+            url = new URL(link.getAttribute("href"), location.href);
+          } catch (error) {
+            return;
+          }
 
-          if (!id) {
+          if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) {
+            return;
+          }
+
+          const id = decodeURIComponent(url.hash.slice(1));
+          if (!id && link.getAttribute("href").charAt(0) === "#") {
             return;
           }
 
           link.addEventListener("click", event => {
-            const target = document.getElementById(id);
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+              return;
+            }
 
-            if (!target) {
+            const target = id ? document.getElementById(id) : null;
+
+            if (id && !target) {
               return;
             }
 
             event.preventDefault();
-            const headerOffset = 32;
-            const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-            window.scrollTo({ top, behavior: "smooth" });
+            scrollToSection(target);
           });
         });
 
@@ -536,6 +550,33 @@ function initializeCommon() {
     if (document.querySelector(".stats-how-it-works")) {
       storySetups.push(setup);
     }
+  };
+
+  /* Przejście do sekcji za diagramem (menu „Nasze firmy”, „Dowiedz się więcej”, kotwica w adresie).
+     Sekwencję diagramu i tak się wtedy przeskakuje, więc najpierw ją tworzymy (jeśli jeszcze nie powstała)
+     i od razu kończymy (zdjęcie pinu), a dopiero potem przewijamy. Inaczej odświeżenie ScrollTriggera
+     przy tworzeniu sekwencji albo zdjęcie pinu w trakcie przerywały przewijanie (strona zostawała u góry
+     albo lądowała obok celu). Bez celu (link „/”): przewinięcie na górę. */
+  const storyCompleters = new Map();
+  const nextFrame = () => new Promise(resolve => requestAnimationFrame(() => resolve()));
+  const scrollToSection = async (target, behavior = "smooth") => {
+    const story = document.querySelector(".stats-how-it-works");
+    const pastStory = target && story && !story.contains(target) &&
+      (story.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING);
+
+    if (pastStory && story.dataset.scrollStoryCompleted !== "true") {
+      startStories();
+      await nextFrame();
+      await nextFrame();
+      storyCompleters.forEach(complete => complete());
+      await nextFrame();
+      await nextFrame();
+      await nextFrame();
+    }
+
+    const headerOffset = 32;
+    const top = target ? target.getBoundingClientRect().top + window.scrollY - headerOffset : 0;
+    window.scrollTo({ top, behavior });
   };
 
   /* Zdjęcie pinu po jednorazowej sekwencji bez skoku: sekcja zostaje w tym samym miejscu okna,
@@ -781,6 +822,7 @@ function initializeCommon() {
         });
       };
       timeline.eventCallback("onComplete", completeDesktopStory);
+      storyCompleters.set("desktop", completeDesktopStory);
 
       timeline
         .to(header, { autoAlpha: 0, y: -32, duration: .55 })
@@ -860,6 +902,7 @@ function initializeCommon() {
       });
 
       return () => {
+        storyCompleters.delete("desktop");
         timeline.scrollTrigger?.kill();
         timeline.kill();
         section.classList.remove(
@@ -1042,13 +1085,23 @@ function initializeCommon() {
           };
         };
 
+        // Zbliżenie nie może ucinać diagramu w poziomie: skala ograniczona do szerokości ramki
+        // (x 22–360 w układzie 382), a przesunięcie trzyma ramkę w ekranie z marginesem.
+        const contentLeft = 22;
+        const contentRight = 360;
         const getFocus = index => {
           const layout = getLayout();
           const center = centers[index];
+          const stageWidth = layout.stageRect.width;
+          const gutter = 10;
+          const scale = Math.min(layout.zoomScale, (stageWidth - gutter * 2) / (contentRight - contentLeft));
+          const minX = stageWidth - gutter - contentRight * scale;
+          const maxX = gutter - contentLeft * scale;
+          const x = stageWidth / 2 - center.x * scale;
           return {
-            scale: layout.zoomScale,
-            x: layout.stageRect.width / 2 - center.x * layout.zoomScale,
-            y: Math.min(layout.visibleHeight * .3, 250) - center.y * layout.zoomScale
+            scale,
+            x: minX <= maxX ? Math.min(Math.max(x, minX), maxX) : (minX + maxX) / 2,
+            y: Math.min(layout.visibleHeight * .3, 250) - center.y * scale
           };
         };
 
@@ -1122,6 +1175,7 @@ function initializeCommon() {
           });
         };
         timeline.eventCallback("onComplete", completeMobileStory);
+        storyCompleters.set("mobile", completeMobileStory);
 
         timeline
           .to(header, { autoAlpha: 0, y: -24, duration: .5 })
@@ -1204,6 +1258,7 @@ function initializeCommon() {
         });
 
         return () => {
+          storyCompleters.delete("mobile");
           ScrollTrigger.removeEventListener("refreshInit", measureNatural);
           timeline.scrollTrigger?.kill();
           timeline.kill();
@@ -1348,6 +1403,18 @@ function initializeCommon() {
     document.querySelectorAll(".scheme-diagram").forEach(enableDesktopSchemeTooltips);
   });
 
+
+  // Wejście z kotwicą w adresie (np. z podstrony w „/#dowiedz-sie-wiecej”): przeglądarka skacze do kotwicy,
+  // zanim powstanie pin diagramu, więc po załadowaniu wyrównujemy pozycję do celu.
+  const hashTarget = location.hash.length > 1 ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+  if (hashTarget && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const alignToHash = () => scrollToSection(hashTarget, "auto");
+    if (document.readyState === "complete") {
+      alignToHash();
+    } else {
+      window.addEventListener("load", alignToHash, { once: true });
+    }
+  }
 
   const mobileScheme = document.querySelector(".scheme-mobile");
 

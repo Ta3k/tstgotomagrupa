@@ -72,6 +72,7 @@
 
   &__stat {
     position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -91,6 +92,19 @@
       right: 22px;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba($gold-100, .9), transparent);
+    }
+
+    // przebłysk światła, ten sam co na kartach członkostw w hero; kafelki po kolei (--i z [data-reveal-group])
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 35%, rgba($gold-100, .12) 50%, transparent 65%);
+      transform: translateX(-120%);
+      animation: c-home-sheen 9s cubic-bezier(.4, 0, .2, 1) infinite;
+      animation-delay: calc(2.4s + var(--i, 0) * .4s);
     }
   }
 
@@ -551,5 +565,16 @@ html.home-reveal-ready {
   .c-partners__marquee {
     -webkit-mask-image: none;
     mask-image: none;
+  }
+}
+
+@keyframes c-home-sheen {
+  0% { transform: translateX(-120%); }
+  22%, 100% { transform: translateX(120%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-proof__stat::after {
+    animation: none;
   }
 }
