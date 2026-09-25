@@ -60,7 +60,7 @@
         {% if badge.label %}<span class="{{c}}__badge-label">{{ badge.label }}</span>{% endif %}
         <span class="{{c}}__badge-title">{{ badge.text }}</span>
       </span>
-      {% if badge.url and badge.url != "" %}<span class="{{c}}__badge-arrow" aria-hidden="true">↗</span></a>{% else %}</div>{% endif %}
+      {% if badge.url and badge.url != "" %}<svg class="{{c}}__badge-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 11 11 5M6 5h5v5"/></svg></a>{% else %}</div>{% endif %}
     </li>
     {% endfor %}
   </ul>

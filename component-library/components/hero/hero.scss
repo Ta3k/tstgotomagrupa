@@ -420,12 +420,19 @@
     }
   }
 
+  // strzałka jako SVG: znak „↗” iOS zamieniał na niebieskie emoji
   &__badge-arrow {
+    flex: none;
     align-self: flex-start;
+    width: 16px;
+    height: 16px;
     margin-left: auto;
-    padding-left: 6px;
-    color: rgba(228, 173, 80, .7);
-    font: 500 14px/1 $base-font-family;
+    color: rgba(228, 173, 80, .75);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     transition: color .35s, transform .35s cubic-bezier(.2, .8, .2, 1);
   }
 
