@@ -238,3 +238,38 @@ Wyniki:
 - Przy okazji: z `erpfactory.png` i `.webp` przycięty przezroczysty margines z prawej (35 px z 118). Przy ERP Factory w innym miejscu niż na końcu robił nierówną przerwę w nagłówku.
 - Uwaga: dotąd kolejność w nagłówku (GG, GSH, Codarius, ERP) i w kafelkach (Codarius, GSH, GG, ERP) była różna.
 
+### Formularz Konsultacji 360° wysyłany przez gotoma.pl/kontakt (2026-09-25)
+
+- Formularz (PL/EN) wysyła zgłoszenie w tle na formularz kontaktowy gotoma.pl (Contact Form 7 nr 6, REST `wp-json/contact-form-7/v1/contact-forms/6/feedback`). Konfiguracja w `site/_data/contact_form.yml`.
+- Mapowanie pól:
+  - imię i nazwisko → `your-name`, firma → `your-company`, e-mail → `your-email`, zgoda → `acceptance`;
+  - pozostałe pola trafiają jako zestawienie w `your-message` z nagłówkiem „[Strona Grupy GOTOMA – Konsultacja 360°]” i adresem strony. Opis ma limit 1400 znaków, bo `your-message` na gotoma.pl ma maksymalnie 2000.
+- Komunikaty PL/EN: wysyłanie, sukces, błędne pole (zaznaczane), antyspam, błąd sieci/serwera (z linkiem do gotoma.pl/kontakt). Honeypot bez wysyłki.
+- reCAPTCHA v3 z gotoma.pl ładowana przy pierwszym kontakcie z formularzem. Usunięte pole `_to`.
+- CORS: endpoint gotoma.pl zwraca `Access-Control-Allow-Origin` dla stage.
+- **Wymaga jeszcze:** dopisania domeny stage (i docelowej domeny grupy) do klucza reCAPTCHA gotoma.pl w konsoli Google. Teraz Google zwraca „Invalid domain for site key”, więc CF7 odrzuci zgłoszenie jako spam.
+- Testy:
+  - scenariusze z atrapą endpointu;
+  - prawdziwy endpoint z celowo błędnym e-mailem: `validation_failed` tylko na `your-email`, bez wysyłki maila.
+
+### Diagram mobile: układ statyczny na wąskich ekranach (2026-09-25)
+
+- **Problem (zgłoszenie z Galaxy S22, 360 px):** po przejściu sekwencji karty diagramu nachodziły na siebie. Nagłówek „GOTOMA GENERAL…” zawijał się do 3–4 linii i wchodził na „Cyberbezpieczeństwo” o 32 px (przy 390 px o 4 px), a „Finansowanie” rozjeżdżało się. Przyczyna: w widoku statycznym diagram miał szerokość procentową, a tekst stały rozmiar w px.
+- **Poprawka:**
+  - widok statyczny ma rozmiar projektowy 382 px pomniejszony jednolicie przez CSS `zoom` (klasa `is-fit`, `fitMobileDiagram()` w `common.js`, przeliczane przy zmianie rozmiaru i przed pomiarem naturalnego układu sekwencji);
+  - w trybie sekwencji `zoom: 1`, bo skaluje transform;
+  - tablet bez zmian (`zoom` 1).
+- Efekt uboczny: koniec sekwencji trafia teraz dokładnie w widok statyczny (0 px przesunięcia przy zdjęciu pinu).
+- Sprawdzone: Chromium 360/390/412, WebKit 375 i 820, Firefox 360, reduced-motion. Nic nie wystaje z kart, dotknięcie karty otwiera arkusz, brak poziomego scrolla.
+
+### Formularz: pola w stylistyce strony (2026-09-25)
+
+- **Pola wyboru** („Rodzaj danych”, „Preferowana forma”):
+  - zamknięte pole ze złotą strzałką (bez systemowej), tej samej wysokości co pozostałe;
+  - na komputerze (mysz/trackpad) własna lista w złotym stylu zamiast systemowej z niebieskim podświetleniem. Natywny `<select>` zostaje pod spodem i trzyma wartość;
+  - obsługa klawiatury: strzałki, Home/End, Enter/Spacja, Esc, Tab, wpisywanie liter; kliknięcie poza listę ją zamyka; etykieta otwiera listę; reset formularza czyści wybór;
+  - na urządzeniach dotykowych zostaje systemowy wybór.
+- **Checkboxy:** ciemny kwadrat ze złotą obwódką, zaznaczony złoty z ciemnym ptaszkiem, fokus złoty, wyrównanie do pierwszej linii tekstu.
+- **Liczba osób:** bez systemowych strzałek (`inputmode="numeric"`).
+- Sprawdzone w Chromium, WebKit i Firefox (desktop) oraz na mobile; wartości z list trafiają do treści zgłoszenia.
+

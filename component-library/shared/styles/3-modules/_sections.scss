@@ -1749,6 +1749,19 @@ canvas {
   overflow: hidden;
 }
 
+// Widok statyczny (poza sekwencją scrolla, także po niej i przy reduced-motion): diagram w rozmiarze projektowym
+// 382 px, pomniejszony jednolicie razem z tekstem (zoom liczy fitMobileDiagram w common.js). Wcześniej przy
+// szerokości procentowej tekst o stałym rozmiarze zawijał się na wąskich ekranach (np. 360 px) i karty
+// nachodziły na siebie. W trybie sekwencji skaluje transform, więc zoom wraca do 1.
+.scheme-mobile-diagram.is-fit {
+  width: 382px;
+  zoom: var(--scheme-mobile-zoom, 1);
+}
+
+.stats-how-it-works.scheme-mobile-scroll-story .scheme-mobile-diagram.is-fit {
+  zoom: 1;
+}
+
 .scheme-mobile-diagram__dots {
   position: absolute;
   inset: 0;

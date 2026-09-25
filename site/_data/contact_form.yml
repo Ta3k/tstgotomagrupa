@@ -1,0 +1,15 @@
+# Wysyłka formularza Konsultacji 360° (komponent contact-form) przez formularz kontaktowy gotoma.pl
+# (Contact Form 7 nr 6 na https://gotoma.pl/kontakt/). Zgłoszenie trafia na skrzynkę ustawioną w tym formularzu CF7.
+# Pola CF7: your-name, your-company, your-email, your-message (max 2000 znaków), acceptance.
+# Pozostałe pola naszego formularza są składane w treść your-message.
+# Jeśli na gotoma.pl zmieni się formularz (numer, pola, wersja CF7), trzeba zaktualizować te wartości.
+endpoint: "https://gotoma.pl/wp-json/contact-form-7/v1/contact-forms/6/feedback"
+cf7_id: 6
+cf7_version: "6.1.7"
+cf7_locale: "pl_PL"
+cf7_unit_tag: "wpcf7-f6-o1"
+# reCAPTCHA v3 z gotoma.pl: klucz musi mieć dopisaną domenę tej strony w konsoli reCAPTCHA
+# (https://www.google.com/recaptcha/admin), inaczej CF7 odrzuca zgłoszenie jako spam.
+recaptcha_sitekey: "6LdE-HEsAAAAAMP_3n-MAitXKWsxo3BLUSDxIls7"
+recaptcha_action: "contactform"
+fallback_url: "https://gotoma.pl/kontakt/"

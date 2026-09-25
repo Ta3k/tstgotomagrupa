@@ -978,6 +978,7 @@ function initializeCommon() {
           ["padding", "height", "max-height", "width", "max-width"].forEach(prop => section.style.removeProperty(prop));
 
           section.classList.remove("scheme-mobile-scroll-story");
+          fitMobileDiagram();
           const sectionRect = section.getBoundingClientRect();
           const headerRect = header.getBoundingClientRect();
           const diagramRect = diagram.getBoundingClientRect();
@@ -1403,6 +1404,29 @@ function initializeCommon() {
     document.querySelectorAll(".scheme-diagram").forEach(enableDesktopSchemeTooltips);
   });
 
+
+  // Statyczny diagram mobile: rozmiar projektowy 382 px pomniejszony jednolicie (CSS zoom, klasa is-fit), żeby tekst
+  // skalował się razem z kartami. W trybie sekwencji pomijane (tam skaluje transform, a rodzic ma inną szerokość).
+  function fitMobileDiagram() {
+    const diagram = document.querySelector(".scheme-mobile-diagram");
+    const section = diagram && diagram.closest(".stats-how-it-works");
+    if (!diagram || !section || section.classList.contains("scheme-mobile-scroll-story")) {
+      return;
+    }
+    const holder = diagram.parentElement;
+    const style = getComputedStyle(holder);
+    const available = holder.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    if (!(available > 0)) {
+      return;
+    }
+    diagram.style.setProperty("--scheme-mobile-zoom", Math.min(1, available / 382).toFixed(4));
+    diagram.classList.add("is-fit");
+  }
+  fitMobileDiagram();
+  const mobileDiagramHolder = document.querySelector(".scheme-mobile-diagram")?.parentElement;
+  if (mobileDiagramHolder && "ResizeObserver" in window) {
+    new ResizeObserver(() => fitMobileDiagram()).observe(mobileDiagramHolder);
+  }
 
   // Wejście z kotwicą w adresie (np. z podstrony w „/#dowiedz-sie-wiecej”): przeglądarka skacze do kotwicy,
   // zanim powstanie pin diagramu, więc po załadowaniu wyrównujemy pozycję do celu.

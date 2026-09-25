@@ -23,6 +23,14 @@
   {% assign consent_prefix = "I accept the general terms of use and" %}
   {% assign privacy_label = "privacy policy" %}
   {% assign privacy_url = "/en/privacy" %}
+  {% assign msg_sending = "Sending…" %}
+  {% assign msg_success = "Thank you! Your enquiry has been sent. We will get back to you shortly." %}
+  {% assign msg_invalid = "Please check the highlighted fields and try again." %}
+  {% assign msg_spam = "We could not verify the submission (anti-spam protection). Please try again in a moment or use the contact form at" %}
+  {% assign msg_error = "The enquiry could not be sent. Please try again in a moment or use the contact form at" %}
+  {% assign msg_long = "The description is too long. Please shorten it a little." %}
+  {% assign msg_heading = "[GOTOMA Group website – 360° Consultation]" %}
+  {% assign msg_page = "Page" %}
 {% else %}
   {% assign form_subject = "Konsultacja 360° – nowe zgłoszenie" %}
   {% assign situation_label = "Opis sytuacji lub procesu *" %}
@@ -45,7 +53,16 @@
   {% assign consent_prefix = "Akceptuję ogólne warunki użytkowania i" %}
   {% assign privacy_label = "politykę prywatności" %}
   {% assign privacy_url = "/privacy" %}
+  {% assign msg_sending = "Wysyłanie…" %}
+  {% assign msg_success = "Dziękujemy! Zgłoszenie zostało wysłane. Odezwiemy się wkrótce." %}
+  {% assign msg_invalid = "Sprawdź zaznaczone pola i spróbuj ponownie." %}
+  {% assign msg_spam = "Nie udało się zweryfikować zgłoszenia (ochrona antyspamowa). Spróbuj ponownie za chwilę albo skorzystaj z formularza na" %}
+  {% assign msg_error = "Nie udało się wysłać zgłoszenia. Spróbuj ponownie za chwilę albo skorzystaj z formularza na" %}
+  {% assign msg_long = "Opis jest za długi. Skróć go trochę." %}
+  {% assign msg_heading = "[Strona Grupy GOTOMA – Konsultacja 360°]" %}
+  {% assign msg_page = "Strona" %}
 {% endif %}
+{% assign cf = site.data.contact_form %}
 <div class="{{c}}" id="{{ form_id }}">
   <div class="container">
     <div class="row">
@@ -56,19 +73,24 @@
             <h2 class="{{c}}__contact-title">{{ include.form_title }}</h2>
             <p class="{{c}}__contact-description">{{ include.form_description }}</p>
           </div>
+          {% comment %}
+            Wysyłka przez formularz kontaktowy gotoma.pl (Contact Form 7, konfiguracja w _data/contact_form.yml):
+            skrypt poniżej składa wszystkie pola w jedną wiadomość i wysyła ją w tle.
+          {% endcomment %}
           <form class="{{c}}__form"
-            action="{{include.form_success_page}}"
-            method="POST">
-            {% if include.form_submission_email %}<input type="hidden" name="_to" value="{{include.form_submission_email}}">{% endif %}
-            <input type="hidden" name="_subject" value="{{ form_subject }}">
-            <input type="text" name="_gotcha" class="{{c}}__honeypot" tabindex="-1" autocomplete="off">
+            action="{{ cf.fallback_url }}"
+            method="POST"
+            data-cf7-form
+            data-heading="{{ msg_heading }}"
+            data-page-label="{{ msg_page }}">
+            <input type="text" name="_gotcha" class="{{c}}__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="{{c}}__form-group">
               <label class="{{c}}__form-label" for="form-situation">{{ situation_label }}</label>
-              <textarea class="{{c}}__form-input" id="form-situation" name="opis_sytuacji" rows="7" required></textarea>
+              <textarea class="{{c}}__form-input" id="form-situation" name="opis_sytuacji" rows="7" maxlength="1400" required data-label="{{ situation_label | remove: ' *' }}"></textarea>
               <small class="{{c}}__form-hint">{{ situation_hint }}</small>
             </div>
             <fieldset class="{{c}}__form-group {{c}}__fieldset">
-              <legend class="{{c}}__form-label">{{ area_label }}</legend>
+              <legend class="{{c}}__form-label" data-label-for="obszar[]">{{ area_label }}</legend>
               <div class="{{c}}__choices">
                 {% for area in areas %}<label><input type="checkbox" name="obszar[]" value="{{ area }}"> <span>{{ area }}</span></label>{% endfor %}
               </div>
@@ -76,15 +98,15 @@
             <div class="{{c}}__form-row">
               <div class="{{c}}__form-group">
                 <label class="{{c}}__form-label" for="form-industry">{{ industry_label }}</label>
-                <input class="{{c}}__form-input" id="form-industry" type="text" name="branza">
+                <input class="{{c}}__form-input" id="form-industry" type="text" name="branza" maxlength="120" data-label="{{ industry_label }}">
               </div>
               <div class="{{c}}__form-group">
                 <label class="{{c}}__form-label" for="form-scale">{{ scale_label }}</label>
-                <input class="{{c}}__form-input" id="form-scale" type="number" min="1" name="liczba_osob">
+                <input class="{{c}}__form-input" id="form-scale" type="number" min="1" inputmode="numeric" name="liczba_osob" data-label="{{ scale_label }}">
               </div>
             </div>
             <fieldset class="{{c}}__form-group {{c}}__fieldset">
-              <legend class="{{c}}__form-label">{{ systems_label }}</legend>
+              <legend class="{{c}}__form-label" data-label-for="systemy[]">{{ systems_label }}</legend>
               <div class="{{c}}__choices">
                 {% for system in systems %}<label><input type="checkbox" name="systemy[]" value="{{ system }}"> <span>{{ system }}</span></label>{% endfor %}
               </div>
@@ -92,26 +114,26 @@
             <div class="{{c}}__form-row">
               <div class="{{c}}__form-group">
                 <label class="{{c}}__form-label" for="form-data">{{ data_label }}</label>
-                <select class="{{c}}__form-input" id="form-data" name="rodzaj_danych">
+                <select class="{{c}}__form-input" id="form-data" name="rodzaj_danych" data-label="{{ data_label }}">
                   <option value="">{{ select_label }}</option>{% for option in data_options %}<option>{{ option }}</option>{% endfor %}
                 </select>
               </div>
               <div class="{{c}}__form-group">
                 <label class="{{c}}__form-label" for="form-model">{{ model_label }}</label>
-                <select class="{{c}}__form-input" id="form-model" name="preferowana_forma">
+                <select class="{{c}}__form-input" id="form-model" name="preferowana_forma" data-label="{{ model_label }}">
                   <option value="">{{ select_label }}</option>{% for option in model_options %}<option>{{ option }}</option>{% endfor %}
                 </select>
               </div>
             </div>
             <div class="{{c}}__form-group">
               <label class="{{c}}__form-label" for="form-horizon">{{ horizon_label }}</label>
-              <input class="{{c}}__form-input" id="form-horizon" type="text" name="horyzont_decyzji">
+              <input class="{{c}}__form-input" id="form-horizon" type="text" name="horyzont_decyzji" maxlength="120" data-label="{{ horizon_label }}">
             </div>
             <div class="{{c}}__form-row">
-              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-name">{{ name_label }}</label><input class="{{c}}__form-input" id="form-name" type="text" name="name" required></div>
-              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-company">{{ company_label }}</label><input class="{{c}}__form-input" id="form-company" type="text" name="firma" required></div>
-              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-email">E-mail *</label><input class="{{c}}__form-input" id="form-email" type="email" name="_replyto" required></div>
-              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-phone">{{ phone_label }}</label><input class="{{c}}__form-input" id="form-phone" type="tel" name="telefon"></div>
+              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-name">{{ name_label }}</label><input class="{{c}}__form-input" id="form-name" type="text" name="name" maxlength="200" autocomplete="name" required></div>
+              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-company">{{ company_label }}</label><input class="{{c}}__form-input" id="form-company" type="text" name="firma" maxlength="200" autocomplete="organization" required></div>
+              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-email">E-mail *</label><input class="{{c}}__form-input" id="form-email" type="email" name="email" maxlength="200" autocomplete="email" required></div>
+              <div class="{{c}}__form-group"><label class="{{c}}__form-label" for="form-phone">{{ phone_label }}</label><input class="{{c}}__form-input" id="form-phone" type="tel" name="telefon" maxlength="40" autocomplete="tel" data-label="{{ phone_label }}"></div>
             </div>
             <div class="{{c}}__form-group {{c}}__consent">
               <label><input type="checkbox" name="zgoda" required> <span>{{ consent_prefix }} <a href="{{ privacy_url }}">{{ privacy_label }}</a>.</span></label>
@@ -119,6 +141,7 @@
             <div class="{{c}}__form-group {{c}}__form-group--button">
               <button class="c-button c-button--primary c-button--large" type="submit">{{ include.form_button_text }}</button>
             </div>
+            <p class="{{c}}__status" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
 
@@ -126,4 +149,294 @@
     </div>
   </div>
 </div>
+<script>
+  (function () {
+    var CFG = {
+      endpoint: {{ cf.endpoint | jsonify }},
+      id: {{ cf.cf7_id | jsonify }},
+      version: {{ cf.cf7_version | jsonify }},
+      locale: {{ cf.cf7_locale | jsonify }},
+      unitTag: {{ cf.cf7_unit_tag | jsonify }},
+      sitekey: {{ cf.recaptcha_sitekey | jsonify }},
+      action: {{ cf.recaptcha_action | jsonify }},
+      fallback: {{ cf.fallback_url | jsonify }}
+    };
+    var MSG = {
+      sending: {{ msg_sending | jsonify }},
+      success: {{ msg_success | jsonify }},
+      invalid: {{ msg_invalid | jsonify }},
+      spam: {{ msg_spam | jsonify }},
+      error: {{ msg_error | jsonify }},
+      long: {{ msg_long | jsonify }}
+    };
+    var MAX_MESSAGE = 2000;
+    // pola CF7 -> nasze pola; reszta idzie w treść wiadomości
+    var CF7_FIELDS = { 'your-name': 'name', 'your-company': 'firma', 'your-email': 'email' };
+
+    var recaptchaPromise = null;
+    function loadRecaptcha() {
+      if (!CFG.sitekey) return Promise.resolve(null);
+      if (recaptchaPromise) return recaptchaPromise;
+      recaptchaPromise = new Promise(function (resolve, reject) {
+        if (window.grecaptcha && grecaptcha.execute) return grecaptcha.ready(resolve);
+        var s = document.createElement('script');
+        s.src = 'https://www.google.com/recaptcha/api.js?render=' + encodeURIComponent(CFG.sitekey);
+        s.async = true;
+        s.onload = function () { grecaptcha.ready(resolve); };
+        s.onerror = function () { recaptchaPromise = null; reject(new Error('recaptcha')); };
+        document.head.appendChild(s);
+      });
+      return recaptchaPromise;
+    }
+    function recaptchaToken() {
+      return loadRecaptcha().then(function () {
+        return CFG.sitekey ? grecaptcha.execute(CFG.sitekey, { action: CFG.action }) : '';
+      });
+    }
+
+    function buildMessage(form) {
+      var lines = [form.dataset.heading, ''];
+      var situation = form.querySelector('[name="opis_sytuacji"]');
+      lines.push(situation.dataset.label + ':', situation.value.trim(), '');
+      Array.prototype.forEach.call(form.querySelectorAll('[data-label-for]'), function (legend) {
+        var name = legend.dataset.labelFor;
+        var checked = Array.prototype.map.call(form.querySelectorAll('[name="' + name + '"]:checked'), function (i) { return i.value; });
+        if (checked.length) lines.push(legend.textContent.trim() + ': ' + checked.join(', '));
+      });
+      Array.prototype.forEach.call(form.querySelectorAll('[data-label]'), function (field) {
+        if (field === situation) return;
+        var value = (field.value || '').trim();
+        if (value) lines.push(field.dataset.label + ': ' + value);
+      });
+      lines.push('', form.dataset.pageLabel + ': ' + location.href.split('#')[0]);
+      return lines.join('\n');
+    }
+
+    function setStatus(form, type, text, withLink) {
+      var box = form.querySelector('.c-contact-form__status');
+      box.hidden = false;
+      box.className = 'c-contact-form__status c-contact-form__status--' + type;
+      box.textContent = text;
+      if (withLink) {
+        box.appendChild(document.createTextNode(' '));
+        var a = document.createElement('a');
+        a.href = CFG.fallback;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = CFG.fallback.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        box.appendChild(a);
+        box.appendChild(document.createTextNode('.'));
+      }
+    }
+
+    function markInvalid(form, cf7Invalid) {
+      Array.prototype.forEach.call(form.querySelectorAll('[aria-invalid="true"]'), function (el) { el.removeAttribute('aria-invalid'); });
+      (cf7Invalid || []).forEach(function (f) {
+        var ours = CF7_FIELDS[f.field] || (f.field === 'your-message' ? 'opis_sytuacji' : null);
+        var el = ours && form.querySelector('[name="' + ours + '"]');
+        if (el) el.setAttribute('aria-invalid', 'true');
+      });
+      var first = form.querySelector('[aria-invalid="true"]');
+      if (first) first.focus();
+    }
+
+    // Lista wyboru w stylu formularza (tylko mysz/trackpad; na dotyku zostaje systemowy wybór, wygodniejszy).
+    // Natywny <select> zostaje pod spodem i trzyma wartość; przycisk + listbox z obsługą klawiatury.
+    var uid = 0;
+    function enhanceSelect(select) {
+      var form = select.form;
+      var label = form.querySelector('label[for="' + select.id + '"]');
+      var wrap = document.createElement('div');
+      wrap.className = 'c-contact-form__select';
+      select.parentNode.insertBefore(wrap, select);
+      wrap.appendChild(select);
+      select.tabIndex = -1;
+      select.setAttribute('aria-hidden', 'true');
+
+      var id = 'cf-select-' + (++uid);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = id + '-button';
+      btn.className = 'c-contact-form__form-input c-contact-form__select-button';
+      btn.setAttribute('aria-haspopup', 'listbox');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', id + '-list');
+      if (label) {
+        if (!label.id) label.id = id + '-label';
+        label.htmlFor = btn.id;
+        btn.setAttribute('aria-labelledby', label.id + ' ' + btn.id);
+      }
+      wrap.appendChild(btn);
+
+      var list = document.createElement('ul');
+      list.id = id + '-list';
+      list.className = 'c-contact-form__select-list';
+      list.setAttribute('role', 'listbox');
+      list.tabIndex = -1;
+      if (label) list.setAttribute('aria-labelledby', label.id);
+      list.hidden = true;
+      var options = Array.prototype.map.call(select.options, function (opt, i) {
+        var li = document.createElement('li');
+        li.id = id + '-opt-' + i;
+        li.className = 'c-contact-form__select-option' + (opt.value === '' ? ' is-placeholder' : '');
+        li.setAttribute('role', 'option');
+        li.textContent = opt.textContent;
+        li.addEventListener('mousedown', function (e) { e.preventDefault(); });
+        li.addEventListener('click', function () { choose(i); close(true); });
+        li.addEventListener('mousemove', function () { setActive(i); });
+        list.appendChild(li);
+        return li;
+      });
+      wrap.appendChild(list);
+
+      var active = -1;
+      function sync() {
+        var i = select.selectedIndex < 0 ? 0 : select.selectedIndex;
+        btn.textContent = select.options[i] ? select.options[i].textContent : '';
+        btn.classList.toggle('is-placeholder', select.value === '');
+        options.forEach(function (li, k) { li.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+      }
+      function setActive(i) {
+        active = Math.max(0, Math.min(options.length - 1, i));
+        options.forEach(function (li, k) { li.classList.toggle('is-active', k === active); });
+        list.setAttribute('aria-activedescendant', options[active].id);
+        var li = options[active];
+        if (li.offsetTop < list.scrollTop) list.scrollTop = li.offsetTop;
+        else if (li.offsetTop + li.offsetHeight > list.scrollTop + list.clientHeight) list.scrollTop = li.offsetTop + li.offsetHeight - list.clientHeight;
+      }
+      function choose(i) {
+        if (select.selectedIndex !== i) {
+          select.selectedIndex = i;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        sync();
+      }
+      function open() {
+        if (!list.hidden) return;
+        list.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        setActive(select.selectedIndex < 0 ? 0 : select.selectedIndex);
+        list.focus({ preventScroll: true });
+        document.addEventListener('mousedown', outside, true);
+      }
+      function close(focusButton) {
+        if (list.hidden) return;
+        list.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+        list.removeAttribute('aria-activedescendant');
+        document.removeEventListener('mousedown', outside, true);
+        if (focusButton) btn.focus({ preventScroll: true });
+      }
+      function outside(e) { if (!wrap.contains(e.target)) close(false); }
+
+      // wpisanie liter przeskakuje do pasującej opcji (jak w systemowym select)
+      var typed = '', typedTimer = 0;
+      function typeahead(ch, base) {
+        typed += ch.toLowerCase();
+        clearTimeout(typedTimer);
+        typedTimer = setTimeout(function () { typed = ''; }, 600);
+        var offset = typed.length === 1 ? 1 : 0;
+        for (var n = 0; n < options.length; n++) {
+          var k = (Math.max(base, 0) + offset + n) % options.length;
+          if (options[k].textContent.trim().toLowerCase().indexOf(typed) === 0) return k;
+        }
+        return -1;
+      }
+
+      btn.addEventListener('click', function () { list.hidden ? open() : close(true); });
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        } else if (e.key.length === 1 && /\S/.test(e.key)) {
+          var k = typeahead(e.key, select.selectedIndex);
+          if (k >= 0) choose(k);
+        }
+      });
+      list.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); setActive(0); }
+        else if (e.key === 'End') { e.preventDefault(); setActive(options.length - 1); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(active); close(true); }
+        else if (e.key === 'Escape') { e.preventDefault(); close(true); }
+        else if (e.key === 'Tab') { choose(active); close(false); }
+        else if (e.key.length === 1 && /\S/.test(e.key)) { var k = typeahead(e.key, active); if (k >= 0) setActive(k); }
+      });
+      list.addEventListener('blur', function () { setTimeout(function () { if (!wrap.contains(document.activeElement)) close(false); }, 0); });
+      form.addEventListener('reset', function () { setTimeout(sync, 0); });
+      select.addEventListener('change', sync);
+      sync();
+    }
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      Array.prototype.forEach.call(document.querySelectorAll('form[data-cf7-form] select'), enhanceSelect);
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('form[data-cf7-form]'), function (form) {
+      var button = form.querySelector('[type="submit"]');
+      // reCAPTCHA dopiero przy pierwszym kontakcie z formularzem (nie obciąża ładowania strony)
+      form.addEventListener('focusin', function () { loadRecaptcha().catch(function () {}); }, { once: true });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (form.dataset.busy === 'true') return;
+
+        // honeypot: boty wypełniają ukryte pole — udajemy sukces, nic nie wysyłamy
+        if (form.querySelector('[name="_gotcha"]').value) {
+          setStatus(form, 'success', MSG.success);
+          form.reset();
+          return;
+        }
+
+        var message = buildMessage(form);
+        if (message.length > MAX_MESSAGE) {
+          setStatus(form, 'error', MSG.long);
+          markInvalid(form, [{ field: 'your-message' }]);
+          return;
+        }
+
+        form.dataset.busy = 'true';
+        button.disabled = true;
+        setStatus(form, 'info', MSG.sending);
+
+        recaptchaToken().catch(function () { return ''; }).then(function (token) {
+          var data = new FormData();
+          data.append('_wpcf7', CFG.id);
+          data.append('_wpcf7_version', CFG.version);
+          data.append('_wpcf7_locale', CFG.locale);
+          data.append('_wpcf7_unit_tag', CFG.unitTag);
+          data.append('_wpcf7_container_post', '0');
+          data.append('_wpcf7_recaptcha_response', token || '');
+          Object.keys(CF7_FIELDS).forEach(function (key) {
+            data.append(key, form.querySelector('[name="' + CF7_FIELDS[key] + '"]').value.trim());
+          });
+          data.append('your-message', message);
+          data.append('acceptance', form.querySelector('[name="zgoda"]').checked ? '1' : '');
+          return fetch(CFG.endpoint, { method: 'POST', body: data, mode: 'cors', credentials: 'omit' });
+        }).then(function (response) {
+          if (!response.ok) throw new Error('http ' + response.status);
+          return response.json();
+        }).then(function (result) {
+          if (result.status === 'mail_sent') {
+            setStatus(form, 'success', MSG.success);
+            markInvalid(form, []);
+            form.reset();
+          } else if (result.status === 'validation_failed') {
+            setStatus(form, 'error', MSG.invalid);
+            markInvalid(form, result.invalid_fields);
+          } else if (result.status === 'spam') {
+            setStatus(form, 'error', MSG.spam, true);
+          } else {
+            setStatus(form, 'error', MSG.error, true);
+          }
+        }).catch(function () {
+          setStatus(form, 'error', MSG.error, true);
+        }).then(function () {
+          form.dataset.busy = 'false';
+          button.disabled = false;
+        });
+      });
+    });
+  })();
+</script>
 <!-- end contact -->
