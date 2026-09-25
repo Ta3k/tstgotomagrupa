@@ -1,0 +1,209 @@
+{% comment %}
+  Laboratorium kolejności firm (tymczasowe, do usunięcia po decyzji razem z _data/order_lab.yml).
+  Tylko strona główna i tylko z parametrem w adresie: /?kolejnosc albo /?kolejnosc=gg-gsh-cod-erp.
+  Bez parametru skrypt kończy się w pierwszej linii i niczego nie dodaje do strony.
+  Zmienia naraz: logo w nagłówku, kafelki „Wybierz czego potrzebujesz” i podmenu „Nasze firmy”.
+  Wybrana kolejność trafia do adresu (link do wysłania) i przechodzi przy przełączeniu PL/EN.
+{% endcomment %}
+{% if page.path contains "_pages/index.html" or page.path contains "_pages/home_en.html" %}
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    if (!params.has('kolejnosc')) return;
+
+    var en = document.documentElement.lang === 'en' || location.pathname.indexOf('/en/') === 0;
+    var BRANDS = {
+      gg: { card: 'gotoma-general', host: 'gotomageneral.com', name: 'GOTOMA General', short: 'General' },
+      gsh: { card: 'gotoma-software-house', host: 'gotoma.pl', name: 'GOTOMA Software House', short: 'Software House' },
+      cod: { card: 'codarius', host: 'codarius.com', name: 'Codarius', short: 'Codarius' },
+      erp: { card: 'erp-factory', host: 'erpfactory.tech', name: 'ERP Factory', short: 'ERP Factory' }
+    };
+    var PRESETS = {{ site.data.order_lab.presets | jsonify }};
+    var T = en
+      ? { tag: 'Company order', left: 'Move left', right: 'Move right', copy: 'Copy link', copied: 'Copied', hide: 'Hide' }
+      : { tag: 'Kolejność firm', left: 'Przesuń w lewo', right: 'Przesuń w prawo', copy: 'Kopiuj link', copied: 'Skopiowano', hide: 'Ukryj' };
+
+    var logoBox = document.querySelector('.c-header .logo');
+    var grid = document.querySelector('.c-brands__grid');
+    var hostOf = function (href) {
+      try { return new URL(href, location.href).hostname.replace(/^www\./, ''); } catch (e) { return ''; }
+    };
+    var codeOfHost = function (host) {
+      for (var code in BRANDS) if (BRANDS[code].host === host) return code;
+      return null;
+    };
+    var valid = function (order) {
+      return order.length === 4 && order.every(function (c, i) { return BRANDS[c] && order.indexOf(c) === i; });
+    };
+    var currentHeader = function () {
+      return Array.prototype.map.call(logoBox.querySelectorAll('[data-brand]'), function (a) { return a.dataset.brand; });
+    };
+
+    var order = (params.get('kolejnosc') || '').toLowerCase().split('-');
+    if (!valid(order)) order = currentHeader();
+
+    function apply() {
+      // nagłówek: logo przedzielone kreskami
+      var divider = logoBox.querySelector('.divider');
+      var tpl = divider ? divider.cloneNode(false) : null;
+      Array.prototype.forEach.call(logoBox.querySelectorAll('.divider'), function (d) { d.remove(); });
+      order.forEach(function (code, i) {
+        var link = logoBox.querySelector('[data-brand="' + code + '"]');
+        if (!link) return;
+        if (i > 0 && tpl) logoBox.appendChild(tpl.cloneNode(false));
+        logoBox.appendChild(link);
+      });
+
+      // kafelki marek
+      if (grid) order.forEach(function (code) {
+        var card = grid.querySelector('#' + BRANDS[code].card);
+        if (card) grid.appendChild(card);
+      });
+
+      // podmenu „Nasze firmy”: to, w którym są linki do wszystkich czterech firm
+      Array.prototype.forEach.call(document.querySelectorAll('.dropdown-menu'), function (menu) {
+        var links = {};
+        Array.prototype.forEach.call(menu.querySelectorAll('a[href]'), function (a) {
+          var code = codeOfHost(hostOf(a.getAttribute('href')));
+          if (code) links[code] = a;
+        });
+        if (Object.keys(links).length === 4) order.forEach(function (code) { menu.appendChild(links[code]); });
+      });
+
+      // adres z kolejnością (do wysłania) i przełącznik PL/EN, który ją zachowuje
+      var q = '?kolejnosc=' + order.join('-');
+      history.replaceState(null, '', location.pathname + q + location.hash);
+      Array.prototype.forEach.call(document.querySelectorAll('.c-header .main-nav > .logo__link, .c-header .nav-button > .logo__link'), function (a) {
+        a.setAttribute('href', a.getAttribute('href').split('?')[0].split('#')[0] + q);
+      });
+      render();
+    }
+
+    // pasek
+    var bar = document.createElement('div');
+    bar.className = 'ol-bar';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', T.tag);
+    document.body.appendChild(bar);
+
+    function button(label, onClick, attrs) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      for (var k in attrs || {}) b.setAttribute(k, attrs[k]);
+      b.addEventListener('click', onClick);
+      return b;
+    }
+
+    function move(i, dir) {
+      var j = i + dir;
+      if (j < 0 || j > 3) return;
+      var t = order[i]; order[i] = order[j]; order[j] = t;
+      apply();
+      var focusTarget = bar.querySelectorAll('.ol-bar__item')[j];
+      var again = focusTarget && focusTarget.querySelector(dir < 0 ? '[data-dir="-1"]' : '[data-dir="1"]');
+      if (again && !again.disabled) again.focus();
+    }
+
+    function copyLink(btn) {
+      var url = location.href;
+      var done = function () { btn.textContent = T.copied; setTimeout(function () { btn.textContent = T.copy; }, 1600); };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(done, function () { fallback(url); done(); });
+      } else {
+        fallback(url); done();
+      }
+    }
+    function fallback(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:-100px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.remove();
+    }
+
+    function render() {
+      bar.innerHTML = '';
+      if (bar.classList.contains('is-collapsed')) {
+        bar.appendChild(button(T.tag, function () { bar.classList.remove('is-collapsed'); render(); }, { 'class': 'ol-bar__tag ol-bar__tag--btn' }));
+        return;
+      }
+      var tag = document.createElement('span');
+      tag.className = 'ol-bar__tag';
+      tag.textContent = T.tag;
+      bar.appendChild(tag);
+
+      var presets = document.createElement('div');
+      presets.className = 'ol-bar__presets';
+      PRESETS.forEach(function (p) {
+        var codes = String(p.order).toLowerCase().split('-');
+        if (!valid(codes)) return;
+        var active = codes.join('-') === order.join('-');
+        presets.appendChild(button(p.name, function () { order = codes.slice(); apply(); }, active ? { 'aria-pressed': 'true' } : { 'aria-pressed': 'false' }));
+      });
+      bar.appendChild(presets);
+
+      var list = document.createElement('ol');
+      list.className = 'ol-bar__list';
+      order.forEach(function (code, i) {
+        var li = document.createElement('li');
+        li.className = 'ol-bar__item';
+        li.appendChild(button('‹', function () { move(i, -1); }, { 'aria-label': T.left + ': ' + BRANDS[code].name, 'data-dir': '-1' }));
+        var name = document.createElement('span');
+        name.innerHTML = '<b>' + (i + 1) + '.</b> <span class="ol-bar__full">' + BRANDS[code].name + '</span><span class="ol-bar__short">' + BRANDS[code].short + '</span>';
+        li.appendChild(name);
+        li.appendChild(button('›', function () { move(i, 1); }, { 'aria-label': T.right + ': ' + BRANDS[code].name, 'data-dir': '1' }));
+        li.firstChild.disabled = i === 0;
+        li.lastChild.disabled = i === 3;
+        list.appendChild(li);
+      });
+      bar.appendChild(list);
+
+      var actions = document.createElement('div');
+      actions.className = 'ol-bar__actions';
+      actions.appendChild(button(T.copy, function () { copyLink(this); }));
+      actions.appendChild(button(T.hide, function () { bar.classList.add('is-collapsed'); render(); }));
+      bar.appendChild(actions);
+    }
+
+    // na telefonie pasek jest na całą szerokość: przycisk „do góry” unosi się nad niego
+    var syncHeight = function () { document.documentElement.style.setProperty('--ol-h', bar.offsetHeight + 'px'); };
+    document.documentElement.classList.add('ol-on');
+    new ResizeObserver(syncHeight).observe(bar);
+
+    apply();
+  })();
+</script>
+<style>
+  .ol-bar{position:fixed;left:16px;bottom:16px;z-index:2000;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;max-width:calc(100vw - 120px);padding:8px 10px;border-radius:16px;background:rgba(12,10,6,.86);border:1px solid rgba(228,173,80,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 20px 50px -24px rgba(0,0,0,.9);font:600 12px/1.2 Poppins,system-ui,sans-serif;color:#e8dcc0}
+  .ol-bar.is-collapsed{padding:4px}
+  .ol-bar button{font:inherit;color:#d9c79f;background:transparent;border:1px solid rgba(228,173,80,.25);border-radius:999px;padding:6px 10px;cursor:pointer}
+  .ol-bar button:hover{border-color:#e4ad50;color:#fff}
+  .ol-bar button:focus-visible{outline:2px solid #ffe8a4;outline-offset:2px}
+  .ol-bar button:disabled{opacity:.3;cursor:default}
+  .ol-bar button[aria-pressed="true"]{background:#e4ad50;border-color:#e4ad50;color:#120c02}
+  .ol-bar__tag{color:#8c7b58;padding:0 4px;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+  .ol-bar__tag--btn{color:#d9c79f!important}
+  .ol-bar__presets,.ol-bar__actions{display:flex;flex-wrap:wrap;gap:4px}
+  .ol-bar__list{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0;list-style:none}
+  .ol-bar__item{display:flex;align-items:center;gap:2px;padding:2px;border-radius:999px;background:rgba(228,173,80,.08)}
+  .ol-bar__item b{color:#e4ad50}
+  .ol-bar__item button{padding:4px 9px;border-color:transparent;font-size:14px;line-height:1}
+  .ol-bar__short{display:none}
+  .ol-bar__item > span{padding:0 6px;white-space:nowrap}
+  @media (max-width:767px){
+    .ol-bar{left:8px;right:8px;bottom:8px;max-width:none;gap:6px;padding:6px;font-size:11px}
+    .ol-bar:not(.is-collapsed) > .ol-bar__tag{display:none}
+    .ol-bar__presets{order:1;flex:1 1 auto}
+    .ol-bar__actions{order:2}
+    .ol-bar__list{order:3;display:grid;grid-template-columns:1fr 1fr;width:100%}
+    .ol-bar button{padding:5px 8px}
+    .ol-bar__item{justify-content:space-between}
+    .ol-bar__item > span{padding:0 2px;overflow:hidden;text-overflow:ellipsis}
+    .ol-bar__full{display:none}.ol-bar__short{display:inline}
+    .ol-on .top{bottom:calc(var(--ol-h,0px) + 20px)!important}
+  }
+</style>
+{% endif %}

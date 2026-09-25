@@ -223,3 +223,18 @@ Wyniki:
 - **Liczby (13+, 300+, 70+):** ten sam przebłysk co na kartach członkostw w hero, kafelki po kolei (co 0,4 s); przy reduced-motion wyłączony.
 - **Banery enova365 / Evoluma / ERP Factory** w sekcji liczb są ukryte (treści są już w hero i w karcie ERP Factory), ale zostają w kodzie. Włączenie: `show_banners: true` w bloku `projects-section`, przełącznik w CMS.
 
+### Laboratorium kolejności firm (2026-09-25)
+
+- Przełącznik do pokazania CEO różnych kolejności firm. Działa na stronie głównej z parametrem: `/?kolejnosc` (EN: `/en/?kolejnosc`). Bez parametru strona jest bez zmian.
+- Zmienia naraz: logo w nagłówku, kafelki „Wybierz czego potrzebujesz” i podmenu „Nasze firmy”.
+- Pasek w lewym dolnym rogu:
+  - presety z `site/_data/order_lab.yml`;
+  - strzałki ‹ › przy każdej firmie;
+  - „Kopiuj link” (kolejność jest w adresie, np. `/?kolejnosc=cod-erp-gsh-gg`);
+  - „Ukryj”.
+- Przełączenie PL/EN zachowuje kolejność.
+- Kody firm: `gg` GOTOMA General, `gsh` GOTOMA Software House, `cod` Codarius, `erp` ERP Factory.
+- Pliki: `site/_includes/order-lab.html` (dołączony w `default.html`), `site/_data/order_lab.yml`, atrybuty `data-brand` na logo w `header.html`. Do usunięcia po decyzji. Docelową kolejność wprowadza się w `header.html` (kolejność logo), w datach postów marek (kafelki) i w `navigation.yml` (podmenu).
+- Przy okazji: z `erpfactory.png` i `.webp` przycięty przezroczysty margines z prawej (35 px z 118). Przy ERP Factory w innym miejscu niż na końcu robił nierówną przerwę w nagłówku.
+- Uwaga: dotąd kolejność w nagłówku (GG, GSH, Codarius, ERP) i w kafelkach (Codarius, GSH, GG, ERP) była różna.
+

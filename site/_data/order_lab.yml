@@ -1,0 +1,9 @@
+# Laboratorium kolejności firm (logo w nagłówku, kafelki „Wybierz czego potrzebujesz”, podmenu „Nasze firmy”).
+# Włączane parametrem w adresie strony głównej: /?kolejnosc  (EN: /en/?kolejnosc)
+# Kody firm: gg = GOTOMA General, gsh = GOTOMA Software House, cod = Codarius, erp = ERP Factory.
+# Presety: nazwa + kolejność kodów rozdzielona myślnikiem. Własną kolejność ustawia się strzałkami na pasku.
+presets:
+  - name: "Nagłówek (obecnie)"
+    order: "gg-gsh-cod-erp"
+  - name: "Kafelki (obecnie)"
+    order: "cod-gsh-gg-erp"
