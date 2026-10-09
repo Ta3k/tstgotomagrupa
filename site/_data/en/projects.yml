@@ -3,7 +3,7 @@ logo_image2: '/images/gotoma_general 1.svg'
 logo_image3: '/images/codarius.svg' # You can add own logo. For example '/images/logo.png'.
 
 gotomaHref: 'https://www.gotoma.pl/en/'
-codariusHref: 'https://www.codarius.com/cennik'
+codariusHref: 'https://codarius.com/'
 gotomaGeneralHref: 'https://www.gotomageneral.com/en/'
 
 header_href: 'about-us'
@@ -223,7 +223,7 @@ slider_partners:
     logo_width: 400
     logo_height: 53
     alt: "SoSimpleFuture"
-  - href: "https://www.codarius.com/cennik"
+  - href: "https://codarius.com/"
     logo: "/images/partners/codarius.svg"
     logo_width: 119
     logo_height: 30
@@ -279,7 +279,7 @@ tooltips:
           logo_width: 119
           logo_height: 30
           alt: "Codarius"
-          href: "https://www.codarius.com/cennik"
+          href: "https://codarius.com/"
         - name: "GOTOMA S.H."
           logo: "/images/partners/gotoma_black.svg"
           logo_width: 169
@@ -364,7 +364,7 @@ tooltips:
           logo_width: 119
           logo_height: 30
           alt: "Codarius"
-          href: "https://www.codarius.com/cennik"
+          href: "https://codarius.com/"
         - name: "Moonwise"
           logo: "/images/partners/moonwise.webp"
           logo_width: 514

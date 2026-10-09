@@ -1,0 +1,33 @@
+# GOTOMA Group
+
+> GOTOMA Group is a Polish technology group headquartered in Nowy Sącz that delivers IT projects for businesses in an "IT 360" model: software, e-commerce, infrastructure and hardware, security and AI solutions. The Group consists of GOTOMA GENERAL, GOTOMA Software House, Codarius and ERP Factory. A company with an issue that spans several areas contacts one place, and the Group defines the scope and identifies the company that will lead the project.
+
+Key facts:
+- Headquarters: Nowy Sącz, Poland
+- Group: more than 14 years on the market, more than 300 completed projects, more than 70 experts
+- Group companies: GOTOMA GENERAL (digitalisation coordination and IT general contracting), GOTOMA Software House (custom software and AI solutions), Codarius (e-commerce platform and online marketing), ERP Factory (company developing its own ERP system)
+- GOTOMA GENERAL is an authorised enova365 partner; GOTOMA Software House is a member of the Evoluma technology cluster
+- The Group complements its offering with solutions from external partners, including investment financing, CRM, WMS and TMS, PIM, hardware and hosting, and online marketing
+- AI implementation principle: the system prepares and suggests, while decisions involving responsibility (accounting, tax, legal, commercial) remain with people
+- This file covers the English version of the website. The Polish version is described in https://www.grupagotoma.pl/llms.txt
+
+## Group companies
+- [GOTOMA GENERAL](https://gotomageneral.com/en/): digitalisation coordination and turnkey IT general contracting: hardware, infrastructure, software, cybersecurity, Private AI environments, tenders and investment financing
+- [GOTOMA Software House](https://gotoma.pl/en/): custom systems and applications: CRM, ERP, MES, WMS, TMS, web and mobile applications, integrations, AI solutions, staff augmentation and managed teams
+- [Codarius](https://codarius.com/): e-commerce platform for launching an online store, plus marketing services: visual identity, SEO, content marketing, social media, Google Ads and Meta Ads campaigns
+- [ERP Factory](https://erpfactory.tech/): Group company developing its own ERP platform for company management: projects and investments, human resources, budgets and cash flow, with AI mechanisms that suggest decisions to managers
+
+## Business solutions
+- [360° Consultation](https://www.grupagotoma.pl/en/business-solutions/360-consultation/): entry point for projects that span several areas or do not yet have a defined solution; the Group defines the scope, the sequence of steps and the lead company
+- [AI and automation](https://www.grupagotoma.pl/en/business-solutions/ai-and-automation/): AI in sales, customer service, document workflows and operations; projects run from process analysis through a pilot to implementation
+- [Private AI and cybersecurity](https://www.grupagotoma.pl/en/business-solutions/private-ai-and-cybersecurity/): AI for data that cannot leave the company; environments for confidential data, infrastructure security (NIS2, DORA) and AI Act compliance
+- [Sales digitalisation](https://www.grupagotoma.pl/en/business-solutions/sales-digitalisation/): the sales process and its CRM support, generating enquiries and handing orders over to fulfilment, the warehouse and accounting
+- [Digital transformation](https://www.grupagotoma.pl/en/business-solutions/digital-transformation/): the company's core system (ERP), a single source of product data (PIM), integrations and custom software
+- [E-commerce and B2B platforms](https://www.grupagotoma.pl/en/business-solutions/e-commerce-and-b2b-platforms/): online stores for end customers and ordering platforms for regular business partners with their individual terms
+- [IT for manufacturing and logistics](https://www.grupagotoma.pl/en/business-solutions/it-for-manufacturing-and-logistics/): production workflow (MES), warehouse and transport (WMS), machinery maintenance; implementation starts with one part of the plant
+
+## Optional
+- [enova365 ERP implementations](https://gotomageneral.com/en/enova365/): GOTOMA GENERAL's offering as an authorised enova365 partner
+- [GOTOMA GENERAL llms.txt](https://gotomageneral.com/en/llms.txt): detailed overview of GOTOMA GENERAL services, AI solutions and projects
+- [GOTOMA Software House llms.txt](https://gotoma.pl/en/llms.txt): detailed overview of GOTOMA Software House services, AI solutions and case studies
+- [Codarius llms.txt](https://codarius.com/llms.txt): detailed overview of the Codarius e-commerce platform and marketing services (available in Polish only)

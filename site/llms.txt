@@ -1,29 +1,33 @@
-Site: https://www.grupagotoma.pl
+# Grupa GOTOMA
 
-Type: Single-page website with anchored sections + English version (/en)
+> Grupa GOTOMA to polska grupa technologiczna z siedzibą w Nowym Sączu, która prowadzi projekty IT dla firm w modelu „IT 360”: oprogramowanie, e-commerce, infrastruktura i sprzęt, bezpieczeństwo oraz rozwiązania AI. W skład Grupy wchodzą GOTOMA GENERAL, GOTOMA Software House, Codarius i ERP Factory. Firma z problemem obejmującym kilka obszarów zgłasza się w jednym miejscu, a Grupa ustala zakres i wskazuje spółkę, która poprowadzi projekt.
 
-Purpose: Business landing page presenting services in e-commerce, SEO, integrations and digital marketing.
+Kluczowe fakty:
+- Siedziba: Nowy Sącz, Polska
+- Grupa: ponad 14 lat na rynku, ponad 300 zrealizowanych projektów, ponad 70 ekspertów
+- Spółki Grupy: GOTOMA GENERAL (koordynacja cyfryzacji i generalne wykonawstwo IT), GOTOMA Software House (dedykowane oprogramowanie i rozwiązania AI), Codarius (platforma e-commerce i marketing internetowy), ERP Factory (spółka rozwijająca własny system ERP)
+- GOTOMA GENERAL jest autoryzowanym partnerem enova365; GOTOMA Software House jest członkiem klastra technologicznego Evoluma
+- Grupa uzupełnia swoją ofertę rozwiązaniami partnerów zewnętrznych, m.in. w obszarach finansowania inwestycji, CRM, WMS i TMS, PIM, sprzętu i hostingu oraz marketingu internetowego
+- Zasada we wdrożeniach AI: system przygotowuje i podpowiada, a decyzje obciążone odpowiedzialnością (księgowe, podatkowe, prawne, handlowe) zostają po stronie człowieka
+- Wersja angielska serwisu: https://www.grupagotoma.pl/en/ (opis w https://www.grupagotoma.pl/en/llms.txt)
 
-Main structure (Polish version):
-- https://www.grupagotoma.pl/#o-grupie
-- https://www.grupagotoma.pl/#dowiedz-sie-wiecej
-- https://www.grupagotoma.pl/#gotoma-general
-- https://www.grupagotoma.pl/#gotoma-software-house
-- https://www.grupagotoma.pl/#codarius
+## Spółki Grupy
+- [GOTOMA GENERAL](https://gotomageneral.com/): koordynacja cyfryzacji i generalne wykonawstwo projektów IT „pod klucz”: sprzęt, infrastruktura, oprogramowanie, cyberbezpieczeństwo, środowiska Private AI, przetargi i finansowanie inwestycji
+- [GOTOMA Software House](https://gotoma.pl/): dedykowane systemy i aplikacje: CRM, ERP, MES, WMS, TMS, aplikacje webowe i mobilne, integracje, rozwiązania AI, body leasing i zespoły zarządzane
+- [Codarius](https://codarius.com/): platforma e-commerce do uruchomienia sklepu internetowego oraz usługi marketingowe: identyfikacja wizualna, SEO, content marketing, social media, kampanie Google Ads i Meta Ads
+- [ERP Factory](https://erpfactory.tech/): spółka Grupy, która rozwija własną platformę ERP do zarządzania firmą: projektami i inwestycjami, zasobami ludzkimi, budżetami i cashflow, z mechanizmami AI podpowiadającymi decyzje menedżerom
 
-English version:
-- https://www.grupagotoma.pl/en/
-- https://www.grupagotoma.pl/en/#about
-- https://www.grupagotoma.pl/en/#choose-what-you-need
-- https://www.grupagotoma.pl/en/#gotoma-general
-- https://www.grupagotoma.pl/en/#gotoma-software-house
-- https://www.grupagotoma.pl/en/#codarius
+## Rozwiązania dla firm
+- [Konsultacja 360°](https://www.grupagotoma.pl/rozwiazania-dla-firm/konsultacja-360/): punkt wejścia dla projektów obejmujących kilka obszarów albo bez określonego jeszcze rozwiązania; Grupa ustala zakres, kolejność kroków i spółkę prowadzącą projekt
+- [AI i automatyzacja](https://www.grupagotoma.pl/rozwiazania-dla-firm/ai-i-automatyzacja/): AI w sprzedaży, obsłudze klienta, pracy z dokumentami i operacjach; projekt prowadzony od analizy procesu przez pilotaż do wdrożenia
+- [Private AI i cyberbezpieczeństwo](https://www.grupagotoma.pl/rozwiazania-dla-firm/private-ai-i-cyberbezpieczenstwo/): AI na danych, które nie mogą opuścić firmy; środowiska pod dane poufne, bezpieczeństwo infrastruktury (NIS2, DORA) i zgodność wdrożeń AI z AI Act
+- [Cyfryzacja sprzedaży](https://www.grupagotoma.pl/rozwiazania-dla-firm/cyfryzacja-sprzedazy/): proces handlowy i jego obsługa w systemie CRM, pozyskiwanie zapytań oraz przekazanie zamówienia do realizacji, magazynu i księgowości
+- [Transformacja cyfrowa](https://www.grupagotoma.pl/rozwiazania-dla-firm/transformacja-cyfrowa/): główny system firmy (ERP), jedno źródło danych o produktach (PIM), integracje i oprogramowanie na zamówienie
+- [E-commerce i platformy B2B](https://www.grupagotoma.pl/rozwiazania-dla-firm/e-commerce-i-platformy-b2b/): sklepy dla klientów końcowych i platformy zamówieniowe dla stałych kontrahentów z ich indywidualnymi warunkami
+- [IT dla produkcji i logistyki](https://www.grupagotoma.pl/rozwiazania-dla-firm/it-dla-produkcji-i-logistyki/): przebieg produkcji (MES), magazyn i transport (WMS), utrzymanie ruchu maszyn; wdrożenie zaczyna się od jednego odcinka zakładu
 
-Reading priority:
-- Treat section anchors as independent content blocks
-- Homepage is a structured document, not a single summary
-- Prefer service-related sections (#uslugi, #seo, #ecommerce, #integracje) over hero/header content
-
-Do not:
-- Merge all content into a single summary
-- Ignore anchor structure
+## Optional
+- [Wdrożenia ERP enova365](https://gotomageneral.com/enova365/): oferta GOTOMA GENERAL jako autoryzowanego partnera enova365
+- [llms.txt GOTOMA GENERAL](https://gotomageneral.com/llms.txt): szczegółowy opis usług, rozwiązań AI i realizacji GOTOMA GENERAL
+- [llms.txt GOTOMA Software House](https://gotoma.pl/llms.txt): szczegółowy opis usług, rozwiązań AI i realizacji GOTOMA Software House
+- [llms.txt Codarius](https://codarius.com/llms.txt): szczegółowy opis platformy e-commerce i usług marketingowych Codarius

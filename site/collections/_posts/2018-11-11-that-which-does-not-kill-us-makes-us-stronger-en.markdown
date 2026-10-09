@@ -8,6 +8,6 @@ description: >-
 image: /images/codarius_obrazek.webp
 imageTitle: /images/codarius_logo.png
 callToAction: I want to sell more
-callToActionUrl: https://www.codarius.com/cennik
+callToActionUrl: https://codarius.com/
 callToActionImage: /images/codariusAction.png
 ---

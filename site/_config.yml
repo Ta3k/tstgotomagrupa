@@ -2,7 +2,7 @@ title: Vonge
 
 # Stage (zwieksz-sprzedaz-online.pl): strona nie może trafić do wyszukiwarek.
 # Przy wdrożeniu na grupagotoma.pl ustawić false (zdejmuje meta robots noindex, nofollow).
-noindex: true
+noindex: false
 
 plugins:
   - jekyll-bookshop
